@@ -1,13 +1,14 @@
 export type userType = {
   userData: {
-    userNo: number;
+    id: number;
     email: string;
     password: string;
     nickname: string;
     birth: number;
     gender: number;
-    stature: number;
+    height: number;
     weight: number;
     mainFoot: string;
   };
+  setUser: (newData: Partial<userType['userData']>) => void;
 };
