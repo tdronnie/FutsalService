@@ -1,0 +1,28 @@
+server:
+  port: 8000
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+spring:
+  application:
+    name: apigateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: eureka-client-user
+          uri: lb://EUREKA-CLIENT-USER
+          predicates:
+            - Path=/user/**
+        - id: eureka-client-social
+          uri: lb://EUREKA-CLIENT-SOCIAL
+          predicates:
+            - Path=/social/**
+        - id: eureka-client-calc
+          uri: lb://EUREKA-CLIENT-CALC
+          predicates:
+            - Path=/calc/**
