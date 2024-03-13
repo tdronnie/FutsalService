@@ -63,6 +63,11 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
  
@@ -143,4 +148,38 @@
   font-weight: 900;
   font-display: swap;
   src: url("./fonts/SCDream9.woff2") format("woff2");
+}
+
+@media (min-width: 577px) {
+  #root {
+    background-color: #CDF5FD;
+  }
+}
+
+.AppSize {
+  max-width: 576px;
+  min-height: 740px;
+  margin:auto;
+  background-color: white;
+}
+.TooSmall {
+  display: none;
+}
+
+/* 화면 너비가 360px 미만인 경우 */
+@media (max-width: 359px) {
+  .AppSize {
+    display: none;
+  }
+
+  #appWarning {
+    display: block;
+    text-align: center;
+    padding: 20px;
+    font-size: 2.8vh;
+    font-weight: bold;
+    color: #D4A11E;
+    background-color: #CDF5FD;
+    height:100vh;
+  }
 }
