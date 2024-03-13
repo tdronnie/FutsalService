@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const MainTemplete = () => {
-  return (
-    <div>MainTemplete</div>
-  )
-}
+  return <div>MainTemplete</div>;
+};
 
-export default MainTemplete
+export default MainTemplete;
