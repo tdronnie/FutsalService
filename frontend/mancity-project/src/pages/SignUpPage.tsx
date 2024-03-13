@@ -1,5 +1,11 @@
+import SingUpTemplate from "@/components/templates/SingUpTemplate";
+
 const SignUpPage = () => {
-  return <div>SignUpPage</div>;
+  return (
+    <div>
+      <SingUpTemplate />
+    </div>
+  );
 };
 
 export default SignUpPage;

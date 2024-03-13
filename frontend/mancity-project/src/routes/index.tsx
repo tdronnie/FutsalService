@@ -5,11 +5,11 @@ import SignUpPage from "../pages/SignUpPage";
 import NotFoundPage from "../pages/NotFoundPage";
 
 const AppRoutes = () => (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/SignUp" element={<SignUpPage />} />
-      <Route path="*" element={<NotFoundPage />} />
-    </Routes>
+  <Routes>
+    <Route path="/" element={<HomePage />} />
+    <Route path="/signup" element={<SignUpPage />} />
+    <Route path="*" element={<NotFoundPage />} />
+  </Routes>
 );
 
 export default AppRoutes;
