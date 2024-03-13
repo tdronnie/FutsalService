@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const VideoCommunityPage = () => {
-  return (
-    <div>VideoCommunityPage</div>
-  )
-}
+  return <div>VideoCommunityPage</div>;
+};
 
-export default VideoCommunityPage
+export default VideoCommunityPage;
