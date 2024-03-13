@@ -1,9 +1,6 @@
 package com.mancity.user.application;
 
-import com.mancity.user.application.dto.request.FcmUpdateRequestDto;
-import com.mancity.user.application.dto.request.LoginRequestDto;
-import com.mancity.user.application.dto.request.SingUpRequestDto;
-import com.mancity.user.application.dto.request.UpdateRequestDto;
+import com.mancity.user.application.dto.request.*;
 import com.mancity.user.application.dto.response.UserResponseDto;
 import com.mancity.user.domain.User;
 import com.mancity.user.domain.repository.UserRepository;
@@ -61,12 +58,12 @@ public class UserService {
         return UserResponseDto.from(user);
     }
 
-    public boolean isDuplicateEmail(String email) {
-        return userRepository.existsByEmail(email);
+    public boolean isDuplicateEmail(DuplicateEmailCheckRequestDto dto) {
+        return userRepository.existsByEmail(dto.getEmail());
     }
 
-    public boolean isDuplicateNickName(String nickName) {
-        return userRepository.existsByNickName(nickName);
+    public boolean isDuplicateNickName(DuplicateNickNameCheckRequestDto dto) {
+        return userRepository.existsByNickName(dto.getNickName());
     }
 
     private boolean isCorrectPassword(String inputPassword, String original) {
