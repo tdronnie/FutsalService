@@ -45,28 +45,29 @@ public class User {
     }
 
     public void update(UpdateRequestDto dto) {
-        if (!isEmpty(dto.getNickName())) {
+        if (isValid(dto.getNickName())) {
             this.nickName = dto.getNickName();
         }
 
-        if (!isEmpty(dto.getFoot())) {
+        if (isValid(dto.getFoot())) {
             this.foot = dto.getFoot();
         }
 
-        if (!isEmpty(dto.getHeight())) {
+        if (isValid(dto.getHeight())) {
             this.height = dto.getHeight();
         }
 
-        if (!isEmpty(dto.getWeight())) {
+        if (isValid(dto.getWeight())) {
             this.weight = dto.getWeight();
         }
 
-        if (!isEmpty(dto.isPlayer())) {
-            this.isPlayer = dto.isPlayer();
+        if (isValid(dto.getIsPlayer())) {
+            this.isPlayer = dto.getIsPlayer();
         }
     }
 
-    private boolean isEmpty(Object obj) {
-        return ObjectUtils.isEmpty(obj);
+    private boolean isValid(Object obj) {
+        return obj != null && !ObjectUtils.isEmpty(obj);
     }
+
 }
