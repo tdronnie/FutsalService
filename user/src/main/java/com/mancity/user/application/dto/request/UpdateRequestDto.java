@@ -3,22 +3,24 @@ package com.mancity.user.application.dto.request;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class UpdateRequestDto {
 
     private Long id;
 
     private String nickName;
 
-    private int height;
+    private Integer height;
 
-    private int weight;
+    private Integer weight;
 
-    private int foot;
+    private Integer foot;
 
-    private boolean isPlayer;
+    private Boolean isPlayer;
 
 }

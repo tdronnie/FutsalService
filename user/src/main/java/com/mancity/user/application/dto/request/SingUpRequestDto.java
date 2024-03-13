@@ -5,10 +5,12 @@ import com.mancity.user.infrastructure.util.PasswordEncoder;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class SingUpRequestDto {
 
     private String nickName;
