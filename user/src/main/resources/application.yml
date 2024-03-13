@@ -1,6 +1,12 @@
 spring:
   application:
     name: eureka-client-user
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mancity?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true
+    hikari:
+      username: ssafy
+      password: ssafy
 
 server:
   port: 8081
@@ -11,3 +17,4 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka #Eureka Server ??
+
