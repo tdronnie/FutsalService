@@ -13,6 +13,6 @@ type Story = StoryObj<typeof SubButton>;
 
 export const Default: Story = {
   args: {
-    label: "Reverse Button",
+    label: "Sub Button",
   },
 };

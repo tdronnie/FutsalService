@@ -30,12 +30,13 @@ const SingUpTemplate = () => {
       <ShadcnDropdown items={dropdownDummyData} />
       <NumberingBox number={3} />
       <GlobalButton width="w-80" label="Global Button" />
-      <ReverseButton width="w-80" label="Reverse Button" />
+      <ReverseButton width="w-80" label="Sub Button" />
       <SubButton label="Sub Button" />
       <IconButton icon="plus" />
       <RoundButton
         textColor="text-white"
         bgColor="bg-mancity"
+        borderColor="border-mancity"
         hoverTextColor="text-mancity"
         hoverBgColor="bg-white"
         hoverBorderColor="border-mancity"

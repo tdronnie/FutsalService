@@ -15,6 +15,7 @@ export const Filled: Story = {
   args: {
     textColor: "text-white",
     bgColor: "bg-mancity",
+    borderColor: "border-mancity",
     hoverTextColor: "text-mancity",
     hoverBgColor: "bg-white",
     hoverBorderColor: "border-mancity",
@@ -26,6 +27,7 @@ export const Empty: Story = {
   args: {
     textColor: "text-mancity",
     bgColor: "bg-white",
+    borderColor: "border-mancity",
     hoverTextColor: "text-white",
     hoverBgColor: "bg-mancity",
     hoverBorderColor: "border-white",

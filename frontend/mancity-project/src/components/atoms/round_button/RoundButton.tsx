@@ -4,6 +4,7 @@ const RoundButton = (props: TailwindPropsType) => {
   const {
     textColor,
     bgColor,
+    borderColor,
     hoverTextColor,
     hoverBgColor,
     hoverBorderColor,
@@ -12,8 +13,8 @@ const RoundButton = (props: TailwindPropsType) => {
   return (
     <button
       type="button"
-      className={` ${textColor} ${bgColor} hover:${hoverTextColor} hover:${hoverBgColor} hover:${hoverBorderColor} 
-      w-14 h-14 font-medium text-sm rounded-full hover:border-2`}
+      className={` ${textColor} ${bgColor} ${borderColor} hover:${hoverTextColor} hover:${hoverBgColor} hover:${hoverBorderColor} 
+      w-14 h-14 font-medium text-sm rounded-full border-2 hover:border-2`}
     >
       {label}
     </button>
