@@ -20,6 +20,7 @@ const SingUpTemplate = () => {
         textSize="text-lg"
         fontWeight="font-medium"
         textColor="text-[#5D7A93]"
+        label="Typography"
       />
       <GlobalInput width="w-40" placeholder="place holder" />
       <ShadcnDropdown items={dropdownDummyData} />

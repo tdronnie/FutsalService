@@ -1,8 +1,8 @@
 import React from "react";
 
 const Typography = (props: TailwindPropsType) => {
-  const { textSize, fontWeight, textColor } = props;
-  return <p className={`${textSize} ${fontWeight} ${textColor}`}>Typography</p>;
+  const { textSize, fontWeight, textColor, label } = props;
+  return <p className={`${textSize} ${fontWeight} ${textColor}`}>{label}</p>;
 };
 
 export default Typography;
