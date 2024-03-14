@@ -6,9 +6,9 @@ CMD ["./gradlew", "clean", "build"]
 VOLUME /tmp
 
 # 만들어진 jar파일 복사
-COPY build/libs/*.jar app.jar
+COPY build/libs/*.jar eureka.jar
 
 # 실행할 명령어
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "eureka.jar"]
 
 
