@@ -10,12 +10,7 @@ import {
   // DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 
-interface PropsType {
-  items: { value: number; label: string }[];
-  width?: string;
-}
-
-const ShadcnDropdown = ({ items, width = "w-40" }: PropsType) => {
+const ShadcnDropdown = ({ items, width = "w-40" }: ShadcnDropdownPropsType) => {
   const [position, setPosition] = useState("click");
   const [numberValue, setNumberValue] = useState(0);
 

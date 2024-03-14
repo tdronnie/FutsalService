@@ -1,6 +1,6 @@
 import React from "react";
 
-const Typography = (props: tailwindProps) => {
+const Typography = (props: TailwindPropsType) => {
   const { textSize, fontWeight, textColor } = props;
   return <p className={`${textSize} ${fontWeight} ${textColor}`}>Typography</p>;
 };
