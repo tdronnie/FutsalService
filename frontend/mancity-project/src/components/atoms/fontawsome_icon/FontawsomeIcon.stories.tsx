@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import FontawsomeIcon from "./FontawsomeIcon";
 
 const meta: Meta<typeof FontawsomeIcon> = {
-  title: "Components/atoms/fontawesome_icon/Fon",
+  title: "Components/atoms/fontawesome_icon/Fontawsomeicon",
   tags: ["autodocs"],
   component: FontawsomeIcon,
   argTypes: {
