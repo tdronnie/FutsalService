@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage('GitLab Clone') {
             steps {
-                git branch : 'develop-be-user', credentialsId: 'gitlab_project_token', url: 'https://lab.ssafy.com/s10-ai-image-sub2/S10P22C201.git'
+                git branch : 'develop-be-user', credentialsId: 'gitlab_access_token', url: 'https://lab.ssafy.com/s10-ai-image-sub2/S10P22C201.git'
             }
         }
         stage('Gradle Build') {
