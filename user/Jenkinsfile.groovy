@@ -7,7 +7,7 @@ pipeline {
         DOCKER_IMAGE_NAME = 'joonseong/mancity-user'
         DOCKERFILE_PATH = './user/Dockerfile'
         CONTAINER_NAME = 'mancity-user'
-        REGISTRY_CREDENTIAL = 'dockerhub-IdPwd'
+        REGISTRY_CREDENTIAL = 'dockerhub_IdPwd'
         DOCKER_IMAGE = ''
         DOCKER_IMAGE_TAG = 'latest'
     }
