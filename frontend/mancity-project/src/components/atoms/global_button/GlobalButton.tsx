@@ -5,8 +5,8 @@ const GlobalButton = (props: TailwindPropsType) => {
   return (
     <button
       type="button"
-      className={` ${width} font-medium text-sm text-white bg-[#00A9FF] h-10 rounded-lg 
-      hover:text-[#00A9FF] hover:bg-white hover:border-[#00A9FF] hover:border-2`}
+      className={` ${width} font-medium text-sm text-white bg-mancity h-10 rounded-lg 
+      hover:text-mancity hover:bg-white hover:border-mancity hover:border-2`}
     >
       {label}
     </button>

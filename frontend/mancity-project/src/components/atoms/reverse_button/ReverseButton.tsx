@@ -5,8 +5,8 @@ const ReverseButton = (props: TailwindPropsType) => {
   return (
     <button
       type="button"
-      className={` ${width} font-medium text-sm bg-white text-[#00A9FF] h-10 rounded-lg 
-      hover:bg-[#00A9FF] hover:text-white border-[#00A9FF] border-2`}
+      className={` ${width} font-medium text-sm bg-white text-mancity h-10 rounded-lg 
+      hover:bg-mancity hover:text-white border-mancity border-2`}
     >
       {label}
     </button>
