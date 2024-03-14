@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        gradle 'gradle 8.5'
+        gradle 'Gradle 8.5'
     }
     environment {
         DOCKER_IMAGE_NAME = 'joonseong/mancity-user'
