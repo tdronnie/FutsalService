@@ -3,6 +3,7 @@ import ShadcnDropdown from "./ShadcnDropdown";
 
 const meta: Meta<typeof ShadcnDropdown> = {
   title: "Components/atoms/ShadcnDropdown",
+  tags: ["autodocs"],
   component: ShadcnDropdown,
   argTypes: {
     width: {
