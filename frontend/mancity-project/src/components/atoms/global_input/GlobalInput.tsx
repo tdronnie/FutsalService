@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 
-interface propsType {
-  width: string;
-  placeholder: string;
-}
-
-const GlobalInput = ({ width, placeholder }: propsType) => {
+const GlobalInput = ({ width, placeholder }: TailwindPropsType) => {
   const [textValue, setTextValue] = useState("");
 
   const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {

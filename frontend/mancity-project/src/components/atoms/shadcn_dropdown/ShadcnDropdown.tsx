@@ -10,12 +10,7 @@ import {
   // DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 
-interface PropsType {
-  items: { value: number; label: string }[];
-  width?: string;
-}
-
-const ShadcnDropdown = ({ items, width = "w-40" }: PropsType) => {
+const ShadcnDropdown = ({ items, width = "w-40" }: ShadcnDropdownPropsType) => {
   const [position, setPosition] = useState("click");
   const [numberValue, setNumberValue] = useState(0);
 
@@ -38,10 +33,10 @@ const ShadcnDropdown = ({ items, width = "w-40" }: PropsType) => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <div
-          className={`${width} h-7 border-b-2 border-[#2C4A60] flex justify-between`}
+          className={`${width} h-7 border-b-2 border-sofcity flex justify-between`}
         >
           <p className=" ml-2 ">{position}</p>
-          <p className=" mr-1 text-[#2C4A60]">▼</p>
+          <p className=" mt-2 mr-1 text-sofcity text-xs">▼</p>
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className={width}>

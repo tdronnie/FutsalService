@@ -14,13 +14,13 @@ type Story = StoryObj<typeof ReverseButton>;
 export const Default: Story = {
   args: {
     width: "w-80",
-    label: "placeholder",
+    label: "Reverse Button",
   },
 };
 
 export const Half: Story = {
   args: {
     width: "w-40",
-    label: "placeholder",
+    label: "Half Button",
   },
 };

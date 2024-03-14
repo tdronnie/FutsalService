@@ -32,6 +32,14 @@ const meta: Meta<typeof Typography> = {
         defaultValue: { summary: "text-[#5D7A93]" },
       },
     },
+    label: {
+      description: "label을 설정합니다",
+      control: "text",
+      table: {
+        type: { summary: "string" },
+        defaultValue: { summary: "word" },
+      },
+    },
   },
 };
 
@@ -44,14 +52,16 @@ export const Default: Story = {
     textSize: "text-xl",
     fontWeight: "font-medium",
     textColor: "text-[#5D7A93]",
+    label: "Typography",
   },
 };
 
-export const middle: Story = {
+export const Middle: Story = {
   args: {
     textSize: "text-base",
     fontWeight: "font-medium",
     textColor: "text-[#5D7A93]",
+    label: "Middle",
   },
 };
 
@@ -60,5 +70,6 @@ export const MainPage: Story = {
     textSize: "text-2xl",
     fontWeight: "font-medium",
     textColor: "text-[#5D7A93]",
+    label: "MainPage",
   },
 };
