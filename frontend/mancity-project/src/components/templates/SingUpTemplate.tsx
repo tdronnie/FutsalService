@@ -6,6 +6,8 @@ import NumberingBox from "../atoms/numbering_box/NumberingBox";
 import GlobalButton from "../atoms/global_button/GlobalButton";
 import ReverseButton from "../atoms/reverse_button/ReverseButton";
 import SubButton from "../atoms/sub_button/SubButton";
+import IconButton from "../atoms/icon_button/IconButton";
+import RoundButton from "../atoms/round_button/RoundButton";
 
 const dropdownDummyData = [
   { value: 1, label: "성호" },
@@ -29,6 +31,15 @@ const SingUpTemplate = () => {
       <GlobalButton width="w-80" label="Global Button" />
       <ReverseButton width="w-80" label="Reverse Button" />
       <SubButton label="Sub Button" />
+      <IconButton icon="plus" />
+      <RoundButton
+        textColor="text-white"
+        bgColor="bg-mancity"
+        hoverTextColoer="text-mancity"
+        hoverBgColor="bg-white"
+        hoverBorderColor="border-mancity"
+        label="확정"
+      />
     </div>
   );
 };
