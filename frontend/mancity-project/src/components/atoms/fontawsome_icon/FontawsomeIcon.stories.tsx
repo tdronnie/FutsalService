@@ -63,7 +63,7 @@ export const faBell: Story = {
 };
 export const faCopy: Story = {
   args: {
-    icon: "copy",
+    icon: ['far', 'copy'],
     size: "1x",
     color: "#5D7A93",
   },
@@ -119,7 +119,7 @@ export const faMagnifyingGlass: Story = {
 };
 export const faImage: Story = {
   args: {
-    icon: "image",
+    icon: ['far', 'image'],
     size: "1x",
     color: "#5D7A93",
   },
