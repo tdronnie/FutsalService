@@ -20,7 +20,7 @@ pipeline {
         stage('Gradle Build') {
             steps {
                 echo 'Building..'
-                dir('./backend') {
+                dir('./user') {
                     sh 'chmod +x gradlew'
                     sh './gradlew clean bootjar'
                 }
@@ -28,7 +28,7 @@ pipeline {
         }
         stage('Docker Build Image') {
             steps {
-                dir('./backend') {
+                dir('./user') {
                     script {
                         DOCKER_IMAGE = docker.build("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}", "-f Dockerfile .")
                     }
@@ -46,7 +46,7 @@ pipeline {
         }
         stage('Docker Clean Image') {
             steps {
-                dir('./backend') {
+                dir('./user') {
                     sh 'docker rmi $DOCKER_IMAGE_NAME'
                 }
             }
