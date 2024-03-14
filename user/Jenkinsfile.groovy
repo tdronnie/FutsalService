@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage('GitLab Clone') {
             steps {
-                git branch : 'develop', credentialsId: 'gitlab_project_token', url: 'https://lab.ssafy.com/s10-ai-image-sub2/S10P22C201.git'
+                git branch : 'develop-be-user', credentialsId: 'gitlab_project_token', url: 'https://lab.ssafy.com/s10-ai-image-sub2/S10P22C201.git'
             }
         }
         stage('Gradle Build') {
@@ -61,7 +61,7 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    sh 'docker run -d --name ${CONTAINER_NAME} -p 8081:8080 ${DOCKER_IMAGE_NAME}'
+                    sh 'docker run -d --name ${CONTAINER_NAME} -p 8081:8081 ${DOCKER_IMAGE_NAME}'
                 }
             }
         }
