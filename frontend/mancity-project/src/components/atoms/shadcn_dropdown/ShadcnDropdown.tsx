@@ -41,7 +41,7 @@ const ShadcnDropdown = ({ items, width = "w-40" }: PropsType) => {
           className={`${width} h-7 border-b-2 border-[#2C4A60] flex justify-between`}
         >
           <p className=" ml-2 ">{position}</p>
-          <p className=" mr-1 ">▼</p>
+          <p className=" mr-1 text-[#2C4A60]">▼</p>
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className={width}>
