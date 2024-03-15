@@ -3,8 +3,9 @@ interface TailwindPropsType {
   fontWeight?: string;
   textColor?: string;
   bgColor?: string;
+  borderColor?: string;
 
-  hoverTextColoer?: string;
+  hoverTextColor?: string;
   hoverBgColor?: string;
   hoverBorderColor?: string;
 

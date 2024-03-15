@@ -8,6 +8,7 @@ import ReverseButton from "../atoms/reverse_button/ReverseButton";
 import SubButton from "../atoms/sub_button/SubButton";
 import IconButton from "../atoms/icon_button/IconButton";
 import RoundButton from "../atoms/round_button/RoundButton";
+import ClubButton from "../atoms/club_button/ClubButton";
 
 const dropdownDummyData = [
   { value: 1, label: "성호" },
@@ -29,17 +30,19 @@ const SingUpTemplate = () => {
       <ShadcnDropdown items={dropdownDummyData} />
       <NumberingBox number={3} />
       <GlobalButton width="w-80" label="Global Button" />
-      <ReverseButton width="w-80" label="Reverse Button" />
+      <ReverseButton width="w-80" label="Sub Button" />
       <SubButton label="Sub Button" />
       <IconButton icon="plus" />
       <RoundButton
         textColor="text-white"
         bgColor="bg-mancity"
-        hoverTextColoer="text-mancity"
+        borderColor="border-mancity"
+        hoverTextColor="text-mancity"
         hoverBgColor="bg-white"
         hoverBorderColor="border-mancity"
         label="확정"
       />
+      <ClubButton textColor="[#D4A11E]" bgColor="white" label="클럽명" />
     </div>
   );
 };
