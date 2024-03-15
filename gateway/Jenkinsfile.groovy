@@ -62,7 +62,7 @@ pipeline {
         stage('Delete Previous back Docker Container'){
             steps {
                 script {
-                    def backContainerExists = sh(script: "docker ps -a --filter name=${CONTAINER_NAME}", returnStatus: true) == 0
+                    def backContainerExists = sh(script: "docker inspect name=${CONTAINER_NAME}", returnStatus: true) == 0
                     if (backContainerExists) {
                         sh 'docker stop ${CONTAINER_NAME}'
                         sh 'docker rm ${CONTAINER_NAME}'
