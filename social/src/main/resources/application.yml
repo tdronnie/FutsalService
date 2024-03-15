@@ -1,9 +1,37 @@
 spring:
   application:
     name: eureka-client-social
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://j10c201.p.ssafy.io:3308/mancity?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true
+    hikari:
+      username: ssafy
+      password: ssafy
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        show_sql: true
+        format_sql: true
+    data:
+      web:
+        pageable:
+          one-indexed-parameters: true
 
 server:
   port: 8082
+  servlet:
+    contextPath: /
+  servlet.encoding:
+    charset: UTF-8
+    enabled: true
+    force: true
+  java:
+    options:
+      - "-Dfile.encoding=UTF-8"
+      - "-Dconsole.encoding=UTF-8"
 
 eureka:
   client:
@@ -11,3 +39,6 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://j10c201.p.ssafy.io:8761/eureka #Eureka Server ??
+
+build:
+  date: '@build.date@'
