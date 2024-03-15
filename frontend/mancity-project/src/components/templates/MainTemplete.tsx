@@ -1,7 +1,6 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import FontawsomeIcon from "@/components/atoms/fontawsome_icon/FontawsomeIcon";
-import Navbar from "../molecules/Navbar";
 
 const MainTemplete = () => {
   return (
@@ -13,7 +12,6 @@ const MainTemplete = () => {
         size="2x"
         color="#FF204E"
       ></FontawsomeIcon>
-      <Navbar />
     </div>
   );
 };
