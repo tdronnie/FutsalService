@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import AppRoutes from "./routes";
 import tooSmallImage from "./assets/imgs/toosmall.png";
+import Navbar from "./components/molecules/Navbar";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Router>
           <AppRoutes />
         </Router>
+        <Navbar />
       </div>
     </>
   );
