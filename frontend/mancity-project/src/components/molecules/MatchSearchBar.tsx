@@ -1,5 +1,9 @@
-const MatchSearchBar = () => {
-  return <div></div>;
-};
+import React from 'react'
 
-export default MatchSearchBar;
+const MatchSearchBar = () => {
+  return (
+    <div>MatchSearchBar</div>
+  )
+}
+
+export default MatchSearchBar
