@@ -126,7 +126,7 @@ export const faImage: Story = {
 };
 export const faHeart: Story = {
   args: {
-    icon: "heart",
+    icon: ['far', 'heart'],
     size: "1x",
     color: "#5D7A93",
   },
@@ -162,6 +162,20 @@ export const faUserGroup: Story = {
 export const faBookmark: Story = {
   args: {
     icon: "bookmark",
+    size: "1x",
+    color: "#5D7A93",
+  },
+};
+export const faBraveReverse: Story = {
+  args: {
+    icon: ['fab', 'brave-reverse'],
+    size: "1x",
+    color: "#5D7A93",
+  },
+};
+export const faBrave: Story = {
+  args: {
+    icon: ['fab', 'brave'],
     size: "1x",
     color: "#5D7A93",
   },
