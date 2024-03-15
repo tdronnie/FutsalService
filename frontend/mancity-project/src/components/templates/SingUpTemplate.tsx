@@ -10,7 +10,8 @@ import IconButton from "../atoms/icon_button/IconButton";
 import RoundButton from "../atoms/round_button/RoundButton";
 import ClubButton from "../atoms/club_button/ClubButton";
 import BoardPiece from "../atoms/board_piece/BoardPiece";
-import AvataContainer from "../atoms/avata_container/AvataContainer";
+import ContentBox from "../atoms/content_box/ContentBox";
+import TextareaContainer from "../atoms/textarea_container/TextareaContainer";
 
 const dropdownDummyData = [
   { value: 1, label: "성호" },
@@ -53,7 +54,8 @@ const SingUpTemplate = () => {
         label="클럽명"
       />
       <BoardPiece bgColor="bg-mancity" label="2" />
-      <AvataContainer width="w-10" height="h-10" />
+      <ContentBox width="w-10" height="h-10" rounded="rounded-none" />
+      <TextareaContainer />
     </div>
   );
 };

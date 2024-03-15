@@ -11,6 +11,7 @@ interface TailwindPropsType {
 
   width?: string;
   height?: string;
+  rounded?: string;
   label?: string;
   placeholder?: string;
 }
