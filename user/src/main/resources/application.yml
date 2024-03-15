@@ -40,7 +40,7 @@ eureka:
     service-url:
       defaultZone: http://j10c201.p.ssafy.io:8761/eureka #Eureka Server ??
   instance:
-    hostname: http://j10c201.p.ssafy.io
+    hostname: j10c201.p.ssafy.io
 
 build:
   date: '@build.date@'
