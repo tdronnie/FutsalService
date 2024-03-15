@@ -158,7 +158,7 @@
 
 .AppSize {
   max-width: 576px;
-  min-height: 740px;
+  height: 100vh;
   margin:auto;
   background-color: white;
 }
