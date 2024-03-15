@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ShadcnDropdown from "../atoms/shadcn_dropdown/ShadcnDropdown";
 import Typography from "../atoms/typography/Typography";
 import GlobalInput from "../atoms/global_input/GlobalInput";
@@ -10,7 +10,10 @@ import IconButton from "../atoms/icon_button/IconButton";
 import RoundButton from "../atoms/round_button/RoundButton";
 import ClubButton from "../atoms/club_button/ClubButton";
 import BoardPiece from "../atoms/board_piece/BoardPiece";
-import AvataContainer from "../atoms/avata_container/AvataContainer";
+import ContentBox from "../atoms/content_box/ContentBox";
+import TextareaContainer from "../atoms/textarea_container/TextareaContainer";
+import ShadcnSwitch from "../atoms/shadcn_switch/ShadcnSwitch";
+import ShadcnTabs from "../atoms/shadcn_tabs/ShadcnTabs";
 
 const dropdownDummyData = [
   { value: 1, label: "성호" },
@@ -19,6 +22,20 @@ const dropdownDummyData = [
 ];
 
 const SingUpTemplate = () => {
+  //스위치 상태 관리
+  const [isSwitchOn, setIsSwitchOn] = useState(false);
+  const toggleSwitch = () => setIsSwitchOn(!isSwitchOn);
+
+  useEffect(() => {
+    console.log(isSwitchOn);
+  }, [isSwitchOn]);
+
+  const [selectedTab, setSelectedTab] = useState(false);
+  const toggleTab = () => setSelectedTab(!selectedTab);
+
+  useEffect(() => {
+    console.log(selectedTab);
+  }, [selectedTab]);
   return (
     <div>
       <h1>SingUpTemplate</h1>
@@ -53,7 +70,12 @@ const SingUpTemplate = () => {
         label="클럽명"
       />
       <BoardPiece bgColor="bg-mancity" label="2" />
-      <AvataContainer width="w-10" height="h-10" />
+      <ContentBox width="w-10" height="h-10" rounded="rounded-none" />
+      <TextareaContainer />
+      <ShadcnSwitch checked={isSwitchOn} onCheckedChange={toggleSwitch} />
+      <ShadcnTabs Tab1="영상" Tab2="잡담" onChange={toggleTab} />
+      {!selectedTab && <div>영상 리스트입니다</div>}
+      {selectedTab && <div>잡담 리스트입니다</div>}
     </div>
   );
 };
