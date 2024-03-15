@@ -10,9 +10,12 @@ import {
   faCircleUser,
   faFilter,
   faHeart,
+  faHome,
   faLocationCrosshairs,
   faMagnifyingGlass,
+  faMap,
   faPen,
+  faPeopleGroup,
   faPlus,
   faShareFromSquare,
   faTowerCell,
@@ -24,6 +27,11 @@ import {
   faImage,
   faHeart as faColoredHeart,
 } from "@fortawesome/free-regular-svg-icons";
+import {
+  faBrave,
+  faBraveReverse,
+  faVuejs,
+} from "@fortawesome/free-brands-svg-icons";
 
 // 사용할 아이콘을 라이브러리에 추가
 library.add(
@@ -45,5 +53,11 @@ library.add(
   faCamera,
   faUserGroup,
   faBookmark,
-  faPen
+  faPen,
+  faBraveReverse,
+  faHome,
+  faMap,
+  faPeopleGroup,
+  faVuejs,
+  faBrave
 );
