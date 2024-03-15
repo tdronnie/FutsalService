@@ -13,8 +13,11 @@ type Story = StoryObj<typeof ClubButton>;
 
 export const Default: Story = {
   args: {
-    textColor: "[#D4A11E]",
-    bgColor: "white",
+    textColor: "text-[#D4A11E]",
+    bgColor: "bg-white",
+    borderColor: "border-[#D4A11E]",
+    hoverTextColor: "text-white",
+    hoverBgColor: "bg-[#D4A11E]",
     label: "클럽명",
   },
 };
