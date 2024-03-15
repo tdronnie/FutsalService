@@ -10,6 +10,7 @@ interface TailwindPropsType {
   hoverBorderColor?: string;
 
   width?: string;
+  height?: string;
   label?: string;
   placeholder?: string;
 }
