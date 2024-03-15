@@ -61,16 +61,15 @@ pipeline {
         stage('Delete Previous back Docker Container'){
             steps {
                 script {
-                    def backContainerExists = sh(script: "docker inspect name=${CONTAINER_NAME}", returnStatus: true) == 0
-                    if (backContainerExists) {
-                        sh 'docker stop ${CONTAINER_NAME}'
-                        sh 'docker rm ${CONTAINER_NAME}'
+                    def containerInfo = sh(script: "docker inspect ${CONTAINER_NAME}", returnStatus: true)
+                    if (containerInfo == 0) {
+                        sh "docker stop ${CONTAINER_NAME}"
+                        sh "docker rm ${CONTAINER_NAME}"
                     } else {
-                        echo "Backend container does not exist. Skipping deletion."
+                        echo "Eureka container does not exist. Skipping deletion."
                     }
                 }
             }
-
         }
         stage('Run Docker Container') {
             steps {
