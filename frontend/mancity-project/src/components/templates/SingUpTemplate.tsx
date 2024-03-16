@@ -14,6 +14,7 @@ import ContentBox from "../atoms/content_box/ContentBox";
 import TextareaContainer from "../atoms/textarea_container/TextareaContainer";
 import ShadcnSwitch from "../atoms/shadcn_switch/ShadcnSwitch";
 import ShadcnTabs from "../atoms/shadcn_tabs/ShadcnTabs";
+import CarouselSlick from "../atoms/carousel_slick/CarouselSlick";
 
 const dropdownDummyData = [
   { value: 1, label: "성호" },
@@ -56,17 +57,17 @@ const SingUpTemplate = () => {
         textColor="text-white"
         bgColor="bg-mancity"
         borderColor="border-mancity"
-        hoverTextColor="text-mancity"
-        hoverBgColor="bg-white"
-        hoverBorderColor="border-mancity"
+        hoverTextColor="hover:text-mancity"
+        hoverBgColor="hover:bg-white"
+        hoverBorderColor="hover:border-mancity"
         label="확정"
       />
       <ClubButton
         textColor="text-[#D4A11E]"
         bgColor="bg-white"
         borderColor="border-[#D4A11E]"
-        hoverTextColor="text-white"
-        hoverBgColor="bg-[#D4A11E]"
+        hoverTextColor="hover:text-white"
+        hoverBgColor="hover:bg-[#D4A11E]"
         label="클럽명"
       />
       <BoardPiece bgColor="bg-mancity" label="2" />
@@ -76,6 +77,7 @@ const SingUpTemplate = () => {
       <ShadcnTabs Tab1="영상" Tab2="잡담" onChange={toggleTab} />
       {!selectedTab && <div>영상 리스트입니다</div>}
       {selectedTab && <div>잡담 리스트입니다</div>}
+      <CarouselSlick />
     </div>
   );
 };
