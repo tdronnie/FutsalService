@@ -1,9 +1,7 @@
-import React from 'react'
+import LoginTemplate from "@/components/templates/LoginTemplate";
 
 const LoginPage = () => {
-  return (
-    <div>LoginPage</div>
-  )
-}
+  return <LoginTemplate />;
+};
 
-export default LoginPage
+export default LoginPage;
