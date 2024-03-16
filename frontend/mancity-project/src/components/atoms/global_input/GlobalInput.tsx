@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 
-const GlobalInput = ({ width, placeholder }: TailwindPropsType) => {
-  const [textValue, setTextValue] = useState("");
+const GlobalInput = (props: TailwindPropsType) => {
+  const { placeholder, width, textValue, setTextValue } = props;
 
   const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTextValue(e.target.value);
+    setTextValue?.(e.target.value);
   };
   return (
     <input
@@ -12,7 +12,8 @@ const GlobalInput = ({ width, placeholder }: TailwindPropsType) => {
       value={textValue}
       onChange={onChangeValue}
       placeholder={placeholder}
-      className={`${width} text-base px-1 py-1 border-b-[1px] border-[#2C4A60] focus:outline-none  placeholder-gray-400`}
+      className={`${width} text-base px-1 py-1 border-b-[1px] 
+      border-[#2C4A60] focus:outline-none  placeholder-gray-400`}
     ></input>
   );
 };
