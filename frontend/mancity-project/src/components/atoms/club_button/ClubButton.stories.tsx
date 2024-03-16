@@ -1,5 +1,5 @@
+import ClubButton from "@/components/atoms/club_button/ClubButton";
 import type { Meta, StoryObj } from "@storybook/react";
-import ClubButton from "./ClubButton";
 
 const meta: Meta<typeof ClubButton> = {
   title: "Components/atoms/Button/ClubButton",

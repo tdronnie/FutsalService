@@ -1,5 +1,5 @@
+import ReverseButton from "@/components/atoms/reverse_button/ReverseButton";
 import type { Meta, StoryObj } from "@storybook/react";
-import ReverseButton from "./ReverseButton";
 
 const meta: Meta<typeof ReverseButton> = {
   title: "Components/atoms/Button/ReverseButton",

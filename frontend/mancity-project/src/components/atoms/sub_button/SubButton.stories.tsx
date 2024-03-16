@@ -1,5 +1,5 @@
+import SubButton from "@/components/atoms/sub_button/SubButton";
 import type { Meta, StoryObj } from "@storybook/react";
-import SubButton from "./SubButton";
 
 const meta: Meta<typeof SubButton> = {
   title: "Components/atoms/Button/SubButton",

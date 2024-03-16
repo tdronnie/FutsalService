@@ -1,5 +1,5 @@
+import FontawsomeIcon from "@/components/atoms/fontawsome_icon/FontawsomeIcon";
 import type { Meta, StoryObj } from "@storybook/react";
-import FontawsomeIcon from "./FontawsomeIcon";
 
 const meta: Meta<typeof FontawsomeIcon> = {
   title: "Components/atoms/fontawesome_icon/Fontawsomeicon",
@@ -15,8 +15,7 @@ const meta: Meta<typeof FontawsomeIcon> = {
       },
     },
     size: {
-      description:
-        "사이즈를 설정합니다. ex) 1x, 2x, ..., 10x(1x는 1em)",
+      description: "사이즈를 설정합니다. ex) 1x, 2x, ..., 10x(1x는 1em)",
       control: "text",
       table: {
         type: { summary: "string" },
@@ -24,8 +23,7 @@ const meta: Meta<typeof FontawsomeIcon> = {
       },
     },
     color: {
-      description:
-        "색상을 설정합니다. ex) black, #5D7A93 등",
+      description: "색상을 설정합니다. ex) black, #5D7A93 등",
       control: "text",
       table: {
         type: { summary: "string" },
@@ -63,7 +61,7 @@ export const faBell: Story = {
 };
 export const faCopy: Story = {
   args: {
-    icon: ['far', 'copy'],
+    icon: ["far", "copy"],
     size: "1x",
     color: "#5D7A93",
   },
@@ -119,21 +117,21 @@ export const faMagnifyingGlass: Story = {
 };
 export const faImage: Story = {
   args: {
-    icon: ['far', 'image'],
+    icon: ["far", "image"],
     size: "1x",
     color: "#5D7A93",
   },
 };
 export const faHeart: Story = {
   args: {
-    icon: ['far', 'heart'],
+    icon: ["far", "heart"],
     size: "1x",
     color: "#5D7A93",
   },
 };
 export const ColoredHeart: Story = {
   args: {
-    icon: ['fas', 'heart'],
+    icon: ["fas", "heart"],
     size: "1x",
     color: "#FF204E",
   },
@@ -168,14 +166,14 @@ export const faBookmark: Story = {
 };
 export const faBraveReverse: Story = {
   args: {
-    icon: ['fab', 'brave-reverse'],
+    icon: ["fab", "brave-reverse"],
     size: "1x",
     color: "#5D7A93",
   },
 };
 export const faBrave: Story = {
   args: {
-    icon: ['fab', 'brave'],
+    icon: ["fab", "brave"],
     size: "1x",
     color: "#5D7A93",
   },

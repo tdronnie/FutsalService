@@ -1,5 +1,5 @@
+import TextareaContainer from "@/components/atoms/textarea_container/TextareaContainer";
 import type { Meta, StoryObj } from "@storybook/react";
-import TextareaContainer from "./TextareaContainer";
 
 const meta: Meta<typeof TextareaContainer> = {
   title: "Components/atoms/TextareaContainer",

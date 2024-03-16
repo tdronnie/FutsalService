@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import ShadcnTabs from "./ShadcnTabs";
 import { action } from "@storybook/addon-actions";
 import { useState } from "react";
 import { Source } from "@storybook/addon-docs";
+import ShadcnTabs from "@/components/atoms/shadcn_tabs/ShadcnTabs";
 
 const meta: Meta<typeof ShadcnTabs> = {
   title: "Components/atoms/ShadcnTabs",

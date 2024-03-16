@@ -1,5 +1,5 @@
+import NumberingBox from "@/components/atoms/numbering_box/NumberingBox";
 import type { Meta, StoryObj } from "@storybook/react";
-import NumberingBox from "./NumberingBox";
 
 const meta: Meta<typeof NumberingBox> = {
   title: "Components/atoms/NumberingBox",
