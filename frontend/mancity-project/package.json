@@ -46,6 +46,7 @@
     "@storybook/addon-measure": "^8.0.0",
     "@storybook/addon-onboarding": "^8.0.0",
     "@storybook/addon-outline": "^8.0.0",
+    "@storybook/addons": "^7.6.17",
     "@storybook/blocks": "^8.0.0",
     "@storybook/react": "^8.0.0",
     "@storybook/react-vite": "^8.0.0",

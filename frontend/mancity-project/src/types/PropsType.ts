@@ -20,3 +20,7 @@ interface ShadcnDropdownPropsType {
   items: { value: number; label: string }[];
   width?: string;
 }
+
+interface HeaderPropsType {
+  label: string;
+}
