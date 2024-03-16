@@ -1,5 +1,5 @@
+import ContentBox from "@/components/atoms/content_box/ContentBox";
 import type { Meta, StoryObj } from "@storybook/react";
-import ContentBox from "./ContentBox";
 
 const meta: Meta<typeof ContentBox> = {
   title: "Components/atoms/ContentBox",

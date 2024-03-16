@@ -1,5 +1,5 @@
+import GlobalInput from "@/components/atoms/global_input/GlobalInput";
 import type { Meta, StoryObj } from "@storybook/react";
-import GlobalInput from "./GlobalInput";
 
 const meta: Meta<typeof GlobalInput> = {
   title: "Components/atoms/GlobalInput",

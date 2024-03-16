@@ -1,5 +1,5 @@
+import GlobalButton from "@/components/atoms/global_button/GlobalButton";
 import type { Meta, StoryObj } from "@storybook/react";
-import GlobalButton from "./GlobalButton";
 
 const meta: Meta<typeof GlobalButton> = {
   title: "Components/atoms/Button/GlobalButton",

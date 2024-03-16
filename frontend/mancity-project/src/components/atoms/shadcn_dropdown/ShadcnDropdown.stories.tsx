@@ -1,5 +1,5 @@
+import ShadcnDropdown from "@/components/atoms/shadcn_dropdown/ShadcnDropdown";
 import type { Meta, StoryObj } from "@storybook/react";
-import ShadcnDropdown from "./ShadcnDropdown";
 
 const meta: Meta<typeof ShadcnDropdown> = {
   title: "Components/atoms/ShadcnDropdown",

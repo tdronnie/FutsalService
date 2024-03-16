@@ -12,7 +12,7 @@ const GlobalInput = ({ width, placeholder }: TailwindPropsType) => {
       value={textValue}
       onChange={onChangeValue}
       placeholder={placeholder}
-      className={`${width} px-2 py-1 border-b-2 border-[#2C4A60] focus:outline-none  placeholder-gray-400`}
+      className={`${width} text-base px-1 py-1 border-b-[1px] border-[#2C4A60] focus:outline-none  placeholder-gray-400`}
     ></input>
   );
 };
