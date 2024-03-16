@@ -14,11 +14,16 @@ interface TailwindPropsType {
   rounded?: string;
   label?: string;
   placeholder?: string;
+  textValue?: string;
+  setTextValue?: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface ShadcnDropdownPropsType {
   items: { value: number; label: string }[];
   width?: string;
+  position: string;
+  setPosition?: React.Dispatch<React.SetStateAction<string>>;
+  setNumberValue?: React.Dispatch<React.SetStateAction<number>>;
 }
 
 interface DropdownPropsType extends ShadcnDropdownPropsType {
@@ -33,4 +38,6 @@ interface InputGroupPropsType {
   typographyLabel: string;
   placeholder?: string;
   checking: boolean;
+  textValue?: string;
+  setTextValue?: React.Dispatch<React.SetStateAction<string>>;
 }
