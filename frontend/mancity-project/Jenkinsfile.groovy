@@ -15,7 +15,7 @@ pipeline {
         //프로젝트 클론
         stage('GitLab Clone') {
             steps {
-                git branch : 'develop-fe', credentialsId: 'gitlab_access_token', url: 'https://lab.ssafy.com/s10-ai-image-sub2/S10P22C201.git'
+                git branch : 'feature/FE/front_cicd', credentialsId: 'gitlab_access_token', url: 'https://lab.ssafy.com/s10-ai-image-sub2/S10P22C201.git'
             }
         }
 
