@@ -2,7 +2,14 @@ import ShadcnDropdown from "@/components/atoms/shadcn_dropdown/ShadcnDropdown";
 import Typography from "@/components/atoms/typography/Typography";
 
 const Dropdown = (props: DropdownPropsType) => {
-  const { typographyLabel, width, items } = props;
+  const {
+    typographyLabel,
+    width,
+    items,
+    position,
+    setPosition,
+    setNumberValue,
+  } = props;
 
   return (
     <div className="flex-row m-4">
@@ -12,7 +19,13 @@ const Dropdown = (props: DropdownPropsType) => {
         textColor="text-sofcity"
         label={typographyLabel}
       />
-      <ShadcnDropdown width={width} items={items} />
+      <ShadcnDropdown
+        width={width}
+        items={items}
+        position={position}
+        setPosition={setPosition}
+        setNumberValue={setNumberValue}
+      />
     </div>
   );
 };

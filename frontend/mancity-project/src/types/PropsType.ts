@@ -21,6 +21,9 @@ interface TailwindPropsType {
 interface ShadcnDropdownPropsType {
   items: { value: number; label: string }[];
   width?: string;
+  position: string;
+  setPosition?: React.Dispatch<React.SetStateAction<string>>;
+  setNumberValue?: React.Dispatch<React.SetStateAction<number>>;
 }
 
 interface DropdownPropsType extends ShadcnDropdownPropsType {

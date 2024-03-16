@@ -1,34 +1,24 @@
-import { useState } from "react";
-
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
-  // DropdownMenuLabel,
-  // DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 
 const ShadcnDropdown = ({
   items,
   width = "w-full",
+  position,
+  setPosition,
+  setNumberValue,
 }: ShadcnDropdownPropsType) => {
-  const [position, setPosition] = useState("click");
-  const [numberValue, setNumberValue] = useState(0);
-
-  // useEffect(() => {
-  //   console.log(position);
-  //   console.log(numberValue);
-  //   console.log(typeof numberValue);
-  // });
-
   // 선택된 label을 기반으로 items 배열에서 해당 value 찾기
   const handleValueChange = (selectedLabel: string) => {
     const selectedItem = items.find((item) => item.label === selectedLabel);
     if (selectedItem) {
-      setPosition(selectedLabel);
-      setNumberValue(selectedItem.value);
+      setPosition?.(selectedLabel);
+      setNumberValue?.(selectedItem.value);
     }
   };
 
@@ -43,8 +33,6 @@ const ShadcnDropdown = ({
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className={width}>
-        {/* <DropdownMenuLabel>Panel Position</DropdownMenuLabel> */}
-        {/* <DropdownMenuSeparator /> */}
         <DropdownMenuRadioGroup
           value={position}
           onValueChange={handleValueChange}
