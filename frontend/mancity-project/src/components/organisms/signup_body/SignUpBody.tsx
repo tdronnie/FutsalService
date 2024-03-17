@@ -1,9 +1,12 @@
 import GlobalButton from "@/components/atoms/global_button/GlobalButton";
+import Typography from "@/components/atoms/typography/Typography";
 import Dropdown from "@/components/molecules/dropdown/Dropdown";
 import InputGroup from "@/components/molecules/input/InputGroup";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SignUpBody = () => {
+  const navigate = useNavigate();
   const GenderInfo = [
     { value: 1, label: "남자" },
     { value: 2, label: "여자" },
@@ -28,10 +31,77 @@ const SignUpBody = () => {
   const [heightValue, setHeightValue] = useState("");
   const [weightValue, setWeightValue] = useState("");
 
+  //유효성 검사
+  // 이메일 형식 검사
+  const validateEmail = (email: string) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
+
+  // 비밀번호 형식 검사 (문자, 숫자, 특수문자 포함 8자 이상)
+  const validatePassword = (password: string) => {
+    const re = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
+    return re.test(password);
+  };
+
+  // 비밀번호 확인 검사
+  const validateSecondPassword = (password: string, secondPassword: string) => {
+    return password === secondPassword;
+  };
+
+  // 닉네임, 생년월일, 성별, 주발, 키, 몸무게 등 나머지 필드들에 대한 간단한 빈 값 검사
+  // 예를 들어, 닉네임이 비어있지 않은지 확인
+  const isNotEmpty = (value: string) => {
+    return value.trim() !== "";
+  };
+
+  // 유효성 검사 상태 추가
+  const [isFormValid, setIsFormValid] = useState(false);
+
   useEffect(() => {
-    console.log(genderPosition, genderValue);
-    console.log(mainFootPosition, mainFootValue);
-  }, [genderValue, mainFootValue]);
+    // 모든 입력값의 유효성 검사
+    const isValid =
+      validateEmail(emailValue) &&
+      validatePassword(passwordValue) &&
+      validateSecondPassword(passwordValue, secondPasswordValue) &&
+      isNotEmpty(nickNameValue) &&
+      isNotEmpty(birthValue) &&
+      genderValue !== 0 &&
+      mainFootValue !== 0 &&
+      isNotEmpty(heightValue) &&
+      isNotEmpty(weightValue);
+
+    setIsFormValid(isValid);
+  }, [
+    emailValue,
+    passwordValue,
+    secondPasswordValue,
+    nickNameValue,
+    birthValue,
+    genderValue,
+    mainFootValue,
+    heightValue,
+    weightValue,
+  ]);
+
+  const onSubmitSignup = () => {
+    console.log("회원가입 정보 제출");
+    navigate("/");
+  };
+
+  useEffect(() => {
+    console.log("email :", emailValue);
+    console.log("password :", passwordValue);
+    console.log("secondPassword :", secondPasswordValue);
+    console.log("nickname :", nickNameValue);
+    console.log("birth :", birthValue);
+    console.log("gender :", genderValue);
+    console.log("mainfoot :", mainFootValue);
+    console.log("height :", heightValue);
+    console.log("weight :", weightValue);
+    console.log(isFormValid);
+    console.log("----------------------");
+  }, [isFormValid]);
   return (
     <div>
       <InputGroup
@@ -41,20 +111,42 @@ const SignUpBody = () => {
         textValue={emailValue}
         setTextValue={setEmailValue}
       />
+      <div className="text-mancity mx-4 -my-3 ">
+        {emailValue && !validateEmail(emailValue) && (
+          <Typography textSize="text-sm" label="이메일 형식이 맞지 않습니다" />
+        )}
+      </div>
       <InputGroup
         typographyLabel="비밀번호"
-        placeholder="8자리 이상"
+        placeholder="영문, 숫자, 특수문자 포함 8자리 이상"
         checking={false}
         textValue={passwordValue}
         setTextValue={setPasswordValue}
       />
+      <div className="text-mancity mx-4 -my-3 ">
+        {passwordValue && !validatePassword(passwordValue) && (
+          <Typography
+            textSize="text-sm"
+            label="비밀번호 형식이 맞지 않습니다"
+          />
+        )}
+      </div>
       <InputGroup
         typographyLabel="비밀번호 확인"
-        placeholder="8자리 이상"
+        placeholder="영문, 숫자, 특수문자 포함 8자리 이상"
         checking={false}
         textValue={secondPasswordValue}
         setTextValue={setSecondPasswordValue}
       />
+      <div className="text-mancity mx-4 -my-3 ">
+        {secondPasswordValue &&
+          !validateSecondPassword(passwordValue, secondPasswordValue) && (
+            <Typography
+              textSize="text-sm"
+              label="비밀번호가 일치하지 않습니다"
+            />
+          )}
+      </div>
       <InputGroup
         typographyLabel="닉네임"
         checking={true}
@@ -108,7 +200,13 @@ const SignUpBody = () => {
           />
         </div>
       </div>
-      <GlobalButton width="w-full" label="회원가입" />
+      <div onClick={onSubmitSignup}>
+        <GlobalButton
+          width="w-full"
+          label="회원가입"
+          isdisabled={isFormValid}
+        />
+      </div>
     </div>
   );
 };
