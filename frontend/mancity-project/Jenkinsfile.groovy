@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    tools {
-        nodejs 'nodejs' // npm 사용 위한 nodejs
-    }
     environment {
         DOCKER_IMAGE_NAME = 'joonseong/mancity-fe'
         DOCKERFILE_PATH = './mancity-project/Dockerfile'
@@ -26,7 +23,10 @@ pipeline {
         stage('Install dependencies') {
             steps {
                 script {
-                    sh 'npm install'
+                    nodejs(nodeJSInstallationName: 'nodejs') {
+                        sh 'npm install'
+                    }
+//                    sh 'npm install'
                 }
             }
         }
@@ -36,7 +36,9 @@ pipeline {
             steps {
                 echo 'Building..'
                 dir('./mancity-project') {
-                    sh 'npm run build'
+                    nodejs(nodeJSInstallationName: 'nodejs') {
+                        sh 'npm run build'
+                    }
                 }
             }
         }
