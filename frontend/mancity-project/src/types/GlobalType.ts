@@ -1,3 +1,0 @@
-interface GlobalType {
-  test: string;
-}
