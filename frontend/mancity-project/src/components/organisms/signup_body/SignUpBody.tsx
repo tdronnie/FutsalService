@@ -106,7 +106,7 @@ const SignUpBody = () => {
     <div>
       <InputGroup
         typographyLabel="이메일"
-        placeholder="email@ssafy.com"
+        placeholder="ssafy@email.com"
         checking={true}
         textValue={emailValue}
         setTextValue={setEmailValue}
