@@ -1,9 +1,9 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE_NAME = 'joonseong/mancity-frontend'
+        DOCKER_IMAGE_NAME = 'joonseong/mancity-fe'
         DOCKERFILE_PATH = './mancity-project/Dockerfile'
-        CONTAINER_NAME = 'mancity-frontend'
+        CONTAINER_NAME = 'mancity-fe'
         REGISTRY_CREDENTIAL = 'dockerhub_IdPwd'
         DOCKER_IMAGE = ''
         DOCKER_IMAGE_TAG = 'latest'
