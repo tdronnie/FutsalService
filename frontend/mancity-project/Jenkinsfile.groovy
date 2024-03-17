@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools {
+        nodejs 'nodejs-20.11.1' // npm 사용 위한 nodejs
+    }
     environment {
         DOCKER_IMAGE_NAME = 'joonseong/mancity-fe'
         DOCKERFILE_PATH = './mancity-project/Dockerfile'
