@@ -1,13 +1,17 @@
-import React from "react";
-
 const GlobalButton = (props: TailwindPropsType) => {
-  const { width, label } = props;
+  const { isdisabled, width, label } = props;
   return (
     <div className="px-3">
       <button
         type="button"
-        className={`${width} font-medium text-sm text-white bg-mancity h-10 rounded-lg 
-      hover:text-mancity hover:bg-white hover:border-mancity hover:border-2`}
+        disabled={!isdisabled}
+        className={`${width}
+        font-medium text-sm h-10 rounded-lg text-white bg-mancity
+        ${
+          !isdisabled
+            ? "opacity-40"
+            : " hover:text-mancity hover:bg-white hover:border-mancity hover:border-2" // disabled가 아닐 때의 기본 스타일 + 호버 스타일
+        }`}
       >
         {label}
       </button>
