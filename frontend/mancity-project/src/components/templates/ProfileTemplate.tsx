@@ -1,5 +1,6 @@
-import Header from "@/components/molecules/header/Header";
-import ProfileMyGames from "@/components/organisms/profile_last_games/ProfileMyGames";
+import GroupGlobalCard from "@/components/organisms/group_global_card/GroupGlobalCard";
+import GroupHighlightCard from "@/components/organisms/group_highlight_card/GroupHighlightCard";
+import Header from "@/components/organisms/header/Header";
 import ProfileUserInfo from "@/components/organisms/profile_userInfo/ProfileUserInfo";
 import ProfileUserStats from "@/components/organisms/profile_userStats/ProfileUserStats";
 
@@ -9,7 +10,8 @@ const ProfileTemplate = () => {
       <Header label="프로필" />
       <ProfileUserInfo />
       <ProfileUserStats />
-      <ProfileMyGames />
+      <GroupGlobalCard />
+      <GroupHighlightCard />
     </div>
   );
 };

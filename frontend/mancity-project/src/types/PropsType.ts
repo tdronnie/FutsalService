@@ -44,3 +44,14 @@ interface InputGroupPropsType {
   textValue?: string;
   setTextValue?: React.Dispatch<React.SetStateAction<string>>;
 }
+
+interface GlobalCardProps {
+  mainTitle: string;
+  subTitle: string;
+  bgimg?: string;
+}
+
+interface HighlightCardProps {
+  mainTitle: string;
+  bgimg?: string;
+}

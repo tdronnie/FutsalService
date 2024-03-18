@@ -1,11 +1,9 @@
 import InputGroup from "@/components/molecules/input/InputGroup";
 import type { Meta, StoryObj } from "@storybook/react";
-import { withRouter } from "storybook-addon-remix-react-router";
 
 const meta: Meta<typeof InputGroup> = {
   title: "Components/molecules/InputGroup",
   tags: ["autodocs"],
-  decorators: [withRouter],
   component: InputGroup,
 };
 
