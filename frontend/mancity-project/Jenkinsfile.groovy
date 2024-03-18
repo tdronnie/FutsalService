@@ -26,6 +26,7 @@ pipeline {
         stage('Install dependencies') {
             steps {
                 dir('./frontend/mancity-project') {
+                    sh 'node -v'
                     sh 'npm install'
 //                    nodejs('NodeJS 20.11.1') {
 //                        sh 'npm run build'
