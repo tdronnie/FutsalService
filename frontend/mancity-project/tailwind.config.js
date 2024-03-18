@@ -76,6 +76,8 @@ module.exports = {
       },
       boxShadow: {
         nav: "0 -1px 4px 0 rgba(0, 0, 0, 0.25)",
+        // 아래꺼 왜 shdow-card 안되는지 모르겠다..일단 위에꺼로 쓰자
+        card: "0 2px 5px 0 rgba(0, 0, 0, 0.25)",
       },
     },
   },

@@ -1,4 +1,4 @@
-import Header from "@/components/molecules/header/Header";
+import Header from "@/components/organisms/header/Header";
 import LoginBody from "@/components/organisms/login_body/LoginBody";
 
 const LoginTemplate = () => {
