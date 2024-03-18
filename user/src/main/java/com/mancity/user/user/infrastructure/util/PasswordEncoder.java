@@ -1,4 +1,4 @@
-package com.mancity.user.infrastructure.util;
+package com.mancity.user.user.infrastructure.util;
 
 import java.security.MessageDigest;
 import java.security.SecureRandom;
