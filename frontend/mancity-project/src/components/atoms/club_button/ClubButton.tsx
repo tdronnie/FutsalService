@@ -12,7 +12,7 @@ const ClubButton = (props: TailwindPropsType) => {
   return (
     <button
       type="button"
-      className={` ${textColor} ${bgColor} ${borderColor} ${hoverTextColor} ${hoverBgColor} font-medium text-[0.7rem] w-20 h-7 rounded-full border-2`}
+      className={` ${textColor} ${bgColor} ${borderColor} ${hoverTextColor} ${hoverBgColor} font-semibold text-[0.7rem] w-24 h-7  rounded-full border-2`}
     >
       {label}
     </button>

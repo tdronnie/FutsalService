@@ -13,6 +13,7 @@ type Story = StoryObj<typeof GlobalButton>;
 
 export const Default: Story = {
   args: {
+    isdisabled: true,
     width: "w-80",
     label: "Global Button",
   },
@@ -20,6 +21,7 @@ export const Default: Story = {
 
 export const Half: Story = {
   args: {
+    isdisabled: true,
     width: "w-40",
     label: "Half Button",
   },
