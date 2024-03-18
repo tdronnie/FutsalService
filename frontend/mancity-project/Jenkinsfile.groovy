@@ -23,7 +23,7 @@ pipeline {
         stage('Install dependencies') {
             steps {
                 script {
-                    nodejs(nodeJSInstallationName: 'nodejs') {
+                    nodejs(nodeJSInstallationName: 'NodeJS 20.11.1') {
                         sh 'npm install'
                     }
 //                    sh 'npm install'
@@ -36,7 +36,7 @@ pipeline {
             steps {
                 echo 'Building..'
                 dir('./mancity-project') {
-                    nodejs(nodeJSInstallationName: 'nodejs') {
+                    nodejs(nodeJSInstallationName: 'NodeJS 20.11.1') {
                         sh 'npm run build'
                     }
                 }
