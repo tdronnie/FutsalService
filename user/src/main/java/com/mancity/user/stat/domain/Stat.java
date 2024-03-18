@@ -1,5 +1,7 @@
-package com.mancity.user.domain;
+package com.mancity.user.stat.domain;
 
+import com.mancity.user.stat.application.dto.request.PlusRequestDto;
+import com.mancity.user.user.domain.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -41,4 +43,16 @@ public class Stat {
 
     private int playedTimes; // 총 경기 출장 횟수
 
+    public void plusStat(PlusRequestDto dto) {
+        this.speed += dto.getSpeed();
+        this.distanceCovered += dto.getDistanceCovered();
+        this.pass += dto.getPass();
+        this.shotsOnTarget += dto.getShotsOnTarget();
+        this.shot += dto.getShot();
+        this.goal += dto.getGoal();
+        this.assist += dto.getAssist();
+        this.turnOverInOffense += dto.getTurnOverInOffense();
+        this.turnOverInDefense += dto.getTurnOverInDefense();
+        this.playedTimes += 1;
+    }
 }
