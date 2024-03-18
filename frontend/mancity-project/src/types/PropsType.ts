@@ -17,6 +17,7 @@ interface TailwindPropsType {
   textValue?: string;
   setTextValue?: React.Dispatch<React.SetStateAction<string>>;
   isdisabled?: boolean;
+  bgimg?: string;
 }
 
 interface ShadcnDropdownPropsType {
