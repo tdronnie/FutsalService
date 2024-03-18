@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        nodejs 'nodejs-20.11.1'
+        nodejs 'NodeJS 20.11.1'
     }
     environment {
         DOCKER_IMAGE_NAME = 'joonseong/mancity-fe'
