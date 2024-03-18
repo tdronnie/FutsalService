@@ -1,4 +1,4 @@
-import Header from "@/components/molecules/header/Header";
+import Header from "@/components/organisms/header/Header";
 import ProfileMyGames from "@/components/organisms/profile_last_games/ProfileMyGames";
 import ProfileUserInfo from "@/components/organisms/profile_userInfo/ProfileUserInfo";
 import ProfileUserStats from "@/components/organisms/profile_userStats/ProfileUserStats";

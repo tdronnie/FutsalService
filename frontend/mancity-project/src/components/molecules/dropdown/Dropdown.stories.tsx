@@ -1,11 +1,9 @@
 import Dropdown from "@/components/molecules/dropdown/Dropdown";
 import type { Meta, StoryObj } from "@storybook/react";
-import { withRouter } from "storybook-addon-remix-react-router";
 
 const meta: Meta<typeof Dropdown> = {
   title: "Components/molecules/Dropdown",
   tags: ["autodocs"],
-  decorators: [withRouter],
   component: Dropdown,
 };
 
