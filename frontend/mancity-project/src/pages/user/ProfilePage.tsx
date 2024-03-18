@@ -1,9 +1,11 @@
-import React from 'react'
+import ProfileTemplate from "@/components/templates/ProfileTemplate";
 
 const ProfilePage = () => {
   return (
-    <div>ProfilePage</div>
-  )
-}
+    <div>
+      <ProfileTemplate />
+    </div>
+  );
+};
 
-export default ProfilePage
+export default ProfilePage;

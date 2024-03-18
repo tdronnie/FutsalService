@@ -19,7 +19,9 @@ const config: StorybookConfig = {
     options: {},
   },
   docs: {
-    autodocs: "tag",
+    autodocs: true,
+    // autodocs: 'tags', 를 true로 두면
+    // stories에 tags: ["autodocs"], 안적어도 됨
   },
 };
 export default config;
