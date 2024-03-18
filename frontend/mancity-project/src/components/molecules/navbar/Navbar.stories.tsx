@@ -1,5 +1,5 @@
 import Navbar from "./Navbar";
-import type { Meta } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { withRouter } from "storybook-addon-remix-react-router";
 
 const meta: Meta<typeof Navbar> = {
@@ -11,4 +11,6 @@ const meta: Meta<typeof Navbar> = {
 
 export default meta;
 
-export const Default = () => <Navbar />;
+type Story = StoryObj<typeof Navbar>;
+
+export const Default: Story = {};
