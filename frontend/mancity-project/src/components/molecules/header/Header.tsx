@@ -9,11 +9,11 @@ const Header = (props: HeaderPropsType) => {
     navigate(-1);
   };
   return (
-    <div className="flex m-1 ">
-      <div className="m-1" onClick={onClickBackArrow}>
+    <div className="flex p-1 ">
+      <div className="p-1" onClick={onClickBackArrow}>
         <FontawsomeIcon icon="arrow-left" size="1x" color="#5D7A93" />
       </div>
-      <div className="flex-grow text-center mr-8">
+      <div className="flex-grow mr-8 text-center">
         <Typography
           textSize="text-xl"
           fontWeight="font-medium"
