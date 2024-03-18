@@ -1,8 +1,11 @@
 import React from 'react'
+import MatchListTemplete from '@/components/templates/MatchListTemplete'
 
 const MatchListPage = () => {
   return (
-    <div>MatchListPage</div>
+    <>
+    <MatchListTemplete />
+    </>
   )
 }
 
