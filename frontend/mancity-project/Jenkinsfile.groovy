@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools {
+        nodejs 'nodejs-20.11.1'
+    }
     environment {
         DOCKER_IMAGE_NAME = 'joonseong/mancity-fe'
         DOCKERFILE_PATH = './mancity-project/Dockerfile'
@@ -23,10 +26,10 @@ pipeline {
         stage('Install dependencies') {
             steps {
                 script {
-                    nodejs('NodeJS 20.11.1') {
-                        sh 'npm install'
-                    }
-//                    sh 'npm install'
+                    sh 'npm run build'
+//                    nodejs('NodeJS 20.11.1') {
+//                        sh 'npm run build'
+//                    }
                 }
             }
         }
@@ -36,9 +39,10 @@ pipeline {
             steps {
                 echo 'Building..'
                 dir('./mancity-project') {
-                    nodejs('NodeJS 20.11.1') {
-                        sh 'npm run build'
-                    }
+                    sh 'npm run build'
+//                    nodejs('NodeJS 20.11.1') {
+//                        sh 'npm run build'
+//                    }
                 }
             }
         }
