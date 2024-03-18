@@ -1,6 +1,6 @@
-package com.mancity.user.domain;
+package com.mancity.user.user.domain;
 
-import com.mancity.user.application.dto.request.UpdateRequestDto;
+import com.mancity.user.user.application.dto.request.UpdateRequestDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

@@ -1,6 +1,6 @@
-package com.mancity.user.domain.repository;
+package com.mancity.user.user.domain.repository;
 
-import com.mancity.user.domain.User;
+import com.mancity.user.user.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
