@@ -1,7 +1,7 @@
-package com.mancity.user.application.dto.request;
+package com.mancity.user.user.application.dto.request;
 
-import com.mancity.user.domain.User;
-import com.mancity.user.infrastructure.util.PasswordEncoder;
+import com.mancity.user.user.domain.User;
+import com.mancity.user.user.infrastructure.util.PasswordEncoder;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

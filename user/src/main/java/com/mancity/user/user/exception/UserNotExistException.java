@@ -1,4 +1,4 @@
-package com.mancity.user.exception;
+package com.mancity.user.user.exception;
 
 public class UserNotExistException extends RuntimeException {
 

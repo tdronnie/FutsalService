@@ -1,6 +1,6 @@
-package com.mancity.user.application.dto.response;
+package com.mancity.user.user.application.dto.response;
 
-import com.mancity.user.domain.User;
+import com.mancity.user.user.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

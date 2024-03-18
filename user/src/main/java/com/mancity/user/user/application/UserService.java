@@ -1,12 +1,13 @@
-package com.mancity.user.application;
+package com.mancity.user.user.application;
 
-import com.mancity.user.application.dto.request.*;
-import com.mancity.user.application.dto.response.UserResponseDto;
-import com.mancity.user.domain.User;
-import com.mancity.user.domain.repository.UserRepository;
-import com.mancity.user.exception.PasswordNotMatchException;
-import com.mancity.user.exception.UserNotExistException;
-import com.mancity.user.infrastructure.util.PasswordEncoder;
+import com.mancity.user.stat.application.StatGenerator;
+import com.mancity.user.user.application.dto.request.*;
+import com.mancity.user.user.application.dto.response.UserResponseDto;
+import com.mancity.user.user.domain.User;
+import com.mancity.user.user.domain.repository.UserRepository;
+import com.mancity.user.user.exception.PasswordNotMatchException;
+import com.mancity.user.user.exception.UserNotExistException;
+import com.mancity.user.user.infrastructure.util.PasswordEncoder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
     private final UserRepository userRepository;
+
+    private final StatGenerator statGenerator;
 
     public void login(LoginRequestDto dto) {
         User user = userRepository.findByEmail(dto.getEmail())
@@ -35,6 +38,7 @@ public class UserService {
         User user = dto.toEntity();
         // 해당 유저의 stat 생성 필요
         userRepository.save(user);
+        statGenerator.create(user.getId());
     }
 
     public void withdraw() { // 탈퇴

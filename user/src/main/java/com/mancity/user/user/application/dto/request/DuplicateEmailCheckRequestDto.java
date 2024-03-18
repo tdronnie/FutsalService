@@ -1,4 +1,4 @@
-package com.mancity.user.application.dto.request;
+package com.mancity.user.user.application.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class DuplicateNickNameCheckRequestDto {
+public class DuplicateEmailCheckRequestDto {
 
-    private String nickName;
+    private String email;
 }
