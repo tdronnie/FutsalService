@@ -1,8 +1,8 @@
 pipeline {
     agent any
-    tools {
-        nodejs 'NodeJS 20.11.1'
-    }
+//   tools {
+//        nodejs 'NodeJS 20.11.1'
+//    }
     environment {
         DOCKER_IMAGE_NAME = 'joonseong/mancity-fe'
         DOCKERFILE_PATH = './mancity-project/Dockerfile'
@@ -22,12 +22,12 @@ pipeline {
             }
         }
 
-        //의존성 설치
-        stage('Install dependencies') {
-            steps {
-                dir('./mancity-project') {
-                    sh 'node -v'
-                    sh 'npm install'
+//        //의존성 설치
+//        stage('Install dependencies') {
+//            steps {
+//                dir('./mancity-project') {
+//                    sh 'node -v'
+//                    sh 'npm install'
 //                    nodejs('NodeJS 20.11.1') {
 //                        sh 'npm run build'
 //                    }
@@ -35,18 +35,18 @@ pipeline {
             }
         }
 
-        //프로젝트 빌드
-        stage('Build') {
-            steps {
-                echo 'Building..'
-                dir('./mancity-project') {
-                    sh 'npm run build'
+//        //프로젝트 빌드
+//        stage('Build') {
+//            steps {
+//                echo 'Building..'
+//                dir('./mancity-project') {
+//                    sh 'npm run build'
 //                    nodejs('NodeJS 20.11.1') {
 //                        sh 'npm run build'
 //                    }
-                }
-            }
-        }
+//                }
+//            }
+//        }
 
         //도커 이미지 생성
         stage('Docker Build Image') {
