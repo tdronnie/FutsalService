@@ -25,7 +25,7 @@ pipeline {
         //의존성 설치
         stage('Install dependencies') {
             steps {
-                dir('.frontend/mancity-project') {
+                dir('./frontend/mancity-project') {
                     sh 'npm install'
 //                    nodejs('NodeJS 20.11.1') {
 //                        sh 'npm run build'
@@ -38,7 +38,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                dir('.frontend/mancity-project') {
+                dir('./frontend/mancity-project') {
                     sh 'npm run build'
 //                    nodejs('NodeJS 20.11.1') {
 //                        sh 'npm run build'
