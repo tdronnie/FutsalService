@@ -25,8 +25,8 @@ pipeline {
         //의존성 설치
         stage('Install dependencies') {
             steps {
-                script {
-                    sh 'npm run build'
+                dir('./mancity-project') {
+                    sh 'npm install'
 //                    nodejs('NodeJS 20.11.1') {
 //                        sh 'npm run build'
 //                    }
