@@ -1,8 +1,8 @@
-package com.mancity.user.presentation;
+package com.mancity.user.user.presentation;
 
-import com.mancity.user.application.UserService;
-import com.mancity.user.application.dto.request.*;
-import com.mancity.user.application.dto.response.UserResponseDto;
+import com.mancity.user.user.application.UserService;
+import com.mancity.user.user.application.dto.request.*;
+import com.mancity.user.user.application.dto.response.UserResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
