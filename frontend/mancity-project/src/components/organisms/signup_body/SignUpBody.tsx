@@ -104,62 +104,75 @@ const SignUpBody = () => {
   }, [isFormValid]);
   return (
     <div>
-      <InputGroup
-        typographyLabel="이메일"
-        placeholder="ssafy@email.com"
-        checking={true}
-        textValue={emailValue}
-        setTextValue={setEmailValue}
-      />
-      <div className="text-mancity mx-4 -my-3 ">
-        {emailValue && !validateEmail(emailValue) && (
-          <Typography textSize="text-sm" label="이메일 형식이 맞지 않습니다" />
-        )}
-      </div>
-      <InputGroup
-        typographyLabel="비밀번호"
-        placeholder="영문, 숫자, 특수문자 포함 8자리 이상"
-        checking={false}
-        textValue={passwordValue}
-        setTextValue={setPasswordValue}
-      />
-      <div className="text-mancity mx-4 -my-3 ">
-        {passwordValue && !validatePassword(passwordValue) && (
-          <Typography
-            textSize="text-sm"
-            label="비밀번호 형식이 맞지 않습니다"
-          />
-        )}
-      </div>
-      <InputGroup
-        typographyLabel="비밀번호 확인"
-        placeholder="영문, 숫자, 특수문자 포함 8자리 이상"
-        checking={false}
-        textValue={secondPasswordValue}
-        setTextValue={setSecondPasswordValue}
-      />
-      <div className="text-mancity mx-4 -my-3 ">
-        {secondPasswordValue &&
-          !validateSecondPassword(passwordValue, secondPasswordValue) && (
+      <div className="my-6">
+        <InputGroup
+          typographyLabel="이메일"
+          placeholder="ssafy@email.com"
+          checking={true}
+          textValue={emailValue}
+          setTextValue={setEmailValue}
+        />
+        <div className="text-mancity mx-4 -my-3 ">
+          {emailValue && !validateEmail(emailValue) && (
             <Typography
               textSize="text-sm"
-              label="비밀번호가 일치하지 않습니다"
+              label="이메일 형식이 맞지 않습니다"
             />
           )}
+        </div>
       </div>
-      <InputGroup
-        typographyLabel="닉네임"
-        checking={true}
-        textValue={nickNameValue}
-        setTextValue={setNickNameValue}
-      />
-      <InputGroup
-        typographyLabel="생년월일"
-        placeholder="ex) 990503"
-        checking={false}
-        textValue={birthValue}
-        setTextValue={setBirthValue}
-      />
+      <div className="my-8">
+        <InputGroup
+          typographyLabel="비밀번호"
+          placeholder="영문, 숫자, 특수문자 포함 8자리 이상"
+          checking={false}
+          textValue={passwordValue}
+          setTextValue={setPasswordValue}
+        />
+        <div className="text-mancity mx-4 -my-3 ">
+          {passwordValue && !validatePassword(passwordValue) && (
+            <Typography
+              textSize="text-sm"
+              label="비밀번호 형식이 맞지 않습니다"
+            />
+          )}
+        </div>
+      </div>
+      <div className="my-8">
+        <InputGroup
+          typographyLabel="비밀번호 확인"
+          placeholder="영문, 숫자, 특수문자 포함 8자리 이상"
+          checking={false}
+          textValue={secondPasswordValue}
+          setTextValue={setSecondPasswordValue}
+        />
+        <div className="text-mancity mx-4 -my-3 ">
+          {secondPasswordValue &&
+            !validateSecondPassword(passwordValue, secondPasswordValue) && (
+              <Typography
+                textSize="text-sm"
+                label="비밀번호가 일치하지 않습니다"
+              />
+            )}
+        </div>
+      </div>
+      <div className="my-6">
+        <InputGroup
+          typographyLabel="닉네임"
+          checking={true}
+          textValue={nickNameValue}
+          setTextValue={setNickNameValue}
+        />
+      </div>
+      <div className="mt-6">
+        <InputGroup
+          typographyLabel="생년월일"
+          placeholder="ex) 990503"
+          checking={false}
+          textValue={birthValue}
+          setTextValue={setBirthValue}
+        />
+      </div>
       <div className="flex flex-row ">
         <div className="w-2/4">
           <Dropdown
@@ -180,24 +193,26 @@ const SignUpBody = () => {
           />
         </div>
       </div>
-      <div className="flex flex-row ">
-        <div className="w-2/4">
-          <InputGroup
-            typographyLabel="키"
-            placeholder="175"
-            checking={false}
-            textValue={heightValue}
-            setTextValue={setHeightValue}
-          />
-        </div>
-        <div className="w-2/4">
-          <InputGroup
-            typographyLabel="몸무게"
-            placeholder="70"
-            checking={false}
-            textValue={weightValue}
-            setTextValue={setWeightValue}
-          />
+      <div className="mb-6">
+        <div className="flex flex-row ">
+          <div className="w-2/4">
+            <InputGroup
+              typographyLabel="키"
+              placeholder="175"
+              checking={false}
+              textValue={heightValue}
+              setTextValue={setHeightValue}
+            />
+          </div>
+          <div className="w-2/4">
+            <InputGroup
+              typographyLabel="몸무게"
+              placeholder="70"
+              checking={false}
+              textValue={weightValue}
+              setTextValue={setWeightValue}
+            />
+          </div>
         </div>
       </div>
       <div onClick={onSubmitSignup}>
