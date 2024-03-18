@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import AppRoutes from "./routes";
 import tooSmallImage from "./assets/imgs/toosmall.png";
-import Navbar from "./components/molecules/Navbar";
+import Navbar from "./components/molecules/navbar/Navbar";
 
 const App = () => {
   function ConditionalBottomNav() {
