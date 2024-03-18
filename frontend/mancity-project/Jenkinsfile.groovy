@@ -31,9 +31,9 @@ pipeline {
 //                    nodejs('NodeJS 20.11.1') {
 //                        sh 'npm run build'
 //                    }
-                }
-            }
-        }
+//                }
+//            }
+//        }
 
 //        //프로젝트 빌드
 //        stage('Build') {
