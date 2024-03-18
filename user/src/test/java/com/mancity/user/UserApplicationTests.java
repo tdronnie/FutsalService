@@ -1,8 +1,8 @@
 package com.mancity.user;
 
-import com.mancity.user.application.UserService;
-import com.mancity.user.application.dto.request.LoginRequestDto;
-import com.mancity.user.presentation.UserController;
+import com.mancity.user.user.application.UserService;
+import com.mancity.user.user.application.dto.request.LoginRequestDto;
+import com.mancity.user.user.presentation.UserController;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
