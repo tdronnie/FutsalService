@@ -5,7 +5,7 @@ import IconButton from "../atoms/icon_button/IconButton";
 const MatchListTemplete = () => {
   return (
     <div className="relative">
-      <Header label="매치 목록" display="hidden" />
+      <Header label="매치 목록" backArrow={false} headerButton={false} />
       <WideCard
         bgimg="bg-[url('/favicon.ico')]"
         subtext="오전 10시"
