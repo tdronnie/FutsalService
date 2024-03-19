@@ -7,7 +7,7 @@ import ProfileUserStats from "@/components/organisms/profile_userStats/ProfileUs
 const ProfileTemplate = () => {
   return (
     <div>
-      <Header label="프로필" />
+      <Header label="프로필" backArrow={true} headerButton={false} />
       <ProfileUserInfo />
       <ProfileUserStats />
       <GroupGlobalCard />
