@@ -64,3 +64,10 @@ interface HighlightCardProps {
   mainTitle: string;
   bgimg?: string;
 }
+
+interface GlobalSwitchPropsType {
+  label: string;
+  isSwitchOn: boolean;
+  setIsSwitchOn: React.Dispatch<React.SetStateAction<boolean>>;
+  switchMarginTop?: string;
+}

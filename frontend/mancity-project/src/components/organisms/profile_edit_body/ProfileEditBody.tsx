@@ -19,6 +19,8 @@ const ProfileEditBody = () => {
   const [heightValue, setHeightValue] = useState("");
   const [weightValue, setWeightValue] = useState("");
 
+  const [isSwitchOn, setIsSwitchOn] = useState(false);
+
   const isNotEmpty = (value: string) => {
     return value.trim() !== "";
   };
@@ -76,7 +78,7 @@ const ProfileEditBody = () => {
           </div>
         </div>
         <div className="flex flex-row ">
-          <div className="w-2/4">
+          <div className="w-1/2">
             <Dropdown
               typographyLabel="주 발"
               items={MainFootInfo}
@@ -85,8 +87,19 @@ const ProfileEditBody = () => {
               setNumberValue={setMainFootValue}
             />
           </div>
-          <div>
-            <GlobalSwitch label="용병등록" />
+          <div className="w-1/2">
+            {/* checked에는 해당 회원이 등록허용 해 뒀는지 값을 넣기 */}
+            <GlobalSwitch
+              label="용병등록"
+              isSwitchOn={isSwitchOn}
+              setIsSwitchOn={setIsSwitchOn}
+              switchMarginTop="mt-8"
+            />
+          </div>
+        </div>
+        <div className=" flex justify-end">
+          <div className="text-red-500 text-right mr-4 cursor-pointer">
+            회원탈퇴
           </div>
         </div>
       </div>
