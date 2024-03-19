@@ -14,34 +14,34 @@ const meta: Meta<typeof WideCard> = {
         defaultValue: { summary: "bg-[url('/favicon.ico')]" },
       },
     },
-    matchtime: {
+    subtext: {
       description:
-        "매치 시간을 설정합니다. ex)오전 10시",
+        "서브텍스트를 설정합니다. ex)오전 10시",
       control: "text",
       table: {
         type: { summary: "string" },
         defaultValue: { summary: "오전 10시" },
       },
     },
-    matchplace: {
+    maintext: {
       description:
-        "매치 장소를 설정합니다. ex)광주 신화 풋살장",
+        "메인텍스트를 설정합니다. ex)광주 신화 풋살장",
         control: "text",
       table: {
         type: { summary: "string" },
         defaultValue: { summary: "광주 신화 풋살장" },
       },
     },
-    matchinfo: {
-      description: "매치 정보를 설정합니다. ex)남자·5vs5·중 수준",
+    minitext: {
+      description: "미니텍스트를 설정합니다. ex)남자·5vs5·중 수준",
       control: "text",
       table: {
         type: { summary: "string" },
         defaultValue: { summary: "남자·5vs5·중 수준" },
       },
     },
-    peoplenumber: {
-      description: "인원수를 보여줍니다. ex)인원 6/10",
+    buttonlabel: {
+      description: "버튼에 들어갈 텍스트를 설정합니다. ex)인원 6/10",
       control: "text",
       table: {
         type: { summary: "string" },
@@ -58,9 +58,9 @@ type Story = StoryObj<typeof WideCard>;
 export const Default: Story = {
   args: {
     bgimg: "bg-[url('/favicon.ico')]",
-    matchtime: "오전 10시",
-    matchplace: "광주 신화 풋살장",
-    matchinfo: "남자·5vs5·중 수준",
-    peoplenumber: "인원 6/10",
+    subtext: "오전 10시",
+    maintext: "광주 신화 풋살장",
+    minitext: "남자·5vs5·중 수준",
+    buttonlabel: "인원 6/10",
   },
 };

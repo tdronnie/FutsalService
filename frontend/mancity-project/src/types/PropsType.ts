@@ -17,11 +17,16 @@ interface TailwindPropsType {
   textValue?: string;
   setTextValue?: React.Dispatch<React.SetStateAction<string>>;
   isdisabled?: boolean;
+
   bgimg?: string;
-  matchtime?: string;
-  matchplace?: string;
-  matchinfo?: string;
-  peoplenumber?: string;
+}
+
+interface WideCardPropsType {
+  bgimg?: string;
+  subtext: string;
+  maintext: string;
+  minitext?: string;
+  buttonlabel: string;
 }
 
 interface ShadcnDropdownPropsType {

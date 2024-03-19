@@ -2,8 +2,8 @@ import ContentBox from "@/components/atoms/content_box/ContentBox";
 import SubButton from "@/components/atoms/sub_button/SubButton";
 import Typography from "@/components/atoms/typography/Typography";
 
-const WideCard = (props: TailwindPropsType) => {
-  const { bgimg, matchtime, matchplace, matchinfo, peoplenumber } = props;
+const WideCard = (props: WideCardPropsType) => {
+  const { bgimg="bg-[url('/favicon.ico')]", subtext, maintext, minitext, buttonlabel } = props;
   return (
     <>
       <div className="flex p-2 m-3 rounded-md shadow-nav">
@@ -14,13 +14,13 @@ const WideCard = (props: TailwindPropsType) => {
           <div>
             <Typography
               fontWeight="font-medium"
-              label={matchtime}
+              label={subtext}
               textColor="text-black"
               textSize="text-lg"
             />
             <Typography
               fontWeight="font-medium"
-              label={matchplace}
+              label={maintext}
               textColor="text-black"
               textSize="text-xl"
             />
@@ -28,14 +28,14 @@ const WideCard = (props: TailwindPropsType) => {
           <div>
             <Typography
               fontWeight="font-medium"
-              label={matchinfo}
+              label={minitext}
               textSize="text-sm"
               textColor="text-sofcity"
             />
           </div>
         </div>
         <div className="mt-auto ml-auto">
-        <SubButton label={peoplenumber} />
+        <SubButton label={buttonlabel} />
         </div>
       </div>
     </>
