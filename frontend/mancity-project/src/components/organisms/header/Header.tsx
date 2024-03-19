@@ -10,8 +10,8 @@ const Header = (props: HeaderPropsType) => {
     navigate(-1);
   };
   return (
-    <div>
-      <div className="flex p-2 sticky top-0 bg-white min-w-full ">
+    <div className="sticky top-0 z-10 bg-white">
+      <div className="flex p-2">
         <div
           className={`p-1 ${backArrow ? "visible" : "invisible"} min-w-16 text-[1.4rem]`}
           onClick={onClickBackArrow}
@@ -27,13 +27,13 @@ const Header = (props: HeaderPropsType) => {
           />
         </div>
         <div
-          className={`mt-1
+          className={`mt-auto
       ${headerButton ? "visible" : "invisible"} `}
         >
           <SubmitButton label="작성하기" />
         </div>
       </div>
-      <hr className="border-[#d9d9d9] border-[0.05rem] mb-2 " />
+      <hr className="border-[#d9d9d9] border-[0.05rem] m-0" />
     </div>
   );
 };
