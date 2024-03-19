@@ -1,4 +1,3 @@
-import React from "react";
 
 const BoardPiece = (props: TailwindPropsType) => {
   const { bgColor, label } = props;
