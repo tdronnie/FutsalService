@@ -1,7 +1,11 @@
+import ClubListTemplete from "@/components/templates/ClubListTemplete"
+
 
 const ClubListPage = () => {
   return (
-    <div>ClubListPage</div>
+    <>
+      <ClubListTemplete />
+    </>
   )
 }
 

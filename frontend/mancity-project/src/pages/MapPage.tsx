@@ -1,7 +1,11 @@
+import MapTemplete from "@/components/templates/MapTemplete"
+
 
 const MapPage = () => {
   return (
-    <div>MapPage</div>
+    <>
+      <MapTemplete />
+    </>
   )
 }
 

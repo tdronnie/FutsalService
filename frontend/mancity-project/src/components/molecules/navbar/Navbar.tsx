@@ -4,7 +4,7 @@ import FontawsomeIcon from "@/components/atoms/fontawsome_icon/FontawsomeIcon";
 const Navbar = () => {
   return (
     <>
-      <div className="fixed bottom-0 grid w-full max-w-xl grid-cols-5 gap-4 px-2 pt-2 place-items-center shadow-nav">
+      <div className="fixed bottom-0 grid w-full max-w-xl grid-cols-5 gap-4 px-2 pt-2 bg-white place-items-center shadow-nav">
         <Link to="/">
           <div className="flex flex-col items-center justify-center w-20 cursor-pointer">
             <FontawsomeIcon

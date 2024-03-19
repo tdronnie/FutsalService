@@ -39,6 +39,7 @@ const App = () => {
       <div className="AppSize">
         <Router>
           <AppRoutes />
+          <div className="h-20"></div>
           <ConditionalBottomNav />
         </Router>
       </div>
