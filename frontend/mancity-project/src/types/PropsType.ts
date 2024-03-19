@@ -66,9 +66,7 @@ interface HighlightCardProps {
   bgimg?: string;
 }
 
-interface GlobalSwitchPropsType {
-  label: string;
-  isSwitchOn: boolean;
-  setIsSwitchOn: React.Dispatch<React.SetStateAction<boolean>>;
-  switchMarginTop?: string;
+interface ExampleCustomInputProps extends React.HTMLProps<HTMLButtonElement> {
+  value?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
