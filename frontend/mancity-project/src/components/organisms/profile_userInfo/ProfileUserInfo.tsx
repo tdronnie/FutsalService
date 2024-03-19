@@ -29,7 +29,10 @@ const ProfileUserInfo = () => {
             />
           </div>
           <div className="-ml-4">
-            <GlobalButton label="팔로잉" width="w-full" isdisabled={true} />
+            {/* 1. 본인 프로필이면 프로필 수정 
+                2. 상대 프로필 && 팔로우 상태이면 언팔로우 버튼
+                3. 상대 프로필 && 팔로우 상태 아니면 팔로우 버튼 활성화*/}
+            {<GlobalButton label="팔로잉" width="w-full" isdisabled={true} />}
           </div>
           <div className="flex">
             <FontawsomeIcon icon="user-group" size="1x" color="#5D7A93" />
