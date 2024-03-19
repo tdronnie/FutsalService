@@ -1,6 +1,6 @@
-package com.mancity.social.match.domain;
+package com.mancity.social.game.domain;
 
-import jakarta.persistence.Embeddable;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,8 +10,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Embeddable
+@Entity
 public class Player {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "game_id")
+    private Game game;
 
     private String nickname;
 
@@ -33,4 +41,7 @@ public class Player {
 
     private int turnOverInDefense; // 수비 시 턴오버 성공한 총 횟수
 
+    public void mapGame(Game game){
+        this.game = game;
+    }
 }
