@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface GameRepository extends JpaRepository<Game, Long> {
 
-    @Query("select g from game g where g.playersA.nickname = :nickname")
+    @Query("SELECT DISTINCT g FROM Game g LEFT JOIN g.playersA p1 LEFT JOIN g.playersB p2 WHERE p1.nickname = :nickname OR p2.nickname = :nickname")
     List<Game> findAllByNickname(String nickname);
 }

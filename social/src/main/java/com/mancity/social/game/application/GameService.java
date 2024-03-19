@@ -58,9 +58,9 @@ public class GameService {
 
     public List<GameResponseDto> findAllByUserId(long id) {
         // user 에서 id를 통해 nickname을 가져온 후, 해당 nickname이 속한 match 의 정보들을 전부 리턴
-        String nickname = userFeignClient.findById(id).getNickName();
-        List<Game> gs = gameRepository.findAllByNickname(nickname);
-        List<Game> games = gameRepository.findAll();
+//        String nickname = userFeignClient.findById(id).getNickName();
+        List<Game> games = gameRepository.findAllByNickname("joonseong111");
+//        List<Game> games = gameRepository.findAll();
         return games.stream()
                 .map(GameResponseDto::from)
                 .toList();
