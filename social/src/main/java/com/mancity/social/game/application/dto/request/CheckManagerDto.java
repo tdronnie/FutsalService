@@ -1,4 +1,4 @@
-package com.mancity.social.match.application.dto.request;
+package com.mancity.social.game.application.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
