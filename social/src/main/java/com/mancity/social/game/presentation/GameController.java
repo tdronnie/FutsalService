@@ -64,14 +64,14 @@ public class GameController {
 
     // 팀 피드백
 
-    // 매치장 유저확인
-    @PostMapping("/match/check/{match}/{user}")
+    // 매치장 유저가 맞는지 확인
+    @GetMapping("/match/check/{match}/{user}")
     public ResponseEntity<Boolean> checkManager(@PathVariable(name = "match") long matchId,
                                                 @PathVariable(name = "user") long userId) {
         return new ResponseEntity<>(gameService.checkManager(CheckManagerDto.of(matchId, userId)), HttpStatus.OK);
     }
 
-    // 매치 조회
+    // 회원이 참여한 매치가 맞는지
 
-    // 회원별 참여한 매치 조회
+    //
 }
