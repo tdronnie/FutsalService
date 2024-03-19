@@ -1,4 +1,4 @@
-import React from "react";
+
 import FontawsomeIcon from "@/components/atoms/fontawsome_icon/FontawsomeIcon";
 import { useNavigate } from "react-router-dom";
 

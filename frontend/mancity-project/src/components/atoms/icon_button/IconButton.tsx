@@ -2,7 +2,7 @@ import {
   FontAwesomeIcon,
   FontAwesomeIconProps,
 } from "@fortawesome/react-fontawesome";
-import React from "react";
+
 
 const IconButton = (props: FontAwesomeIconProps) => {
   const { icon } = props;

@@ -1,7 +1,6 @@
 import ContentBox from "@/components/atoms/content_box/ContentBox";
 import SubButton from "@/components/atoms/sub_button/SubButton";
 import Typography from "@/components/atoms/typography/Typography";
-import React from "react";
 
 const WideCard = () => {
   return (

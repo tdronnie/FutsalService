@@ -1,4 +1,4 @@
-import React from "react";
+
 
 const GlobalInput = (props: TailwindPropsType) => {
   const { placeholder, width, textValue, setTextValue } = props;
