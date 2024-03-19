@@ -1,4 +1,3 @@
-import React from "react";
 
 const ReverseButton = (props: TailwindPropsType) => {
   const { width, label } = props;

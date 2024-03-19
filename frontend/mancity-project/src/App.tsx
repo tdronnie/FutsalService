@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import AppRoutes from "./routes";
 import tooSmallImage from "./assets/imgs/toosmall.png";
