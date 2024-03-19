@@ -130,7 +130,7 @@ const MatchListTemplete = () => {
 
   return (
     <div>
-      <Header label="매치 목록" display="hidden" />
+      <Header label="매치 목록" backArrow={false} headerButton={true} />
       <div className="flex items-center justify-between">
         <div
           className="flex items-center ml-4 cursor-pointer"
