@@ -5,7 +5,7 @@ pipeline {
 //    }
     environment {
         DOCKER_IMAGE_NAME = 'joonseong/mancity-fe'
-        DOCKERFILE_PATH = './mancity-project/Dockerfile'
+        DOCKERFILE_PATH = './frontend/mancity-project/Dockerfile'
         CONTAINER_NAME = 'mancity-fe'
         REGISTRY_CREDENTIAL = 'dockerhub_IdPwd'
         DOCKER_IMAGE = ''
@@ -25,7 +25,7 @@ pipeline {
 //        //의존성 설치
 //        stage('Install dependencies') {
 //            steps {
-//                dir('./mancity-project') {
+//                dir('./frontend/mancity-project') {
 //                    sh 'node -v'
 //                    sh 'npm install'
 //                    nodejs('NodeJS 20.11.1') {
@@ -39,7 +39,7 @@ pipeline {
 //        stage('Build') {
 //            steps {
 //                echo 'Building..'
-//                dir('./mancity-project') {
+//                dir('./frontend/mancity-project') {
 //                    sh 'npm run build'
 //                    nodejs('NodeJS 20.11.1') {
 //                        sh 'npm run build'
@@ -51,7 +51,7 @@ pipeline {
         //도커 이미지 생성
         stage('Docker Build Image') {
             steps {
-                dir('./mancity-project') {
+                dir('./frontend/mancity-project') {
                     script {
                         DOCKER_IMAGE = docker.build("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}", "-f Dockerfile .")
                     }
@@ -72,7 +72,7 @@ pipeline {
 
         stage('Docker Clean Image') {
             steps {
-                dir('./mancity-project') {
+                dir('./frontend/mancity-project') {
                     sh 'docker rmi $DOCKER_IMAGE_NAME'
                 }
             }
