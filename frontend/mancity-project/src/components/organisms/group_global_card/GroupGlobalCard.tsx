@@ -12,7 +12,7 @@ const GroupGlobalCard = () => {
           fontWeight="font-semibold"
         />
       </div>
-      <div className="flex overflow-x-scroll scrollbar-hide mx-2 ">
+      <div className="flex mx-2 overflow-x-scroll ">
         <div className="m-2">
           <GlobalCard
             mainTitle="광주 신화 풋살장"
