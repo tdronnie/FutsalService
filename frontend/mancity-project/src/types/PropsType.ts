@@ -18,6 +18,10 @@ interface TailwindPropsType {
   setTextValue?: React.Dispatch<React.SetStateAction<string>>;
   isdisabled?: boolean;
   bgimg?: string;
+  matchtime?: string;
+  matchplace?: string;
+  matchinfo?: string;
+  peoplenumber?: string;
 }
 
 interface ShadcnDropdownPropsType {
