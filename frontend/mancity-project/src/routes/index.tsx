@@ -3,7 +3,7 @@ import HomePage from "@/pages/HomePage";
 import NotFoundPage from "@/pages/NotFoundPage";
 import SignUpPage from "@/pages/user/SignUpPage";
 import LoginPage from "@/pages/user/LoginPage";
-import AlertPage from "@/pages/user/AlertPage";
+import AlertPage from "@/pages/AlertPage";
 import MapPage from "@/pages/MapPage";
 import MatchListPage from "@/pages/match/MatchListPage";
 import MatchFilterPage from "@/pages/match/MatchFilterPage";
