@@ -92,6 +92,7 @@ export const chartOptions = {
 };
 
 const RadarChart = () => {
+  // @ts-ignore
   return <Radar data={data} options={chartOptions} />;
 };
 
