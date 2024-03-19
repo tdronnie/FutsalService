@@ -16,7 +16,7 @@ const meta: Meta<typeof WideCard> = {
     },
     subtext: {
       description:
-        "서브텍스트를 설정합니다. ex)오전 10시",
+        "(필)서브텍스트를 설정합니다. ex)오전 10시",
       control: "text",
       table: {
         type: { summary: "string" },
@@ -25,7 +25,7 @@ const meta: Meta<typeof WideCard> = {
     },
     maintext: {
       description:
-        "메인텍스트를 설정합니다. ex)광주 신화 풋살장",
+        "(필)메인텍스트를 설정합니다. ex)광주 신화 풋살장",
         control: "text",
       table: {
         type: { summary: "string" },
@@ -41,7 +41,7 @@ const meta: Meta<typeof WideCard> = {
       },
     },
     buttonlabel: {
-      description: "버튼에 들어갈 텍스트를 설정합니다. ex)인원 6/10",
+      description: "(필)버튼에 들어갈 텍스트를 설정합니다. ex)인원 6/10",
       control: "text",
       table: {
         type: { summary: "string" },
