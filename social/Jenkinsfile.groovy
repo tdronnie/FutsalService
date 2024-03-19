@@ -46,8 +46,16 @@ pipeline {
         }
         stage('Docker Clean Image') {
             steps {
-                dir('./social') {
-                    sh 'docker rmi $DOCKER_IMAGE_NAME'
+                echo '##### BE Clean Prev Image #####'
+                script {
+                    def existingImages = sh(script: "docker images -q ${BACKEND_IMAGE_NAME}", returnStdout: true).trim()
+                    echo "BE Cleaning Prev Image: ${existingImages}"
+                    if (existingImages) {
+                        sh """
+                            echo 'BE Prev Image already exist'
+                            docker rmi ${existingImages}
+                        """
+                    }
                 }
             }
         }
