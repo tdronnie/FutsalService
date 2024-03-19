@@ -2,7 +2,7 @@
 FROM node:20.11.1
 
 # 경로 설정하기
-WORKDIR /mancity-project
+WORKDIR /frontend/mancity-project
 
 # package.json 워킹 디렉토리에 복사 (.은 설정한 워킹 디렉토리를 뜻함)
 COPY package*.json ./
