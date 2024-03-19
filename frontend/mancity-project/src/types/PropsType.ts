@@ -64,3 +64,8 @@ interface HighlightCardProps {
   mainTitle: string;
   bgimg?: string;
 }
+
+interface ExampleCustomInputProps extends React.HTMLProps<HTMLButtonElement> {
+  value?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+}
