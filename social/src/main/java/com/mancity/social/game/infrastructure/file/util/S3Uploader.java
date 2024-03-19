@@ -1,4 +1,4 @@
-package com.mancity.social.match.infrastructure.file.util;
+package com.mancity.social.game.infrastructure.file.util;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.services.s3.AmazonS3;

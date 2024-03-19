@@ -1,18 +1,16 @@
-package com.mancity.social.match.application.dto.request;
+package com.mancity.social.game.application.dto.request;
 
-import com.mancity.social.match.domain.Match;
-import jakarta.persistence.ElementCollection;
+import com.mancity.social.game.domain.Game;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MatchCreateRequestDto {
+public class GameCreateRequestDto {
 
     private String replayUrl;
 
@@ -28,14 +26,14 @@ public class MatchCreateRequestDto {
 
     private int playerNumber;
 
-    public Match toEntity(){
-        return Match.builder()
+    public Game toEntity(){
+        return Game.builder()
                 .replayUrl("")
                 .gender(gender)
                 .manager(manager)
                 .startDate(startDate)
                 .time(time)
-                .isOver(false)
+                .isOver(isOver)
                 .playerNumber(playerNumber)
                 .build();
     }

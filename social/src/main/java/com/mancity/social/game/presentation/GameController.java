@@ -1,11 +1,11 @@
-package com.mancity.social.match.presentation;
+package com.mancity.social.game.presentation;
 
-import com.mancity.social.match.application.MatchService;
-import com.mancity.social.match.application.dto.request.CheckManagerDto;
-import com.mancity.social.match.application.dto.request.MatchCreateRequestDto;
-import com.mancity.social.match.application.dto.request.MatchDataInputDto;
-import com.mancity.social.match.application.dto.request.MatchVideoUploadDto;
-import com.mancity.social.match.application.dto.response.MatchResponseDto;
+import com.mancity.social.game.application.GameService;
+import com.mancity.social.game.application.dto.request.CheckManagerDto;
+import com.mancity.social.game.application.dto.request.GameCreateRequestDto;
+import com.mancity.social.game.application.dto.request.GameDataInputDto;
+import com.mancity.social.game.application.dto.request.GameVideoUploadDto;
+import com.mancity.social.game.application.dto.response.GameResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,42 +17,42 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/match")
 @RequiredArgsConstructor
-public class MatchController {
+public class GameController {
 
-    private final MatchService matchService;
+    private final GameService gameService;
 
     // 매치 생성
     @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody MatchCreateRequestDto dto) {
-        matchService.create(dto);
+    public ResponseEntity<?> create(@RequestBody GameCreateRequestDto dto) {
+        gameService.create(dto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     // 동영상 업로드
     @PutMapping("/upload")
-    public ResponseEntity<MatchResponseDto> upload(@RequestPart(value = "files", required = false) List<MultipartFile> files,
-                                                   @RequestPart(value = "dto") MatchVideoUploadDto dto) {
-        MatchResponseDto response = matchService.upload(files, dto);
+    public ResponseEntity<GameResponseDto> upload(@RequestPart(value = "files", required = false) List<MultipartFile> files,
+                                                  @RequestPart(value = "dto") GameVideoUploadDto dto) {
+        GameResponseDto response = gameService.upload(files, dto);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MatchResponseDto> findMatchById(@PathVariable Long id) {
-        MatchResponseDto response = matchService.findMatchById(id);
+    public ResponseEntity<GameResponseDto> findMatchById(@PathVariable Long id) {
+        GameResponseDto response = gameService.findMatchById(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping("/user/{id}")
-    ResponseEntity<List<MatchResponseDto>> findAllByUserId(@PathVariable long id){
-        return new ResponseEntity<>(matchService.findAllByUserId(id), HttpStatus.OK);
+    ResponseEntity<List<GameResponseDto>> findAllByUserId(@PathVariable long id){
+        return new ResponseEntity<>(gameService.findAllByUserId(id), HttpStatus.OK);
     }
     // 매치 분석 완료 후 데이터 할당 -> 팀데이터, 개인데이터에 각각 저장
 
 
     // calc 에서 완료 후 보내줄 api
     @PostMapping("/input")
-    public ResponseEntity<?> inputData(@RequestBody MatchDataInputDto dto){
-        matchService.inputData(dto);
+    public ResponseEntity<?> inputData(@RequestBody GameDataInputDto dto){
+        gameService.inputData(dto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -68,7 +68,7 @@ public class MatchController {
     @PostMapping("/match/check/{match}/{user}")
     public ResponseEntity<Boolean> checkManager(@PathVariable(name = "match") long matchId,
                                                 @PathVariable(name = "user") long userId) {
-        return new ResponseEntity<>(matchService.checkManager(CheckManagerDto.of(matchId, userId)), HttpStatus.OK);
+        return new ResponseEntity<>(gameService.checkManager(CheckManagerDto.of(matchId, userId)), HttpStatus.OK);
     }
 
     // 매치 조회

@@ -1,4 +1,4 @@
-package com.mancity.social.match.infrastructure.file.config;
+package com.mancity.social.game.infrastructure.file.config;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;

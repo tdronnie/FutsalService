@@ -1,7 +1,7 @@
-package com.mancity.social.match.application.dto.request;
+package com.mancity.social.game.application.dto.request;
 
-import com.mancity.social.match.domain.Player;
-import com.mancity.social.match.domain.Team;
+import com.mancity.social.game.domain.Player;
+import com.mancity.social.game.domain.Team;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,13 +13,13 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Builder
-public class MatchDataInputDto {
+public class GameDataInputDto {
 
-    private long matchId;
+    private long gameId;
 
-    private List<Team> teamA;
+    private Team teamA;
 
-    private List<Team> teamB;
+    private Team teamB;
 
     private List<Player> playersA;
 
