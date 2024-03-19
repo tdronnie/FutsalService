@@ -19,13 +19,15 @@ const Dropdown = (props: DropdownPropsType) => {
         textColor="text-sofcity"
         label={typographyLabel}
       />
-      <ShadcnDropdown
-        width={width}
-        items={items}
-        position={position}
-        setPosition={setPosition}
-        setNumberValue={setNumberValue}
-      />
+      <div className="mt-3">
+        <ShadcnDropdown
+          width={width}
+          items={items}
+          position={position}
+          setPosition={setPosition}
+          setNumberValue={setNumberValue}
+        />
+      </div>
     </div>
   );
 };

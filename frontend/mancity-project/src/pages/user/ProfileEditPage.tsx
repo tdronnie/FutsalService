@@ -1,8 +1,11 @@
+import ProfileEditTemplete from "@/components/templates/ProfileEditTemplete";
 
 const ProfileEditPage = () => {
   return (
-    <div>ProfileEditPage</div>
-  )
-}
+    <div>
+      <ProfileEditTemplete />
+    </div>
+  );
+};
 
-export default ProfileEditPage
+export default ProfileEditPage;
