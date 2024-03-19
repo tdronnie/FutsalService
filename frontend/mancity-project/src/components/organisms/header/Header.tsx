@@ -13,7 +13,7 @@ const Header = (props: HeaderPropsType) => {
       <div className={`p-1 ${display}`} onClick={onClickBackArrow}>
         <FontawsomeIcon icon="arrow-left" size="1x" color="#5D7A93" />
       </div>
-      <div className="flex-grow mr-8 text-center">
+      <div className="flex-grow text-center">
         <Typography
           textSize="text-xl"
           fontWeight="font-medium"

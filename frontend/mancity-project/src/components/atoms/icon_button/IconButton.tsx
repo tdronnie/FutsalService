@@ -9,10 +9,10 @@ const IconButton = (props: FontAwesomeIconProps) => {
   return (
     <button
       type="button"
-      className={` w-12 h-12 font-medium text-sm text-white bg-darkcity rounded-full 
+      className={` w-14 h-14 font-medium text-sm text-white bg-darkcity rounded-full 
       hover:text-darkcity hover:bg-white hover:border-darkcity hover:border-2`}
     >
-      <FontAwesomeIcon icon={icon} size="1x" />
+      <FontAwesomeIcon icon={icon} size="2x" />
     </button>
   );
 };
