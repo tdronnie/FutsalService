@@ -4,7 +4,7 @@ import SignUpBody from "@/components/organisms/signup_body/SignUpBody";
 const SingUpTemplate = () => {
   return (
     <div>
-      <Header label="회원가입" />
+      <Header label="회원가입" backArrow={true} headerButton={false} />
       <SignUpBody />
     </div>
   );

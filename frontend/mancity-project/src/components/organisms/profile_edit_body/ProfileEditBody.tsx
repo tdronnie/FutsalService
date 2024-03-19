@@ -2,7 +2,7 @@ import ReverseButton from "@/components/atoms/reverse_button/ReverseButton";
 import Dropdown from "@/components/molecules/dropdown/Dropdown";
 import EditContentBox from "@/components/molecules/edit_content_box/EditContentBox";
 import InputGroup from "@/components/molecules/input/InputGroup";
-import GlobalSwitch from "@/components/molecules/switch/GlobalSwitch";
+import GlobalSwitch from "@/components/molecules/global_switch/GlobalSwitch";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 

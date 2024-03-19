@@ -1,11 +1,11 @@
-import Header from '@/components/organisms/header/Header'
+import Header from "@/components/organisms/header/Header";
 
 const MapTemplete = () => {
   return (
     <>
-        <Header label='지도 보기' display='hidden' />
+      <Header label="지도 보기" backArrow={false} headerButton={false} />
     </>
-  )
-}
+  );
+};
 
-export default MapTemplete
+export default MapTemplete;

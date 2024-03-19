@@ -4,7 +4,7 @@ import ProfileEditBody from "@/components/organisms/profile_edit_body/ProfileEdi
 const ProfileEditTemplete = () => {
   return (
     <div>
-      <Header label="프로필 수정" />
+      <Header label="프로필 수정" backArrow={true} headerButton={false} />
       <ProfileEditBody />
     </div>
   );
