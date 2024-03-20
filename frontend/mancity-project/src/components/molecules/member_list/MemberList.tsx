@@ -8,7 +8,7 @@ const MemberList = (props: MemberListPropsType) => {
   return (
     <div className="">
       <div>
-        <TypographyLine label={label} />
+        <TypographyLine lineWidth="w-32" label={label} />
       </div>
       <div className="flex  m-2">
         <div className="mr-2">

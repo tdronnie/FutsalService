@@ -1,5 +1,6 @@
 import ContentBox from "@/components/atoms/content_box/ContentBox";
 import Typography from "@/components/atoms/typography/Typography";
+import TypographyLine from "@/components/atoms/typography_line/TypographyLine";
 import MemberList from "@/components/molecules/member_list/MemberList";
 import MiniMap from "@/components/molecules/mini_map/MiniMap";
 
@@ -41,7 +42,13 @@ const MatchDetailBody = () => {
       <div className="">
         <MemberList label="멤버 라인업" />
       </div>
-      
+      {/* 경기 다시보기 */}
+      <div>
+        <TypographyLine lineWidth="w-40" label="경기 분석하기" />
+        <div className="m-2">
+          <ContentBox width="w-full" height="h-40" rounded="rounded-xl" />
+        </div>
+      </div>
     </div>
   );
 };
