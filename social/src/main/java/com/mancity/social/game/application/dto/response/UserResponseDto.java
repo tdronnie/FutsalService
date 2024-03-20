@@ -24,4 +24,5 @@ public class UserResponseDto {
     private int foot;
 
     private boolean isPlayer;
+
 }

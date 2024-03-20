@@ -41,7 +41,7 @@ public class GameResponseDto {
 
     private List<PlayerResonseDto> playersB;
 
-    public static GameResponseDto from(Game game){
+    public static GameResponseDto from(Game game) {
         return GameResponseDto.builder()
                 .replayUrl(game.getReplayUrl())
                 .highlights(game.getHighlights())

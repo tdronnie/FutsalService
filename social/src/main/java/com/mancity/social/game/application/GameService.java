@@ -60,14 +60,14 @@ public class GameService {
     }
 
     public List<GameResponseDto> findAllByUserId(long id) {
-        String nickname =  findByIdFromUserService(id).getNickName();
+        String nickname = findByIdFromUserService(id).getNickName();
         List<Game> games = gameRepository.findAllByNickname(nickname);
         return games.stream()
                 .map(GameResponseDto::from)
                 .toList();
     }
 
-    public void allocateData(GameDataAllocateDto dto){
+    public void allocateData(GameDataAllocateDto dto) {
         Player player = playerRepository.findById(dto.getGamePlayerId()).orElseThrow(NoSuchPlayerException::new);
         player.allocateData(findByIdFromUserService(dto.getUserId()).getNickName());
         userFeignClient.plus(UserPlusRequestDto.from(player));
@@ -78,7 +78,7 @@ public class GameService {
                 .orElseThrow(NoSuchGameException::new);
     }
 
-    private UserResponseDto findByIdFromUserService(long id){
+    private UserResponseDto findByIdFromUserService(long id) {
         return userFeignClient.findById(id);
     }
 }

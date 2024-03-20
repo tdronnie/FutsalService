@@ -15,7 +15,7 @@ public class CheckManagerDto {
 
     private long userId;
 
-    public static CheckManagerDto of(long matchId, long userId){
+    public static CheckManagerDto of(long matchId, long userId) {
         return CheckManagerDto.builder()
                 .matchId(matchId)
                 .userId(userId)

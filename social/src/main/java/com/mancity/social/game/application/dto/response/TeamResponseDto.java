@@ -1,4 +1,5 @@
 package com.mancity.social.game.application.dto.response;
+
 import com.mancity.social.game.domain.Game;
 import com.mancity.social.game.domain.Team;
 import lombok.AllArgsConstructor;
@@ -22,15 +23,15 @@ public class TeamResponseDto {
 
     private int shotOnTarget;
 
-    public static TeamResponseDto fromTeamA(Game game){
+    public static TeamResponseDto fromTeamA(Game game) {
         return extractTeam(game.getTeamA());
     }
 
-    public static TeamResponseDto fromTeamB(Game game){
+    public static TeamResponseDto fromTeamB(Game game) {
         return extractTeam(game.getTeamB());
     }
 
-    private static TeamResponseDto extractTeam(Team team){
+    private static TeamResponseDto extractTeam(Team team) {
         return TeamResponseDto.builder()
                 .goal(team.getGoal())
                 .pass(team.getPass())

@@ -7,7 +7,7 @@ import java.security.SecureRandom;
 @Component
 public class S3UUIDGenerator {
     private static final int TEMP_PW_LENGTH = 8;
-    private static final char[] rndAllCharacters = new char[] {
+    private static final char[] rndAllCharacters = new char[]{
             // number
             '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
             // uppercase
@@ -15,7 +15,7 @@ public class S3UUIDGenerator {
             'V', 'W', 'X', 'Y', 'Z',
             // lowercase
             'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
-            'v', 'w', 'x', 'y', 'z' };
+            'v', 'w', 'x', 'y', 'z'};
 
     public static String generateUUID() {
         SecureRandom random = new SecureRandom();

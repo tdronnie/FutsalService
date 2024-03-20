@@ -40,19 +40,19 @@ public class GameController {
     }
 
     @GetMapping("/user/{id}")
-    ResponseEntity<List<GameResponseDto>> findAllByUserId(@PathVariable long id){
+    ResponseEntity<List<GameResponseDto>> findAllByUserId(@PathVariable long id) {
         return new ResponseEntity<>(gameService.findAllByUserId(id), HttpStatus.OK);
     }
 
     @PostMapping("/input")
-    public ResponseEntity<?> inputDataFromCalc(@RequestBody GameDataInputDto dto){
+    public ResponseEntity<?> inputDataFromCalc(@RequestBody GameDataInputDto dto) {
         log.info("CALC SERVER : INPUT DATA {}", dto);
         gameService.inputData(dto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping("/allocate")
-    public ResponseEntity<?> allocateData(@RequestBody GameDataAllocateDto dto){
+    public ResponseEntity<?> allocateData(@RequestBody GameDataAllocateDto dto) {
         gameService.allocateData(dto);
         return new ResponseEntity<>(HttpStatus.OK);
     }

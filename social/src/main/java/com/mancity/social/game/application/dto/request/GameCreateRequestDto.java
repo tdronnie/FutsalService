@@ -26,7 +26,7 @@ public class GameCreateRequestDto {
 
     private int playerNumber;
 
-    public Game toEntity(){
+    public Game toEntity() {
         return Game.builder()
                 .replayUrl("")
                 .gender(gender)

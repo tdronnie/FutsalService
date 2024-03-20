@@ -30,7 +30,7 @@ public class UserPlusRequestDto {
 
     private int turnOverInDefense; // 수비 시 턴오버 성공한 총 횟수
 
-    public static UserPlusRequestDto from(Player player){
+    public static UserPlusRequestDto from(Player player) {
         return UserPlusRequestDto.builder()
                 .speed(player.getSpeed())
                 .distanceCovered(player.getDistanceCovered())

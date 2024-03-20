@@ -37,31 +37,31 @@ public class PlayerResonseDto {
 
     private int turnOverInDefense; // 수비 시 턴오버 성공한 총 횟수
 
-    public static List<PlayerResonseDto> fromPlayersA(Game game){
+    public static List<PlayerResonseDto> fromPlayersA(Game game) {
         List<Player> players = game.getPlayersA();
-        for(Player player : players){
+        for (Player player : players) {
             System.out.println("---------- from Players AAA ----------");
             System.out.println(player.getId());
         }
         return transfer(players);
     }
 
-    public static List<PlayerResonseDto> fromPlayersB(Game game){
+    public static List<PlayerResonseDto> fromPlayersB(Game game) {
         List<Player> players = game.getPlayersB();
-        for(Player player : players){
+        for (Player player : players) {
             System.out.println("---------- from Players BBB ----------");
             System.out.println(player.getId());
         }
         return transfer(players);
     }
 
-    private static List<PlayerResonseDto> transfer(List<Player> players){
+    private static List<PlayerResonseDto> transfer(List<Player> players) {
         return players.stream()
                 .map(PlayerResonseDto::extractPlayers)
                 .toList();
     }
 
-    private static PlayerResonseDto extractPlayers(Player player){
+    private static PlayerResonseDto extractPlayers(Player player) {
         return PlayerResonseDto.builder()
                 .id(player.getId())
                 .nickname(player.getNickname())
