@@ -58,8 +58,8 @@ pipeline {
             steps {
                 echo '##### BE Clean Prev Image #####'
                 script {
-                    sh "docker rm $(docker ps --filter status=exited -q)"
-                    sh "docker rmi $(docker images -f "dangling=true" -q)"
+                    sh "docker rm \$(docker ps --filter status=exited -q)"
+                    sh "docker rmi \$(docker images -f 'dangling=true' -q)"
                 }
             }
         }
