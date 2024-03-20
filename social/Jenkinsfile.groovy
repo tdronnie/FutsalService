@@ -17,6 +17,16 @@ pipeline {
                 git branch : 'develop-be-social', credentialsId: 'gitlab_access_token', url: 'https://lab.ssafy.com/s10-ai-image-sub2/S10P22C201.git'
             }
         }
+        stage('Add Env') {
+            steps {
+                dir('./social') {
+                    withCredentials([file(credentialsId: 'skey', variable: 'skey')]) {
+                        sh 'chmod -R rwx src/main/resources'
+                        sh 'cp ${skey} src/main/resources/application-skey.yml'
+                    }
+                }
+            }
+        }
         stage('Gradle Build') {
             steps {
                 echo 'Building..'
@@ -46,8 +56,16 @@ pipeline {
         }
         stage('Docker Clean Image') {
             steps {
-                dir('./social') {
-                    sh 'docker rmi $DOCKER_IMAGE_NAME'
+                echo '##### BE Clean Prev Image #####'
+                script {
+                    def existingImages = sh(script: "docker images -q ${BACKEND_IMAGE_NAME}", returnStdout: true).trim()
+                    echo "BE Cleaning Prev Image: ${existingImages}"
+                    if (existingImages) {
+                        sh """
+                            echo 'BE Prev Image already exist'
+                            docker rmi ${existingImages}
+                        """
+                    }
                 }
             }
         }

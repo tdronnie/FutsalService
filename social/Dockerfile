@@ -9,4 +9,4 @@ VOLUME /tmp
 COPY build/libs/*.jar social.jar
 
 # 실행할 명령어
-ENTRYPOINT ["java", "-jar", "social.jar"]
+ENTRYPOINT ["java", "-jar", "social.jar", "--spring.profiles.active=prod"]
