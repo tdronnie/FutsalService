@@ -13,6 +13,6 @@ type Story = StoryObj<typeof HighlightCard>;
 export const Email: Story = {
   args: {
     mainTitle: "하이라이트 1",
-    file: "/favicon.ico",
+    file: "/src/assets/imgs/mancity_logo.png",
   },
 };
