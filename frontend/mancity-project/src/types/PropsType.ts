@@ -70,3 +70,15 @@ interface ExampleCustomInputProps extends React.HTMLProps<HTMLButtonElement> {
   value?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
+
+interface MiniMapPropsType {
+  lat: number;
+  lng: number;
+  address: string;
+  tel: string;
+  onClickCopy: () => void;
+}
+
+interface MemberListPropsType {
+  label: string;
+}
