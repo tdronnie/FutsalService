@@ -1,12 +1,11 @@
-import MapTemplete from "@/components/templates/MapTemplete"
-
+import MapTemplate from "@/components/templates/MapTemplate";
 
 const MapPage = () => {
   return (
     <>
-      <MapTemplete />
+      <MapTemplate />
     </>
-  )
-}
+  );
+};
 
-export default MapPage
+export default MapPage;

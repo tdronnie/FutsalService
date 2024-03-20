@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const MatchListTemplete = () => {
+const MatchListTemplate = () => {
   // 서버 데이터 저장용
   const [matches, setMatches] = useState<MatchData[]>([]);
   // datepicker 관련 지정
@@ -128,9 +128,19 @@ const MatchListTemplete = () => {
   // const filteredMatches = matches.filter((match) => {
   // });
 
+  // 매치 등록 버튼 navigate
+  const onClickCreateButton = () => {
+    navigate("/match/register");
+  };
+
   return (
     <div>
-      <Header label="매치 목록" headerButton={false} backArrow={false} />
+      <Header
+        label="매치 목록"
+        headerButton={true}
+        backArrow={false}
+        onClickButton={onClickCreateButton}
+      />
       <div className="flex items-center justify-between">
         <div
           className="flex items-center ml-4 cursor-pointer"
@@ -166,4 +176,4 @@ const MatchListTemplete = () => {
   );
 };
 
-export default MatchListTemplete;
+export default MatchListTemplate;

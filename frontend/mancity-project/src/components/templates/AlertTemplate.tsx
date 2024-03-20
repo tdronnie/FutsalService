@@ -1,6 +1,6 @@
 import Header from "@/components/organisms/header/Header";
 
-const AlertTemplete = () => {
+const AlertTemplate = () => {
   return (
     <>
       <Header label="주요 알림" backArrow={true} headerButton={false} />
@@ -8,4 +8,4 @@ const AlertTemplete = () => {
   );
 };
 
-export default AlertTemplete;
+export default AlertTemplate;

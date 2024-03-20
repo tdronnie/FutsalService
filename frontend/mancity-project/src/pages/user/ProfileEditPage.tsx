@@ -1,9 +1,9 @@
-import ProfileEditTemplete from "@/components/templates/ProfileEditTemplete";
+import ProfileEditTemplate from "@/components/templates/ProfileEditTemplate";
 
 const ProfileEditPage = () => {
   return (
     <div>
-      <ProfileEditTemplete />
+      <ProfileEditTemplate />
     </div>
   );
 };

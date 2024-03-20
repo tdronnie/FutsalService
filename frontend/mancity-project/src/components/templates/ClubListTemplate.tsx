@@ -1,6 +1,6 @@
 import Header from "@/components/organisms/header/Header";
 
-const ClubListTemplete = () => {
+const ClubListTemplate = () => {
   return (
     <>
       <Header label="용병/클럽" backArrow={false} headerButton={false} />
@@ -8,4 +8,4 @@ const ClubListTemplete = () => {
   );
 };
 
-export default ClubListTemplete;
+export default ClubListTemplate;

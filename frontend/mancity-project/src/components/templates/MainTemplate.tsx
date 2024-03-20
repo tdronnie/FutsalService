@@ -1,8 +1,7 @@
 import MainHeader from "../organisms/main_header/MainHeader";
 import MainBody from "../organisms/main_body/MainBody";
 
-
-const MainTemplete = () => {
+const MainTemplate = () => {
   return (
     <>
       <MainHeader />
@@ -11,4 +10,4 @@ const MainTemplete = () => {
   );
 };
 
-export default MainTemplete;
+export default MainTemplate;

@@ -4,7 +4,7 @@ import MatchDetailBody from "@/components/organisms/match_detail_body/MatchDetai
 import MatchDetailHeader from "@/components/organisms/match_detail_header/MatchDetailHeader";
 import { useNavigate } from "react-router-dom";
 
-const MatchDetailTemplete = () => {
+const MatchDetailTemplate = () => {
   const navigate = useNavigate();
 
   const onButtonClick = () => {
@@ -25,4 +25,4 @@ const MatchDetailTemplete = () => {
   );
 };
 
-export default MatchDetailTemplete;
+export default MatchDetailTemplate;

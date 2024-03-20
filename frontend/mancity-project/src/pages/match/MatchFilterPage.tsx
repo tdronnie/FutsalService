@@ -1,9 +1,9 @@
-import MatchFilterTemplete from "@/components/templates/MatchFilterTemplete";
+import MatchFilterTemplate from "@/components/templates/MatchFilterTemplate";
 
 const MatchFilterPage = () => {
   return (
     <>
-      <MatchFilterTemplete />
+      <MatchFilterTemplate />
     </>
   );
 };
