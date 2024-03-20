@@ -1,6 +1,8 @@
 package com.mancity.social.game.application.dto.response;
 
 import com.mancity.social.game.domain.Game;
+import com.mancity.social.game.domain.Player;
+import com.mancity.social.game.domain.Team;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,6 +33,14 @@ public class GameResponseDto {
 
     private int playerNumber;
 
+    private TeamResponseDto teamA;
+
+    private TeamResponseDto teamB;
+
+    private List<PlayerResonseDto> playersA;
+
+    private List<PlayerResonseDto> playersB;
+
     public static GameResponseDto from(Game game){
         return GameResponseDto.builder()
                 .replayUrl(game.getReplayUrl())
@@ -40,6 +50,10 @@ public class GameResponseDto {
                 .startDate(game.getStartDate())
                 .time(game.getTime())
                 .isOver(game.isOver())
+                .teamA(TeamResponseDto.fromTeamA(game))
+                .teamB(TeamResponseDto.fromTeamB(game))
+                .playersA(PlayerResonseDto.fromPlayersA(game))
+                .playersB(PlayerResonseDto.fromPlayersB(game))
                 .playerNumber(game.getPlayerNumber())
                 .build();
     }
