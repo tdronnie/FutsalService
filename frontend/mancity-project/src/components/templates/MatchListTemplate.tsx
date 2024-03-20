@@ -140,6 +140,7 @@ const MatchListTemplate = () => {
         headerButton={true}
         backArrow={false}
         onClickButton={onClickCreateButton}
+        buttonLabel="매치등록"
       />
       <div className="flex items-center justify-between">
         <div
