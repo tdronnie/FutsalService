@@ -20,7 +20,7 @@ const Header = (props: HeaderPropsType) => {
         </div>
         <div className="flex-grow text-center">
           <Typography
-            textSize="text-3xl"
+            textSize="text-[1.6rem]"
             fontWeight="font-medium"
             textColor="text-sofcity"
             label={label}
