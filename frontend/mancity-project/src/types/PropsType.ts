@@ -56,6 +56,8 @@ interface HeaderPropsType {
   backArrow: boolean; 
   headerButton: boolean;
   onClickButton?: () => void;
+  buttonLabel?:string;
+  toWhere?:string;
 }
 
 interface InputGroupPropsType {
