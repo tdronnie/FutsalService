@@ -47,7 +47,6 @@ interface HeaderPropsType {
   label: string;
   backArrow: boolean;
   headerButton: boolean;
-  display?: string;
 }
 
 interface InputGroupPropsType {

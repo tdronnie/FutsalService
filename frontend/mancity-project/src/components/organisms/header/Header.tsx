@@ -4,13 +4,13 @@ import Typography from "@/components/atoms/typography/Typography";
 import { useNavigate } from "react-router-dom";
 
 const Header = (props: HeaderPropsType) => {
-  const { label, backArrow, headerButton, display } = props;
+  const { label, backArrow, headerButton } = props;
   const navigate = useNavigate();
   const onClickBackArrow = () => {
     navigate(-1);
   };
   return (
-    <div className={`sticky top-0 bg-white z-index-10 ${display}`}>
+    <div className={`sticky top-0 bg-white z-index-10 `}>
       <div className="flex p-2">
         <div
           className={`p-1 ${backArrow ? "visible" : "invisible"} min-w-16 text-[1.4rem]`}
