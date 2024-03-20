@@ -4,7 +4,7 @@ import Typography from "@/components/atoms/typography/Typography";
 import { useNavigate } from "react-router-dom";
 
 const Header = (props: HeaderPropsType) => {
-  const { label, backArrow, headerButton } = props;
+  const { label, backArrow, headerButton, onClickButton } = props;
   const navigate = useNavigate();
   const onClickBackArrow = () => {
     navigate(-1);
@@ -26,10 +26,7 @@ const Header = (props: HeaderPropsType) => {
             label={label}
           />
         </div>
-        <div
-          className={`mt-auto
-      ${headerButton ? "visible" : "invisible"} `}
-        >
+        <div className={`mt-auto ${headerButton ? "visible" : "invisible"} `} onClick={onClickButton}>
           <SubmitButton label="작성하기" />
         </div>
       </div>

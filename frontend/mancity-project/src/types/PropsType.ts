@@ -55,6 +55,7 @@ interface HeaderPropsType {
   label: string;
   backArrow: boolean;
   headerButton: boolean;
+  onClickButton?: () => void;
 }
 
 interface InputGroupPropsType {

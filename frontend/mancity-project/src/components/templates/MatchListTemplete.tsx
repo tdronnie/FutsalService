@@ -128,9 +128,19 @@ const MatchListTemplete = () => {
   // const filteredMatches = matches.filter((match) => {
   // });
 
+  // 매치 등록 버튼 navigate
+  const onClickCreateButton = () => {
+    navigate("/match/register");
+  };
+
   return (
     <div>
-      <Header label="매치 목록" headerButton={false} backArrow={false} />
+      <Header
+        label="매치 목록"
+        headerButton={true}
+        backArrow={false}
+        onClickButton={onClickCreateButton}
+      />
       <div className="flex items-center justify-between">
         <div
           className="flex items-center ml-4 cursor-pointer"
