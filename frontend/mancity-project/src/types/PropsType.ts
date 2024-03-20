@@ -111,3 +111,9 @@ interface TypographyLinePropsType {
   lineWidth: string;
   label: string;
 }
+
+interface FooterPropsType {
+  label: string;
+  buttonLabel: string;
+  onButtonClick: () => void;
+}
