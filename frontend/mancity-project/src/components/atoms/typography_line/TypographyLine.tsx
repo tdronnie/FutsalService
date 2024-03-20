@@ -1,8 +1,8 @@
-const TypographyLine = (props: TailwindPropsType) => {
-  const { label } = props;
+const TypographyLine = (props: TypographyLinePropsType) => {
+  const { lineWidth, label } = props;
   return (
     <div className="flex items-center ">
-      <div className="ml-2 w-32">
+      <div className={`ml-2 ${lineWidth} min-w-24`}>
         <p className={`text-base font-medium text-gray-400`}>{label}</p>
       </div>
       <div className="w-full ">

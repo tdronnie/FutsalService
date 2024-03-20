@@ -105,3 +105,8 @@ interface GlobalSwitchPropsType {
   setIsSwitchOn: React.Dispatch<React.SetStateAction<boolean>>;
   switchMarginTop: string;
 }
+
+interface TypographyLinePropsType {
+  lineWidth: string;
+  label: string;
+}

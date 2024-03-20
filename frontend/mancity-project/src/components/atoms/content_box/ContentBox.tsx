@@ -7,7 +7,7 @@ const ContentBox = (props: TailwindPropsType) => {
     >
       <img
         src={file}
-        className={` ${width} ${height}  ${rounded} object-fil `}
+        className={` ${width} ${height}  ${rounded} object-cover `}
       />
     </div>
   );
