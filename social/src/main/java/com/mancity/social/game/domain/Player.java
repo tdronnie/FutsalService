@@ -25,7 +25,7 @@ public class Player {
 
     private int pass; // 총 패스 횟수
 
-    private int shotsOnTarget; // 총 유효 슈팅 수
+    private int shotOnTarget; // 총 유효 슈팅 수
 
     private int shot; // 총 슈팅 횟수
 

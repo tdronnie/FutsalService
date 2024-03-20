@@ -68,7 +68,7 @@ public class PlayerResonseDto {
                 .speed(player.getSpeed())
                 .distanceCovered(player.getDistanceCovered())
                 .pass(player.getPass())
-                .shotsOnTarget(player.getShotsOnTarget())
+                .shotsOnTarget(player.getShotOnTarget())
                 .shot(player.getShot())
                 .goal(player.getGoal())
                 .assist(player.getAssist())
