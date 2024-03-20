@@ -1,8 +1,11 @@
+import MatchFilterTemplete from "@/components/templates/MatchFilterTemplete";
 
 const MatchFilterPage = () => {
   return (
-    <div>MatchFilterPage</div>
-  )
-}
+    <>
+      <MatchFilterTemplete />
+    </>
+  );
+};
 
-export default MatchFilterPage
+export default MatchFilterPage;

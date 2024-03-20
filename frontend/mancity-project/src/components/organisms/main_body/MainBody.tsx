@@ -5,6 +5,8 @@ import GlobalCard from "@/components/molecules/global_card/GlobalCard";
 import Typography from "@/components/atoms/typography/Typography";
 import SubButton from "@/components/atoms/sub_button/SubButton";
 import ClubList from "@/components/molecules/club_list/ClubList";
+import { useNavigate } from "react-router-dom";
+import IconButton from "@/components/atoms/icon_button/IconButton";
 
 const MainBody = () => {
   const settings = {
@@ -13,6 +15,10 @@ const MainBody = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+  };
+  const navigate = useNavigate();
+  const handleNavigate = ({ path }: NavigateType) => {
+    navigate(path);
   };
   return (
     <>
@@ -27,7 +33,7 @@ const MainBody = () => {
       <Slider {...settings}>
         <div>
           <WideCard
-            bgimg="bg-[url('@/assets/imgs/match_image1.jpg')]"
+            file="/src/assets/imgs/match_image1.jpg"
             buttonlabel="인원 6/10"
             maintext="광주 신화 풋살장"
             minitext="남자·5vs5·중 수준"
@@ -36,7 +42,7 @@ const MainBody = () => {
         </div>
         <div>
           <WideCard
-            bgimg="bg-[url('@/assets/imgs/match_image2.jpg')]"
+            file="/src/assets/imgs/match_image2.jpg"
             buttonlabel="인원 7/10"
             maintext="광주 신화 풋살장"
             minitext="남자·5vs5·중 수준"
@@ -45,7 +51,7 @@ const MainBody = () => {
         </div>
         <div>
           <WideCard
-            bgimg="bg-[url('@/assets/imgs/match_image3.jpg')]"
+            file="/src/assets/imgs/match_image3.jpg"
             buttonlabel="인원 3/10"
             maintext="광주 신화 풋살장"
             minitext="남자·5vs5·중 수준"
@@ -54,7 +60,7 @@ const MainBody = () => {
         </div>
         <div>
           <WideCard
-            bgimg="bg-[url('@/assets/imgs/match_image4.jpg')]"
+            file="/src/assets/imgs/match_image4.jpg"
             buttonlabel="인원 9/10"
             maintext="광주 신화 풋살장"
             minitext="남자·5vs5·중 수준"
@@ -63,7 +69,7 @@ const MainBody = () => {
         </div>
         <div>
           <WideCard
-            bgimg="bg-[url('@/assets/imgs/match_image5.jpg')]"
+            file="/src/assets/imgs/match_image5.jpg"
             buttonlabel="인원 7/10"
             maintext="광주 신화 풋살장"
             minitext="남자·5vs5·중 수준"
@@ -72,7 +78,7 @@ const MainBody = () => {
         </div>
         <div>
           <WideCard
-            bgimg="bg-[url('@/assets/imgs/match_image6.jpg')]"
+            file="/src/assets/imgs/match_image6.jpg"
             buttonlabel="인원 6/10"
             maintext="광주 신화 풋살장"
             minitext="남자·5vs5·중 수준"
@@ -89,27 +95,30 @@ const MainBody = () => {
           textSize="text-xl"
         />
       </div>
-      <div className="flex w-full px-2 overflow-y-hidden">
+      <div className="flex items-center w-full p-2 overflow-y-hidden">
         <GlobalCard
-          bgimg="bg-[url('/favicon.ico')]"
-          mainTitle="안양김지용"
+          file="/src/assets/imgs/mancity_logo.png"
+          mainTitle="김포이세은"
+          subTitle="활동량 특화"
+        />
+        <GlobalCard
+          file="/src/assets/imgs/mancity_logo.png"
+          mainTitle="광주이세은"
           subTitle="스피드 특화"
         />
         <GlobalCard
-          bgimg="bg-[url('/favicon.ico')]"
-          mainTitle="안양김지용"
-          subTitle="스피드 특화"
+          file="/src/assets/imgs/mancity_logo.png"
+          mainTitle="수원이세은"
+          subTitle="골결정력 특화"
         />
         <GlobalCard
-          bgimg="bg-[url('/favicon.ico')]"
-          mainTitle="안양김지용"
+          file="/src/assets/imgs/mancity_logo.png"
+          mainTitle="서울이세은"
           subTitle="스피드 특화"
         />
-        <GlobalCard
-          bgimg="bg-[url('/favicon.ico')]"
-          mainTitle="안양김지용"
-          subTitle="스피드 특화"
-        />
+        <div onClick={() => handleNavigate({ path: "/match" })}>
+          <IconButton icon="plus" />
+        </div>
       </div>
 
       <div className="px-3 pt-4 pb-3">
@@ -123,7 +132,10 @@ const MainBody = () => {
       <ClubList clubTitile="FC맨시티파워" clubInfo="1230점/2024.02.18" />
       <ClubList clubTitile="FC맨시티파워" clubInfo="1230점/2024.02.18" />
       <ClubList clubTitile="FC맨시티파워" clubInfo="1230점/2024.02.18" />
-      <div className="flex justify-center">
+      <div
+        className="flex justify-center"
+        onClick={() => handleNavigate({ path: "/club" })}
+      >
         <SubButton label="더보기" hover={true} />
       </div>
     </>

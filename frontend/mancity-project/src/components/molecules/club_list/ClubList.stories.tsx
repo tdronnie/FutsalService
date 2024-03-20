@@ -6,12 +6,12 @@ const meta: Meta<typeof ClubList> = {
   tags: ["autodocs"],
   component: ClubList,
   argTypes: {
-    bgimg: {
-      description: "배경에 이미지를 넣습니다. ex)bg-[url('/favicon.ico')]",
+    file: {
+      description: "배경에 이미지를 넣습니다. ex)/src/assets/imgs/mancity_logo.png",
       control: "text",
       table: {
         type: { summary: "string" },
-        defaultValue: { summary: "bg-[url('/favicon.ico')]" },
+        defaultValue: { summary: "/src/assets/imgs/mancity_logo.png" },
       },
     },
     clubTitile: {
@@ -43,6 +43,6 @@ export const Default: Story = {
   args: {
     clubTitile: "FC디오니소스",
     clubInfo: "1728점/2024.03.10",
-    bgimg: "bg-[url('/favicon.ico')]",
+    file: "/src/assets/imgs/mancity_logo.png",
   },
 };

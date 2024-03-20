@@ -36,6 +36,7 @@ interface ClubListPropsType {
   bgimg?: string;
   clubTitile: string;
   clubInfo: string;
+  file?: string;
 }
 
 interface ShadcnDropdownPropsType {
