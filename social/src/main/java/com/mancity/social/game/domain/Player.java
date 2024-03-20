@@ -17,10 +17,6 @@ public class Player {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "game_id")
-    private Game game;
-
     private String nickname;
 
     private int speed; // 최고속도
@@ -42,6 +38,11 @@ public class Player {
     private int turnOverInDefense; // 수비 시 턴오버 성공한 총 횟수
 
     public void mapGame(Game game){
-        this.game = game;
+//        this.game = game;
+    }
+
+    public void allocateData(String nickname){
+        this.nickname = nickname;
+        // 호출 단계의 메소드에서, 해당 데이터들을 user stat 에 넣어주는 것 필요 !
     }
 }

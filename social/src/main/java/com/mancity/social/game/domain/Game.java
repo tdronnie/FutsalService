@@ -47,18 +47,21 @@ public class Game {
     @JoinColumn
     private Team teamB;
 
-    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
+//    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn
     @Builder.Default
     private List<Player> playersA = new ArrayList<>();
 
-    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
+//    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn
     @Builder.Default
     private List<Player> playersB = new ArrayList<>();
 
     public void updateHighlights(List<String> highlights) {
         this.highlights.addAll(highlights);
     }
-
 
     public void uploadVideo(String url) {
         this.replayUrl = url;
@@ -68,14 +71,14 @@ public class Game {
         this.teamA = dto.getTeamA();
         this.teamB = dto.getTeamB();
         for (Player p : dto.getPlayersA()) {
+            System.out.println("INPUT DATA PLAYERS AAAAA :"+ p.getId());
             this.playersA.add(p);
             p.mapGame(this);
         }
         for (Player p : dto.getPlayersB()) {
+            System.out.println("INPUT DATA PLAYERS BBBBB :"+ p.getId());
             this.playersB.add(p);
             p.mapGame(this);
         }
-//        this.playersA.addAll(dto.getPlayersA());
-//        this.playersB.addAll(dto.getPlayersB());
     }
 }
