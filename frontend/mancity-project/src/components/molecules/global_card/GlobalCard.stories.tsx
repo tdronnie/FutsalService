@@ -15,6 +15,6 @@ export const Email: Story = {
   args: {
     mainTitle: "광주 신화 풋살장",
     subTitle: "2024/04/05",
-    bgimg: "bg-[url('/favicon.ico')]",
+    file: "/favicon.ico",
   },
 };

@@ -17,10 +17,10 @@ const MatchListTemplete = () => {
   >(({ value, onClick }, ref) => (
     <button onClick={onClick} ref={ref}>
       <div className="flex">
-      <span>{value}</span>
-      <div className="ml-2">
-        <FontawsomeIcon icon="calendar-days" />
-      </div>
+        <span>{value}</span>
+        <div className="ml-2">
+          <FontawsomeIcon icon="calendar-days" />
+        </div>
       </div>
     </button>
   ));
@@ -42,7 +42,7 @@ const MatchListTemplete = () => {
     const fetchedMatches = [
       {
         id: 1,
-        bgimg: "bg-[url('/favicon.ico')]",
+        file: "/favicon.ico",
         subtext: "오전 10시",
         maintext: "광주 신화 풋살장",
         minitext: "남자·5vs5·중 수준",
@@ -50,7 +50,7 @@ const MatchListTemplete = () => {
       },
       {
         id: 2,
-        bgimg: "bg-[url('/favicon.ico')]",
+        file: "/favicon.ico",
         subtext: "오전 10시",
         maintext: "광주 신화 풋살장",
         minitext: "남자·5vs5·중 수준",
@@ -58,7 +58,7 @@ const MatchListTemplete = () => {
       },
       {
         id: 3,
-        bgimg: "bg-[url('/favicon.ico')]",
+        file: "/favicon.ico",
         subtext: "오전 10시",
         maintext: "광주 신화 풋살장",
         minitext: "남자·5vs5·중 수준",
@@ -66,7 +66,7 @@ const MatchListTemplete = () => {
       },
       {
         id: 4,
-        bgimg: "bg-[url('/favicon.ico')]",
+        file: "/favicon.ico",
         subtext: "오전 10시",
         maintext: "광주 신화 풋살장",
         minitext: "남자·5vs5·중 수준",
@@ -74,7 +74,7 @@ const MatchListTemplete = () => {
       },
       {
         id: 5,
-        bgimg: "bg-[url('/favicon.ico')]",
+        file: "/favicon.ico",
         subtext: "오전 10시",
         maintext: "광주 신화 풋살장",
         minitext: "남자·5vs5·중 수준",
@@ -82,7 +82,7 @@ const MatchListTemplete = () => {
       },
       {
         id: 6,
-        bgimg: "bg-[url('/favicon.ico')]",
+        file: "/favicon.ico",
         subtext: "오전 10시",
         maintext: "광주 신화 풋살장",
         minitext: "남자·5vs5·중 수준",
@@ -90,7 +90,7 @@ const MatchListTemplete = () => {
       },
       {
         id: 7,
-        bgimg: "bg-[url('/favicon.ico')]",
+        file: "/favicon.ico",
         subtext: "오전 10시",
         maintext: "광주 신화 풋살장",
         minitext: "남자·5vs5·중 수준",
@@ -98,7 +98,7 @@ const MatchListTemplete = () => {
       },
       {
         id: 8,
-        bgimg: "bg-[url('/favicon.ico')]",
+        file: "/favicon.ico",
         subtext: "오전 10시",
         maintext: "광주 신화 풋살장",
         minitext: "남자·5vs5·중 수준",
@@ -106,7 +106,7 @@ const MatchListTemplete = () => {
       },
       {
         id: 9,
-        bgimg: "bg-[url('/favicon.ico')]",
+        file: "/favicon.ico",
         subtext: "오전 10시",
         maintext: "광주 신화 풋살장",
         minitext: "남자·5vs5·중 수준",
@@ -114,7 +114,7 @@ const MatchListTemplete = () => {
       },
       {
         id: 10,
-        bgimg: "bg-[url('/favicon.ico')]",
+        file: "/favicon.ico",
         subtext: "오전 10시",
         maintext: "광주 신화 풋살장",
         minitext: "남자·5vs5·중 수준",
@@ -130,7 +130,7 @@ const MatchListTemplete = () => {
 
   return (
     <div>
-      <Header label="매치 목록" backArrow={false} headerButton={true} />
+      <Header label="매치 목록" headerButton={false} backArrow={false} />
       <div className="flex items-center justify-between">
         <div
           className="flex items-center ml-4 cursor-pointer"
@@ -147,7 +147,7 @@ const MatchListTemplete = () => {
           <DatePicker
             dateFormat="yyyy년 MM월 dd일"
             selected={selectedDate}
-            onChange={(date:Date) => setSelectedDate(date)}
+            onChange={(date: Date) => setSelectedDate(date)}
             customInput={<ExampleCustomInput />}
           />
         </div>
@@ -155,7 +155,7 @@ const MatchListTemplete = () => {
       {matches.map((match) => (
         <WideCard
           key={match.id}
-          bgimg={match.bgimg}
+          file={match.file}
           subtext={match.subtext}
           maintext={match.maintext}
           minitext={match.minitext}

@@ -1,4 +1,5 @@
 interface TailwindPropsType {
+  style?: any;
   textSize?: string;
   fontWeight?: string;
   textColor?: string;
@@ -19,11 +20,12 @@ interface TailwindPropsType {
   isdisabled?: boolean;
 
   bgimg?: string;
+  file?: string;
   hover?: boolean;
 }
 
 interface WideCardPropsType {
-  bgimg?: string;
+  file?: string;
   subtext: string;
   maintext: string;
   minitext?: string;
@@ -65,15 +67,41 @@ interface InputGroupPropsType {
 interface GlobalCardProps {
   mainTitle: string;
   subTitle: string;
-  bgimg?: string;
+  file?: string;
 }
 
 interface HighlightCardProps {
   mainTitle: string;
-  bgimg?: string;
+  file?: string;
 }
 
 interface ExampleCustomInputProps extends React.HTMLProps<HTMLButtonElement> {
   value?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+}
+
+interface MiniMapPropsType {
+  lat: number;
+  lng: number;
+  address: string;
+  tel: string;
+  onClickCopy: () => void;
+}
+
+interface MemberListPropsType {
+  label: string;
+}
+
+interface ImgBoxType {
+  file: string;
+  width: string;
+  height: string;
+  rounded: string;
+}
+
+interface GlobalSwitchPropsType {
+  label: string;
+  isSwitchOn: boolean;
+  setIsSwitchOn: React.Dispatch<React.SetStateAction<boolean>>;
+  switchMarginTop: string;
 }

@@ -3,11 +3,11 @@ import FontawsomeIcon from "@/components/atoms/fontawsome_icon/FontawsomeIcon";
 import Typography from "@/components/atoms/typography/Typography";
 
 const HighlightCard = (props: HighlightCardProps) => {
-  const { mainTitle, bgimg } = props;
+  const { mainTitle, file } = props;
   return (
     <div className="border-2 w-44 h-54 rounded-lg shadow-nav">
       <div className="">
-        <ContentBox width="w-full" height="h-40" bgimg={bgimg} />
+        <ContentBox width="w-full" height="h-40" file={file} />
       </div>
       <div className="flex justify-around m-2 ">
         <div className="">
