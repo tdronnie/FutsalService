@@ -2,11 +2,11 @@ import ContentBox from "@/components/atoms/content_box/ContentBox";
 import Typography from "@/components/atoms/typography/Typography";
 
 const GlobalCard = (props: GlobalCardProps) => {
-  const { subTitle, mainTitle, bgimg } = props;
+  const { subTitle, mainTitle, file } = props;
   return (
     <div className="flex-shrink-0 h-56 mr-2 border-2 rounded-lg w-44 shadow-nav">
       <div>
-        <ContentBox width="w-full" height="h-40" bgimg={bgimg} />
+        <ContentBox width="w-full" height="h-40" file={file} />
       </div>
       <div className="mx-2 my-1">
         <div className="my-1">

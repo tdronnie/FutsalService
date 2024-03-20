@@ -16,7 +16,7 @@ export const Avata: Story = {
     width: "w-10",
     height: "h-10",
     rounded: "rounded-full",
-    bgimg: "bg-[url('/favicon.ico')]",
+    file: "/favicon.ico",
   },
 };
 
@@ -25,8 +25,6 @@ export const Image: Story = {
     width: "w-20",
     height: "h-20",
     rounded: "rounded-none",
-    bgimg: "bg-[url('/favicon.ico')]",
+    file: "/favicon.ico",
   },
 };
-
-

@@ -1,4 +1,8 @@
-import { BrowserRouter as Router, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  matchPath,
+  useLocation,
+} from "react-router-dom";
 import AppRoutes from "./routes";
 import tooSmallImage from "./assets/imgs/toosmall.png";
 import Navbar from "./components/molecules/navbar/Navbar";
@@ -27,23 +31,25 @@ export default App;
 
 function ConditionalBottomNav() {
   const location = useLocation();
+  const currentPathname = location.pathname;
+
   // Navbar 사용하지 않는 페이지 예외 처리 코드
   if (
     location.pathname === "/login" ||
     location.pathname === "/signup" ||
     location.pathname === "/alert" ||
     location.pathname === "/map" ||
-    location.pathname === "/match/:match_id" ||
     location.pathname === "/match/register" ||
     location.pathname === "/community/register" ||
     location.pathname === "/community/edit" ||
-    location.pathname === "/replay/:match_id" ||
-    location.pathname === "/community/video/:community_id" ||
-    location.pathname === "/community/talk/:community_id" ||
-    location.pathname === "/club/:club_id" ||
     location.pathname === "/club/register" ||
-    location.pathname === "/club/edit/:club_id" ||
-    location.pathname === "/players/:match_id"
+    matchPath("/match/:match_id", currentPathname) ||
+    matchPath("/replay/:match_id", currentPathname) ||
+    matchPath("/community/video/:community_id", currentPathname) ||
+    matchPath("/community/talk/:community_id", currentPathname) ||
+    matchPath("/club/:club_id", currentPathname) ||
+    matchPath("/club/edit/:club_id", currentPathname) ||
+    matchPath("/players/:match_id", currentPathname)
   ) {
     return null;
   }

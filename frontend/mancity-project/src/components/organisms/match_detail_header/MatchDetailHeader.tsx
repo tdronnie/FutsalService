@@ -3,7 +3,7 @@ import Typography from "@/components/atoms/typography/Typography";
 
 const MatchDetailHeader = () => {
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between m-2">
       <div className="">
         <div>
           <Typography
@@ -12,11 +12,11 @@ const MatchDetailHeader = () => {
             textSize="text-base"
           />
         </div>
-        <div>
+        <div className="">
           <Typography
             label="광주 신화 풋살장"
             fontWeight="font-semibold"
-            textSize="text-2xl"
+            textSize="text-[1.6rem]"
           />
         </div>
         <div>
@@ -28,25 +28,25 @@ const MatchDetailHeader = () => {
           />
         </div>
       </div>
-      <div className="mr-3 ">
-        <div className="flex ">
-          <div className="mt-1 mr-1">
+      <div className=" ">
+        <div className="flex">
+          <div className=" mr-1 ">
             <Typography
               label="용병부르러가기"
               fontWeight="font-medium"
-              textSize="text-base"
+              textSize="text-sm"
               textColor="text-sofcity"
             />
           </div>
-          <div className="text-xl">
+          <div className="text-xl -mt-1 ">
             <FontawsomeIcon icon="tower-cell" />
           </div>
         </div>
-        <div className="text-end">
+        <div className="text-end mt-4">
           <Typography
             label="매치장"
             fontWeight="font-medium"
-            textSize="text-base"
+            textSize="text-sm"
             textColor="text-gray-500"
           />
         </div>
@@ -54,7 +54,7 @@ const MatchDetailHeader = () => {
           <Typography
             label="하남최성호"
             fontWeight="font-medium"
-            textSize="text-base"
+            textSize="text-sm"
             textColor="text-gray-500"
           />
         </div>

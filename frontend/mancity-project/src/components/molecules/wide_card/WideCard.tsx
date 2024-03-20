@@ -4,7 +4,7 @@ import Typography from "@/components/atoms/typography/Typography";
 
 const WideCard = (props: WideCardPropsType) => {
   const {
-    bgimg = "bg-[url('/favicon.ico')]",
+    file = "/favicon.ico",
     subtext,
     maintext,
     minitext,
@@ -18,7 +18,7 @@ const WideCard = (props: WideCardPropsType) => {
             height="h-20"
             width="w-20"
             rounded="rounded-lg"
-            bgimg={bgimg}
+            file={file}
           />
         </div>
         <div className="flex flex-col justify-around">
