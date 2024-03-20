@@ -3,12 +3,23 @@ import SubButton from "@/components/atoms/sub_button/SubButton";
 import Typography from "@/components/atoms/typography/Typography";
 
 const WideCard = (props: WideCardPropsType) => {
-  const { bgimg="bg-[url('/favicon.ico')]", subtext, maintext, minitext, buttonlabel } = props;
+  const {
+    file = "/favicon.ico",
+    subtext,
+    maintext,
+    minitext,
+    buttonlabel,
+  } = props;
   return (
     <>
       <div className="flex p-2 m-3 rounded-md shadow-nav">
         <div className="my-1 mr-3">
-          <ContentBox height="h-20" width="w-20" rounded="rounded-lg" bgimg={bgimg} />
+          <ContentBox
+            height="h-20"
+            width="w-20"
+            rounded="rounded-lg"
+            file={file}
+          />
         </div>
         <div className="flex flex-col justify-around">
           <div>
@@ -35,7 +46,7 @@ const WideCard = (props: WideCardPropsType) => {
           </div>
         </div>
         <div className="mt-auto ml-auto">
-        <SubButton label={buttonlabel} />
+          <SubButton label={buttonlabel} />
         </div>
       </div>
     </>

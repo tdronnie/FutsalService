@@ -1,4 +1,5 @@
 interface TailwindPropsType {
+  style?: any;
   textSize?: string;
   fontWeight?: string;
   textColor?: string;
@@ -19,10 +20,11 @@ interface TailwindPropsType {
   isdisabled?: boolean;
 
   bgimg?: string;
+  file?: string;
 }
 
 interface WideCardPropsType {
-  bgimg?: string;
+  file?: string;
   subtext: string;
   maintext: string;
   minitext?: string;
@@ -45,6 +47,7 @@ interface HeaderPropsType {
   label: string;
   backArrow: boolean;
   headerButton: boolean;
+  display?: string;
 }
 
 interface InputGroupPropsType {
@@ -58,12 +61,12 @@ interface InputGroupPropsType {
 interface GlobalCardProps {
   mainTitle: string;
   subTitle: string;
-  bgimg?: string;
+  file?: string;
 }
 
 interface HighlightCardProps {
   mainTitle: string;
-  bgimg?: string;
+  file?: string;
 }
 
 interface ExampleCustomInputProps extends React.HTMLProps<HTMLButtonElement> {
@@ -81,4 +84,11 @@ interface MiniMapPropsType {
 
 interface MemberListPropsType {
   label: string;
+}
+
+interface ImgBoxType {
+  file: string;
+  width: string;
+  height: string;
+  rounded: string;
 }

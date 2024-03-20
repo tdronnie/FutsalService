@@ -8,7 +8,7 @@ interface NavigateType {
 
 interface MatchData {
   id: number;
-  bgimg: string;
+  file: string;
   subtext: string;
   maintext: string;
   minitext: string;

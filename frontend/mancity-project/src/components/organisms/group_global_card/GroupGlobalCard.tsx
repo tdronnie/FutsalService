@@ -17,28 +17,28 @@ const GroupGlobalCard = () => {
           <GlobalCard
             mainTitle="광주 신화 풋살장"
             subTitle="2024/03/19"
-            bgimg="bg-[url('/favicon.ico')]"
+            file="/favicon.ico"
           />
         </div>
         <div className="m-2">
           <GlobalCard
             mainTitle="광주 신화 풋살장"
             subTitle="2024/03/19"
-            bgimg="bg-[url('/favicon.ico')]"
+            file="/favicon.ico"
           />
         </div>
         <div className="m-2">
           <GlobalCard
             mainTitle="광주 신화 풋살장"
             subTitle="2024/03/19"
-            bgimg="bg-[url('/favicon.ico')]"
+            file="/favicon.ico"
           />
         </div>
         <div className="m-2">
           <GlobalCard
             mainTitle="광주 신화 풋살장"
             subTitle="2024/03/19"
-            bgimg="bg-[url('/favicon.ico')]"
+            file="/favicon.ico"
           />
         </div>
       </div>

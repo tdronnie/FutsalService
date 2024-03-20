@@ -6,17 +6,18 @@ const meta: Meta<typeof WideCard> = {
   tags: ["autodocs"],
   component: WideCard,
   argTypes: {
-    bgimg: {
-      description: "배경에 이미지를 넣습니다. ex)bg-[url('/favicon.ico')]",
+    file: {
+      description: "배경에 이미지를 넣습니다. ex) /favicon.ico",
       control: "text",
       table: {
         type: { summary: "string" },
-        defaultValue: { summary: "bg-[url('/favicon.ico')]" },
+        defaultValue: {
+          file: "/favicon.ico",
+        },
       },
     },
     subtext: {
-      description:
-        "서브텍스트를 설정합니다. ex)오전 10시",
+      description: "서브텍스트를 설정합니다. ex)오전 10시",
       control: "text",
       table: {
         type: { summary: "string" },
@@ -24,9 +25,8 @@ const meta: Meta<typeof WideCard> = {
       },
     },
     maintext: {
-      description:
-        "메인텍스트를 설정합니다. ex)광주 신화 풋살장",
-        control: "text",
+      description: "메인텍스트를 설정합니다. ex)광주 신화 풋살장",
+      control: "text",
       table: {
         type: { summary: "string" },
         defaultValue: { summary: "광주 신화 풋살장" },
@@ -57,7 +57,7 @@ type Story = StoryObj<typeof WideCard>;
 
 export const Default: Story = {
   args: {
-    bgimg: "bg-[url('/favicon.ico')]",
+    file: "/favicon.ico",
     subtext: "오전 10시",
     maintext: "광주 신화 풋살장",
     minitext: "남자·5vs5·중 수준",
