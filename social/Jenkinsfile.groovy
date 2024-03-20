@@ -58,14 +58,8 @@ pipeline {
             steps {
                 echo '##### BE Clean Prev Image #####'
                 script {
-                    def existingImages = sh(script: "docker images -q ${DOCKER_IMAGE_NAME}", returnStdout: true).trim()
-                    echo "BE Cleaning Prev Image: ${existingImages}"
-                    if (existingImages) {
-                        sh """
-                            echo 'BE Prev Image already exist'
-                            docker rmi ${existingImages}
-                        """
-                    }
+                    sh "docker rm $(docker ps --filter status=exited -q)"
+                    sh "docker rmi $(docker images -f "dangling=true" -q)"
                 }
             }
         }
