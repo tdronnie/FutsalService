@@ -14,6 +14,7 @@ type Story = StoryObj<typeof Header>;
 export const SignUp: Story = {
   args: {
     label: "회원가입",
-    display: "hidden"
+    backArrow: true,
+    headerButton: true,
   },
 };
