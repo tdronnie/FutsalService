@@ -33,7 +33,7 @@ const MainBody = () => {
       <Slider {...settings}>
         <div>
           <WideCard
-            bgimg="bg-[url('@/assets/imgs/match_image1.jpg')]"
+            file="/src/assets/imgs/match_image1.jpg"
             buttonlabel="인원 6/10"
             maintext="광주 신화 풋살장"
             minitext="남자·5vs5·중 수준"
@@ -42,7 +42,7 @@ const MainBody = () => {
         </div>
         <div>
           <WideCard
-            bgimg="bg-[url('@/assets/imgs/match_image2.jpg')]"
+            file="/src/assets/imgs/match_image2.jpg"
             buttonlabel="인원 7/10"
             maintext="광주 신화 풋살장"
             minitext="남자·5vs5·중 수준"
@@ -51,7 +51,7 @@ const MainBody = () => {
         </div>
         <div>
           <WideCard
-            bgimg="bg-[url('@/assets/imgs/match_image3.jpg')]"
+            file="/src/assets/imgs/match_image3.jpg"
             buttonlabel="인원 3/10"
             maintext="광주 신화 풋살장"
             minitext="남자·5vs5·중 수준"
@@ -60,7 +60,7 @@ const MainBody = () => {
         </div>
         <div>
           <WideCard
-            bgimg="bg-[url('@/assets/imgs/match_image4.jpg')]"
+            file="/src/assets/imgs/match_image4.jpg"
             buttonlabel="인원 9/10"
             maintext="광주 신화 풋살장"
             minitext="남자·5vs5·중 수준"
@@ -69,7 +69,7 @@ const MainBody = () => {
         </div>
         <div>
           <WideCard
-            bgimg="bg-[url('@/assets/imgs/match_image5.jpg')]"
+            file="/src/assets/imgs/match_image5.jpg"
             buttonlabel="인원 7/10"
             maintext="광주 신화 풋살장"
             minitext="남자·5vs5·중 수준"
@@ -78,7 +78,7 @@ const MainBody = () => {
         </div>
         <div>
           <WideCard
-            bgimg="bg-[url('@/assets/imgs/match_image6.jpg')]"
+            file="/src/assets/imgs/match_image6.jpg"
             buttonlabel="인원 6/10"
             maintext="광주 신화 풋살장"
             minitext="남자·5vs5·중 수준"
@@ -97,23 +97,23 @@ const MainBody = () => {
       </div>
       <div className="flex items-center w-full p-2 overflow-y-hidden">
         <GlobalCard
-          bgimg="bg-[url('/favicon.ico')]"
-          mainTitle="안양김지용"
+          file="/src/assets/imgs/mancity_logo.png"
+          mainTitle="김포이세은"
+          subTitle="활동량 특화"
+        />
+        <GlobalCard
+          file="/src/assets/imgs/mancity_logo.png"
+          mainTitle="광주이세은"
           subTitle="스피드 특화"
         />
         <GlobalCard
-          bgimg="bg-[url('/favicon.ico')]"
-          mainTitle="안양김지용"
-          subTitle="스피드 특화"
+          file="/src/assets/imgs/mancity_logo.png"
+          mainTitle="수원이세은"
+          subTitle="골결정력 특화"
         />
         <GlobalCard
-          bgimg="bg-[url('/favicon.ico')]"
-          mainTitle="안양김지용"
-          subTitle="스피드 특화"
-        />
-        <GlobalCard
-          bgimg="bg-[url('/favicon.ico')]"
-          mainTitle="안양김지용"
+          file="/src/assets/imgs/mancity_logo.png"
+          mainTitle="서울이세은"
           subTitle="스피드 특화"
         />
         <div onClick={() => handleNavigate({ path: "/match" })}>
