@@ -47,13 +47,11 @@ public class Game {
     @JoinColumn
     private Team teamB;
 
-    //    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn
     @Builder.Default
     private List<Player> playersA = new ArrayList<>();
 
-    //    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn
     @Builder.Default
@@ -72,11 +70,9 @@ public class Game {
         this.teamB = dto.getTeamB();
         for (Player p : dto.getPlayersA()) {
             this.playersA.add(p);
-            p.mapGame(this);
         }
         for (Player p : dto.getPlayersB()) {
             this.playersB.add(p);
-            p.mapGame(this);
         }
     }
 }
