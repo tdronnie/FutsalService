@@ -4,7 +4,7 @@ import Typography from "@/components/atoms/typography/Typography";
 const GlobalCard = (props: GlobalCardProps) => {
   const { subTitle, mainTitle, file } = props;
   return (
-    <div className="border-2 w-44 h-56 rounded-lg shadow-nav">
+    <div className="flex-shrink-0 border-2 w-44 h-56 rounded-lg shadow-nav">
       <div className="">
         <ContentBox width="w-full" height="h-40" file={file} />
       </div>

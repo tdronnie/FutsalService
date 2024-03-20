@@ -1,3 +1,6 @@
+.slick-prev, .slick-next {
+  display: none !important;
+}
 .slick-list,
 .slick-slider,
 .slick-track {
@@ -180,7 +183,7 @@
   margin-bottom: 30px;
 }
 .slick-dots {
-  bottom: -25px;
+  bottom: -10px;
   width: 100%;
   margin: 0;
   list-style: none;
@@ -217,7 +220,7 @@
   opacity: 1;
 }
 .slick-dots li button:before {
-  font-size: 6px;
+  font-size: 15px;
   line-height: 20px;
   position: absolute;
   top: 0;

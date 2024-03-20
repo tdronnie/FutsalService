@@ -46,7 +46,7 @@ const WideCard = (props: WideCardPropsType) => {
           </div>
         </div>
         <div className="mt-auto ml-auto">
-          <SubButton label={buttonlabel} />
+          <SubButton label={buttonlabel} hover={false} />
         </div>
       </div>
     </>
