@@ -19,6 +19,7 @@ interface TailwindPropsType {
   isdisabled?: boolean;
 
   bgimg?: string;
+  hover?: boolean;
 }
 
 interface WideCardPropsType {
@@ -27,6 +28,12 @@ interface WideCardPropsType {
   maintext: string;
   minitext?: string;
   buttonlabel: string;
+}
+
+interface ClubListPropsType {
+  bgimg?: string;
+  clubTitile: string;
+  clubInfo: string;
 }
 
 interface ShadcnDropdownPropsType {
