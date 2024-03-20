@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const MatchListTemplete = () => {
+const MatchListTemplate = () => {
   // 서버 데이터 저장용
   const [matches, setMatches] = useState<MatchData[]>([]);
   // datepicker 관련 지정
@@ -176,4 +176,4 @@ const MatchListTemplete = () => {
   );
 };
 
-export default MatchListTemplete;
+export default MatchListTemplate;

@@ -1,12 +1,11 @@
-import ClubListTemplete from "@/components/templates/ClubListTemplete"
-
+import ClubListTemplate from "@/components/templates/ClubListTemplate";
 
 const ClubListPage = () => {
   return (
     <>
-      <ClubListTemplete />
+      <ClubListTemplate />
     </>
-  )
-}
+  );
+};
 
-export default ClubListPage
+export default ClubListPage;

@@ -1,11 +1,11 @@
-import MatchListTemplete from '@/components/templates/MatchListTemplete'
+import MatchListTemplate from "@/components/templates/MatchListTemplate";
 
 const MatchListPage = () => {
   return (
     <>
-    <MatchListTemplete />
+      <MatchListTemplate />
     </>
-  )
-}
+  );
+};
 
-export default MatchListPage
+export default MatchListPage;

@@ -1,9 +1,9 @@
-import MatchDetailTemplete from "@/components/templates/MatchDetailTemplete";
+import MatchDetailTemplate from "@/components/templates/MatchDetailTemplate";
 
 const MatchDetailPage = () => {
   return (
     <div>
-      <MatchDetailTemplete />
+      <MatchDetailTemplate />
     </div>
   );
 };

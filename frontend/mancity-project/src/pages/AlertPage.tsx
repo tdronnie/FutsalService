@@ -1,11 +1,11 @@
-import AlertTemplete from "@/components/templates/AlertTemplete"
+import AlertTemplate from "@/components/templates/AlertTemplate";
 
 const AlertPage = () => {
   return (
     <>
-      <AlertTemplete />
+      <AlertTemplate />
     </>
-  )
-}
+  );
+};
 
-export default AlertPage
+export default AlertPage;

@@ -1,10 +1,9 @@
-import MainTemplete from "@/components/templates/MainTemplete";
-
+import MainTemplate from "@/components/templates/MainTemplate";
 
 const HomePage = () => {
   return (
     <>
-      <MainTemplete />
+      <MainTemplate />
     </>
   );
 };
