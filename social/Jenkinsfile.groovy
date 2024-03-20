@@ -54,6 +54,19 @@ pipeline {
                 }
             }
         }
+        stage('Delete Previous back Docker Container'){
+            steps {
+                script {
+                    def containerInfo = sh(script: "docker inspect ${CONTAINER_NAME}", returnStatus: true)
+                    if (containerInfo == 0) {
+                        sh "docker stop ${CONTAINER_NAME}"
+                        sh "docker rm ${CONTAINER_NAME}"
+                    } else {
+                        echo "social container does not exist. Skipping deletion."
+                    }
+                }
+            }
+        }
         stage('Docker Clean Image') {
             steps {
                 echo '##### BE Clean Prev Image #####'
@@ -67,19 +80,6 @@ pipeline {
             steps {
                 script {
                     sh 'docker pull ${DOCKER_IMAGE_NAME}'
-                }
-            }
-        }
-        stage('Delete Previous back Docker Container'){
-            steps {
-                script {
-                    def containerInfo = sh(script: "docker inspect ${CONTAINER_NAME}", returnStatus: true)
-                    if (containerInfo == 0) {
-                        sh "docker stop ${CONTAINER_NAME}"
-                        sh "docker rm ${CONTAINER_NAME}"
-                    } else {
-                        echo "social container does not exist. Skipping deletion."
-                    }
                 }
             }
         }
