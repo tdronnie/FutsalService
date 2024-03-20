@@ -1,13 +1,14 @@
 package com.mancity.social.game.application;
 
-import com.mancity.social.game.application.dto.request.CheckManagerDto;
-import com.mancity.social.game.application.dto.request.GameCreateRequestDto;
-import com.mancity.social.game.application.dto.request.GameDataInputDto;
-import com.mancity.social.game.application.dto.request.GameVideoUploadDto;
+import com.mancity.social.game.application.dto.request.*;
 import com.mancity.social.game.application.dto.response.GameResponseDto;
+import com.mancity.social.game.application.dto.response.UserResponseDto;
 import com.mancity.social.game.domain.Game;
+import com.mancity.social.game.domain.Player;
 import com.mancity.social.game.domain.repository.GameRepository;
+import com.mancity.social.game.domain.repository.PlayerRepository;
 import com.mancity.social.game.exception.NoSuchGameException;
+import com.mancity.social.game.exception.NoSuchPlayerException;
 import com.mancity.social.game.infrastructure.file.util.S3Uploader;
 import com.mancity.social.game.presentation.UserFeignClient;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,8 @@ import java.util.List;
 public class GameService {
 
     private final GameRepository gameRepository;
+
+    private final PlayerRepository playerRepository;
 
     private final S3Uploader uploader;
 
@@ -57,18 +60,25 @@ public class GameService {
     }
 
     public List<GameResponseDto> findAllByUserId(long id) {
-        // user 에서 id를 통해 nickname을 가져온 후, 해당 nickname이 속한 match 의 정보들을 전부 리턴
-        String nickname = userFeignClient.findById(id).getNickName();
-//        List<Game> games = gameRepository.findAllByNickname("joonseong111");
-//        List<Game> games = gameRepository.findAll();
+        String nickname =  findByIdFromUserService(id).getNickName();
         List<Game> games = gameRepository.findAllByNickname(nickname);
         return games.stream()
                 .map(GameResponseDto::from)
                 .toList();
     }
 
+    public void allocateData(GameDataAllocateDto dto){
+        Player player = playerRepository.findById(dto.getGamePlayerId()).orElseThrow(NoSuchPlayerException::new);
+        player.allocateData(findByIdFromUserService(dto.getUserId()).getNickName());
+        userFeignClient.plus(UserPlusRequestDto.from(player));
+    }
+
     private Game findById(long id) {
         return gameRepository.findById(id)
                 .orElseThrow(NoSuchGameException::new);
+    }
+
+    private UserResponseDto findByIdFromUserService(long id){
+        return userFeignClient.findById(id);
     }
 }
