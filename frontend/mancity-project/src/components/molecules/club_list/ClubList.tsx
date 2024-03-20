@@ -2,14 +2,14 @@ import ContentBox from "@/components/atoms/content_box/ContentBox";
 import Typography from "@/components/atoms/typography/Typography";
 
 const ClubList = (props: ClubListPropsType) => {
-  const { bgimg="bg-[url('/favicon.ico')]", clubTitile, clubInfo } = props;
+  const { file, clubTitile, clubInfo } = props;
   return (
     <div>
       <div className="flex items-center justify-between mx-3">
         <div className="flex items-center justify-between">
           <div className="mr-2">
             <ContentBox
-              bgimg={bgimg}
+              file={file}
               height="h-10"
               rounded="rounded-full"
               width="w-10"
