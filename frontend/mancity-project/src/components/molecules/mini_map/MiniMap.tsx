@@ -2,11 +2,13 @@ import FontawsomeIcon from "@/components/atoms/fontawsome_icon/FontawsomeIcon";
 import Typography from "@/components/atoms/typography/Typography";
 import useKakaoLoader from "@/hooks/useKakaoLoader";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
+import marker from "@/assets/imgs/marker.png";
 
 const MiniMap = (props: MiniMapPropsType) => {
   useKakaoLoader();
   const { lat, lng, address, tel, onClickCopy } = props;
   const imageSize = { width: 46, height: 60 };
+  const markerimg = marker;
   return (
     <div className="my-4 mx-2">
       <div className="">
@@ -19,6 +21,7 @@ const MiniMap = (props: MiniMapPropsType) => {
             width: "100%",
             height: "150px",
             borderRadius: "10px",
+            border: "0.1rem solid rgba(217, 217, 217, 1)",
           }}
           level={5}
         >
@@ -28,7 +31,7 @@ const MiniMap = (props: MiniMapPropsType) => {
               lng: lng,
             }}
             image={{
-              src: "/src/assets/imgs/marker.png",
+              src: markerimg,
               size: imageSize,
             }}
           />

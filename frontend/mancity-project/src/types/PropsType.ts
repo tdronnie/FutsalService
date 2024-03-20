@@ -92,3 +92,10 @@ interface ImgBoxType {
   height: string;
   rounded: string;
 }
+
+interface GlobalSwitchPropsType {
+  label: string;
+  isSwitchOn: boolean;
+  setIsSwitchOn: React.Dispatch<React.SetStateAction<boolean>>;
+  switchMarginTop: string;
+}
