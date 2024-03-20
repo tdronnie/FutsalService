@@ -64,6 +64,13 @@ pipeline {
                     } else {
                         echo "social container does not exist. Skipping deletion."
                     }
+
+                    def exitedContainers = sh(script: "docker ps --filter status=exited -q", returnStdout: true).trim()
+                    if (exitedContainers) {
+                        sh "docker rm ${exitedContainers}"
+                    } else {
+                        echo "No exited containers to remove."
+                    }
                 }
             }
         }
@@ -71,8 +78,12 @@ pipeline {
             steps {
                 echo '##### BE Clean Prev Image #####'
                 script {
-                    sh "docker rm $(docker ps --filter status=exited -q)"
-                    sh "docker rmi $(docker images -f 'dangling=true' -q)"
+                    def exitedImages = sh(script: "docker images -f 'dangling=true' -q", returnStdout: true).trim()
+                    if (exitedImages) {
+                        sh "docker rmi ${exitedImages}"
+                    } else {
+                        echo "No exited containers to remove."
+                    }
                 }
             }
         }
