@@ -17,6 +17,16 @@ pipeline {
                 git branch : 'develop-be-social', credentialsId: 'gitlab_access_token', url: 'https://lab.ssafy.com/s10-ai-image-sub2/S10P22C201.git'
             }
         }
+        stage('Add Env') {
+            steps {
+                dir('./social') {
+                    withCredentials([file(credentialsId: 'skey', variable: 'skey')]) {
+                        sh 'chmod -R rwx src/main/resources'
+                        sh 'cp ${skey} src/main/resources/application-skey.yml'
+                    }
+                }
+            }
+        }
         stage('Gradle Build') {
             steps {
                 echo 'Building..'
