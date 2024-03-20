@@ -58,7 +58,7 @@ pipeline {
             steps {
                 echo '##### BE Clean Prev Image #####'
                 script {
-                    def existingImages = sh(script: "docker images -q ${BACKEND_IMAGE_NAME}", returnStdout: true).trim()
+                    def existingImages = sh(script: "docker images -q ${DOCKER_IMAGE_NAME}", returnStdout: true).trim()
                     echo "BE Cleaning Prev Image: ${existingImages}"
                     if (existingImages) {
                         sh """
