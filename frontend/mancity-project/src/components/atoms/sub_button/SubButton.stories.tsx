@@ -14,5 +14,13 @@ type Story = StoryObj<typeof SubButton>;
 export const Default: Story = {
   args: {
     label: "Sub Button",
+    hover: true,
+  },
+};
+
+export const NoHover: Story = {
+  args: {
+    label: "Sub Button",
+    hover: false,
   },
 };
