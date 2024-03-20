@@ -13,13 +13,13 @@ const MainHeader = () => {
         <p className="p-0 text-3xl font-black text-mancity">맨시티</p>
         <div className="flex">
           <div
-            className="mr-4"
+            className="mr-4 cursor-pointer"
             onClick={() => handleNavigate({ path: "/profile/1" })}
           >
             <FontawsomeIcon icon="user" size="2x"></FontawsomeIcon>
           </div>
           <div
-            className="mr-1"
+            className="mr-1 cursor-pointer"
             onClick={() => handleNavigate({ path: "/alert" })}
           >
             <FontawsomeIcon icon="bell" size="2x"></FontawsomeIcon>

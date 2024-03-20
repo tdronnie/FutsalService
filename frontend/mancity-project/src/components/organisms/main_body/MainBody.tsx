@@ -5,6 +5,8 @@ import GlobalCard from "@/components/molecules/global_card/GlobalCard";
 import Typography from "@/components/atoms/typography/Typography";
 import SubButton from "@/components/atoms/sub_button/SubButton";
 import ClubList from "@/components/molecules/club_list/ClubList";
+import { useNavigate } from "react-router-dom";
+import IconButton from "@/components/atoms/icon_button/IconButton";
 
 const MainBody = () => {
   const settings = {
@@ -13,6 +15,10 @@ const MainBody = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+  };
+  const navigate = useNavigate();
+  const handleNavigate = ({ path }: NavigateType) => {
+    navigate(path);
   };
   return (
     <>
@@ -89,7 +95,7 @@ const MainBody = () => {
           textSize="text-xl"
         />
       </div>
-      <div className="flex w-full px-2 overflow-y-hidden">
+      <div className="flex items-center w-full p-2 overflow-y-hidden">
         <GlobalCard
           bgimg="bg-[url('/favicon.ico')]"
           mainTitle="안양김지용"
@@ -110,6 +116,9 @@ const MainBody = () => {
           mainTitle="안양김지용"
           subTitle="스피드 특화"
         />
+        <div onClick={() => handleNavigate({ path: "/match" })}>
+          <IconButton icon="plus" />
+        </div>
       </div>
 
       <div className="px-3 pt-4 pb-3">
@@ -123,7 +132,10 @@ const MainBody = () => {
       <ClubList clubTitile="FC맨시티파워" clubInfo="1230점/2024.02.18" />
       <ClubList clubTitile="FC맨시티파워" clubInfo="1230점/2024.02.18" />
       <ClubList clubTitile="FC맨시티파워" clubInfo="1230점/2024.02.18" />
-      <div className="flex justify-center">
+      <div
+        className="flex justify-center"
+        onClick={() => handleNavigate({ path: "/club" })}
+      >
         <SubButton label="더보기" hover={true} />
       </div>
     </>
