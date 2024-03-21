@@ -4,7 +4,46 @@
 - 
 
 ### Troubleshooting
-- 
+- Tailwind `className`를 동적으로 활용하려는 부분에서 문제 발생.
+  <br>
+  atomic 구조로 컴포넌트를 관리하다보니, 같은 색상인데 각자 따로 prop하는 것이 비효율적이라 생각함.
+   <br>
+   예를 들어, 버튼에서 배경 색상과 호버 했을 때 반전된 글자 색상이 같은 red일 때, 한 번에 묶어서 prop 하고싶어서 `text-${color}` 형태로 만들었더니 인식을 하지 못하는 문제가 발생함.
+   <br>
+   이유는, Tailwind는 사용되지 않는 CSS를 제거하는데, 코드 컴파일시에 존재하는 `className`만을 수정할 수 있는 값으로 인지하기 때문에 `text-${color}` 형태는 처음에 text- 로 인식되어 지워져서 수정할 수 없는 상황에 부딛히는 것이었음.
+   <br>
+   결론
+   <br>
+   prop을 사용할 때는 아무리 귀찮더라도 온전한 className을 내려보낼 것.
+   <br> 
+
+- Storybook에서 router 오류 발생
+  <br>
+  atomic 구조를 활용하기 위해 Storybook을 도입했는데, router를 사용하는 부분에서 오류 발생함.
+  <br>
+  Storybook에서 plugin, 또는 라이브러리 역할을 하는 addon이 존재함.
+  <br>
+  "@storybook-addon-react-router"를 사용하면 된다고 파악했으나, 현재 이 addon은 storybook 7버전까지 지원해서 버전 충돌이 발생함. (현재 storybook v.8 사용함)
+  <br>
+  storybook 페이지를 찾아본 결과, 같은 제작자가 addon-remix-react-router를 만들었는데, react-router를 업그레이드해서 만든 버전이라고 함.
+  <br>
+  현재 프로젝트에서는 remix를 사용하지 않아서 호환이 될까 걱정했으나, 다행히 addon이 정상작동해서 storybook에서 router를 사용한 컴포넌트도 에러 없이 불러올 수 있게 됨.
+
+- Storybook에서 router 적용 방법
+  <br>
+  이전에는 router를 하나의 컴포넌트의 stories 에서 적용함.
+  <br>
+  이 때, 매번 같은 코드가 중복되고, 작업이 반복되는 것을 느꼈고, 전역적으로 적용하는 방법을 찾아봄.
+  <br>
+  찾아본 결과, storybook의 `decorators`와 `parameters`는 세가지 위치에서 적용 가능하다는 것을 알게 됨.
+  <br>
+  첫 번째는 story 내부에서 가능함. Story는 하나의 컴포넌트에서 나오는 Stories에 존재하는 하나의 예시임.
+  <br>
+  두 번째는 stories 에서 가능함. 하나의 컴포넌트에서 파생된 Stories에서 적용하면 하위 Story에 모두 적용됨.
+  <br>
+  세 번째는 Global로, 설정 페이지인 `.storybook/preview.tsx`에서 적용 가능함.
+  <br>
+  이로 인해, Storybook을 더욱 효율적으로 사용할 수 있게 됨.
 
 ## Backend
 ### Progress
