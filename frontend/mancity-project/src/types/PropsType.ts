@@ -15,7 +15,7 @@ interface TailwindPropsType {
   rounded?: string;
   label?: string;
   placeholder?: string;
-  textValue?: string;
+  textValue?: string | number;
   setTextValue?: React.Dispatch<React.SetStateAction<string>>;
   isdisabled?: boolean;
 
@@ -53,18 +53,18 @@ interface DropdownPropsType extends ShadcnDropdownPropsType {
 
 interface HeaderPropsType {
   label: string;
-  backArrow: boolean; 
+  backArrow: boolean;
   headerButton: boolean;
   onClickButton?: () => void;
-  buttonLabel?:string;
-  toWhere?:string;
+  buttonLabel?: string;
+  toWhere?: string;
 }
 
 interface InputGroupPropsType {
   typographyLabel: string;
   placeholder?: string;
   checking: boolean;
-  textValue?: string;
+  textValue?: string | number;
   setTextValue?: React.Dispatch<React.SetStateAction<string>>;
 }
 
