@@ -1,11 +1,12 @@
-
 const ReverseButton = (props: TailwindPropsType) => {
-  const { width, label } = props;
+  const { width, label, isdisabled } = props;
   return (
     <button
       type="button"
-      className={` ${width} font-medium text-sm bg-white text-mancity h-10 rounded-lg 
-      hover:bg-mancity hover:text-white border-mancity border-2`}
+      disabled={!isdisabled}
+      className={`${width}
+      font-medium text-sm h-10 rounded-lg bg-white text-mancity border-mancity border-2
+      ${!isdisabled ? "opacity-60" : " hover:bg-mancity hover:text-white"}`}
     >
       {label}
     </button>
