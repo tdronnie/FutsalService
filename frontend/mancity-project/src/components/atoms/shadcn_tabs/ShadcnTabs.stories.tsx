@@ -43,10 +43,11 @@ export const Default: Story = () => {
     action("onCheckedChange")(!selectedTab);
   };
 
-  return <ShadcnTabs Tab1="영상" Tab2="잡담" onChange={handleCheckedChange} />;
+  return <ShadcnTabs Tab1="영상" Tab2="잡담" onChange={handleCheckedChange} defaultTab="tab1"/>;
 };
 
 Default.args = {
   Tab1: "영상",
   Tab2: "잡담",
+  defaultTab:"tab1",
 };

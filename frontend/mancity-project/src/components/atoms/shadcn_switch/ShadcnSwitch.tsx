@@ -10,7 +10,7 @@ interface propsType {
 // const [isSwitchOn, setIsSwitchOn] = useState(false);
 // const toggleSwitch = () => setIsSwitchOn(!isSwitchOn);
 
-const ShadcnSwitch = ({ checked, onCheckedChange }: propsType) => {
+const  ShadcnSwitch = ({ checked, onCheckedChange }: propsType) => {
   return <Switch checked={checked} onCheckedChange={onCheckedChange} />;
 };
 

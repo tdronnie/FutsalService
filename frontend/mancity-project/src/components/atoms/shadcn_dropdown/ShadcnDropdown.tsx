@@ -26,10 +26,10 @@ const ShadcnDropdown = ({
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <div
-          className={`${width} h-7 border-b-[1.5px] text-sofcity border-sofcity flex justify-between`}
+          className={`${width} h-7 border-b-[1.5px] text-sofcity border-sofcity flex`}
         >
-          <p className=" ml-2 ">{position}</p>
-          <p className=" mt-2 mr-1 text-sofcity text-xs">▼</p>
+          <p className="flex-grow ml-2 text-center">{position}</p>
+          <p className="mt-2 mr-1 text-xs text-sofcity">▼</p>
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className={width}>

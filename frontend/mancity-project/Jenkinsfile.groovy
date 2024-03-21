@@ -1,8 +1,5 @@
 pipeline {
     agent any
-//   tools {
-//        nodejs 'NodeJS 20.11.1'
-//    }
     environment {
         DOCKER_IMAGE_NAME = 'joonseong/mancity-fe'
         DOCKERFILE_PATH = './frontend/mancity-project/Dockerfile'
@@ -22,33 +19,7 @@ pipeline {
             }
         }
 
-//        //의존성 설치
-//        stage('Install dependencies') {
-//            steps {
-//                dir('./frontend/mancity-project') {
-//                    sh 'node -v'
-//                    sh 'npm install'
-//                    nodejs('NodeJS 20.11.1') {
-//                        sh 'npm run build'
-//                    }
-//                }
-//            }
-//        }
-
-//        //프로젝트 빌드
-//        stage('Build') {
-//            steps {
-//                echo 'Building..'
-//                dir('./frontend/mancity-project') {
-//                    sh 'npm run build'
-//                    nodejs('NodeJS 20.11.1') {
-//                        sh 'npm run build'
-//                    }
-//                }
-//            }
-//        }
-
-        //도커 이미지 생성
+        //Dockerfile로 생성된 빌드 파일로 도커 이미지 생성
         stage('Docker Build Image') {
             steps {
                 dir('./frontend/mancity-project') {
@@ -70,14 +41,35 @@ pipeline {
             }
         }
 
-        stage('Docker Clean Image') {
+        stage('Delete Previous frontend Docker Container'){
             steps {
-                dir('./frontend/mancity-project') {
-                    sh 'docker rmi $DOCKER_IMAGE_NAME'
+                script {
+                    def  frontendContainerExists = sh(script: "docker ps --filter=name=${CONTAINER_NAME}", returnStdout: true).trim()
+                    if (frontendContainerExists) {
+                        sh "docker stop ${CONTAINER_NAME}"
+                        sh "docker rm ${CONTAINER_NAME}"
+                    } else {
+                        echo "frontend container does not exist. Skipping deletion."
+                    }
+
+                    def exitedContainers = sh(script: "docker ps --filter status=exited -q", returnStdout: true).trim()
+                    if (exitedContainers) {
+                        sh "docker rm ${exitedContainers}"
+                    } else {
+                        echo "No exited containers to remove."
+                    }
                 }
             }
         }
 
+        stage('Prune Image'){
+            steps {
+                echo '##### delete <none> TAG images #####'
+                script {
+                    sh "docker image prune -f"
+                }
+            }
+        }
 
         stage('Pull from DockerHub') {
             steps {
@@ -86,19 +78,7 @@ pipeline {
                 }
             }
         }
-        stage('Delete Previous back Docker Container'){
-            steps {
-                script {
-                    def containerInfo = sh(script: "docker inspect ${CONTAINER_NAME}", returnStatus: true)
-                    if (containerInfo == 0) {
-                        sh "docker stop ${CONTAINER_NAME}"
-                        sh "docker rm ${CONTAINER_NAME}"
-                    } else {
-                        echo "Frontend container does not exist. Skipping deletion."
-                    }
-                }
-            }
-        }
+
         stage('Run Docker Container') {
             steps {
                 script {
