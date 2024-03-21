@@ -5,6 +5,11 @@ const meta: Meta<typeof MemberList> = {
   title: "Components/molecules/MemberList",
   tags: ["autodocs"],
   component: MemberList,
+  // 내용
+  parameters: {
+    componentSubtitle: `
+    image 파일을 받아오면서 file의 위치를 수정하겠습니다.`,
+  },
 };
 
 export default meta;

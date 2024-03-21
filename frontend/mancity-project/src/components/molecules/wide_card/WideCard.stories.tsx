@@ -2,12 +2,13 @@ import WideCard from "./WideCard";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof WideCard> = {
-  title: "Components/atoms/WideCard",
+  title: "Components/molecules/WideCard",
   tags: ["autodocs"],
   component: WideCard,
   argTypes: {
     file: {
-      description: "배경에 이미지를 넣습니다. ex) /src/assets/imgs/mancity_logo.png",
+      description:
+        "배경에 이미지를 넣습니다. ex) /src/assets/imgs/mancity_logo.png",
       control: "text",
       table: {
         type: { summary: "string" },
@@ -17,8 +18,7 @@ const meta: Meta<typeof WideCard> = {
       },
     },
     subtext: {
-      description:
-        "(필)서브텍스트를 설정합니다. ex)오전 10시",
+      description: "(필)서브텍스트를 설정합니다. ex)오전 10시",
       control: "text",
       table: {
         type: { summary: "string" },
@@ -26,9 +26,8 @@ const meta: Meta<typeof WideCard> = {
       },
     },
     maintext: {
-      description:
-        "(필)메인텍스트를 설정합니다. ex)광주 신화 풋살장",
-        control: "text",
+      description: "(필)메인텍스트를 설정합니다. ex)광주 신화 풋살장",
+      control: "text",
       table: {
         type: { summary: "string" },
         defaultValue: { summary: "광주 신화 풋살장" },

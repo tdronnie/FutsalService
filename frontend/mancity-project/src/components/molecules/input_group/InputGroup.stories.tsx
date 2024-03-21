@@ -5,6 +5,30 @@ const meta: Meta<typeof InputGroup> = {
   title: "Components/molecules/InputGroup",
   tags: ["autodocs"],
   component: InputGroup,
+  argTypes: {
+    typographyLabel: {
+      description: "input창의 이름을 지정합니다.",
+      control: "text",
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    placeholder: {
+      description: "input창에 띄울 임시 내용을 지정합니다.",
+      control: "text",
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    checking: {
+      description: "확인 버튼을 보일 지 여부를 결정합니다.",
+      control: "boolean",
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: false },
+      },
+    },
+  },
 };
 
 export default meta;

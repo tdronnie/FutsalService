@@ -4,8 +4,8 @@ import Typography from "@/components/atoms/typography/Typography";
 const Dropdown = (props: DropdownPropsType) => {
   const {
     typographyLabel,
-    width,
     items,
+    width,
     position,
     setPosition,
     setNumberValue,

@@ -2,7 +2,7 @@ import AlertCard from "./AlertCard";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof AlertCard> = {
-  title: "Components/atoms/AlertCard",
+  title: "Components/molecules/AlertCard",
   tags: ["autodocs"],
   component: AlertCard,
   argTypes: {

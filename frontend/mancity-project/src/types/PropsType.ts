@@ -120,3 +120,8 @@ interface FooterPropsType {
   buttonLabel: string;
   onButtonClick: () => void;
 }
+
+interface TextareaContainerPropsType {
+  textareaValue: string;
+  setTextareaValue: () => void;
+}
