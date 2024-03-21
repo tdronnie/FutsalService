@@ -1,8 +1,11 @@
+import MatchRegisterTemplate from "@/components/templates/MatchRegisterTemplate";
 
 const MatchRegisterPage = () => {
   return (
-    <div>MatchRegisterPage</div>
-  )
-}
+    <div>
+      <MatchRegisterTemplate />
+    </div>
+  );
+};
 
-export default MatchRegisterPage
+export default MatchRegisterPage;
