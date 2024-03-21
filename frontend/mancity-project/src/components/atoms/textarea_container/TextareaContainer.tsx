@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const TextareaContainer = (props: TextareaContainerPropsType) => {
-  const [textareaValue, setTextareaValue] = useState("");
+  const { textareaValue, setTextareaValue } = props;
 
   const onChangeValue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTextareaValue(e.target.value);
@@ -11,7 +11,7 @@ const TextareaContainer = (props: TextareaContainerPropsType) => {
       value={textareaValue}
       onChange={onChangeValue}
       placeholder="내용을 입력해주세요"
-      className={`w-80 h-40 p-2 border-2 text-[#5D7A93] border-[#5D7A93] rounded-md focus:outline-none placeholder-gray-400 resize-none`}
+      className={`w-full h-40 p-2 border-2 text-[#5D7A93] border-[#5D7A93] rounded-md focus:outline-none placeholder-gray-400 resize-none`}
     />
   );
 };
