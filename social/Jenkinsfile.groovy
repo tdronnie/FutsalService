@@ -59,7 +59,7 @@ pipeline {
                 script {
 //                    def containerInfo = sh(script: "docker inspect ${CONTAINER_NAME}", returnStatus: true)
                     def  socialContainerExists = sh(script: "docker ps --filter=name=${CONTAINER_NAME}", returnStdout: true).trim()
-                    if (socialContainerExists == 0) {
+                    if (socialContainerExists) {
                         sh "docker stop ${CONTAINER_NAME}"
                         sh "docker rm ${CONTAINER_NAME}"
                     } else {
