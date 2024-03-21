@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Dropdown from "../molecules/dropdown/Dropdown";
 import Header from "../organisms/header/Header";
 import GlobalButton from "../atoms/global_button/GlobalButton";
+import GlobalSwitch from "../molecules/global_switch/GlobalSwitch";
 
 const MatchFilterTemplate = () => {
   // 성별
@@ -53,16 +54,20 @@ const MatchFilterTemplate = () => {
   // 유효성 검사 상태 추가
   const [isFormValid, setIsFormValid] = useState(false);
 
+  // 스위치 온오프 체크용
+  const [isSwitchOn, setIsSwitchOn] = useState(false);
+
   useEffect(() => {
     // 하나라도 선택을 해야함! 하나도 안하면 버튼 비활성화
     const isValid =
       genderValue !== 0 ||
       locationValue !== 0 ||
       ruleValue !== 0 ||
+      isSwitchOn !== false ||
       levelValue !== 0;
 
     setIsFormValid(isValid);
-  }, [genderValue, locationValue, ruleValue, levelValue]);
+  }, [genderValue, locationValue, ruleValue, levelValue, isSwitchOn]);
 
   return (
     <>
@@ -94,6 +99,12 @@ const MatchFilterTemplate = () => {
         position={levelLabel}
         setPosition={setLevelLabel}
         setNumberValue={setLevelValue}
+      />
+      <GlobalSwitch
+        label="인원만료"
+        isSwitchOn={isSwitchOn}
+        setIsSwitchOn={setIsSwitchOn}
+        switchMarginTop="mt-0"
       />
       <div className="flex justify-end mt-6">
         <GlobalButton width="w-60" label="필터 적용" isdisabled={isFormValid} />
