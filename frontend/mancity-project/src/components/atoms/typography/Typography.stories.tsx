@@ -11,7 +11,7 @@ const meta: Meta<typeof Typography> = {
       control: "text",
       table: {
         type: { summary: "string" },
-        defaultValue: { summary: "text-2xl" },
+        defaultValue: { summary: "text-base" },
       },
     },
     fontWeight: {
@@ -20,7 +20,6 @@ const meta: Meta<typeof Typography> = {
       control: "text",
       table: {
         type: { summary: "string" },
-        defaultValue: { summary: "font-medium" },
       },
     },
     textColor: {
@@ -29,7 +28,6 @@ const meta: Meta<typeof Typography> = {
       control: "text",
       table: {
         type: { summary: "string" },
-        defaultValue: { summary: "text-[#5D7A93]" },
       },
     },
     label: {
@@ -37,7 +35,6 @@ const meta: Meta<typeof Typography> = {
       control: "text",
       table: {
         type: { summary: "string" },
-        defaultValue: { summary: "word" },
       },
     },
   },
@@ -49,7 +46,7 @@ type Story = StoryObj<typeof Typography>;
 
 export const Default: Story = {
   args: {
-    textSize: "text-xl",
+    textSize: "text-sm",
     fontWeight: "font-medium",
     textColor: "text-[#5D7A93]",
     label: "Typography",

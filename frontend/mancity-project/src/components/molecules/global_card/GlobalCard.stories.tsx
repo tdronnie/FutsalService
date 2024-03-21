@@ -7,7 +7,8 @@ const meta: Meta<typeof GlobalCard> = {
   component: GlobalCard,
   argTypes: {
     file: {
-      description: "배경에 이미지를 넣습니다. ex)/src/assets/imgs/mancity_logo.png",
+      description:
+        "배경에 이미지를 넣습니다. ex)/src/assets/imgs/mancity_logo.png",
       control: "text",
       table: {
         type: { summary: "string" },
@@ -15,8 +16,7 @@ const meta: Meta<typeof GlobalCard> = {
       },
     },
     mainTitle: {
-      description:
-        "큰 글씨를 설정합니다.",
+      description: "큰 글씨를 설정합니다.",
       control: "text",
       table: {
         type: { summary: "string" },
@@ -24,9 +24,8 @@ const meta: Meta<typeof GlobalCard> = {
       },
     },
     subTitle: {
-      description:
-        "작은 글씨를 설정합니다.",
-        control: "text",
+      description: "작은 글씨를 설정합니다.",
+      control: "text",
       table: {
         type: { summary: "string" },
         defaultValue: { summary: "2024/04/05" },
@@ -39,7 +38,7 @@ export default meta;
 
 type Story = StoryObj<typeof GlobalCard>;
 
-export const Email: Story = {
+export const Default: Story = {
   args: {
     mainTitle: "광주 신화 풋살장",
     subTitle: "2024/04/05",

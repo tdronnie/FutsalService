@@ -14,14 +14,12 @@ const meta: Meta<typeof ShadcnSwitch> = {
         <>
           <h2>ShadcnSwitch 사용 예시</h2>
           <Source
-            language="jsx"
+            language="tsx"
             code={`  
-            const [isSwitchOn, setIsSwitchOn] = useState(false);
+// isSwitchOn의 값이 true인지, false인지로 사용합니다.
+const [isSwitchOn, setIsSwitchOn] = useState(false);
 const toggleSwitch = () => setIsSwitchOn(!isSwitchOn);
 
-useEffect(() => {
-  console.log(isSwitchOn);
-}, [isSwitchOn]);
 
 <ShadcnSwitch checked={isSwitchOn} onCheckedChange={toggleSwitch} />
             `}

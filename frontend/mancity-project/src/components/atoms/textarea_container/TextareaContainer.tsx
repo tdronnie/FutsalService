@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const TextareaContainer = () => {
+const TextareaContainer = (props: TextareaContainerPropsType) => {
   const [textareaValue, setTextareaValue] = useState("");
 
   const onChangeValue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {

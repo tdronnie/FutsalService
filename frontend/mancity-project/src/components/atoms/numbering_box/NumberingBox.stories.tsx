@@ -11,7 +11,6 @@ const meta: Meta<typeof NumberingBox> = {
       control: "number",
       table: {
         type: { summary: "number" },
-        defaultValue: { summary: "3" },
       },
     },
   },

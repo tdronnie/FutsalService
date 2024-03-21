@@ -5,6 +5,22 @@ const meta: Meta<typeof GlobalInput> = {
   title: "Components/atoms/GlobalInput",
   tags: ["autodocs"],
   component: GlobalInput,
+  argTypes: {
+    width: {
+      description: "input 창의 너비를 지정합니다. ex) w-20",
+      control: "text",
+      table: {
+        type: { summary: "string" },
+      },
+    },
+    placeholder: {
+      description: "input창에 임시로 보여줄 값을 지정합니다.",
+      control: "text",
+      table: {
+        type: { summary: "string" },
+      },
+    },
+  },
 };
 
 export default meta;
