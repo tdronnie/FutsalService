@@ -75,19 +75,29 @@ pipeline {
                 }
             }
         }
-        stage('Docker Clean Image') {
+//        stage('Docker Clean Image') {
+//            steps {
+//                echo '##### BE Clean Prev Image #####'
+//               script {
+//                    def exitedImages = sh(script: "docker images -f 'dangling=true' -q", returnStdout: true).trim()
+//                    if (exitedImages) {
+//                        sh "docker rmi ${exitedImages}"
+//                    } else {
+//                        echo "No exited containers to remove."
+//                    }
+//                }
+//            }
+//        }
+
+        stage('Prune Image'){
             steps {
-                echo '##### BE Clean Prev Image #####'
+                echo '##### delete <none> TAG images #####'
                 script {
-                    def exitedImages = sh(script: "docker images -f 'dangling=true' -q", returnStdout: true).trim()
-                    if (exitedImages) {
-                        sh "docker rmi ${exitedImages}"
-                    } else {
-                        echo "No exited containers to remove."
-                    }
+                    sh "docker image prune -a"
                 }
             }
         }
+
         stage('Pull from DockerHub') {
             steps {
                 script {
@@ -95,6 +105,7 @@ pipeline {
                 }
             }
         }
+        
         stage('Run Docker Container') {
             steps {
                 script {
