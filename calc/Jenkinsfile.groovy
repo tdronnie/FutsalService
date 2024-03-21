@@ -44,13 +44,37 @@ pipeline {
                 }
             }
         }
-        stage('Docker Clean Image') {
+
+        stage('Delete Previous calc Docker Container'){
             steps {
-                dir('./calc') {
-                    sh 'docker rmi $DOCKER_IMAGE_NAME'
+                script {
+                    def  calcContainerExists = sh(script: "docker ps --filter=name=${CONTAINER_NAME}", returnStdout: true).trim()
+                    if (calcContainerExists) {
+                        sh "docker stop ${CONTAINER_NAME}"
+                        sh "docker rm ${CONTAINER_NAME}"
+                    } else {
+                        echo "calc container does not exist. Skipping deletion."
+                    }
+
+                    def exitedContainers = sh(script: "docker ps --filter status=exited -q", returnStdout: true).trim()
+                    if (exitedContainers) {
+                        sh "docker rm ${exitedContainers}"
+                    } else {
+                        echo "No exited containers to remove."
+                    }
                 }
             }
         }
+
+        stage('Prune Image'){
+            steps {
+                echo '##### delete <none> TAG images #####'
+                script {
+                    sh "docker image prune -f"
+                }
+            }
+        }
+
         stage('Pull from DockerHub') {
             steps {
                 script {
@@ -58,19 +82,7 @@ pipeline {
                 }
             }
         }
-        stage('Delete Previous back Docker Container'){
-            steps {
-                script {
-                    def containerInfo = sh(script: "docker inspect ${CONTAINER_NAME}", returnStatus: true)
-                    if (containerInfo == 0) {
-                        sh "docker stop ${CONTAINER_NAME}"
-                        sh "docker rm ${CONTAINER_NAME}"
-                    } else {
-                        echo "CALC container does not exist. Skipping deletion."
-                    }
-                }
-            }
-        }
+
         stage('Run Docker Container') {
             steps {
                 script {
