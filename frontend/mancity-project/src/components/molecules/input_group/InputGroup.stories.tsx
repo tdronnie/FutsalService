@@ -1,4 +1,4 @@
-import InputGroup from "@/components/molecules/input/InputGroup";
+import InputGroup from "@/components/molecules/input_group/InputGroup";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof InputGroup> = {

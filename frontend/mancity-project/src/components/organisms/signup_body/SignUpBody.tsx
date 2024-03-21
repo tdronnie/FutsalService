@@ -1,7 +1,7 @@
 import GlobalButton from "@/components/atoms/global_button/GlobalButton";
 import Typography from "@/components/atoms/typography/Typography";
 import Dropdown from "@/components/molecules/dropdown/Dropdown";
-import InputGroup from "@/components/molecules/input/InputGroup";
+import InputGroup from "@/components/molecules/input_group/InputGroup";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 

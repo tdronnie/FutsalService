@@ -22,9 +22,11 @@
 
     /* Linting */
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    // build시 불필요한 코드 무시처리
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    // 카카오 맵 추가
     "types": ["kakao.maps.d.ts"]
   },
   "include": ["src"],
