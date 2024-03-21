@@ -93,7 +93,7 @@ pipeline {
             steps {
                 echo '##### delete <none> TAG images #####'
                 script {
-                    sh "docker image prune -a"
+                    sh "docker image prune -f"
                 }
             }
         }
