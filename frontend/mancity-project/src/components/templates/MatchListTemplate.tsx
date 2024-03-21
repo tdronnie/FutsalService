@@ -42,7 +42,7 @@ const MatchListTemplate = () => {
     const fetchedMatches = [
       {
         id: 1,
-        file: "/favicon.ico",
+        file: "/src/assets/imgs/mancity_logo.png",
         subtext: "오전 10시",
         maintext: "광주 신화 풋살장",
         minitext: "남자·5vs5·중 수준",
@@ -50,7 +50,7 @@ const MatchListTemplate = () => {
       },
       {
         id: 2,
-        file: "/favicon.ico",
+        file: "/src/assets/imgs/mancity_logo.png",
         subtext: "오전 10시",
         maintext: "광주 신화 풋살장",
         minitext: "남자·5vs5·중 수준",
@@ -58,7 +58,7 @@ const MatchListTemplate = () => {
       },
       {
         id: 3,
-        file: "/favicon.ico",
+        file: "/src/assets/imgs/mancity_logo.png",
         subtext: "오전 10시",
         maintext: "광주 신화 풋살장",
         minitext: "남자·5vs5·중 수준",
@@ -66,7 +66,7 @@ const MatchListTemplate = () => {
       },
       {
         id: 4,
-        file: "/favicon.ico",
+        file: "/src/assets/imgs/mancity_logo.png",
         subtext: "오전 10시",
         maintext: "광주 신화 풋살장",
         minitext: "남자·5vs5·중 수준",
@@ -74,7 +74,7 @@ const MatchListTemplate = () => {
       },
       {
         id: 5,
-        file: "/favicon.ico",
+        file: "/src/assets/imgs/mancity_logo.png",
         subtext: "오전 10시",
         maintext: "광주 신화 풋살장",
         minitext: "남자·5vs5·중 수준",
@@ -82,7 +82,7 @@ const MatchListTemplate = () => {
       },
       {
         id: 6,
-        file: "/favicon.ico",
+        file: "/src/assets/imgs/mancity_logo.png",
         subtext: "오전 10시",
         maintext: "광주 신화 풋살장",
         minitext: "남자·5vs5·중 수준",
@@ -90,7 +90,7 @@ const MatchListTemplate = () => {
       },
       {
         id: 7,
-        file: "/favicon.ico",
+        file: "/src/assets/imgs/mancity_logo.png",
         subtext: "오전 10시",
         maintext: "광주 신화 풋살장",
         minitext: "남자·5vs5·중 수준",
@@ -98,7 +98,7 @@ const MatchListTemplate = () => {
       },
       {
         id: 8,
-        file: "/favicon.ico",
+        file: "/src/assets/imgs/mancity_logo.png",
         subtext: "오전 10시",
         maintext: "광주 신화 풋살장",
         minitext: "남자·5vs5·중 수준",
@@ -106,7 +106,7 @@ const MatchListTemplate = () => {
       },
       {
         id: 9,
-        file: "/favicon.ico",
+        file: "/src/assets/imgs/mancity_logo.png",
         subtext: "오전 10시",
         maintext: "광주 신화 풋살장",
         minitext: "남자·5vs5·중 수준",
@@ -114,7 +114,7 @@ const MatchListTemplate = () => {
       },
       {
         id: 10,
-        file: "/favicon.ico",
+        file: "/src/assets/imgs/mancity_logo.png",
         subtext: "오전 10시",
         maintext: "광주 신화 풋살장",
         minitext: "남자·5vs5·중 수준",
@@ -140,6 +140,7 @@ const MatchListTemplate = () => {
         headerButton={true}
         backArrow={false}
         onClickButton={onClickCreateButton}
+        buttonLabel="매치등록"
       />
       <div className="flex items-center justify-between">
         <div

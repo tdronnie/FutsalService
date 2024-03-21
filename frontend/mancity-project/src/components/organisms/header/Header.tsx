@@ -4,10 +4,15 @@ import Typography from "@/components/atoms/typography/Typography";
 import { useNavigate } from "react-router-dom";
 
 const Header = (props: HeaderPropsType) => {
-  const { label, backArrow, headerButton, onClickButton } = props;
+  const { label, backArrow, headerButton, buttonLabel, toWhere } = props;
   const navigate = useNavigate();
   const onClickBackArrow = () => {
     navigate(-1);
+  };
+  const onClickButton = () => {
+    if (toWhere) {
+      navigate(toWhere);
+    }
   };
   return (
     <div className="sticky top-0 z-10 bg-white">
@@ -27,7 +32,7 @@ const Header = (props: HeaderPropsType) => {
           />
         </div>
         <div className={`mt-auto ${headerButton ? "visible" : "invisible"} `} onClick={onClickButton}>
-          <SubmitButton label="작성하기" />
+          <SubmitButton label={buttonLabel} />
         </div>
       </div>
       <hr className="border-[#d9d9d9] border-[0.05rem] m-0" />

@@ -4,7 +4,7 @@ import Typography from "@/components/atoms/typography/Typography";
 
 const WideCard = (props: WideCardPropsType) => {
   const {
-    file = "/favicon.ico",
+    file = "/src/assets/imgs/mancity_logo.png",
     subtext,
     maintext,
     minitext,

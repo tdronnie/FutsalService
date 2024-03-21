@@ -7,12 +7,12 @@ const meta: Meta<typeof WideCard> = {
   component: WideCard,
   argTypes: {
     file: {
-      description: "배경에 이미지를 넣습니다. ex) /favicon.ico",
+      description: "배경에 이미지를 넣습니다. ex) /src/assets/imgs/mancity_logo.png",
       control: "text",
       table: {
         type: { summary: "string" },
         defaultValue: {
-          file: "/favicon.ico",
+          file: "/src/assets/imgs/mancity_logo.png",
         },
       },
     },
@@ -59,7 +59,7 @@ type Story = StoryObj<typeof WideCard>;
 
 export const Default: Story = {
   args: {
-    file: "/favicon.ico",
+    file: "/src/assets/imgs/mancity_logo.png",
     subtext: "오전 10시",
     maintext: "광주 신화 풋살장",
     minitext: "남자·5vs5·중 수준",

@@ -1,8 +1,11 @@
+import ClubRegisterTemplete from "@/components/templates/ClubRegisterTemplete";
 
 const ClubRegisterPage = () => {
   return (
-    <div>ClubRegisterPage</div>
-  )
-}
+    <div>
+      <ClubRegisterTemplete />
+    </div>
+  );
+};
 
-export default ClubRegisterPage
+export default ClubRegisterPage;

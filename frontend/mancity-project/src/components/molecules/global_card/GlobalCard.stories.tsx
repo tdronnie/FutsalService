@@ -43,6 +43,6 @@ export const Email: Story = {
   args: {
     mainTitle: "광주 신화 풋살장",
     subTitle: "2024/04/05",
-    file: "/favicon.ico",
+    file: "/src/assets/imgs/mancity_logo.png",
   },
 };

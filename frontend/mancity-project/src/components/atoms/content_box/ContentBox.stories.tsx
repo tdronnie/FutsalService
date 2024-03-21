@@ -16,7 +16,7 @@ export const Avata: Story = {
     width: "w-10",
     height: "h-10",
     rounded: "rounded-full",
-    file: "/favicon.ico",
+    file: "/src/assets/imgs/mancity_logo.png",
   },
 };
 
@@ -25,6 +25,6 @@ export const Image: Story = {
     width: "w-20",
     height: "h-20",
     rounded: "rounded-none",
-    file: "/favicon.ico",
+    file: "/src/assets/imgs/mancity_logo.png",
   },
 };

@@ -1,8 +1,11 @@
+import ClubDetailTemplete from "@/components/templates/ClubDetailTemplete";
 
 const ClubDetailPage = () => {
   return (
-    <div>ClubDetailPage</div>
-  )
-}
+    <div>
+      <ClubDetailTemplete />
+    </div>
+  );
+};
 
-export default ClubDetailPage
+export default ClubDetailPage;

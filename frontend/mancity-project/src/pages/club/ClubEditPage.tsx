@@ -1,7 +1,10 @@
+import ClubEditTemplete from "@/components/templates/ClubEditTemplete"
 
 const ClubEditPage = () => {
   return (
-    <div>ClubEditPage</div>
+    <div>
+      <ClubEditTemplete />
+    </div>
   )
 }
 

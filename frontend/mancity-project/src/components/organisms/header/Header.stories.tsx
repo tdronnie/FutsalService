@@ -16,5 +16,7 @@ export const SignUp: Story = {
     label: "회원가입",
     backArrow: true,
     headerButton: true,
+    buttonLabel: "이동하기",
+    toWhere:"/signup",
   },
 };
