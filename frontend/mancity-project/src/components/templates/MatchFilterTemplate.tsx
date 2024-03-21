@@ -54,7 +54,7 @@ const MatchFilterTemplate = () => {
   const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
-    // 모든 입력값의 유효성 검사
+    // 하나라도 선택을 해야함! 하나도 안하면 버튼 비활성화
     const isValid =
       genderValue !== 0 ||
       locationValue !== 0 ||
