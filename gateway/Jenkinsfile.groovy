@@ -76,8 +76,6 @@ pipeline {
             }
         }
 
-
-
 //        stage('Docker Clean Image') {
 //            steps {
 //                dir('./gateway') {
@@ -92,22 +90,7 @@ pipeline {
                 }
             }
         }
-        stage('Delete Previous back Docker Container'){
-            steps {
-                script {
-//                    def backContainerExists = sh(script: "docker inspect name=${CONTAINER_NAME}", returnStatus: true) == 0
-                    def backContainerExists = sh(script: "docker ps --filter=name=${CONTAINER_NAME}", returnStatus: true) == 0
-                        
-                    if (backContainerExists) {
-                        sh 'docker stop ${CONTAINER_NAME}'
-                        sh 'docker rm ${CONTAINER_NAME}'
-                    } else {
-                        echo "Backend container does not exist. Skipping deletion."
-                    }
-                }
-            }
 
-        }
         stage('Run Docker Container') {
             steps {
                 script {
