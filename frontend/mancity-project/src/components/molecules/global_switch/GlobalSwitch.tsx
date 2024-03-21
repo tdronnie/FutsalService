@@ -12,8 +12,8 @@ const GlobalSwitch = (props: GlobalSwitchPropsType) => {
   }, [isSwitchOn]);
 
   return (
-    <div className="flex m-3 ">
-      <div className="w-full">
+    <div className="flex items-center justify-end mx-4">
+      <div className="mx-2">
         <Typography
           label={label}
           textSize="text-sm"
@@ -21,7 +21,7 @@ const GlobalSwitch = (props: GlobalSwitchPropsType) => {
           textColor="text-sofcity"
         />
       </div>
-      <div className={`justify-items-end mr-3 ${switchMarginTop}`}>
+      <div className={`${switchMarginTop}`}>
         <ShadcnSwitch checked={isSwitchOn} onCheckedChange={toggleSwitch} />
       </div>
     </div>
