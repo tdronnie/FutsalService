@@ -8,6 +8,7 @@ import FontawsomeIcon from "@/components/atoms/fontawsome_icon/FontawsomeIcon";
 
 import "react-datepicker/dist/react-datepicker.css";
 import Typography from "@/components/atoms/typography/Typography";
+import SearchBar from "@/components/molecules/search_bar/SearchBar";
 
 const MatchRegisterBody = () => {
   // 날짜 설정
@@ -18,11 +19,11 @@ const MatchRegisterBody = () => {
     ExampleCustomInputProps
   >(({ value, onClick }, ref) => (
     <button onClick={onClick} ref={ref}>
-      <div className="flex w-[100vw] max-w-[576px] justify-between relative">
-        <div className="ml-1">
+      <div className="flex  w-[100vw] max-w-[576px] justify-around relative ">
+        <div className="mr-10">
           <span>{value}</span>
         </div>
-        <div className="ml-2 absolute right-9">
+        <div className=" absolute right-9">
           <FontawsomeIcon icon="calendar-days" />
         </div>
       </div>
@@ -95,7 +96,9 @@ const MatchRegisterBody = () => {
       <div>
         <WheelPicker timeValue={timeValue} setTimeValue={setTimeValue} />
       </div>
-      <div>장소검색은 콤보박스</div>
+      <div>
+        <SearchBar />
+      </div>
       <div>
         <Dropdown
           typographyLabel="성별"

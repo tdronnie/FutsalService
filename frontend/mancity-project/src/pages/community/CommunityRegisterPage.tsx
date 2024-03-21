@@ -1,8 +1,11 @@
+import CommunityRegisterTemplate from "@/components/templates/CommunityRegisterTemplate";
 
 const CommunityRegisterPage = () => {
   return (
-    <div>CommunityRegisterPage</div>
-  )
-}
+    <div>
+      <CommunityRegisterTemplate />
+    </div>
+  );
+};
 
-export default CommunityRegisterPage
+export default CommunityRegisterPage;
