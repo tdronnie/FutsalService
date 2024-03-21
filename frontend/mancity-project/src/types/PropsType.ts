@@ -32,6 +32,14 @@ interface WideCardPropsType {
   buttonlabel: string;
 }
 
+interface CommunityCardPropsType {
+  file?: string;
+  subtext: string;
+  maintext: string;
+  likes: number;
+  comments: number;
+}
+
 interface ClubListPropsType {
   bgimg?: string;
   clubTitile: string;
