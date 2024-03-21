@@ -1,7 +1,6 @@
 import WheelPicker from "@/components/atoms/time_picker/TimePicker";
 import ReverseButton from "@/components/atoms/reverse_button/ReverseButton";
 import Dropdown from "@/components/molecules/dropdown/Dropdown";
-import InputGroup from "@/components/molecules/input_group/InputGroup";
 import { forwardRef, useEffect, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import DatePicker from "react-datepicker";
@@ -11,7 +10,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Typography from "@/components/atoms/typography/Typography";
 
 const MatchRegisterBody = () => {
-  // datepicker 관련 지정
+  // 날짜 설정
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
   const ExampleCustomInput = forwardRef<
@@ -29,6 +28,12 @@ const MatchRegisterBody = () => {
       </div>
     </button>
   ));
+
+  // 시간 설정
+  const [timeValue, setTimeValue] = useState<Dayjs | null>(
+    dayjs("2022-04-17T15:30")
+  );
+  const hour = timeValue ? Number(timeValue.hour()) : 0;
 
   // 성별
   const GenderInfo = [
@@ -56,12 +61,6 @@ const MatchRegisterBody = () => {
   ];
   const [levelLabel, setLevelLabel] = useState("수준");
   const [levelValue, setLevelValue] = useState(0);
-
-  // 시간 설정
-  const [timeValue, setTimeValue] = useState<Dayjs | null>(
-    dayjs("2022-04-17T15:30")
-  );
-  const hour = timeValue ? Number(timeValue.hour()) : 0;
 
   // 유효성 검사 상태 추가
   const [isFormValid, setIsFormValid] = useState(false);
