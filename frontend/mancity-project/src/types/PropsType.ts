@@ -131,5 +131,5 @@ interface FooterPropsType {
 
 interface TextareaContainerPropsType {
   textareaValue: string;
-  setTextareaValue: () => void;
+  setTextareaValue: React.Dispatch<React.SetStateAction<string>>;
 }
