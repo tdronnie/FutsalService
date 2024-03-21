@@ -45,13 +45,46 @@ pipeline {
                 }
             }
         }
-        stage('Docker Clean Image') {
+
+        stage('Delete Previous gateway Docker Container'){
             steps {
-                dir('./gateway') {
-                    sh 'docker rmi $DOCKER_IMAGE_NAME'
+                script {
+                    def  gatewayContainerExists = sh(script: "docker ps --filter=name=${CONTAINER_NAME}", returnStatus: true) == 0
+                    if (gatewayContainerExists) {
+                        sh "docker stop ${CONTAINER_NAME}"
+                        sh "docker rm ${CONTAINER_NAME}"
+                    } else {
+                        echo "gateway container does not exist. Skipping deletion."
+                    }
+
+                    def exitedContainers = sh(script: "docker ps --filter status=exited -q", returnStdout: true).trim()
+                    if (exitedContainers) {
+                        sh "docker rm ${exitedContainers}"
+                    } else {
+                        echo "No exited containers to remove."
+                    }
                 }
             }
         }
+
+        stage('Prune Image'){
+            steps {
+                echo '##### delete <none> TAG images #####'
+                script {
+                    sh "docker image prune -f"
+                }
+            }
+        }
+
+
+
+//        stage('Docker Clean Image') {
+//            steps {
+//                dir('./gateway') {
+//                    sh 'docker rmi $DOCKER_IMAGE_NAME'
+//                }
+//            }
+//        }
         stage('Pull from DockerHub') {
             steps {
                 script {
