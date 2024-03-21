@@ -1,5 +1,3 @@
-
-
 const GlobalInput = (props: TailwindPropsType) => {
   const { placeholder, width, textValue, setTextValue } = props;
 
@@ -12,7 +10,7 @@ const GlobalInput = (props: TailwindPropsType) => {
       value={textValue}
       onChange={onChangeValue}
       placeholder={placeholder}
-      className={`${width} text-base px-1 py-1 border-b-[1px]  text-center
+      className={`${width} text-base px-1 py-1 border-b-[1px]  text-center text-sofcity
       border-[#2C4A60] focus:outline-none  placeholder-gray-400`}
     ></input>
   );
