@@ -14,6 +14,14 @@ const meta: Meta<typeof TypographyLine> = {
         defaultValue: { summary: "word" },
       },
     },
+    lineWidth: {
+      description: "선을 적절히 이동할 수 있도록 필요한 width를 설정합니다",
+      control: "text",
+      table: {
+        type: { summary: "string" },
+        defaultValue: { summary: "word" },
+      },
+    },
   },
 };
 
@@ -24,5 +32,6 @@ type Story = StoryObj<typeof TypographyLine>;
 export const Default: Story = {
   args: {
     label: "TypographyLine",
+    lineWidth: "w-44",
   },
 };

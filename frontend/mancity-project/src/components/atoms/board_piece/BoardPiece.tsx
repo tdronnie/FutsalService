@@ -1,4 +1,3 @@
-
 const BoardPiece = (props: TailwindPropsType) => {
   const { bgColor, label } = props;
   return (

@@ -14,18 +14,15 @@ const meta: Meta<typeof ShadcnTabs> = {
         <>
           <h2>ShadcnTabs 사용 예시</h2>
           <Source
-            language="jsx"
+            language="tsx"
             code={`  
-            const [selectedTab, setSelectedTab] = useState(false);
-            const tabSwitch = () => setSelectedTab(!selectedTab);
-          
-            useEffect(() => {
-              console.log(selectedTab);
-            }, [selectedTab]);      
-            
-            <ShadcnTabs Tab1="영상" Tab2="잡담" onChange={tabSwitch} />
-            {!selectedTab && <div>영상 리스트입니다</div>}
-            {selectedTab && <div>잡담 리스트입니다</div>}
+// selectedTab의 값을 사용합니다. 아래 코드를 사용해주세요.
+const [selectedTab, setSelectedTab] = useState(false);
+const tabSwitch = () => setSelectedTab(!selectedTab);     
+
+<ShadcnTabs Tab1="영상" Tab2="잡담" onChange={tabSwitch} />
+{!selectedTab && <div>영상 리스트입니다</div>}
+{selectedTab && <div>잡담 리스트입니다</div>}
             `}
           />
         </>

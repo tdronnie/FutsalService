@@ -1,4 +1,3 @@
-
 const SubButton = (props: TailwindPropsType) => {
   const { label, hover } = props;
   return (
