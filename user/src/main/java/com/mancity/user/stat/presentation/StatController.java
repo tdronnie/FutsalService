@@ -11,24 +11,25 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/user/stat")
 public class StatController {
 
     private final StatService statService;
 
     // 스텟 누적
-    @PostMapping("/stat/plus")
+    @PostMapping("/plus")
     public ResponseEntity<?> plus(@RequestBody PlusRequestDto dto){
         statService.plus(dto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     // 경기당 평균 스텟 불러오기, 오각형 그거 아님
-    @GetMapping("/stat/avg/{id}")
+    @GetMapping("/avg/{id}")
     public ResponseEntity<StatAvgResponseDto> findAvgById(@PathVariable("id") Long id){
         return new ResponseEntity<>(statService.findAvgById(id), HttpStatus.OK);
     }
 
-    @GetMapping("/stat/total/{id}")
+    @GetMapping("/total/{id}")
     public ResponseEntity<StatTotalResponseDto> findTotalById(@PathVariable("id") Long id){
         return new ResponseEntity<>(statService.findTotalById(id), HttpStatus.OK);
     }
