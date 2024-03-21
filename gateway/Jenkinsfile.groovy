@@ -50,7 +50,7 @@ pipeline {
             steps {
                 script {
                     def  gatewayContainerExists = sh(script: "docker ps --filter=name=${CONTAINER_NAME}", returnStdout: true).trim()
-                    if (gatewayContainerExists == 0) {
+                    if (gatewayContainerExists) {
                         sh "docker stop ${CONTAINER_NAME}"
                         sh "docker rm ${CONTAINER_NAME}"
                     } else {
