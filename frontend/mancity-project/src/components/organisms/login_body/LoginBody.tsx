@@ -1,6 +1,6 @@
 import GlobalButton from "@/components/atoms/global_button/GlobalButton";
 import Typography from "@/components/atoms/typography/Typography";
-import InputGroup from "@/components/molecules/input/InputGroup";
+import InputGroup from "@/components/molecules/input_group/InputGroup";
 import { useEffect, useState } from "react";
 
 const LoginBody = () => {
