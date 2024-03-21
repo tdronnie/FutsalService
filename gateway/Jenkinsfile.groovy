@@ -6,7 +6,7 @@ pipeline {
     environment {
         DOCKER_IMAGE_NAME = 'joonseong/mancity-gateway'
         DOCKERFILE_PATH = './gateway/Dockerfile'
-        CONTAINER_NAME = 'mancity-gateway'
+        CONTAINER_NAME = '/mancity-gateway'
         REGISTRY_CREDENTIAL = 'dockerhub_IdPwd'
         DOCKER_IMAGE = ''
         DOCKER_IMAGE_TAG = 'latest'
