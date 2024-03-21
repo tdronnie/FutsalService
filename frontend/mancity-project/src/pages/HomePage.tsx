@@ -2,24 +2,24 @@ import MainTemplate from "@/components/templates/MainTemplate";
 import { useEffect, useState } from "react";
 
 const HomePage = () => {
-  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  // const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
 
-  // 마운트 시 앱 설치 묻는 이벤트 생성
-  useEffect(() => {
-    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+  // // 마운트 시 앱 설치 이벤트 생성 및 언마운트 시 해제
+  // useEffect(() => {
+  //   window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
 
-    return () => {
-      window.removeEventListener(
-        "beforeinstallprompt",
-        handleBeforeInstallPrompt
-      );
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener(
+  //       "beforeinstallprompt",
+  //       handleBeforeInstallPrompt
+  //     );
+  //   };
+  // }, []);
 
-  const handleBeforeInstallPrompt = (event: Event) => {
-    event.preventDefault();
-    setDeferredPrompt(event);
-  };
+  // const handleBeforeInstallPrompt = (event: Event) => {
+  //   event.preventDefault();
+  //   setDeferredPrompt(event);
+  // };
 
   // 앱설치 유도 버튼 관련 코드
   // const handleInstallClick = () => {
