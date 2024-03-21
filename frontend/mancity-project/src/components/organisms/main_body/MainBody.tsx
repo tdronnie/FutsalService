@@ -116,7 +116,7 @@ const MainBody = () => {
           mainTitle="서울이세은"
           subTitle="스피드 특화"
         />
-        <div onClick={() => handleNavigate({ path: "/match" })}>
+        <div onClick={() => handleNavigate({ path: "/club" })}>
           <IconButton icon="plus" />
         </div>
       </div>

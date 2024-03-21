@@ -23,7 +23,7 @@ const meta: Meta<typeof ShadcnTabs> = {
               console.log(selectedTab);
             }, [selectedTab]);      
             
-            <ShadcnTabs Tab1="영상" Tab2="잡담" onChange={tabSwitch} />
+            <ShadcnTabs Tab1="영상" Tab2="잡담" onChange={tabSwitch} defaultTab="tab1" />
             {!selectedTab && <div>영상 리스트입니다</div>}
             {selectedTab && <div>잡담 리스트입니다</div>}
             `}
@@ -46,10 +46,11 @@ export const Default: Story = () => {
     action("onCheckedChange")(!selectedTab);
   };
 
-  return <ShadcnTabs Tab1="영상" Tab2="잡담" onChange={handleCheckedChange} />;
+  return <ShadcnTabs Tab1="영상" Tab2="잡담" onChange={handleCheckedChange} defaultTab="tab1"/>;
 };
 
 Default.args = {
   Tab1: "영상",
   Tab2: "잡담",
+  defaultTab:"tab1",
 };

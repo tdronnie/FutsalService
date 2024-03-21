@@ -3,16 +3,7 @@ import Dropdown from "../molecules/dropdown/Dropdown";
 import Header from "../organisms/header/Header";
 import GlobalButton from "../atoms/global_button/GlobalButton";
 
-const MatchFilterTemplate = () => {
-  // 성별
-  const GenderInfo = [
-    { value: 1, label: "남성" },
-    { value: 2, label: "여성" },
-    { value: 3, label: "혼성" },
-  ];
-  const [genderLabel, setGenderLabel] = useState("성별");
-  const [genderValue, setGenderValue] = useState(0);
-
+const ClubFilterTemplete = () => {
   // 지역
   const LocationInfo = [
     { value: 1, label: "서울" },
@@ -33,14 +24,6 @@ const MatchFilterTemplate = () => {
   const [locationLabel, setLocationLabel] = useState("지역");
   const [locationValue, setLocationValue] = useState(0);
 
-  // 인원
-  const RuleInfo = [
-    { value: 1, label: "5vs5" },
-    { value: 2, label: "6vs6" },
-  ];
-  const [ruleLabel, setRuleLabel] = useState("인원");
-  const [ruleValue, setRuleValue] = useState(0);
-
   // 수준
   const LevelInfo = [
     { value: 1, label: "하수준" },
@@ -56,37 +39,21 @@ const MatchFilterTemplate = () => {
   useEffect(() => {
     // 하나라도 선택을 해야함! 하나도 안하면 버튼 비활성화
     const isValid =
-      genderValue !== 0 ||
       locationValue !== 0 ||
-      ruleValue !== 0 ||
       levelValue !== 0;
 
     setIsFormValid(isValid);
-  }, [genderValue, locationValue, ruleValue, levelValue]);
+  }, [locationValue, levelValue]);
 
   return (
     <>
       <Header label="필터" backArrow={true} headerButton={false} />
-      <Dropdown
-        typographyLabel="성별"
-        items={GenderInfo}
-        position={genderLabel}
-        setPosition={setGenderLabel}
-        setNumberValue={setGenderValue}
-      />
       <Dropdown
         typographyLabel="지역"
         items={LocationInfo}
         position={locationLabel}
         setPosition={setLocationLabel}
         setNumberValue={setLocationValue}
-      />
-      <Dropdown
-        typographyLabel="인원"
-        items={RuleInfo}
-        position={ruleLabel}
-        setPosition={setRuleLabel}
-        setNumberValue={setRuleValue}
       />
       <Dropdown
         typographyLabel="수준"
@@ -102,4 +69,4 @@ const MatchFilterTemplate = () => {
   );
 };
 
-export default MatchFilterTemplate;
+export default ClubFilterTemplete

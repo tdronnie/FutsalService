@@ -21,6 +21,7 @@ import ClubListPage from "@/pages/club/ClubListPage";
 import ClubDetailPage from "@/pages/club/ClubDetailPage";
 import ClubRegisterPage from "@/pages/club/ClubRegisterPage";
 import ClubEditPage from "@/pages/club/ClubEditPage";
+import ClubFilterPage from "@/pages/club/ClubFilterPage";
 import ProfilePage from "@/pages/user/ProfilePage";
 import ProfileEditPage from "@/pages/user/ProfileEditPage";
 
@@ -50,6 +51,7 @@ const AppRoutes = () => (
     <Route path="/club" element={<ClubListPage />} />
     <Route path="/club/:club_id" element={<ClubDetailPage />} />
     <Route path="/club/register" element={<ClubRegisterPage />} />
+    <Route path="/club/filter" element={<ClubFilterPage />} />
     <Route path="/club/edit/:club_id" element={<ClubEditPage />} />
     <Route path="/profile/:user_id" element={<ProfilePage />} />
     <Route path="/profile/edit/:user_id" element={<ProfileEditPage />} />
