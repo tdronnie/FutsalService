@@ -17,12 +17,12 @@ spring:
         - id: eureka-client-user
           uri: lb://EUREKA-CLIENT-USER
           predicates:
-            - Path=/user/**
+            - Path=/api/user/**
         - id: eureka-client-social
           uri: lb://EUREKA-CLIENT-SOCIAL
           predicates:
-            - Path=/social/**
+            - Path=/api/social/**
         - id: eureka-client-calc
           uri: lb://EUREKA-CLIENT-CALC
           predicates:
-            - Path=/calc/**
+            - Path=/api/calc/**
