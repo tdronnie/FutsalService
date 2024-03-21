@@ -1,11 +1,11 @@
-from flask import jsonify, request, Blueprint
+from flask import jsonify, request, Blueprint, app
+from service import track_service
 
 router = Blueprint('route', __name__)
 
-@router.route("/router", methods=['GET'])
+@app.route("/track", methods=['POST'])
 def first_route():
-    msg = {
-        "page": "first",
-        "method":"GET"
-    }
-    return jsonify(msg)
+    source = request.args.get('url')
+    game_id = request.args.get('game_id')
+
+    return
