@@ -1,3 +1,26 @@
+# 중간 진행 상황(24.03.22)
+## Frontend
+### Progress
+- 
+
+### Troubleshooting
+- 
+
+## Backend
+### Progress
+- 
+
+### Troubleshooting
+- 
+
+## AI
+### Progress
+- 
+
+### Troubleshooting
+- 
+
+
 ## [✨team BABOO notion✨](https://leeseny.notion.site/2024-1f665d712e7a4cef98bbc8be9050c0b7?pvs=4)
 
 ## Git Commit Convention
