@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient(name = "eureka-client-user")
 public interface UserFeignClient {
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/api/user/{id}")
     public UserResponseDto findById(@PathVariable("id") Long id);
 
-    @PostMapping("/stat/plus")
+    @PostMapping("/api/user/stat/plus")
     public void plus(@RequestBody UserPlusRequestDto dto);
 
 }
