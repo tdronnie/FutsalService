@@ -24,8 +24,7 @@ const App = () => {
       location.pathname === "/club/register" ||
       matchPath("/match/:match_id", currentPathname) ||
       matchPath("/replay/:match_id", currentPathname) ||
-      matchPath("/community/video/:community_id", currentPathname) ||
-      matchPath("/community/talk/:community_id", currentPathname) ||
+      matchPath("/community/:community_id", currentPathname) ||
       matchPath("/club/:club_id", currentPathname) ||
       matchPath("/club/edit/:club_id", currentPathname) ||
       matchPath("/players/:match_id", currentPathname)
