@@ -47,8 +47,14 @@ build:
 
 springdoc:
   api-docs:
+    path: /user-service/v3/api-docs
     version: openapi_3_1
     enabled: true
-  enable-spring-security: true
+  swagger-ui:
+    path: /user-service/swagger-ui.html
   default-consumes-media-type: application/json
   default-produces-media-type: application/json
+
+openapi:
+  service:
+    url: http://j10c201.p.ssafy.io:8080
