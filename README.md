@@ -46,6 +46,18 @@
 - 기획한 디자인의 90% 완료 했으며, API 호출 및 데이터 연결은 아직 진행되지 않은 상태입니다.
 
 ## Backend
+### Architecture
+- DDD : 도메인 주도 개발에 따른 패키징 적용
+- MSA : 트래킹 된 데이터로부터 기록 산출하는 서비스가 많은 트래픽과 리소스를 차지할 것이라고 예상했고, 그에 따라 SPOF 문제로 발전할 수 있다고 생각하여 MSA 채택
+    - Eureka & Gateway
+    - OpenFeign : 서버 간 REST 통신을 위해 OpenFeign 사용
+- S3 : 경기당 동영상 또는 이미지들을 저장하기 위한 저장소
+    - CloudFront : 동영상 캐싱처리 적용
+    - FFMPeg : 동영상 썸네일 생성
+- Jenkins : CI / CD 위한 툴
+- Nginx : 리버스 프록시, SSL 적용
+- Docker : 경량화된 컨테이너 기반으로 모든 서버 형상 관리
+
 ### Progress
 1. [CI/CD 위한 각 스텝 간단 공부](https://www.notion.so/leeseny/CI-CD-fc972c295afb4984b926b269ead28f38?pvs=4)
 
@@ -53,14 +65,85 @@
 
 2. [각 서버 CI/CD 적용](https://www.notion.so/leeseny/ec2-bee13b973cdd46a89370604bd1581a77?pvs=4)
 
-backend 밒 frontend CI/CD를 적용하면서 사용했던 툴들의 버전이나 명령어들을 정리했습니다.
+backend 및 frontend CI/CD를 적용하면서 사용했던 툴들의 버전이나 명령어들을 정리했습니다.
+
+3. 기능에 따른 API를 개발 중입니다.
+   <details>
+   <summary>User 개발</summary>
+      - 회원 정보수정
+      - 회원 fcm 토큰 수정
+      - 회원 정보 조회
+      - 이메일 중복 확인
+      - 닉네임 중복 확인
+      - 임시 회원 로그인
+      - 임시 회원가입
+      - 스탯 누적
+      - 스탯 평균값 조회
+      - 스탯 전체값 조회
+   </details>
+   <details>
+      <summary>Social 개발</summary>
+      - 매치 생성
+      - 매치 경기 동영상 업로드
+      - 매치 ID를 통한 매치 경기 상세 조회
+      - 회원별 참여한 매치 전체 조회
+      - 분석 완료 시 경기 기록 할당
+      - 개인 플레이어 기록 할당
+      - 매니저 여부 조회
+   </details>
+   <details>
+   <summary>calc 개발</summary>
+      - 
+   </details>
+   <details>
+   <summary>Common 개발</summary>
+      - S3 객체 생성 및 동영상 업로드 기능 구현
+      - OpenFeign Interface
+      - Swagger UI
+   </details>
+
+4. 서버의 CI/ CD를 적용 중입니다.
+   <details>
+   <summary>CI / CD 진행사항</summary>
+      - FRONTEND 
+         - React 서버 `완료`
+      - BACKEND 
+         - Gateway 서버 `완료`
+         - Eureka 서버 `완료`
+         - User 서버 `완료`
+         - Calc 서버 `완료`
+         - Social 서버 `완료`
+      - AI
+         - Flask 서버 `진행중`
+      - DB
+         - User DB `완료`
+         - Calc DB `완료`
+         - Social DB `완료`
+   </details>
 
 ### Troubleshooting
 1. [jenkinsfile, dockerfile 이슈](https://www.notion.so/leeseny/Dockerfile-Jenkinsfile-dd2b7077cad5436594d2a44f3c2b6c9a?pvs=4)
 
-문제: 컨테이너와 이미지를 매번 배포 때마다 같은 이름을 사용하는데 있어서 삭제 처리를 해주지 않아 run을 시키지 못하는 에러 발생.<br>젠킨스 파일 문법 착오로 컨테이너 삭제가 제대로 되지 않는 문제 발생.
+   문제: 컨테이너와 이미지를 매번 배포 때마다 같은 이름을 사용하는데 있어서 삭제 처리를 해주지 않아 run을 시키지 못하는 에러 발생.<br>젠킨스 파일 문법 착오로 컨테이너 삭제가 제대로 되지 않는 문제 발생.
 
-해결: returnStatus 문법은 docker ps 시 컨테이너가 검색이 되지 않아도 정상 Status 반환을 합니다. 따라서 returnStdout으로 변경하여 검색이 되지 않으면 0이 반환되도록 해서 정상적으로 이전 컨테이너를 삭제 했습니다. image prune 문법을 사용하여 태그가 <none>인 이미지들을 서버 배포 시 삭제하도록 했습니다. 
+   해결: returnStatus 문법은 docker ps 시 컨테이너가 검색이 되지 않아도 정상 Status 반환을 합니다. 따라서 returnStdout으로 변경하여 검색이 되지 않으면 0이 반환되도록 해서 정상적으로 이전 컨테이너를 삭제 했습니다. image prune 문법을 사용하여 태그가 `<none>` 인 이미지들을 서버 배포 시 삭제하도록 했습니다. 
+
+2. [MySQL 예약어 사용에 따른 오류 발생](https://velog.io/@gnoesnooj/ERROR-Mysql-JPA-Caused-by-java.sql.SQLSyntaxErrorException-)
+
+3. [Entity 컬렉션 사용 시, update 시 `all-delete-orphan` 오류](https://velog.io/@gnoesnooj/ERROR-A-collection-with-cascadeall-delete-orphan-was-no-longer-referenced-by-the-owning-entity-instance)
+
+4. gateway에서 호스트 못 찾는 오류
+   
+   해결 : `eureka.host.instance` 를 통해 호스트 지정하였습니다.
+
+5. 동일 엔티티를 두 개 이상 참조 할 때 id 오류 발생
+   - `@JoinColumn` 통한 다른 id 칼럼을 통해서 해결하였습니다.
+
+6. Nginx 설정 파일이 적용이 안되는 이슈
+
+   문제 : nginx 의 설정파일을 변경해도 SSL, 프록시 등 해당 사항들이 반영이 되지 않았습니다.
+
+   해결 : nginx 컨테이너가 구동 시, ec2의 nginx 가 무시되므로 해당 변경 사항은 컨테이너에 적용되어야 합니다. 따라서 nginx 컨테이너를 수정하여 정상 적용하였습니다.
 
 ## AI
 ### Progress
