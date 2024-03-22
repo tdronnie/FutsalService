@@ -3,8 +3,14 @@ import SubButton from "@/components/atoms/sub_button/SubButton";
 import Typography from "@/components/atoms/typography/Typography";
 
 const InputGroup = (props: InputGroupPropsType) => {
-  const { typographyLabel, placeholder, checking, textValue, setTextValue } =
-    props;
+  const {
+    typographyLabel,
+    placeholder,
+    checking,
+    checkingLabel = "중복 확인",
+    textValue,
+    setTextValue,
+  } = props;
   return (
     <div className="flex m-4">
       <div className="w-full">
@@ -23,7 +29,7 @@ const InputGroup = (props: InputGroupPropsType) => {
       </div>
       {checking && (
         <div className="mt-5">
-          <SubButton label="중복 확인" />
+          <SubButton label={checkingLabel} />
         </div>
       )}
     </div>

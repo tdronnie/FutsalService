@@ -20,7 +20,7 @@ const MatchRegisterBody = () => {
   >(({ value, onClick }, ref) => (
     <button onClick={onClick} ref={ref}>
       <div className="flex  w-[100vw] max-w-[576px] justify-around relative ">
-        <div className="mr-10">
+        <div className="mr-10 mb-1">
           <span>{value}</span>
         </div>
         <div className=" absolute right-9">
@@ -96,8 +96,16 @@ const MatchRegisterBody = () => {
       <div>
         <WheelPicker timeValue={timeValue} setTimeValue={setTimeValue} />
       </div>
-      <div>
-        <SearchBar />
+      <div className="mt-6 ml-4 mr-1">
+        <div className="flex-row">
+          <Typography
+            textSize="text-sm"
+            fontWeight="font-medium"
+            textColor="text-sofcity"
+            label="장소"
+          />
+          <SearchBar />
+        </div>
       </div>
       <div>
         <Dropdown
@@ -122,9 +130,9 @@ const MatchRegisterBody = () => {
           setNumberValue={setLevelValue}
         />
       </div>
-      <div className="flex justify-end mt-6 mx-4">
+      <div className="flex justify-end mt-10 mx-4">
         <ReverseButton
-          width="w-60"
+          width="w-1/2"
           label="매치 등록하기"
           isdisabled={isFormValid}
         />
