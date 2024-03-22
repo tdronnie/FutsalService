@@ -145,6 +145,8 @@ backend 및 frontend CI/CD를 적용하면서 사용했던 툴들의 버전이�
 
    해결 : nginx 컨테이너가 구동 시, ec2의 nginx 가 무시되므로 해당 변경 사항은 컨테이너에 적용되어야 합니다. 따라서 nginx 컨테이너를 수정하여 정상 적용하였습니다.
 
+7. [S3 업로드 용량 제한 이슈](https://velog.io/@gnoesnooj/ERROR-Spring-MaxUploadSizeExceededException)
+
 ## AI
 ### Progress
 1. 환경설정  
