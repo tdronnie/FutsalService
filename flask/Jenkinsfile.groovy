@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('GitLab Clone') {
             steps {
-                git branch : 'develop-flask', credentialsId: 'gitlab_access_token', url: 'https://lab.ssafy.com/s10-ai-image-sub2/S10P22C201.git'
+                git branch : 'feature/BE/flask_cicd', credentialsId: 'gitlab_access_token', url: 'https://lab.ssafy.com/s10-ai-image-sub2/S10P22C201.git'
             }
         }
 
