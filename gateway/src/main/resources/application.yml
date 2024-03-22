@@ -28,6 +28,10 @@ spring:
             - Path=/api/calc/**
         - id: openapi
           uri: http://j10c201.p.ssafy.io:${server.port}
+          predicates:
+            - Path=/v3/api-docs/**
+          filters:
+            - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
 
 springdoc:
   swagger-ui:
