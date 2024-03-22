@@ -38,7 +38,7 @@ pipeline {
             steps {
                 script {
                     def  flaskContainer = sh(script: "docker ps -f name=${CONTAINER_NAME}", returnStdout: true).trim()
-                    if (flaskContainer.isEmpty()) {
+                    if (!flaskContainer.isEmpty()) {
                         sh "docker stop ${CONTAINER_NAME}"
                         sh "docker rm ${CONTAINER_NAME}"
                     } else {
