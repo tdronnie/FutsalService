@@ -5,7 +5,7 @@ import SearchBar from "@/components/molecules/search_bar/SearchBar";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const CommunityBody = () => {
+const CommunityListBody = () => {
   const [selectedTab, setSelectedTab] = useState(false);
   const tabSwitch = () => setSelectedTab(!selectedTab);
 
@@ -111,4 +111,4 @@ const CommunityBody = () => {
   );
 };
 
-export default CommunityBody;
+export default CommunityListBody;

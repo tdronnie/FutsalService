@@ -1,6 +1,6 @@
 import CommunityListTemplate from "@/components/templates/CommunityListTemplate";
 
-const CommunityPage = () => {
+const CommunityListPage = () => {
   return (
     <div>
       <CommunityListTemplate />
@@ -8,4 +8,4 @@ const CommunityPage = () => {
   );
 };
 
-export default CommunityPage;
+export default CommunityListPage;
