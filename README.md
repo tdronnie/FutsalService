@@ -47,10 +47,20 @@
 
 ## Backend
 ### Progress
-- 
+1. [CI/CD 위한 각 스텝 간단 공부](https://www.notion.so/leeseny/CI-CD-fc972c295afb4984b926b269ead28f38?pvs=4)
+
+각 서버 배포를 위한 툴들을 대략적인 흐름 위주로 공부 및 정리했습니다.
+
+2. [각 서버 CI/CD 적용](https://www.notion.so/leeseny/ec2-bee13b973cdd46a89370604bd1581a77?pvs=4)
+
+backend 밒 frontend CI/CD를 적용하면서 사용했던 툴들의 버전이나 명령어들을 정리했습니다.
 
 ### Troubleshooting
-- 
+1. [jenkinsfile, dockerfile 이슈](https://www.notion.so/leeseny/Dockerfile-Jenkinsfile-dd2b7077cad5436594d2a44f3c2b6c9a?pvs=4)
+
+문제: 컨테이너와 이미지를 매번 배포 때마다 같은 이름을 사용하는데 있어서 삭제 처리를 해주지 않아 run을 시키지 못하는 에러 발생.<br>젠킨스 파일 문법 착오로 컨테이너 삭제가 제대로 되지 않는 문제 발생.
+
+해결: returnStatus 문법은 docker ps 시 컨테이너가 검색이 되지 않아도 정상 Status 반환을 합니다. 따라서 returnStdout으로 변경하여 검색이 되지 않으면 0이 반환되도록 해서 정상적으로 이전 컨테이너를 삭제 했습니다. image prune 문법을 사용하여 태그가 <none>인 이미지들을 서버 배포 시 삭제하도록 했습니다. 
 
 ## AI
 ### Progress
