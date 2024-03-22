@@ -1,9 +1,25 @@
+import FontawsomeIcon from "@/components/atoms/fontawsome_icon/FontawsomeIcon";
 import Typography from "@/components/atoms/typography/Typography";
+import { useNavigate } from "react-router-dom";
 
 const CommunityDetailHeader = () => {
+  const navigate = useNavigate();
+  const onClickBackArrow = () => {
+    navigate(-1);
+  };
+
   return (
     <div>
-      <div className="flex justify-between m-2">
+      <div>
+        <div
+          className={`mx-3 pt-2 min-w-16 text-[1.4rem] cursor-pointer`}
+          onClick={onClickBackArrow}
+        >
+          <FontawsomeIcon icon="arrow-left" color="#5D7A93" />
+        </div>
+      </div>
+
+      <div className="flex justify-between mx-6 mt-2">
         <div>
           {/* 제목 */}
           <div>
