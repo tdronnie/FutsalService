@@ -20,6 +20,15 @@ public class SwaggerConfig {
 
         return new OpenAPI()
                 .addServersItem(new Server().url("/"));
+                .components(new Components())
+                .info(apiInfo());
+    }
+
+    private Info apiInfo(){
+        return new Info()
+                .title("Mancity - User Docs")
+                .description("User Service")
+                .version("1.0.0");
     }
 
 }
