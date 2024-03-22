@@ -37,13 +37,16 @@ pipeline {
         stage('Delete Previous flask Docker Container'){
             steps {
                 script {
-                    def  flaskContainer = sh(script: "docker ps -f name=${CONTAINER_NAME}", returnStdout: true).trim()
-                    if (!flaskContainer.isEmpty()) {
-                        sh "docker stop ${CONTAINER_NAME}"
-                        sh "docker rm ${CONTAINER_NAME}"
-                    } else {
-                        echo "flask container does not exist. Skipping deletion."
-                    }
+//                    def  flaskContainer = sh(script: "docker ps -f name=${CONTAINER_NAME}", returnStdout: true).trim()
+//                    if (!flaskContainer.isEmpty()) {
+//                        sh "docker stop ${CONTAINER_NAME}"
+//                        sh "docker rm ${CONTAINER_NAME}"
+//                    } else {
+//                        echo "flask container does not exist. Skipping deletion."
+//                    }
+
+                    // 컨테이너가 실행중이 아니거나 중지되어 있는 경우 아무렁 동작하지 않고 넘어가도록
+                    sh "docker stop ${CONTAINER_NAME} || true"
 
                     def exitedContainers = sh(script: "docker ps --filter status=exited -q", returnStdout: true).trim()
                     if (exitedContainers) {
