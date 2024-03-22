@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const TextareaContainer = (props: TextareaContainerPropsType) => {
   const { textareaValue, setTextareaValue } = props;

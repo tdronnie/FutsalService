@@ -28,6 +28,14 @@ const meta: Meta<typeof InputGroup> = {
         defaultValue: { summary: false },
       },
     },
+    checkingLabel: {
+      description: "확인 버튼의 label을 결정합니다.",
+      control: "text",
+      table: {
+        type: { summary: "string" },
+        defaultValue: { summary: "중복 확인" },
+      },
+    },
   },
 };
 
@@ -40,6 +48,7 @@ export const Email: Story = {
     typographyLabel: "이메일",
     placeholder: "email@ssafy.com",
     checking: true,
+    checkingLabel: "중복 확인",
   },
 };
 
@@ -48,5 +57,13 @@ export const Password: Story = {
     typographyLabel: "비밀번호",
     placeholder: "8자리 이상",
     checking: false,
+  },
+};
+export const Comment: Story = {
+  args: {
+    typographyLabel: "댓글",
+    placeholder: "댓글은 매너있게 달아주세요 :)",
+    checking: true,
+    checkingLabel: "입력",
   },
 };

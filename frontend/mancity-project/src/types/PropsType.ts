@@ -72,6 +72,7 @@ interface InputGroupPropsType {
   typographyLabel: string;
   placeholder?: string;
   checking: boolean;
+  checkingLabel?: string;
   textValue?: string | number;
   setTextValue?: React.Dispatch<React.SetStateAction<string>>;
 }
