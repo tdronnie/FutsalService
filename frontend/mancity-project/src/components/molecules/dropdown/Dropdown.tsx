@@ -12,7 +12,7 @@ const Dropdown = (props: DropdownPropsType) => {
   } = props;
 
   return (
-    <div className="flex-row m-4">
+    <div className="m-4">
       <Typography
         textSize="text-sm"
         fontWeight="font-medium"
