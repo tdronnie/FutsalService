@@ -19,12 +19,11 @@ const MatchRegisterBody = () => {
     ExampleCustomInputProps
   >(({ value, onClick }, ref) => (
     <button onClick={onClick} ref={ref}>
-      <div className="flex  w-[100vw] max-w-[576px] justify-around relative ">
-        <div className="mr-10 mb-1">
-          <span>{value}</span>
-        </div>
-        <div className=" absolute right-9">
-          <FontawsomeIcon icon="calendar-days" />
+      <div className="flex justify-end">
+        <div className="w-[85vw] max-w-[510px]   ">
+          <div className=" mb-1">
+            <span>{value}</span>
+          </div>
         </div>
       </div>
     </button>
@@ -74,28 +73,36 @@ const MatchRegisterBody = () => {
   }, [genderValue, ruleValue, levelValue]);
 
   return (
-    <div>
+    <div className="">
+      {/* 날짜 */}
       <div className="m-4">
         <div className="mb-1">
           <Typography
             textSize="text-sm"
             fontWeight="font-medium"
             textColor="text-sofcity"
-            label="날씨"
+            label="날짜"
           />
         </div>
-        <div className=" font-sm text-sofcity bottom-0 border-b-[0.08rem] border-sofcity">
-          <DatePicker
-            dateFormat="yyyy년 MM월 dd일"
-            selected={selectedDate}
-            onChange={(date: Date) => setSelectedDate(date)}
-            customInput={<ExampleCustomInput />}
-          />
+        <div className="flex justify-around font-sm text-sofcity bottom-0 border-b-[0.08rem] border-sofcity">
+          <div>
+            <DatePicker
+              dateFormat="yyyy년 MM월 dd일"
+              selected={selectedDate}
+              onChange={(date: Date) => setSelectedDate(date)}
+              customInput={<ExampleCustomInput />}
+            />
+          </div>
+          <div className="flex-end">
+            <FontawsomeIcon icon="calendar-days" />
+          </div>
         </div>
       </div>
+      {/* 시간 */}
       <div>
         <WheelPicker timeValue={timeValue} setTimeValue={setTimeValue} />
       </div>
+      {/* 장소 */}
       <div className="mt-6 ml-4 mr-1">
         <div className="flex-row">
           <Typography
@@ -107,7 +114,9 @@ const MatchRegisterBody = () => {
           <SearchBar />
         </div>
       </div>
-      <div>
+      {/* 성별 */}
+
+      <div className="w-full">
         <Dropdown
           typographyLabel="성별"
           items={GenderInfo}
@@ -115,6 +124,8 @@ const MatchRegisterBody = () => {
           setPosition={setGenderLabel}
           setNumberValue={setGenderValue}
         />
+      </div>
+      <div>
         <Dropdown
           typographyLabel="인원"
           items={RuleInfo}
@@ -122,6 +133,9 @@ const MatchRegisterBody = () => {
           setPosition={setRuleLabel}
           setNumberValue={setRuleValue}
         />
+      </div>
+
+      <div>
         <Dropdown
           typographyLabel="수준"
           items={LevelInfo}
@@ -130,6 +144,7 @@ const MatchRegisterBody = () => {
           setNumberValue={setLevelValue}
         />
       </div>
+
       <div className="flex justify-end mt-10 mx-4">
         <ReverseButton
           width="w-1/2"
