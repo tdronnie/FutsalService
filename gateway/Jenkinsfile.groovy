@@ -49,8 +49,8 @@ pipeline {
         stage('Delete Previous gateway Docker Container'){
             steps {
                 script {
-                    def  gatewayContainerExists = sh(script: "docker ps --filter=name=${CONTAINER_NAME}", returnStdout: true).trim()
-                    if (gatewayContainerExists) {
+                    def  gatewayContainer = sh(script: "docker ps -f name=${CONTAINER_NAME}", returnStdout: true).trim()
+                    if (gatewayContainer.isEmpty()) {
                         sh "docker stop ${CONTAINER_NAME}"
                         sh "docker rm ${CONTAINER_NAME}"
                     } else {
