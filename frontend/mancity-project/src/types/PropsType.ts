@@ -101,6 +101,11 @@ interface MiniMapPropsType {
   onClick: () => Promise<void>;
 }
 
+interface MapPropsType {
+  lat: number;
+  lng: number;
+}
+
 interface MemberListPropsType {
   label: string;
 }
