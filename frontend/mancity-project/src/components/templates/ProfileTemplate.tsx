@@ -7,7 +7,13 @@ import ProfileUserStats from "@/components/organisms/profile_userStats/ProfileUs
 const ProfileTemplate = () => {
   return (
     <div>
-      <Header label="프로필" backArrow={true} headerButton={false} />
+      <Header
+        label="프로필"
+        backArrow={true}
+        headerButton={true}
+        buttonLabel="정보 수정"
+        toWhere="/profile/edit/1"
+      />
       <ProfileUserInfo />
       <ProfileUserStats />
       <GroupGlobalCard />
