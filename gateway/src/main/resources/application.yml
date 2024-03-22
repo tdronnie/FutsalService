@@ -18,6 +18,10 @@ spring:
           uri: lb://EUREKA-CLIENT-USER
           predicates:
             - Path=/api/user/**
+        - id: user-service-swagger
+          uri: lb://EUREKA-CLIENT-USER
+          predicates:
+            - Path=/user-service/**
         - id: eureka-client-social
           uri: lb://EUREKA-CLIENT-SOCIAL
           predicates:
@@ -33,6 +37,6 @@ springdoc:
     enabled: true
     path: /swagger-ui.html
     urls:
-      - url: /user-service/v3/api-docs
+      - url: /user-service/swagger-ui/index.html
         name: User
     use-root-path: true
