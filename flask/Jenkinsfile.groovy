@@ -37,8 +37,8 @@ pipeline {
         stage('Delete Previous flask Docker Container'){
             steps {
                 script {
-                    def  flaskContainerExists = sh(script: "docker ps --filter=name=${CONTAINER_NAME}", returnStdout: true).trim()
-                    if (flaskContainerExists) {
+                    def  flaskContainer = sh(script: "docker ps -f name=${CONTAINER_NAME}", returnStdout: true).trim()
+                    if (flaskContainer.isEmpty()) {
                         sh "docker stop ${CONTAINER_NAME}"
                         sh "docker rm ${CONTAINER_NAME}"
                     } else {
