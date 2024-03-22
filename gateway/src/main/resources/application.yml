@@ -26,3 +26,22 @@ spring:
           uri: lb://EUREKA-CLIENT-CALC
           predicates:
             - Path=/api/calc/**
+        - id: openapi
+          uri: http://j10c201.p.ssafy.io:${server.port}
+          predicates:
+            - Path=/v3/api-docs/**
+          filters:
+            - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
+
+springdoc:
+  swagger-ui:
+    urls[0]:
+      name: User 서비스
+      url: http://j10c201.p.ssafy.io:8081/api/user/v3/api-docs
+    urls[1]:
+      name: Social 서비스
+      url: http://j10c201.p.ssafy.io:8082/api/social/v3/api-docs
+    urls[2]:
+      name: Calc 서비스
+      url: http://j10c201.p.ssafy.io:8083/api/calc/v3/api-docs
+    use-root-path: true
