@@ -8,7 +8,7 @@ const MiniMap = (props: MiniMapPropsType) => {
   useKakaoLoader();
   const { lat, lng, address, tel, onClick } = props;
   const imageSize = { width: 46, height: 60 };
-  const markerimg = marker;
+  
   return (
     <div className="mx-2 my-4">
       <div className="">
@@ -31,7 +31,7 @@ const MiniMap = (props: MiniMapPropsType) => {
               lng: lng,
             }}
             image={{
-              src: markerimg,
+              src: marker,
               size: imageSize,
             }}
           />
