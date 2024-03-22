@@ -23,7 +23,9 @@ const Header = (props: HeaderPropsType) => {
         >
           <FontawsomeIcon icon="arrow-left" color="#5D7A93" />
         </div>
-        <div className="flex-grow text-center">
+        <div
+          className={`flex-grow text-center ${label ? "visible" : "invisible"}`}
+        >
           <Typography
             textSize="text-[1.6rem]"
             fontWeight="font-medium"
@@ -31,7 +33,10 @@ const Header = (props: HeaderPropsType) => {
             label={label}
           />
         </div>
-        <div className={`mt-auto ${headerButton ? "visible" : "invisible"} `} onClick={onClickButton}>
+        <div
+          className={`mt-auto ${headerButton ? "visible" : "invisible"} `}
+          onClick={onClickButton}
+        >
           <SubmitButton label={buttonLabel} />
         </div>
       </div>

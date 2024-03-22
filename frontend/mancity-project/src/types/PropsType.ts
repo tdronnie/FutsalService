@@ -60,7 +60,7 @@ interface DropdownPropsType extends ShadcnDropdownPropsType {
 }
 
 interface HeaderPropsType {
-  label: string;
+  label?: string;
   backArrow: boolean;
   headerButton: boolean;
   onClickButton?: () => void;

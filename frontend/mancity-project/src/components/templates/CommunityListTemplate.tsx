@@ -1,4 +1,4 @@
-import CommunityBody from "@/components/organisms/community_body/CommunityBody";
+import CommunityBody from "@/components/organisms/community_list_body/CommunityListBody";
 import Header from "@/components/organisms/header/Header";
 
 const CommunityListTemplate = () => {
