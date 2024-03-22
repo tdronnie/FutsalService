@@ -12,11 +12,9 @@ import MatchRegisterPage from "@/pages/match/MatchRegisterPage";
 import PlayerFixPage from "@/pages/analysis/PlayerFixPage";
 import FeedbackPage from "@/pages/analysis/FeedbackPage";
 import ReplayPage from "@/pages/analysis/ReplayPage";
-import CommunityPage from "@/pages/community/CommunityPage";
+import CommunityPage from "@/pages/community/CommunityListPage";
 import CommunityRegisterPage from "@/pages/community/CommunityRegisterPage";
 import CommunityEditPage from "@/pages/community/CommunityEditPage";
-import VideoDetailPage from "@/pages/community/VideoDetailPage";
-import TalkDetailPage from "@/pages/community/TalkDetailPage";
 import ClubListPage from "@/pages/club/ClubListPage";
 import ClubDetailPage from "@/pages/club/ClubDetailPage";
 import ClubRegisterPage from "@/pages/club/ClubRegisterPage";
@@ -24,6 +22,7 @@ import ClubEditPage from "@/pages/club/ClubEditPage";
 import ClubFilterPage from "@/pages/club/ClubFilterPage";
 import ProfilePage from "@/pages/user/ProfilePage";
 import ProfileEditPage from "@/pages/user/ProfileEditPage";
+import CommunityDetailPage from "@/pages/community/CommunityDetailPage";
 
 const AppRoutes = () => (
   <Routes>
@@ -43,11 +42,7 @@ const AppRoutes = () => (
     <Route path="/community" element={<CommunityPage />} />
     <Route path="/community/register" element={<CommunityRegisterPage />} />
     <Route path="/community/edit" element={<CommunityEditPage />} />
-    <Route
-      path="/community/video/:community_id"
-      element={<VideoDetailPage />}
-    />
-    <Route path="/community/talk/:community_id" element={<TalkDetailPage />} />
+    <Route path="/community/:community_id" element={<CommunityDetailPage />} />
     <Route path="/club" element={<ClubListPage />} />
     <Route path="/club/:club_id" element={<ClubDetailPage />} />
     <Route path="/club/register" element={<ClubRegisterPage />} />
