@@ -57,10 +57,10 @@ public class GameController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/match/check/{match}/{user}")
-    public ResponseEntity<Boolean> checkManager(@PathVariable(name = "match") long matchId,
+    @GetMapping("/match/check/{game}/{user}")
+    public ResponseEntity<Boolean> checkManager(@PathVariable(name = "game") long gameId,
                                                 @PathVariable(name = "user") long userId) {
-        return new ResponseEntity<>(gameService.checkManager(CheckManagerDto.of(matchId, userId)), HttpStatus.OK);
+        return new ResponseEntity<>(gameService.checkManager(CheckManagerDto.of(gameId, userId)), HttpStatus.OK);
     }
 
 }
