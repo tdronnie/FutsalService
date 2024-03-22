@@ -20,10 +20,10 @@ const MatchRegisterBody = () => {
   >(({ value, onClick }, ref) => (
     <button onClick={onClick} ref={ref}>
       <div className="flex  w-[100vw] max-w-[576px] justify-around relative ">
-        <div className="mr-10 mb-1">
+        <div className="mb-1 mr-10">
           <span>{value}</span>
         </div>
-        <div className=" absolute right-9">
+        <div className="absolute right-9">
           <FontawsomeIcon icon="calendar-days" />
         </div>
       </div>
@@ -89,6 +89,7 @@ const MatchRegisterBody = () => {
             dateFormat="yyyy년 MM월 dd일"
             selected={selectedDate}
             onChange={(date: Date) => setSelectedDate(date)}
+            popperPlacement="top-start"
             customInput={<ExampleCustomInput />}
           />
         </div>
@@ -130,7 +131,7 @@ const MatchRegisterBody = () => {
           setNumberValue={setLevelValue}
         />
       </div>
-      <div className="flex justify-end mt-10 mx-4">
+      <div className="flex justify-end mx-4 mt-6">
         <ReverseButton
           width="w-1/2"
           label="매치 등록하기"

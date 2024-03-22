@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Typography from "@/components/atoms/typography/Typography";
 
-const ClubRegisterBody = () => {
+const ClubEditBody = () => {
   // 지역
   const LocationInfo = [
     { value: 1, label: "서울" },
@@ -106,7 +106,7 @@ const ClubRegisterBody = () => {
       <div onClick={onEditProfile} className="flex justify-end m-7 ">
         <ReverseButton
           width="w-full"
-          label="클럽 등록"
+          label="클럽 수정"
           isdisabled={isFormValid}
         />
       </div>
@@ -114,4 +114,4 @@ const ClubRegisterBody = () => {
   );
 };
 
-export default ClubRegisterBody;
+export default ClubEditBody

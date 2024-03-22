@@ -98,7 +98,7 @@ interface MiniMapPropsType {
   lng: number;
   address: string;
   tel: string;
-  onClickCopy: () => void;
+  onClick: () => Promise<void>;
 }
 
 interface MemberListPropsType {
