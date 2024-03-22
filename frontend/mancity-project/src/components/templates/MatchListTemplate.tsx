@@ -155,6 +155,7 @@ const MatchListTemplate = () => {
             selected={selectedDate}
             onChange={(date: Date) => setSelectedDate(date)}
             customInput={<ExampleCustomInput />}
+            popperPlacement="top-start"
           />
         </div>
       </div>

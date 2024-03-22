@@ -84,18 +84,13 @@ const MatchRegisterBody = () => {
             label="날짜"
           />
         </div>
-        <div className="flex justify-around font-sm text-sofcity bottom-0 border-b-[0.08rem] border-sofcity">
-          <div>
-            <DatePicker
-              dateFormat="yyyy년 MM월 dd일"
-              selected={selectedDate}
-              onChange={(date: Date) => setSelectedDate(date)}
-              customInput={<ExampleCustomInput />}
-            />
-          </div>
-          <div className="flex-end">
-            <FontawsomeIcon icon="calendar-days" />
-          </div>
+        <div className=" font-sm text-sofcity bottom-0 border-b-[0.08rem] border-sofcity">
+          <DatePicker
+            dateFormat="yyyy년 MM월 dd일"
+            selected={selectedDate}
+            onChange={(date: Date) => setSelectedDate(date)}
+            customInput={<ExampleCustomInput />}
+          />
         </div>
       </div>
       {/* 시간 */}
@@ -144,7 +139,6 @@ const MatchRegisterBody = () => {
           setNumberValue={setLevelValue}
         />
       </div>
-
       <div className="flex justify-end mt-10 mx-4">
         <ReverseButton
           width="w-1/2"

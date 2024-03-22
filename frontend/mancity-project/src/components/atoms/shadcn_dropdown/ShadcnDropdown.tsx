@@ -32,7 +32,7 @@ const ShadcnDropdown = ({
           <p className="mt-2 mr-1 text-xs text-sofcity">▼</p>
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className={width}>
+      <DropdownMenuContent className={`${width} max-h-[30vh] overflow-y-auto`}>
         <DropdownMenuRadioGroup
           value={position}
           onValueChange={handleValueChange}

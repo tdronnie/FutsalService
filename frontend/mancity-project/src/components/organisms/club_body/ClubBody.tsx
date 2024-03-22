@@ -21,17 +21,24 @@ const ClubBody = () => {
   return (
     <>
       <div className="flex justify-center m-2">
-        <ShadcnTabs Tab1="용병" Tab2="클럽" onChange={tabSwitch} defaultTab="tab1" />
+        <ShadcnTabs
+          Tab1="용병"
+          Tab2="클럽"
+          onChange={tabSwitch}
+          defaultTab="tab1"
+        />
       </div>
       <div className="p-2">
         {!selectedTab && (
           <div>
-          <div className="flex">
-            <div className="mx-2">
-              <SortButton label="정렬" width="w-16" hover={false} />
+            <div className="flex">
+              <div className="mx-2">
+                <SortButton label="정렬" width="w-16" hover={false} />
+              </div>
+              <div className="w-full">
+                <SearchBar />
+              </div>
             </div>
-            <SearchBar />
-          </div>
             <WideCard
               file="/src/assets/imgs/mancity_logo.png"
               subtext="골결정력 특화"
@@ -39,24 +46,29 @@ const ClubBody = () => {
               minitext="총능력치 58"
               buttonlabel="호출하기"
             />
-        </div>
+          </div>
         )}
 
         {selectedTab && (
           <div>
             <div className="flex">
-              <div className="mx-2" onClick={() => handleNavigate({ path: "/club/filter" })}>
+              <div
+                className="mx-2"
+                onClick={() => handleNavigate({ path: "/club/filter" })}
+              >
                 <SortButton label="필터" width="w-16" hover={true} />
               </div>
-              <SearchBar />
+              <div className="w-full">
+                <SearchBar />
+              </div>
             </div>
-              <WideCard
-                file="/src/assets/imgs/mancity_logo.png"
-                subtext="경기도"
-                maintext="아르마딜로FC"
-                minitext="1800점·인원 36명"
-                buttonlabel="가입신청"
-              />
+            <WideCard
+              file="/src/assets/imgs/mancity_logo.png"
+              subtext="경기도"
+              maintext="아르마딜로FC"
+              minitext="1800점·인원 36명"
+              buttonlabel="가입신청"
+            />
           </div>
         )}
       </div>
