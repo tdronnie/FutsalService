@@ -57,4 +57,4 @@ springdoc:
 
 openapi:
   service:
-    url: http://j10c201.p.ssafy.io:8080
+    url: http://j10c201.p.ssafy.io:8000
