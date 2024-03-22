@@ -48,8 +48,6 @@ build:
 springdoc:
   api-docs:
     path: /user-service/v3/api-docs
-    version: openapi_3_1
-    enabled: true
   swagger-ui:
     path: /user-service/swagger-ui.html
   default-consumes-media-type: application/json
