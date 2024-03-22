@@ -4,7 +4,7 @@ import MapTemplate from "@/components/templates/MapTemplate";
 const MapPage = () => {
   return (
     <>
-      <MapTemplate />
+      <MapTemplate lat={35.2037466} lng={126.8143846} />
     </>
   );
 };
