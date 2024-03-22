@@ -26,10 +26,18 @@ spring:
           uri: lb://EUREKA-CLIENT-SOCIAL
           predicates:
             - Path=/api/social/**
+        - id: eureka-client-social
+          uri: lb://EUREKA-CLIENT-SOCIAL
+          predicates:
+            - Path=/social-service/**
         - id: eureka-client-calc
           uri: lb://EUREKA-CLIENT-CALC
           predicates:
             - Path=/api/calc/**
+        - id: eureka-client-calc
+          uri: lb://EUREKA-CLIENT-CALC
+          predicates:
+            - Path=/calc-service/**
 
 springdoc:
   enable-native-support: true
@@ -39,4 +47,8 @@ springdoc:
     urls:
       - url: /user-service/swagger-ui/index.html
         name: User
+      - url: /social-service/swagger-ui/index.html
+        name: Social
+      - url: /calc-service/swagger-ui/index.html
+        name: Calc
     use-root-path: true
