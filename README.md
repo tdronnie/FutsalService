@@ -42,6 +42,9 @@
 문제: router를 하나의 컴포넌트 stories 에서 적용하였는데, 매번 같은 코드가 중복되고, 작업이 반복되는 비효율성이 발생했습니다.
 해결: 이를 전역적으로 적용할 수 있는 방법에 대해 알아보았고, storybook의 `decorators`와 `parameters`는 세가지 위치에서 적용 가능하다는 것을 알게 되었습니다. 첫 번째는 story 내부입니다. Story는 하나의 컴포넌트에서 나오는 Stories에 존재하는 하나의 예시입니다. 두 번째는 stories 에서 가능합니다. 하나의 컴포넌트에서 파생된 Stories에서 적용하면 하위 Story에 모두 적용됩니다. 세 번째는 Global로, 설정 페이지인 `.storybook/preview.tsx`에서 적용이 가능합니다. 이로 인해, Storybook을 더욱 효율적으로 사용할 수 있게 되었습니다.
 
+### Overallall
+- 기획한 디자인의 90% 완료 했으며, API 호출 및 데이터 연결은 아직 진행되지 않은 상태입니다.
+
 ## Backend
 ### Progress
 - 
