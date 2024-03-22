@@ -45,14 +45,22 @@ eureka:
 build:
   date: '@build.date@'
 
+#springdoc:
+#  api-docs:
+#    path: /user-service/v3/api-docs
+#  swagger-ui:
+#    path: /user-service/swagger-ui.html
+#  default-consumes-media-type: application/json
+#  default-produces-media-type: application/json
 springdoc:
   api-docs:
-    path: /user-service/v3/api-docs
-  swagger-ui:
-    path: /user-service/swagger-ui.html
+    version: openapi_3_1
+    enabled: true
+    #path: /api/mail/v3/api-docs
+    # 게이트웨이 라우팅에서 prefix를 제거하지 않았다면 해당 설정을 추가
+  enable-spring-security: true
   default-consumes-media-type: application/json
   default-produces-media-type: application/json
-
 openapi:
   service:
     url: http://j10c201.p.ssafy.io:8000
