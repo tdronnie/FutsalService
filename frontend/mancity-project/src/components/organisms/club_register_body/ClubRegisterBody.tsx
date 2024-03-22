@@ -35,7 +35,7 @@ const ClubRegisterBody = () => {
   const PlayerNumberInfo = [
     { value: 1, label: "30명" },
     { value: 2, label: "40명" },
-    { value: 2, label: "50명" },
+    { value: 3, label: "50명" },
   ];
   const [playerNumberLabel, setPlayerNumberLabel] = useState("인원");
   const [playerNumberValue, setPlayerNumberValue] = useState(0);
