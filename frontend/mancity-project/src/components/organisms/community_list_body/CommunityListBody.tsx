@@ -39,30 +39,35 @@ const CommunityListBody = () => {
               subtext="우와 이런 슛을 찬다고? 진짜로?"
               likes={5}
               comments={6}
+              toWhere={1}
             />
             <CommunityCard
               maintext="우리팀 최고인가요?"
               subtext="우와 이런 슛을 찬다고? 진짜로?"
               likes={5}
               comments={6}
+              toWhere={2}
             />
             <CommunityCard
               maintext="우리팀 최고인가요?"
               subtext="우와 이런 슛을 찬다고? 진짜로?"
               likes={5}
               comments={6}
+              toWhere={3}
             />
             <CommunityCard
               maintext="우리팀 최고인가요?"
               subtext="우와 이런 슛을 찬다고? 진짜로?"
               likes={5}
               comments={6}
+              toWhere={4}
             />
             <CommunityCard
               maintext="우리팀 최고인가요?"
               subtext="우와 이런 슛을 찬다고? 진짜로?"
               likes={5}
               comments={6}
+              toWhere={5}
             />
           </div>
         )}
@@ -85,24 +90,56 @@ const CommunityListBody = () => {
               subtext="우와 이런 슛을 찬다고? 진짜로?"
               likes={5}
               comments={6}
+              toWhere={2}
             />
             <CommunityCard
               maintext="우리팀 최고인가요?"
               subtext="우와 이런 슛을 찬다고? 진짜로?"
               likes={5}
               comments={6}
+              toWhere={3}
             />
             <CommunityCard
               maintext="우리팀 최고인가요?"
               subtext="우와 이런 슛을 찬다고? 진짜로?"
               likes={5}
               comments={6}
+              toWhere={4}
             />
             <CommunityCard
               maintext="우리팀 최고인가요?"
               subtext="우와 이런 슛을 찬다고? 진짜로?"
               likes={5}
               comments={6}
+              toWhere={5}
+            />
+            <CommunityCard
+              maintext="우리팀 최고인가요?"
+              subtext="우와 이런 슛을 찬다고? 진짜로?"
+              likes={5}
+              comments={6}
+              toWhere={2}
+            />
+            <CommunityCard
+              maintext="우리팀 최고인가요?"
+              subtext="우와 이런 슛을 찬다고? 진짜로?"
+              likes={5}
+              comments={6}
+              toWhere={3}
+            />
+            <CommunityCard
+              maintext="우리팀 최고인가요?"
+              subtext="우와 이런 슛을 찬다고? 진짜로?"
+              likes={5}
+              comments={6}
+              toWhere={4}
+            />
+            <CommunityCard
+              maintext="우리팀 최고인가요?"
+              subtext="우와 이런 슛을 찬다고? 진짜로?"
+              likes={5}
+              comments={6}
+              toWhere={5}
             />
           </div>
         )}

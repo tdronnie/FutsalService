@@ -1,6 +1,6 @@
 import ContentBox from "@/components/atoms/content_box/ContentBox";
-import SubButton from "@/components/atoms/sub_button/SubButton";
 import Typography from "@/components/atoms/typography/Typography";
+import { useNavigate } from "react-router-dom";
 
 const CommunityCard = (props: CommunityCardPropsType) => {
   const {
@@ -9,8 +9,9 @@ const CommunityCard = (props: CommunityCardPropsType) => {
     maintext,
     likes,
     comments,
+    toWhere,
   } = props;
-
+  const navigate = useNavigate();
   const truncateMainText = (text: string) => {
     return text.length > 10 ? `${text.substring(0, 10)}...` : text;
   };
@@ -18,9 +19,13 @@ const CommunityCard = (props: CommunityCardPropsType) => {
     return text.length > 40 ? `${text.substring(0, 40)}...` : text;
   };
 
+  const onClickCard = () => {
+    navigate(`/community/${toWhere}`);
+  };
+
   return (
-    <>
-      <div className="flex p-2 m-3 rounded-md shadow-nav">
+    <div onClick={onClickCard}>
+      <div className="flex p-2 mt-3 mx-1 rounded-md shadow-nav">
         <div className="my-1 mr-3">
           <ContentBox
             height="h-16"
@@ -56,7 +61,7 @@ const CommunityCard = (props: CommunityCardPropsType) => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
