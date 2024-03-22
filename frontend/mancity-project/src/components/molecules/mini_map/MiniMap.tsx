@@ -6,11 +6,11 @@ import marker from "@/assets/imgs/marker.png";
 
 const MiniMap = (props: MiniMapPropsType) => {
   useKakaoLoader();
-  const { lat, lng, address, tel, onClickCopy } = props;
+  const { lat, lng, address, tel, onClick } = props;
   const imageSize = { width: 46, height: 60 };
   const markerimg = marker;
   return (
-    <div className="my-4 mx-2">
+    <div className="mx-2 my-4">
       <div className="">
         <Map
           center={{
@@ -38,7 +38,7 @@ const MiniMap = (props: MiniMapPropsType) => {
         </Map>
       </div>
       <div>
-        <div className="flex mt-1 cursor-pointer" onClick={onClickCopy}>
+        <div className="flex mt-1 cursor-pointer" onClick={onClick}>
           <Typography
             label={address}
             fontWeight="font-medium"

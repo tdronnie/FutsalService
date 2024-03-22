@@ -5,8 +5,15 @@ import MemberList from "@/components/molecules/member_list/MemberList";
 import MiniMap from "@/components/molecules/mini_map/MiniMap";
 
 const ClubDetailBody = () => {
-  const onClickCopy = () => {
-    console.log("주소 복사");
+  const address = "광주시 광산구 장덕동 82-3"
+
+  const onClickCopy = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      alert("클립보드에 링크가 복사되었어요.");
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <>
@@ -72,9 +79,9 @@ const ClubDetailBody = () => {
         <MiniMap
           lat={35.2037466}
           lng={126.8143846}
-          address="광주시 광산구 장덕동 82-3"
+          address={address}
           tel="062-951-9876"
-          onClickCopy={onClickCopy}
+          onClick={() => onClickCopy(address)}
         />
       </div>
     </>
