@@ -67,7 +67,7 @@ const ClubRegisterBody = () => {
       <div className="flex justify-center m-3 ">
         <EditContentBox width="w-36" height="h-36" rounded="rounded-full" />
       </div>
-      <div>
+      <div className="m-3">
         <Dropdown
           typographyLabel="지역"
           items={LocationInfo}
@@ -76,7 +76,7 @@ const ClubRegisterBody = () => {
           setNumberValue={setLocationValue}
         />
       </div>
-      <div>
+      <div className="m-3">
         <InputGroup
           typographyLabel="클럽명"
           checking={true}
@@ -84,7 +84,7 @@ const ClubRegisterBody = () => {
           setTextValue={setClubTitleValue}
         />
       </div>
-      <div>
+      <div className="m-3">
         <Dropdown
           typographyLabel="인원"
           items={PlayerNumberInfo}
@@ -93,7 +93,7 @@ const ClubRegisterBody = () => {
           setNumberValue={setPlayerNumberValue}
         />
       </div>
-      <div className="ml-4">
+      <div className="m-3 ml-7">
         <Typography
           label="홈그라운드 구장"
           textColor="text-sofcity"
@@ -103,7 +103,7 @@ const ClubRegisterBody = () => {
         <SearchBar />
       </div>
 
-      <div onClick={onEditProfile} className="flex justify-end m-4 ">
+      <div onClick={onEditProfile} className="flex justify-end m-7 ">
         <ReverseButton
           width="w-full"
           label="클럽 등록"
