@@ -38,6 +38,7 @@ interface CommunityCardPropsType {
   maintext: string;
   likes: number;
   comments: number;
+  toWhere: number;
 }
 
 interface ClubListPropsType {
