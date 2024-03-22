@@ -46,7 +46,7 @@ const App = () => {
       <div className="AppSize">
         <Router>
           <AppRoutes />
-          {/* 끝까지 스크롤 내릴 수 있게 하는 설정 */}
+          {/* 하단바에 걸리는거 없이 끝까지 스크롤 내릴 수 있게 하는 설정 */}
           <div className="h-20"></div>
           <ConditionalBottomNav />
         </Router>

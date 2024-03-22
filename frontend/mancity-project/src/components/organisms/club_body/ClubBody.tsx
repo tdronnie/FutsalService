@@ -54,7 +54,7 @@ const ClubBody = () => {
                 file="/src/assets/imgs/mancity_logo.png"
                 subtext="경기도"
                 maintext="아르마딜로FC"
-                minitext="1800점·중 수준·36명"
+                minitext="1800점·인원 36명"
                 buttonlabel="가입신청"
               />
           </div>

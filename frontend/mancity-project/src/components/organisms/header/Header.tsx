@@ -18,7 +18,7 @@ const Header = (props: HeaderPropsType) => {
     <div className="sticky top-0 z-10 bg-white">
       <div className="flex p-2">
         <div
-          className={`p-1 ${backArrow ? "visible" : "invisible"} min-w-16 text-[1.4rem]`}
+          className={`p-1 ${backArrow ? "visible" : "invisible"} min-w-16 text-[1.4rem] cursor-pointer`}
           onClick={onClickBackArrow}
         >
           <FontawsomeIcon icon="arrow-left" color="#5D7A93" />
