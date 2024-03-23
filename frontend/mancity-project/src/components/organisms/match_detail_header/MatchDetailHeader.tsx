@@ -1,7 +1,13 @@
 import FontawsomeIcon from "@/components/atoms/fontawsome_icon/FontawsomeIcon";
 import Typography from "@/components/atoms/typography/Typography";
+import { useNavigate } from "react-router-dom";
 
 const MatchDetailHeader = () => {
+  const navigate = useNavigate();
+  const handleNavigate = ({ path }: NavigateType) => {
+    navigate(path);
+  };
+
   return (
     <div className="flex justify-between m-2">
       <div className="">
@@ -28,9 +34,12 @@ const MatchDetailHeader = () => {
           />
         </div>
       </div>
-      <div className=" ">
-        <div className="flex">
-          <div className=" mr-1 ">
+      <div className="">
+        <div
+          className="flex cursor-pointer"
+          onClick={() => handleNavigate({ path: "/club" })}
+        >
+          <div className="mr-1">
             <Typography
               label="용병부르러가기"
               fontWeight="font-medium"
@@ -38,11 +47,11 @@ const MatchDetailHeader = () => {
               textColor="text-sofcity"
             />
           </div>
-          <div className="text-xl -mt-1 ">
+          <div className="-mt-1 text-xl ">
             <FontawsomeIcon icon="tower-cell" />
           </div>
         </div>
-        <div className="text-end mt-4">
+        <div className="mt-4 text-end">
           <Typography
             label="매치장"
             fontWeight="font-medium"
