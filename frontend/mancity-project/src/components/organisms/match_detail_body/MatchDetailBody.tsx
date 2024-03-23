@@ -52,7 +52,7 @@ const MatchDetailBody = () => {
       {/* 경기 다시보기 */}
       <div>
         <TypographyLine lineWidth="w-40" label="경기 분석하기" />
-        <div className="m-2">
+        <div className="m-2 rounded-xl">
           <ContentBox width="w-full" height="h-40" rounded="rounded-xl" />
         </div>
       </div>
