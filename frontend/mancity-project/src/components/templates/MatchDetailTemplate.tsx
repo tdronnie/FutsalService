@@ -16,6 +16,10 @@ const MatchDetailTemplate = () => {
       <Header label="매치 상세" backArrow={true} headerButton={false} />
       <MatchDetailHeader />
       <MatchDetailBody />
+
+      {/* Footer의 크기만큼 스크롤이 되지 않아서 공백 삽입 */}
+      <div className="h-20"></div>
+
       <Footer
         label="남자 ∙ 5vs5 ∙ 중 수준"
         buttonLabel="매치 참여 신청"
