@@ -12,6 +12,10 @@ const ClubDetailTemplete = () => {
     <>
       <Header label="클럽 상세" backArrow={true} headerButton={false} />
       <ClubDetailBody />
+
+      {/* Footer의 크기만큼 스크롤이 되지 않아서 공백 삽입 */}
+      <div className="h-20"></div>
+
       <Footer
         label="1800점 ∙ 36명/50명"
         buttonLabel="클럽 참여 신청"
