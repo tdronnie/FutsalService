@@ -21,11 +21,13 @@ public class ParticipateRequestResponseDto {
 
     private ParticipateStatus status; // 수락 Y, 거절N, 대기 W
 
-    public static ParticipateRequestResponseDto from(ParticipateRequest participateRequest){
+    public static ParticipateRequestResponseDto from(ParticipateRequest participateRequest) {
         return ParticipateRequestResponseDto.builder()
                 .id(participateRequest.getId())
                 .sender(participateRequest.getSender())
                 .status(participateRequest.getStatus())
+                .gameId(participateRequest.getGameId())
                 .build();
     }
+
 }
