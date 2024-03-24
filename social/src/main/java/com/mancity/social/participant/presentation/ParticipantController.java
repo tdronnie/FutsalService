@@ -15,18 +15,18 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/social/game/participant")
+@RequestMapping("/api/social/participant")
 public class ParticipantController {
 
     private final ParticipantService participantService;
 
-    @PostMapping("/participate/request")
+    @PostMapping("/request")
     public ResponseEntity<?> requestParticipate(@RequestBody GameParticipateRequestDto dto){
         participantService.requestParticipate(dto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("/participate/response")
+    @PostMapping("/response")
     public ResponseEntity<?> responseParticipate(@RequestBody GameManagerResponseDto dto){
         participantService.responseParticipate(dto);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -39,7 +39,7 @@ public class ParticipantController {
     }
 
     // 해당매치의 참여요청조회
-    @GetMapping("/participate/request/{id}")
+    @GetMapping("/request/{id}")
     public ResponseEntity<List<ParticipateRequestResponseDto>> findRequestsByGameId(@PathVariable("id") long id){
         return new ResponseEntity<>(participantService.findRequestsByGameId(id), HttpStatus.OK);
     }
