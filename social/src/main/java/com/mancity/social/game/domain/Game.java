@@ -62,6 +62,9 @@ public class Game {
     @Builder.Default
     private List<Participant> participants = new ArrayList<>();
 
+    @Enumerated
+    private GameLevel level;
+
     public void updateHighlights(List<String> highlights) {
         this.highlights.addAll(highlights);
     }
