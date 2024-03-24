@@ -86,7 +86,7 @@ public class GameService {
         return userFeignClient.findById(id);
     }
 
-    public List<GameResponseDto> findAllByFilters(Integer gender, Integer region, Integer playerNumber, Integer level) {
+    public List<GameResponseDto> findAllByFilters(Integer gender, Integer region, Integer playerNumber, String level) {
         return gameRepositorySupport.findAllByFilters(gender, region, playerNumber, level)
                 .stream()
                 .map(GameResponseDto::from)

@@ -1,6 +1,7 @@
 package com.mancity.social.game.domain.repository;
 
 import com.mancity.social.game.domain.Game;
+import com.mancity.social.game.domain.GameLevel;
 import com.mancity.social.game.domain.QGame;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -17,7 +18,7 @@ public class GameRepositorySupport {
 
     QGame qGame = QGame.game;
 
-    public List<Game> findAllByFilters(Integer gender, Integer region, Integer playerNumber, Integer level) {
+    public List<Game> findAllByFilters(Integer gender, Integer region, Integer playerNumber, String level) {
         BooleanBuilder builder = new BooleanBuilder();
 
         if (gender != null) {
@@ -33,9 +34,9 @@ public class GameRepositorySupport {
             builder.and(qGame.playerNumber.eq(playerNumber));
         }
 
-//        if (level != null) {
-//            builder.and(qGame.level.eq(level));
-//        }
+        if (level != null) {
+            builder.and(qGame.level.eq(GameLevel.valueOf(level)));
+        }
 
         return jpaQueryFactory.selectFrom(qGame)
                 .where(builder)

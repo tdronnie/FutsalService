@@ -67,7 +67,7 @@ public class GameController {
     public ResponseEntity<List<GameResponseDto>> findAll(@RequestParam(required = false) Integer gender,
                                                          @RequestParam(required = false) Integer region,
                                                          @RequestParam(required = false) Integer playernumber,
-                                                         @RequestParam(required = false) Integer level){
+                                                         @RequestParam(required = false) String level){
         List<GameResponseDto> dtos = gameService.findAllByFilters(gender, region, playernumber, level);
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
