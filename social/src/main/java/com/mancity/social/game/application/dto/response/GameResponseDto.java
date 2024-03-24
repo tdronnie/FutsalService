@@ -3,6 +3,8 @@ package com.mancity.social.game.application.dto.response;
 import com.mancity.social.game.domain.Game;
 import com.mancity.social.game.domain.Player;
 import com.mancity.social.game.domain.Team;
+import com.mancity.social.participant.application.dto.respose.ParticipantResponseDto;
+import com.mancity.social.participant.domain.Participant;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -41,6 +43,8 @@ public class GameResponseDto {
 
     private List<PlayerResonseDto> playersB;
 
+    private List<ParticipantResponseDto> participants;
+
     public static GameResponseDto from(Game game) {
         return GameResponseDto.builder()
                 .replayUrl(game.getReplayUrl())
@@ -55,6 +59,10 @@ public class GameResponseDto {
                 .playersA(PlayerResonseDto.fromPlayersA(game))
                 .playersB(PlayerResonseDto.fromPlayersB(game))
                 .playerNumber(game.getPlayerNumber())
+                .participants(game.getParticipants()
+                        .stream()
+                        .map(ParticipantResponseDto::from)
+                        .toList())
                 .build();
     }
 }
