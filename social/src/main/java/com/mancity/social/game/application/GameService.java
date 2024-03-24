@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -75,6 +76,13 @@ public class GameService {
         Player player = playerRepository.findById(dto.getGamePlayerId()).orElseThrow(NoSuchPlayerException::new);
         player.allocateData(findByIdFromUserService(dto.getUserId()).getNickName());
         userFeignClient.plus(UserPlusRequestDto.from(player));
+    }
+
+    public List<GameResponseDto> findGamesByParticipantUserId(Long userId) {
+        return gameRepositorySupport.findGamesByParticipantUserId(userId)
+                .stream()
+                .map(GameResponseDto::from)
+                .collect(Collectors.toList());
     }
 
     private Game findById(long id) {

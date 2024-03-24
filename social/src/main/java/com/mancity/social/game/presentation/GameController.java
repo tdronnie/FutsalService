@@ -39,9 +39,14 @@ public class GameController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/allocated/{id}") // 회원별 데이터를 할당 받은 매치 목록
     ResponseEntity<List<GameResponseDto>> findAllByUserId(@PathVariable long id) {
         return new ResponseEntity<>(gameService.findAllByUserId(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/participated/{id}") // 회원별 참여 상태인 매치 목록
+    ResponseEntity<List<GameResponseDto>> findGamesByParticipantUserId(@PathVariable long id) {
+        return new ResponseEntity<>(gameService.findGamesByParticipantUserId(id), HttpStatus.OK);
     }
 
     @PostMapping("/input")
@@ -67,7 +72,7 @@ public class GameController {
     public ResponseEntity<List<GameResponseDto>> findAll(@RequestParam(required = false) Integer gender,
                                                          @RequestParam(required = false) Integer region,
                                                          @RequestParam(required = false) Integer playernumber,
-                                                         @RequestParam(required = false) String level){
+                                                         @RequestParam(required = false) String level) {
         List<GameResponseDto> dtos = gameService.findAllByFilters(gender, region, playernumber, level);
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }

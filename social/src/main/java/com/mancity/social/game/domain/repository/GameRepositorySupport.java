@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import static com.mancity.social.participant.domain.QParticipant.participant;
+
 @Repository
 public class GameRepositorySupport {
 
@@ -17,6 +19,15 @@ public class GameRepositorySupport {
     private JPAQueryFactory jpaQueryFactory;
 
     QGame qGame = QGame.game;
+
+    public List<Game> findGamesByParticipantUserId(Long userId) {
+        return jpaQueryFactory
+                .selectFrom(qGame)
+                .distinct()
+                .innerJoin(qGame.participants, participant)
+                .where(participant.userId.eq(userId))
+                .fetch();
+    }
 
     public List<Game> findAllByFilters(Integer gender, Integer region, Integer playerNumber, String level) {
         BooleanBuilder builder = new BooleanBuilder();
