@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/game")
+@RequestMapping("/api/social/game")
 @RequiredArgsConstructor
 @Slf4j
 public class GameController {
@@ -57,7 +57,7 @@ public class GameController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/match/check/{game}/{user}")
+    @GetMapping("/check/{game}/{user}")
     public ResponseEntity<Boolean> checkManager(@PathVariable(name = "game") long gameId,
                                                 @PathVariable(name = "user") long userId) {
         return new ResponseEntity<>(gameService.checkManager(CheckManagerDto.of(gameId, userId)), HttpStatus.OK);
