@@ -68,7 +68,7 @@ public class GameController {
         return new ResponseEntity<>(gameService.checkManager(CheckManagerDto.of(gameId, userId)), HttpStatus.OK);
     }
 
-    @GetMapping("/")
+    @GetMapping("/filter")
     public ResponseEntity<List<GameResponseDto>> findAll(@RequestParam(required = false) Integer gender,
                                                          @RequestParam(required = false) Integer region,
                                                          @RequestParam(required = false) Integer playernumber,
