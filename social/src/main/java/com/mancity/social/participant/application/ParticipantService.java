@@ -71,4 +71,23 @@ public class ParticipantService {
                 .toList();
     }
 
+    private void validateParticipateRequest(GameParticipateRequestDto dto) {
+        Game game = gameRepository.findById(dto.getGameId())
+                .orElseThrow(NoSuchGameException::new);
+        if (game.getParticipants().size() >= game.getPlayerNumber()) { // 사람이 다 찼다면
+            throw new GameFullException();
+        }
+
+        if (game.isExistParticipant(dto.getUserId())) { // 이미 참여했다면
+            throw new AlreadyParticipatedException();
+        }
+
+        // 해당 게임에서, 어떤 유저가 참여 요청을 보낸게 있는지 확인
+        // 있다면, 재요청이 불가능
+        participateRequestRepoisotry.findByGameIdAndSender(dto.getGameId(), dto.getUserId())
+                .ifPresent(pr -> {
+                    throw new AlreadyRequestedGameException();
+                });
+    }
+
 }
