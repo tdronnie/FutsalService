@@ -59,7 +59,8 @@ public class Game {
     private List<Player> playersB = new ArrayList<>();
 
     @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Participant> participants;
+    @Builder.Default
+    private List<Participant> participants = new ArrayList<>();
 
     public void updateHighlights(List<String> highlights) {
         this.highlights.addAll(highlights);
