@@ -1,6 +1,7 @@
 package com.mancity.social.game.domain;
 
 import com.mancity.social.game.application.dto.request.GameDataInputDto;
+import com.mancity.social.participant.domain.Participant;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,9 +36,9 @@ public class Game {
 
     private int time; // 경기 시간대, 0~24
 
-    private boolean isOver;
+    private boolean isOver; // 경기 종료 여부
 
-    private int playerNumber;
+    private int playerNumber; // 총 인원 수
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn
@@ -57,6 +58,9 @@ public class Game {
     @Builder.Default
     private List<Player> playersB = new ArrayList<>();
 
+    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Participant> participants;
+
     public void updateHighlights(List<String> highlights) {
         this.highlights.addAll(highlights);
     }
@@ -68,11 +72,21 @@ public class Game {
     public void inputData(GameDataInputDto dto) {
         this.teamA = dto.getTeamA();
         this.teamB = dto.getTeamB();
-        for (Player p : dto.getPlayersA()) {
-            this.playersA.add(p);
-        }
-        for (Player p : dto.getPlayersB()) {
-            this.playersB.add(p);
-        }
+        this.playersA.addAll(dto.getPlayersA());
+        this.playersB.addAll(dto.getPlayersB());
     }
+
+    public boolean isExistParticipant(Long userId) {
+        for (Participant p : participants) {
+            if (p.getUserId().equals(userId)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void participate(Participant participant) {
+        this.participants.add(participant);
+    }
+
 }
