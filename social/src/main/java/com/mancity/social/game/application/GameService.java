@@ -2,6 +2,7 @@ package com.mancity.social.game.application;
 
 import com.mancity.social.game.application.dto.request.*;
 import com.mancity.social.game.application.dto.response.GameResponseDto;
+import com.mancity.social.game.domain.repository.GameRepositorySupport;
 import com.mancity.social.user.application.dto.response.UserResponseDto;
 import com.mancity.social.game.domain.Game;
 import com.mancity.social.game.domain.Player;
@@ -31,6 +32,8 @@ public class GameService {
     private final S3Uploader uploader;
 
     private final UserFeignClient userFeignClient;
+
+    private final GameRepositorySupport gameRepositorySupport;
 
     public void create(GameCreateRequestDto dto) {
         gameRepository.save(dto.toEntity());
@@ -81,5 +84,12 @@ public class GameService {
 
     private UserResponseDto findByIdFromUserService(long id) {
         return userFeignClient.findById(id);
+    }
+
+    public List<GameResponseDto> findAllByFilters(Integer gender, Integer region, Integer playerNumber, Integer level) {
+        return gameRepositorySupport.findAllByFilters(gender, region, playerNumber, level)
+                .stream()
+                .map(GameResponseDto::from)
+                .toList();
     }
 }

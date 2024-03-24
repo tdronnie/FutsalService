@@ -28,7 +28,7 @@ public class Game {
     @ElementCollection(fetch = FetchType.LAZY)
     private List<String> highlights; // 회원 id,
 
-    private int gender;
+    private int gender;  // 1남자 2여자 3혼성
 
     private Long manager;
 
