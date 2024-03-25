@@ -2,6 +2,8 @@ package com.mancity.social.game.application;
 
 import com.mancity.social.game.application.dto.request.*;
 import com.mancity.social.game.application.dto.response.GameResponseDto;
+import com.mancity.social.game.application.dto.response.PlayerDataResponseDto;
+import com.mancity.social.game.application.dto.response.TeamDataResponseDto;
 import com.mancity.social.game.domain.repository.GameRepositorySupport;
 import com.mancity.social.user.application.dto.response.UserResponseDto;
 import com.mancity.social.game.domain.Game;
@@ -100,4 +102,15 @@ public class GameService {
                 .map(GameResponseDto::from)
                 .toList();
     }
+
+    public TeamDataResponseDto findTeamDataByGameId(Long id) {
+        Game game = findById(id);
+        return TeamDataResponseDto.from(game);
+    }
+
+    public PlayerDataResponseDto findPlayerDataByGameId(Long id) {
+        Game game = findById(id);
+        return PlayerDataResponseDto.from(game);
+    }
+
 }
