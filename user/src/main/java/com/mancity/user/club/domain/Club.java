@@ -52,6 +52,9 @@ public class Club {
     public void joinMember(ClubMember clubMember) {
         log.info("memberCnt= {}", this.memberCnt);
         this.clubMembers.add(clubMember);
+//        for (ClubMember cm: clubMembers) {
+//            log.info("clubMember ={}", cm.getUser().getId());
+//        }
         this.memberCnt = clubMembers.size(); //인원 업데이트
         log.info("추가 후 memberCnt= {}", this.memberCnt);
     }

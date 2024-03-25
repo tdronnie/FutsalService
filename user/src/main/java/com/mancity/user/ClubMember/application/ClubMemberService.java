@@ -63,7 +63,6 @@ public class ClubMemberService {
             log.info("클럽 멤버가 들어갈 클럽이름={}", clubMember.getClub().getName());
             log.info("클럽 멤버 아이디={}", clubMember.getUser().getId());
             //클럽 멤버에 가입
-//            clubRepository.save(club);
             club.joinMember(clubMember);
 
             //가입 완료 후 매치장이 가입요청 사용자에게 응답에 대한 알림 필요!!
