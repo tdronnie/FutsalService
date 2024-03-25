@@ -1,4 +1,5 @@
 interface TailwindPropsType {
+  type?: string;
   style?: any;
   textSize?: string;
   fontWeight?: string;
@@ -70,6 +71,7 @@ interface HeaderPropsType {
 }
 
 interface InputGroupPropsType {
+  type?: string;
   typographyLabel: string;
   placeholder?: string;
   checking: boolean;
