@@ -24,7 +24,7 @@ export const checkEmailApi = async (emailValue: string | number) => {
 // 닉네임 중복 확인
 export const checkNicknameApi = async (nicknameValue: string | number) => {
   return publicRequest
-    .post(`/user/check/nickname`, { nickname: nicknameValue })
+    .post(`/user/check/nickname`, { nickName: nicknameValue })
     .then((res) => res.data)
     .catch((error) => {
       console.log(error);
