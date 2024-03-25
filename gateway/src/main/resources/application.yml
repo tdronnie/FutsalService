@@ -38,6 +38,24 @@ spring:
           uri: lb://EUREKA-CLIENT-CALC
           predicates:
             - Path=/calc-service/**
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials 
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - 'https://xxxxxxxxxx'
+            allow-credentials: true
+            allowedHeaders: '*'
+            exposedHeaders: '*'
+            allowedMethods:
+              - POST
+              - GET
+              - PUT
+              - PATCH
+              - DELETE
+              - OPTIONS
 
 springdoc:
   enable-native-support: true
