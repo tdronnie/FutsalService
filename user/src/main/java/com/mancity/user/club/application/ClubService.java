@@ -30,8 +30,6 @@ public class ClubService {
         else{
             clubRepository.save(dto.toEntity());
         }
-
-
     }
 
     public void uploadEmblem(MultipartFile file, ClubEmblemUploadDto dto) {
@@ -39,4 +37,5 @@ public class ClubService {
         Club club = clubRepository.findById(dto.getId()).orElseThrow(NoSuchClubException::new);
         club.uploadEmblem(url);
     }
+
 }

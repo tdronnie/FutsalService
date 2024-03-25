@@ -17,16 +17,26 @@ public class ClubController {
     private final ClubService clubService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestPart(required = false)MultipartFile emblem, @RequestBody CreateRequestDto dto) {
+    public ResponseEntity<?> create(@RequestPart(required = false)MultipartFile emblem, @RequestPart CreateRequestDto dto) {
         clubService.create(emblem, dto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping("/upload")
-    public ResponseEntity<?> uploadEmblem(@RequestPart MultipartFile emblem, @RequestBody ClubEmblemUploadDto dto) {
+    public ResponseEntity<?> uploadEmblem(@RequestPart MultipartFile emblem, @RequestPart ClubEmblemUploadDto dto) {
         clubService.uploadEmblem(emblem, dto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+//    @PatchMapping("/join/{id}")
+//    public ResponseEntity<?> joinMember(@PathVariable(name = "id") Long userId){
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
+//
+//    @PatchMapping("/quit/{id}")
+//    public ResponseEntity<?> quitMember(@PathVariable(name = "id") Long userId){
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
 
 
 }
