@@ -39,23 +39,29 @@ spring:
           predicates:
             - Path=/calc-service/**
       default-filters:
-        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials 
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
       globalcors:
-        add-to-simple-url-handler-mapping: true
         corsConfigurations:
           '[/**]':
             allowedOrigins:
-              - 'https://xxxxxxxxxx'
-            allow-credentials: true
-            allowedHeaders: '*'
-            exposedHeaders: '*'
+             - "http://j10c201.p.ssafy.io/"
+             - "https://j10c201.p.ssafy.io/"
+             - "http://localhost/"
+            allow-credentials: true   
+            allowedHeaders:
+              - x-requested-with
+              - authorization
+              - content-type
+              - credential
+              - X-AUTH-TOKEN
+              - X-CSRF-TOKEN
             allowedMethods:
               - POST
               - GET
               - PUT
               - PATCH
-              - DELETE
               - OPTIONS
+              - DELETE
 
 springdoc:
   enable-native-support: true
