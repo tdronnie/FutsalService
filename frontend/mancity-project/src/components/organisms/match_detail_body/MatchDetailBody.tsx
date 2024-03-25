@@ -5,7 +5,6 @@ import TypographyLine from "@/components/atoms/typography_line/TypographyLine";
 import MemberList from "@/components/molecules/member_list/MemberList";
 import MiniMap from "@/components/molecules/mini_map/MiniMap";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
 
 const MatchDetailBody = () => {
   const address = "광주시 광산구 장덕동 82-3";

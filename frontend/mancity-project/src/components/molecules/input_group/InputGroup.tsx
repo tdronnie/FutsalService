@@ -1,4 +1,4 @@
-import { checkEmail, checkNickname } from "@/apis/userApis";
+import { checkEmailApi, checkNicknameApi } from "@/apis/userApis";
 import GlobalInput from "@/components/atoms/global_input/GlobalInput";
 import SubButton from "@/components/atoms/sub_button/SubButton";
 import Typography from "@/components/atoms/typography/Typography";
@@ -17,7 +17,7 @@ const InputGroup = (props: InputGroupPropsType) => {
 
   // 이메일 유효성 로직
   const { mutate: emailMutate } = useMutation({
-    mutationFn: checkEmail,
+    mutationFn: checkEmailApi,
     onSuccess(result: boolean) {
       if (setIsCheck) {
         if (!result) {
@@ -35,7 +35,7 @@ const InputGroup = (props: InputGroupPropsType) => {
 
   // 닉네임 유효성 로직
   const { mutate: nicknameMutate } = useMutation({
-    mutationFn: checkNickname,
+    mutationFn: checkNicknameApi,
     onSuccess(result: boolean) {
       if (setIsCheck) {
         if (!result) {
