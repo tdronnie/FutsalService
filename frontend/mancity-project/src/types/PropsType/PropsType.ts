@@ -52,8 +52,8 @@ interface ClubListPropsType {
 interface ShadcnDropdownPropsType {
   items: { value: number; label: string }[];
   width?: string;
-  position: string;
-  setPosition?: React.Dispatch<React.SetStateAction<string>>;
+  position: number;
+  setPosition?: React.Dispatch<React.SetStateAction<number>>;
   setNumberValue?: React.Dispatch<React.SetStateAction<number>>;
 }
 
@@ -77,7 +77,9 @@ interface InputGroupPropsType {
   checking: boolean;
   checkingLabel?: string;
   textValue?: string | number;
-  setTextValue?: React.Dispatch<React.SetStateAction<string>>;
+  setTextValue?:
+    | React.Dispatch<React.SetStateAction<string>>
+    | React.Dispatch<React.SetStateAction<number>>;
   setIsCheck?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
