@@ -1,8 +1,7 @@
 package com.mancity.user.club.presentation;
 
 import com.mancity.user.club.application.ClubService;
-import com.mancity.user.club.application.dto.request.ClubEmblemUploadDto;
-import com.mancity.user.club.application.dto.request.CreateRequestDto;
+import com.mancity.user.club.application.dto.request.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +16,7 @@ public class ClubController {
     private final ClubService clubService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestPart(required = false)MultipartFile emblem, @RequestPart CreateRequestDto dto) {
+    public ResponseEntity<?> create(@RequestPart(required = false) MultipartFile emblem, @RequestPart CreateRequestDto dto) {
         clubService.create(emblem, dto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -27,16 +26,5 @@ public class ClubController {
         clubService.uploadEmblem(emblem, dto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-//    @PatchMapping("/join/{id}")
-//    public ResponseEntity<?> joinMember(@PathVariable(name = "id") Long userId){
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
-//
-//    @PatchMapping("/quit/{id}")
-//    public ResponseEntity<?> quitMember(@PathVariable(name = "id") Long userId){
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
-
 
 }

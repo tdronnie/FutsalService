@@ -1,11 +1,12 @@
 package com.mancity.user.club.domain;
 
-import com.mancity.user.user.domain.User;
+import com.mancity.user.ClubMember.domain.ClubMember;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,15 +16,16 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Slf4j
 public class Club {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "club_id")
     private Long id;
 
     @OneToMany(mappedBy = "club", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<User> clubMembers = new ArrayList<>();
+    @Builder.Default
+    private List<ClubMember> clubMembers = new ArrayList<>();
 
     //클럽 이름
     private String name;
@@ -45,5 +47,12 @@ public class Club {
 
     public void uploadEmblem(String url) {
         this.emblem = url;
+    }
+
+    public void joinMember(ClubMember clubMember) {
+        log.info("memberCnt= {}", this.memberCnt);
+        this.clubMembers.add(clubMember);
+        this.memberCnt = clubMembers.size(); //인원 업데이트
+        log.info("추가 후 memberCnt= {}", this.memberCnt);
     }
 }

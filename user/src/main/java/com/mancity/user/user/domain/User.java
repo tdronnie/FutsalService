@@ -1,6 +1,6 @@
 package com.mancity.user.user.domain;
 
-import com.mancity.user.club.domain.Club;
+import com.mancity.user.ClubMember.domain.ClubMember;
 import com.mancity.user.user.application.dto.request.UpdateRequestDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,6 +8,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.util.ObjectUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -18,12 +21,10 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "club_id")
-    private Club club;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ClubMember> clubMember = new ArrayList<>();
 
     private String nickName;
 
