@@ -42,3 +42,14 @@ export const signupApi = async (signupData: signupApiType) => {
       throw new Error("회원가입 api 에러");
     });
 };
+
+// 로그인
+export const loginApi = async (loginData: loginApiType) => {
+  return publicRequest
+    .post(`user/login`, loginData)
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+      throw new Error("회원가입 api 에러");
+    });
+};
