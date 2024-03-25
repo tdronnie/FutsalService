@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class GameManagerResponseDto {
+public class ParticipateRequestReplyDto {
 
     private long participateRequestId;
 
