@@ -9,8 +9,9 @@
 // PATCH 요청 API
 // DELETE 요청 API
 
+// 이메일 중복 확인
 import { publicRequest } from "@/hooks/requestMethods";
-export const fetchCheckEmail = async (emailValue: string | number) => {
+export const  checkEmail = async (emailValue: string | number) => {
   return publicRequest
     .post(`/user/check/email`, { email: emailValue }, { withCredentials: true })
     .then((res) => res.data)
@@ -20,7 +21,8 @@ export const fetchCheckEmail = async (emailValue: string | number) => {
     });
 };
 
-export const fetchCheckNickname = async (nicknameValue: string | number) => {
+// 닉네임 중복 확인
+export const checkNickname = async (nicknameValue: string | number) => {
   return publicRequest
     .post(
       `/user/check/nickname`,
