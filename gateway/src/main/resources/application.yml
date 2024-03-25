@@ -46,7 +46,10 @@ spring:
             allowedOrigins:
              - "http://j10c201.p.ssafy.io/"
              - "https://j10c201.p.ssafy.io/"
+             - "http://localhost:3000/"
+             - "https://localhost:3000/"
              - "http://localhost/"
+             - "https://localhost/"
             allow-credentials: true   
             allowedHeaders:
               - x-requested-with
