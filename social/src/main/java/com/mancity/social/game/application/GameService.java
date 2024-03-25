@@ -77,7 +77,7 @@ public class GameService {
     public void allocateData(GameDataAllocateDto dto) {
         Player player = playerRepository.findById(dto.getGamePlayerId()).orElseThrow(NoSuchPlayerException::new);
         player.allocateData(findByIdFromUserService(dto.getUserId()).getNickName());
-        userFeignClient.plus(UserPlusRequestDto.from(player));
+        userFeignClient.plus(UserPlusRequestDto.of(player, dto.getUserId()));
     }
 
     public List<GameResponseDto> findGamesByParticipantUserId(Long userId) {
