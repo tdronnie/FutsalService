@@ -53,3 +53,14 @@ export const loginApi = async (loginData: loginApiType) => {
       throw new Error("회원가입 api 에러");
     });
 };
+
+// 프로필
+export const fetchProfileApi = async (userId: number) => {
+  return publicRequest
+    .get(`user/${userId}`)
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+      throw new Error("유저 프로필 api 에러");
+    });
+};
