@@ -7,6 +7,7 @@ import com.mancity.user.ClubMember.domain.ClubMember;
 import com.mancity.user.ClubMember.domain.JoinRequest;
 import com.mancity.user.ClubMember.domain.repository.JoinRequestRepository;
 import com.mancity.user.ClubMember.exception.AlreadyExsitClubMemberException;
+import com.mancity.user.ClubMember.exception.AlreadyExsitJoinRequestException;
 import com.mancity.user.ClubMember.exception.NoSuchJoinRequestException;
 import com.mancity.user.club.domain.Club;
 import com.mancity.user.club.domain.repository.ClubRepository;
@@ -36,15 +37,20 @@ public class ClubMemberService {
         Club club = clubRepository.findById(dto.getClubId()).orElseThrow(NoSuchClubException::new);
         User user = userRepository.findById(dto.getUserId()).orElseThrow(UserNotExistException::new);
 
-            for (ClubMember cm : club.getClubMembers()) {
-                log.info("클럽 멤버 ={}", cm.toString());
+        for (ClubMember cm : club.getClubMembers()) {
+            log.info("클럽 멤버 ={}", cm.toString());
+        }
+        //클럽에 이미 있는 유저인지 검사
+        for (ClubMember cm : club.getClubMembers()) {
+            if (cm.getId() == user.getId()) {
+                throw new AlreadyExsitClubMemberException();
             }
-            //클럽에 이미 있는 유저인지 검사
-            for (ClubMember cm : club.getClubMembers()) {
-                if (cm.getId() == user.getId()) {
-                    throw new AlreadyExsitClubMemberException();
-                }
-            }
+        }
+
+        //이미 클럽에 가입 요청을 보낸 사용자인지 검사
+        if (joinRequestRepository.findByClubIdAndRequestUserId(club.getId(), user.getId()).isPresent()) {
+            throw new AlreadyExsitJoinRequestException();
+        }
 
         Long masterId = club.getMasterId();
         //마스터에게 참여 요청 알림 필요!!
@@ -82,7 +88,7 @@ public class ClubMemberService {
 
         }
 
-            return new JoinRequestReplyResponseDto(dto.isResponse());
+        return new JoinRequestReplyResponseDto(dto.isResponse());
 
     }
 }
