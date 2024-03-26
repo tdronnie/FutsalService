@@ -11,8 +11,7 @@ const WideCard = (props: WideCardPropsType) => {
     buttonlabel,
   } = props;
   return (
-    <>
-      <div className="flex p-2 m-3 rounded-md shadow-nav">
+      <div id="glassui" className="flex p-2 m-3 rounded-md shadow-nav">
         <div className="my-1 mr-3">
           <ContentBox
             height="h-20"
@@ -49,7 +48,6 @@ const WideCard = (props: WideCardPropsType) => {
           <SubButton label={buttonlabel} hover={false} />
         </div>
       </div>
-    </>
   );
 };
 

@@ -137,17 +137,12 @@ const MatchListTemplate = () => {
         buttonLabel="매치등록"
         toWhere="/match/register"
       />
-      <div className="flex items-center justify-between">
+      <div id="glassui" className="flex items-center justify-between p-3 m-3">
         <div
           className="flex items-center ml-4 cursor-pointer"
           onClick={() => handleNavigate({ path: "/match/filter" })}
         >
-          <div className="text-[1.5rem] m-1">
-            <FontawsomeIcon icon="filter" />
-          </div>
-          <div className="text-[1.2rem] font-medium">
-            <span className="text-sofcity">필터</span>
-          </div>
+          <p className="text-[1.2rem] text-sofcity font-medium">날짜 선택:</p>
         </div>
         <div className="flex mr-4 font-medium text-[1.2rem] text-sofcity bottom-0">
           <DatePicker
