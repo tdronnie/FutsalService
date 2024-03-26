@@ -62,7 +62,7 @@ public enum AlarmDomain {
             return AlarmText.FOLLOW_CONTENT;
         }
     },
-    CLUB_REQUEST("CLUB") {
+    CLUB_REQUEST("CLUB_REQUEST") {
         @Override
         public String generateTitle() {
             return AlarmText.CLUB_REQUEST_TITLE;
@@ -73,7 +73,7 @@ public enum AlarmDomain {
             return AlarmText.CLUB_REQUEST_CONTENT;
         }
     },
-    CLUB_REQUEST_REPLY("CLUB_REPLY") {
+    CLUB_REQUEST_REPLY("CLUB_REQUEST_REPLY") {
         @Override
         public String generateTitle() {
             return AlarmText.CLUB_REQUEST_REPLY_TITLE;
