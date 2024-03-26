@@ -15,7 +15,7 @@ const Header = (props: HeaderPropsType) => {
     }
   };
   return (
-    <div className="sticky top-0 z-10 bg-white">
+    <div className="sticky top-0 z-10">
       <div className="flex p-2">
         <div
           className={`p-1 ${backArrow ? "visible" : "invisible"} min-w-16 text-[1.4rem] cursor-pointer`}
@@ -29,7 +29,7 @@ const Header = (props: HeaderPropsType) => {
           <Typography
             textSize="text-[1.6rem]"
             fontWeight="font-medium"
-            textColor="text-sofcity"
+            textColor="text-mancity"
             label={label}
           />
         </div>

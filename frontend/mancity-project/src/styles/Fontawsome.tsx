@@ -7,6 +7,7 @@ import {
   faBookmark,
   faCalendarDays,
   faCamera,
+  faChessBoard,
   faCircleUser,
   faFilter,
   faHeart,
@@ -36,6 +37,7 @@ import {
 // 사용할 아이콘을 라이브러리에 추가
 library.add(
   faArrowLeft,
+  faChessBoard,
   faUser,
   faBell,
   faCopy,
