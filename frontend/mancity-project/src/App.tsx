@@ -14,6 +14,7 @@ const App = () => {
 
     // Navbar 사용하지 않는 페이지 예외 처리 코드
     if (
+      location.pathname === "/entry" ||
       location.pathname === "/login" ||
       location.pathname === "/signup" ||
       location.pathname === "/alert" ||
