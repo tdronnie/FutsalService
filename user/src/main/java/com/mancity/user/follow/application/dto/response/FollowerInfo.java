@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class FollowerInfo {
 
-    private long id;
+    private long userId;
 
     private String nickname;
 
@@ -23,7 +23,7 @@ public class FollowerInfo {
 
     public static FollowerInfo of(User user, MainStat mainStat){
         return FollowerInfo.builder()
-                .id(user.getId())
+                .userId(user.getId())
                 .nickname(user.getNickName())
 //                .profileImage(user.profileImage())
                 .profileImage("이세은님이 추가하실겁니다.")

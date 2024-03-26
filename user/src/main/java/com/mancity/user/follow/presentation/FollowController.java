@@ -2,6 +2,7 @@ package com.mancity.user.follow.presentation;
 
 import com.mancity.user.follow.application.FollowService;
 import com.mancity.user.follow.application.dto.request.FollowSendRequestDto;
+import com.mancity.user.follow.application.dto.request.UnfollowSendRequestDto;
 import com.mancity.user.follow.application.dto.response.FollowResponseDto;
 import com.mancity.user.follow.application.dto.response.FollowerInfo;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,12 @@ public class FollowController {
     @PostMapping("/send")
     public ResponseEntity<?> follow(@RequestBody FollowSendRequestDto dto){
         followService.follow(dto);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/unfollow")
+    public ResponseEntity<?> unfollow(@RequestBody UnfollowSendRequestDto dto){
+        followService.unfollow(dto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

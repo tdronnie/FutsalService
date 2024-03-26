@@ -1,6 +1,7 @@
 package com.mancity.user.follow.application;
 
 import com.mancity.user.follow.application.dto.request.FollowSendRequestDto;
+import com.mancity.user.follow.application.dto.request.UnfollowSendRequestDto;
 import com.mancity.user.follow.application.dto.response.FollowResponseDto;
 import com.mancity.user.follow.application.dto.response.FollowerInfo;
 import com.mancity.user.follow.domain.repository.FollowRepository;
@@ -68,5 +69,9 @@ public class FollowService {
         }
 
         return followings;
+    }
+
+    public void unfollow(UnfollowSendRequestDto dto) {
+        followRepository.deleteBySenderIdAndReceiverId(dto.getSenderId(), dto.getReceiverId());
     }
 }
