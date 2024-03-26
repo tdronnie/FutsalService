@@ -5,7 +5,7 @@ const ClubList = (props: ClubListPropsType) => {
   const { file, clubTitile, clubInfo } = props;
   return (
     <div>
-      <div className="flex items-center justify-between mx-3">
+      <div className="flex items-center justify-between mx-3 my-2">
         <div className="flex items-center justify-between">
           <div className="mr-2">
             <ContentBox
@@ -32,7 +32,7 @@ const ClubList = (props: ClubListPropsType) => {
         </div>
       </div>
       <div className="flex justify-center">
-        <hr className="w-11/12 px-2 my-2" />
+        <hr className="w-11/12 px-2" />
       </div>
     </div>
   );

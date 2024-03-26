@@ -15,7 +15,6 @@ import ReplayPage from "@/pages/analysis/ReplayPage";
 import CommunityPage from "@/pages/community/CommunityListPage";
 import CommunityRegisterPage from "@/pages/community/CommunityRegisterPage";
 import CommunityEditPage from "@/pages/community/CommunityEditPage";
-import CommunityDetailPage from "@/pages/community/CommunityDetailPage";
 import ClubListPage from "@/pages/club/ClubListPage";
 import ClubDetailPage from "@/pages/club/ClubDetailPage";
 import ClubRegisterPage from "@/pages/club/ClubRegisterPage";
@@ -23,12 +22,15 @@ import ClubEditPage from "@/pages/club/ClubEditPage";
 import ClubFilterPage from "@/pages/club/ClubFilterPage";
 import ProfilePage from "@/pages/user/ProfilePage";
 import ProfileEditPage from "@/pages/user/ProfileEditPage";
+import CommunityDetailPage from "@/pages/community/CommunityDetailPage";
+import EntryPage from "@/pages/EntryPage";
 import FollowPage from "@/pages/user/FollowPage";
 
 const AppRoutes = () => (
   <Routes>
     <Route path="/" element={<HomePage />} />
     <Route path="*" element={<NotFoundPage />} />
+    <Route path="/entry" element={<EntryPage />} />
     <Route path="/signup" element={<SignUpPage />} />
     <Route path="/login" element={<LoginPage />} />
     <Route path="/alert" element={<AlertPage />} />

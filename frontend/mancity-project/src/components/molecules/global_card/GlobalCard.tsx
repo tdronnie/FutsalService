@@ -4,9 +4,9 @@ import Typography from "@/components/atoms/typography/Typography";
 const GlobalCard = (props: GlobalCardProps) => {
   const { subTitle, mainTitle, file } = props;
   return (
-    <div className="flex-shrink-0 h-56 mr-2 border-2 rounded-lg w-44 shadow-nav">
+    <div id="glassui" className="flex-shrink-0 h-56 mr-2 rounded-lg w-44">
       <div>
-        <ContentBox width="w-full" height="h-40" file={file} />
+        <ContentBox width="w-full" height="h-40" file={file} rounded="rounded-t-[20px]" />
       </div>
       <div className="mx-2 my-1">
         <div className="my-1">

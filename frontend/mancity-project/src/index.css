@@ -187,7 +187,7 @@
 
 @media (min-width: 577px) {
   #root {
-    background-color: #cdf5fd;
+    background: white;
   }
 }
 
@@ -195,7 +195,13 @@
   max-width: 576px;
   min-height: 100vh;
   margin: auto;
-  background-color: white;
+  background-image: linear-gradient(
+    to bottom,
+    #ffffff 0vh,
+    #e3f2fd 60vh,
+    #bbdefb 90vh,
+    #90caf9 100vh
+  );
 }
 .TooSmall {
   display: none;
@@ -217,4 +223,37 @@
     background-color: #cdf5fd;
     height: 100vh;
   }
+}
+
+/* 글래스모피즘 구현 */
+#glassbox {
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow:
+    35px 35px 68px 0px rgba(188, 223, 255, 0.5),
+    inset -8px -8px 16px 0px rgba(188, 223, 255, 0.6),
+    inset 0px 11px 28px 0px rgb(255, 255, 255);
+}
+#glassui {
+  padding: 0.1rem;
+  margin: 0.3rem;
+  /* border: 1px solid white; */
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-shadow:
+    35px 35px 68px 0px rgba(177, 221, 255, 0.4),
+    inset -8px -8px 16px 0px rgba(177, 221, 255, 0.3),
+    inset 0px 11px 28px 0px rgb(255, 255, 255);
+}
+#glassbtn {
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow:
+    35px 35px 68px 0px rgba(144, 202, 249, 0.1),
+    inset -8px -8px 16px 0px rgba(144, 202, 249, 0.6),
+    inset 0px 11px 28px 0px rgb(255, 255, 255);
+}
+input {
+  background-color: transparent;
 }
