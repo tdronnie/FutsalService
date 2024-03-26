@@ -32,4 +32,8 @@ public class Alarm {
 
     private String content;
 
+    public void updateTitle(String nickname){
+        this.title = nickname + this.title;
+    }
+
 }

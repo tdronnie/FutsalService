@@ -3,6 +3,8 @@ package com.mancity.user.alarm.domain;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import static com.mancity.user.alarm.domain.AlarmText.*;
+
 @Getter
 @RequiredArgsConstructor
 public enum AlarmDomain {
@@ -10,89 +12,89 @@ public enum AlarmDomain {
     GAME_REQUEST("GAME_REQUEST") {
         @Override
         public String generateTitle() {
-            return AlarmText.GAME_REQUEST_TITLE;
+            return GAME_REQUEST_TITLE;
         }
 
         @Override
         public String generateContent() {
-            return AlarmText.GAME_REQUEST_CONTENT;
+            return GAME_REQUEST_CONTENT;
         }
     },
     GAME_REQUEST_REPLY("GAME_REQUEST_REPLY") {
         @Override
         public String generateTitle() {
-            return AlarmText.GAME_REQUEST_REPLY_TITLE;
+            return GAME_REQUEST_REPLY_TITLE;
         }
 
         @Override
         public String generateContent() {
-            return AlarmText.GAME_REQUEST_REPLY_CONTENT;
+            return GAME_REQUEST_REPLY_CONTENT;
         }
     },
     GAME_SUGGEST("GAME_SUGGEST") {
         @Override
         public String generateTitle() {
-            return AlarmText.GAME_SUGGEST_TITLE;
+            return GAME_SUGGEST_TITLE;
         }
 
         @Override
         public String generateContent() {
-            return AlarmText.GAME_SUGGEST_CONTENT;
+            return GAME_SUGGEST_CONTENT;
         }
     },
     GAME_SUGGEST_REPLY("GAME_SUGGEST_REPLY") {
         @Override
         public String generateTitle() {
-            return AlarmText.GAME_SUGGEST_REPLY_TITLE;
+            return GAME_SUGGEST_REPLY_TITLE;
         }
 
         @Override
         public String generateContent() {
-            return AlarmText.GAME_SUGGEST_REPLY_CONTENT;
+            return GAME_SUGGEST_REPLY_CONTENT;
         }
     },
     FOLLOW("FOLLOW") {
         @Override
         public String generateTitle() {
-            return AlarmText.FOLLOW_TITLE;
+            return FOLLOW_TITLE;
         }
 
         @Override
         public String generateContent() {
-            return AlarmText.FOLLOW_CONTENT;
+            return FOLLOW_CONTENT;
         }
     },
     CLUB_REQUEST("CLUB_REQUEST") {
         @Override
         public String generateTitle() {
-            return AlarmText.CLUB_REQUEST_TITLE;
+            return CLUB_REQUEST_TITLE;
         }
 
         @Override
         public String generateContent() {
-            return AlarmText.CLUB_REQUEST_CONTENT;
+            return CLUB_REQUEST_CONTENT;
         }
     },
     CLUB_REQUEST_REPLY("CLUB_REQUEST_REPLY") {
         @Override
         public String generateTitle() {
-            return AlarmText.CLUB_REQUEST_REPLY_TITLE;
+            return CLUB_REQUEST_REPLY_TITLE;
         }
 
         @Override
         public String generateContent() {
-            return AlarmText.CLUB_REQUEST_REPLY_CONTENT;
+            return CLUB_REQUEST_REPLY_CONTENT;
         }
     },
     CALC_COMPLETE("CALC_COMPLETE") {
         @Override
         public String generateTitle() {
-            return AlarmText.CALC_COMPLETE_TITLE;
+            return CALC_COMPLETE_TITLE;
         }
 
         @Override
         public String generateContent() {
-            return AlarmText.CALC_COMPLETE_CONTENT;
+            return CALC_COMPLETE_CONTENT;
         }
     };
 
@@ -102,4 +104,9 @@ public enum AlarmDomain {
 
     public abstract String generateContent();
 
+    public boolean isNeedNickName(){
+        return domain.equals(CLUB_REQUEST_CONTENT) || domain.equals(CLUB_REQUEST_REPLY_TITLE)
+                || domain.equals(GAME_REQUEST_CONTENT) || domain.equals(GAME_REQUEST_REPLY_TITLE)
+                || domain.equals(GAME_SUGGEST_TITLE);
+    }
 }
