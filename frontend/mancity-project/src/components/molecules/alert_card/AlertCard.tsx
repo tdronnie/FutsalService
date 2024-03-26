@@ -5,8 +5,7 @@ import Typography from "@/components/atoms/typography/Typography";
 const AlertCard = (props: WideCardPropsType) => {
   const { maintext, subtext, minitext, buttonlabel } = props;
   return (
-    <>
-      <div className="p-2 m-3 rounded-md shadow-nav">
+      <div id="glassui" className="p-2 m-3 rounded-md shadow-nav">
         <div className="flex flex-col justify-around">
           <div className="p-1">
             <Typography
@@ -39,7 +38,6 @@ const AlertCard = (props: WideCardPropsType) => {
           </div>
         </div>
       </div>
-    </>
   );
 };
 

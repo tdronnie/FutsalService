@@ -15,14 +15,14 @@ const Navbar = () => {
             <p className="p-0 font-sans text-sm text-darkcity">홈</p>
           </div>
         </Link>
-        <Link to="/map">
+        <Link to="/#">
           <div className="flex flex-col items-center justify-center w-20 cursor-pointer">
             <FontawsomeIcon
-              icon="map"
+              icon="chess-board"
               size="2x"
               color="#1E3050"
             ></FontawsomeIcon>
-            <p className="p-0 font-sans text-sm text-darkcity">지도</p>
+            <p className="p-0 font-sans text-sm text-darkcity">전술보드</p>
           </div>
         </Link>
         {/* 앱솔로 가운데 위에 뜨도록 설정 */}
@@ -37,16 +37,6 @@ const Navbar = () => {
         </div>
         {/* 배치를 위한 비어 있는 div */}
         <div></div>
-        <Link to="/community">
-          <div className="flex flex-col items-center justify-center w-20 cursor-pointer">
-            <FontawsomeIcon
-              icon="people-group"
-              size="2x"
-              color="#1E3050"
-            ></FontawsomeIcon>
-            <p className="p-0 font-sans text-sm text-darkcity">커뮤니티</p>
-          </div>
-        </Link>
         <Link to="/club">
           <div className="flex flex-col items-center justify-center w-20 cursor-pointer">
             <FontawsomeIcon
@@ -55,6 +45,17 @@ const Navbar = () => {
               color="#1E3050"
             ></FontawsomeIcon>
             <p className="p-0 font-sans text-sm text-darkcity">용병/클럽</p>
+          </div>
+        </Link>
+        {/* 임시로 1번 유저로 연결 */}
+        <Link to="/profile/1">
+          <div className="flex flex-col items-center justify-center w-20 cursor-pointer">
+            <FontawsomeIcon
+              icon="user"
+              size="2x"
+              color="#1E3050"
+            ></FontawsomeIcon>
+            <p className="p-0 font-sans text-sm text-darkcity">내정보</p>
           </div>
         </Link>
       </div>

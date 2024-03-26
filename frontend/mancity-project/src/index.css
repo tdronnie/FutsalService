@@ -15,13 +15,13 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #64B5F6;
+  background: #64b5f6;
   border-radius: 20px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #1976D2;
+  background: #1976d2;
 }
 
 @layer base {
@@ -200,7 +200,7 @@
     #e3f2fd 0vh,
     #bbdefb 60vh,
     #90caf9 90vh,
-    #64B5F6 100vh
+    #64b5f6 100vh
   );
 }
 .TooSmall {
@@ -236,8 +236,8 @@
 }
 #glassui {
   backdrop-filter: blur(5px);
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
   box-shadow:
     35px 35px 68px 0px rgba(177, 221, 255, 0.4),
     inset -8px -8px 16px 0px rgba(177, 221, 255, 0.3),
@@ -245,10 +245,10 @@
 }
 #glassbtn {
   backdrop-filter: blur(5px);
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 1);
   box-shadow:
-    35px 35px 68px 0px rgba(144, 202, 249, 0.1),
-    inset -8px -8px 16px 0px rgba(144, 202, 249, 0.6),
+    /* 35px 35px 68px 0px rgba(255, 188, 41, 0.5), */
+    inset -8px -8px 16px 0px rgba(255, 188, 41, 0.6),
     inset 0px 11px 28px 0px rgb(255, 255, 255);
 }
 input {

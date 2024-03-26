@@ -1,7 +1,6 @@
 const GlobalButton = (props: TailwindPropsType) => {
   const { isdisabled, width, label, hover } = props;
   return (
-    <div className="px-3">
       <button
         type="button"
         disabled={!isdisabled}
@@ -16,7 +15,6 @@ const GlobalButton = (props: TailwindPropsType) => {
       >
         {label}
       </button>
-    </div>
   );
 };
 
