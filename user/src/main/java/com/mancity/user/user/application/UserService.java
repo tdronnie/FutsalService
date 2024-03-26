@@ -1,6 +1,6 @@
 package com.mancity.user.user.application;
 
-import com.mancity.user.club.infrastructure.file.util.S3Uploader;
+import com.mancity.user.common.s3.util.S3Uploader;
 import com.mancity.user.stat.application.StatGenerator;
 import com.mancity.user.user.application.dto.request.*;
 import com.mancity.user.user.application.dto.response.UserResponseDto;
