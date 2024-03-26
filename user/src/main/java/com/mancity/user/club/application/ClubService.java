@@ -3,6 +3,7 @@ package com.mancity.user.club.application;
 import com.mancity.user.ClubMember.domain.ClubMember;
 import com.mancity.user.club.application.dto.request.ClubEmblemUploadDto;
 import com.mancity.user.club.application.dto.request.CreateRequestDto;
+import com.mancity.user.club.application.dto.response.ClubDetailResponseDto;
 import com.mancity.user.club.domain.Club;
 import com.mancity.user.club.domain.repository.ClubRepository;
 import com.mancity.user.club.exception.NoSuchClubException;
@@ -48,6 +49,16 @@ public class ClubService {
         String url = s3Uploader.uploadEmblem("emblem", file);
         Club club = clubRepository.findById(dto.getId()).orElseThrow(NoSuchClubException::new);
         club.uploadEmblem(url);
+    }
+
+    public ClubDetailResponseDto clubDetail(Long id) {
+        Club club = clubRepository.findById(id).orElseThrow(NoSuchClubException::new);
+        return ClubDetailResponseDto.builder()
+                .name(club.getName())
+                .emblem(club.getEmblem())
+                .memberCnt(club.getMemberCnt())
+                .region(club.getRegion())
+                .build();
     }
 
 }

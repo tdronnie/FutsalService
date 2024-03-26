@@ -2,6 +2,7 @@ package com.mancity.user.club.presentation;
 
 import com.mancity.user.club.application.ClubService;
 import com.mancity.user.club.application.dto.request.*;
+import com.mancity.user.club.application.dto.response.ClubDetailResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,11 @@ public class ClubController {
     public ResponseEntity<?> uploadEmblem(@RequestPart MultipartFile emblem, @RequestPart ClubEmblemUploadDto dto) {
         clubService.uploadEmblem(emblem, dto);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("{clubId}")
+    public ResponseEntity<ClubDetailResponseDto> clubDetail(@PathVariable(name = "clubId") Long id) {
+        return new ResponseEntity<>(clubService.clubDetail(id), HttpStatus.OK);
     }
 
 }
