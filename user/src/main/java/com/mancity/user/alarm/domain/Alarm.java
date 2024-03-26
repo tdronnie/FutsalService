@@ -24,9 +24,12 @@ public class Alarm {
 
     private long receiverId;
 
-    // 이 알람이 어느 도메인에
-//    private AlarmDomain domain;
-    // 무슨 알람 인지
-//    private AlarmType type;
+    private Long domainId;
+
+    private AlarmDomain domain;
+
+    private String title;
+
+    private String content;
 
 }
