@@ -24,6 +24,7 @@ import ProfilePage from "@/pages/user/ProfilePage";
 import ProfileEditPage from "@/pages/user/ProfileEditPage";
 import CommunityDetailPage from "@/pages/community/CommunityDetailPage";
 import EntryPage from "@/pages/EntryPage";
+import FollowPage from "@/pages/user/FollowPage";
 
 const AppRoutes = () => (
   <Routes>
@@ -52,6 +53,7 @@ const AppRoutes = () => (
     <Route path="/club/edit/:club_id" element={<ClubEditPage />} />
     <Route path="/profile/:user_id" element={<ProfilePage />} />
     <Route path="/profile/edit/:user_id" element={<ProfileEditPage />} />
+    <Route path="/follow/:user_id" element={<FollowPage />} />
   </Routes>
 );
 
