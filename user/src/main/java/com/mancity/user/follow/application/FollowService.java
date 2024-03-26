@@ -13,12 +13,14 @@ import com.mancity.user.user.domain.repository.UserRepository;
 import com.mancity.user.user.exception.UserNotExistException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
 @Service
+@Transactional
 public class FollowService {
 
     private final FollowRepository followRepository;
