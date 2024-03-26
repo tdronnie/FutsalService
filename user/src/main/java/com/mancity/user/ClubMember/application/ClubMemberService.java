@@ -6,6 +6,7 @@ import com.mancity.user.ClubMember.application.dto.response.JoinRequestReplyResp
 import com.mancity.user.ClubMember.domain.ClubMember;
 import com.mancity.user.ClubMember.domain.JoinRequest;
 import com.mancity.user.ClubMember.domain.repository.JoinRequestRepository;
+import com.mancity.user.ClubMember.exception.AlreadyExsitClubMemberException;
 import com.mancity.user.ClubMember.exception.NoSuchJoinRequestException;
 import com.mancity.user.club.domain.Club;
 import com.mancity.user.club.domain.repository.ClubRepository;
@@ -17,6 +18,8 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -35,6 +38,15 @@ public class ClubMemberService {
         Club club = clubRepository.findById(dto.getClubId()).orElseThrow(NoSuchClubException::new);
         User user = userRepository.findById(dto.getUserId()).orElseThrow(UserNotExistException::new);
 
+            for (ClubMember cm : club.getClubMembers()) {
+                log.info("클럽 멤버 ={}", cm.toString());
+            }
+            //클럽에 이미 있는 유저인지 검사
+            for (ClubMember cm : club.getClubMembers()) {
+                if (Objects.equals(cm.getId(), user.getId())) {
+                    throw new AlreadyExsitClubMemberException();
+                }
+            }
 
         Long masterId = club.getMasterId();
         //마스터에게 참여 요청 알림 필요!!
@@ -51,9 +63,11 @@ public class ClubMemberService {
 
         //만약 가입요청이 수락되었다면
         if (dto.isResponse()) {
-            //클럽 유효성 검사
+            //클럽, 유저 유효성 검사
             Club club = clubRepository.findById(joinRequest.getClubId()).orElseThrow(NoSuchClubException::new);
             User user = userRepository.findById(joinRequest.getRequestUserId()).orElseThrow(UserNotExistException::new);
+
+
             ClubMember clubMember = ClubMember.builder()
                     .club(club)
                     .user(user)
