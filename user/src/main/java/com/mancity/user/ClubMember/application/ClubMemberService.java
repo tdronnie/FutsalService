@@ -19,8 +19,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
-
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -43,7 +41,7 @@ public class ClubMemberService {
             }
             //클럽에 이미 있는 유저인지 검사
             for (ClubMember cm : club.getClubMembers()) {
-                if (Objects.equals(cm.getId(), user.getId())) {
+                if (cm.getId() == user.getId()) {
                     throw new AlreadyExsitClubMemberException();
                 }
             }

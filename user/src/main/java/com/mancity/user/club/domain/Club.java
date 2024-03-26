@@ -49,6 +49,12 @@ public class Club {
         this.emblem = url;
     }
 
+    public void addMasterInClubMember(ClubMember master) {
+        log.info("마스터 클럽 멤버 add");
+        this.clubMembers.add(master);
+        this.memberCnt = clubMembers.size(); //인원 업데이트
+    }
+
     public void joinMember(ClubMember clubMember) {
         log.info("memberCnt= {}", this.memberCnt);
         this.clubMembers.add(clubMember);
