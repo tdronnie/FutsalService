@@ -23,11 +23,13 @@ import ClubFilterPage from "@/pages/club/ClubFilterPage";
 import ProfilePage from "@/pages/user/ProfilePage";
 import ProfileEditPage from "@/pages/user/ProfileEditPage";
 import CommunityDetailPage from "@/pages/community/CommunityDetailPage";
+import EntryPage from "@/pages/EntryPage";
 
 const AppRoutes = () => (
   <Routes>
     <Route path="/" element={<HomePage />} />
     <Route path="*" element={<NotFoundPage />} />
+    <Route path="/entry" element={<EntryPage />} />
     <Route path="/signup" element={<SignUpPage />} />
     <Route path="/login" element={<LoginPage />} />
     <Route path="/alert" element={<AlertPage />} />

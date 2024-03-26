@@ -30,6 +30,7 @@ const MainBody = () => {
           textSize="text-xl"
         />
       </div>
+
       <Slider {...settings}>
         <div>
           <WideCard
@@ -129,16 +130,39 @@ const MainBody = () => {
           textSize="text-xl"
         />
       </div>
-      <ClubList clubTitile="FC맨시티파워" clubInfo="1230점/2024.02.18" file="/src/assets/imgs/mancity_logo.png"/>
-      <ClubList clubTitile="디오니소스FC" clubInfo="1230점/2024.02.18" file="/src/assets/imgs/mancity_logo.png"/>
-      <ClubList clubTitile="FC김치파워" clubInfo="1230점/2024.02.18" file="/src/assets/imgs/mancity_logo.png"/>
-      <ClubList clubTitile="우리가맨시티" clubInfo="1230점/2024.02.18" file="/src/assets/imgs/mancity_logo.png"/>
-      <ClubList clubTitile="즐거운축구생활" clubInfo="1230점/2024.02.18" file="/src/assets/imgs/mancity_logo.png"/>
-      <div
-        className="flex justify-center"
-        onClick={() => handleNavigate({ path: "/club" })}
-      >
-        <SubButton label="더보기" hover={true} />
+
+      <div id="glassui">
+        <ClubList
+          clubTitile="FC맨시티파워"
+          clubInfo="1230점/2024.02.18"
+          file="/src/assets/imgs/mancity_logo.png"
+        />
+        <ClubList
+          clubTitile="디오니소스FC"
+          clubInfo="1230점/2024.02.18"
+          file="/src/assets/imgs/mancity_logo.png"
+        />
+        <ClubList
+          clubTitile="FC김치파워"
+          clubInfo="1230점/2024.02.18"
+          file="/src/assets/imgs/mancity_logo.png"
+        />
+        <ClubList
+          clubTitile="우리가맨시티"
+          clubInfo="1230점/2024.02.18"
+          file="/src/assets/imgs/mancity_logo.png"
+        />
+        <ClubList
+          clubTitile="즐거운축구생활"
+          clubInfo="1230점/2024.02.18"
+          file="/src/assets/imgs/mancity_logo.png"
+        />
+        <div
+          className="flex justify-center my-2"
+          onClick={() => handleNavigate({ path: "/club" })}
+        >
+          <SubButton label="더보기" hover={true} />
+        </div>
       </div>
     </>
   );
