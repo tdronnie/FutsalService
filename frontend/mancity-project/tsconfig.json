@@ -12,8 +12,7 @@
     "module": "ESNext",
     "skipLibCheck": true,
 
-    /* Bundler mode */
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -29,6 +28,7 @@
     // 카카오 맵 추가
     "types": ["kakao.maps.d.ts"]
   },
-  "include": ["src"],
+  "include": ["src/**/*", "public/firebase-messaging-sw.js"],
+  "exclude": ["node_modules", "**/*.spec.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
