@@ -2,6 +2,7 @@ package com.mancity.user.user.presentation;
 
 import com.mancity.user.user.application.UserService;
 import com.mancity.user.user.application.dto.request.*;
+import com.mancity.user.user.application.dto.response.ProfileResponseDto;
 import com.mancity.user.user.application.dto.response.UserResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,31 +25,31 @@ public class UserController {
     }
 
     @GetMapping("/logout")
-    public ResponseEntity<?> logout(){
+    public ResponseEntity<?> logout() {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> signUp(@RequestBody SingUpRequestDto dto){
+    public ResponseEntity<?> signUp(@RequestBody SingUpRequestDto dto) {
         userService.signUp(dto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @DeleteMapping("/withdraw")
-    public ResponseEntity<?> withdraw(){
+    public ResponseEntity<?> withdraw() {
         // 아직 미구현
         // 다른 서비스 생성 후 구현해야 할듯.
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<?> updateInfo(@RequestBody UpdateRequestDto dto){
+    public ResponseEntity<?> updateInfo(@RequestBody UpdateRequestDto dto) {
         userService.updateInfo(dto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping("/fcm")
-    public ResponseEntity<?> updateFcmToken(@RequestBody FcmUpdateRequestDto dto){
+    public ResponseEntity<?> updateFcmToken(@RequestBody FcmUpdateRequestDto dto) {
         userService.updateFcmToken(dto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -59,12 +60,17 @@ public class UserController {
     }
 
     @PostMapping("/check/email")
-    public ResponseEntity<Boolean> isDuplicateEmail(@RequestBody DuplicateEmailCheckRequestDto dto){
+    public ResponseEntity<Boolean> isDuplicateEmail(@RequestBody DuplicateEmailCheckRequestDto dto) {
         return new ResponseEntity<>(userService.isDuplicateEmail(dto), HttpStatus.OK);
     }
 
     @PostMapping("/check/nickname")
-    public ResponseEntity<Boolean> isDuplicateNickName(@RequestBody DuplicateNickNameCheckRequestDto dto){
+    public ResponseEntity<Boolean> isDuplicateNickName(@RequestBody DuplicateNickNameCheckRequestDto dto) {
         return new ResponseEntity<>(userService.isDuplicateNickName(dto), HttpStatus.OK);
+    }
+
+    @GetMapping("/profile/{id}")
+    public ResponseEntity<ProfileResponseDto> getProfilePage(@PathVariable("id") long id) {
+        return new ResponseEntity<>(userService.getProfilePage(id), HttpStatus.OK);
     }
 }
