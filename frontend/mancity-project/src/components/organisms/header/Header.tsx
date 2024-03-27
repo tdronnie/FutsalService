@@ -36,7 +36,7 @@ const Header = (props: HeaderPropsType) => {
           />
         </div>
         <div
-          className={`mt-auto ${headerButton ? "visible" : "invisible"} `}
+          className={`flex items-center ${headerButton ? "visible" : "invisible"} `}
           onClick={onClickButton}
         >
           <SubmitButton label={buttonLabel} />
