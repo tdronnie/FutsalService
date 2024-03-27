@@ -157,3 +157,10 @@ interface matchPlace {
   value: number;
   label: string;
 }
+
+interface muiModalPropsType {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  handleOpen: () => void;
+  handleClose: () => void;
+}
