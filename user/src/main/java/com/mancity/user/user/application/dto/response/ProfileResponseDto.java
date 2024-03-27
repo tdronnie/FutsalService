@@ -1,5 +1,6 @@
 package com.mancity.user.user.application.dto.response;
 
+import com.mancity.user.club.application.dto.response.ClubResponseDto;
 import com.mancity.user.follow.application.dto.response.FollowResponseDto;
 import com.mancity.user.stat.application.dto.response.LastStatResponseDto;
 import com.mancity.user.stat.application.dto.response.MainStatResponseDto;
@@ -17,13 +18,13 @@ public class ProfileResponseDto {
 
     private long id;
 
-    private String profileImage;
+    private String image;
 
     private String nickName;
 
     private Long clubId;
 
-    private String club;
+    private ClubResponseDto club;
 
     private long follower;
 
@@ -40,10 +41,10 @@ public class ProfileResponseDto {
     public static ProfileResponseDto of(User user, FollowResponseDto followDto) {
         return ProfileResponseDto.builder()
                 .id(user.getId())
-//                .profileImage(user.getProfileImage)
+                .image(user.getImage())
                 .nickName(user.getNickName())
-//                .clubId(use)
-//                .club(club)
+                .clubId(user.getClubMember().get(0).getClub().getId())
+                .club(ClubResponseDto.from(user.getClubMember().get(0).getClub()))
                 .follower(followDto.getFollowers().size())
                 .following(followDto.getFollowings().size())
                 .isPlayer(user.isPlayer())

@@ -27,7 +27,7 @@ public class ClubMemberController {
     }
 
     //    참여 응답
-    @PostMapping("joinRes")
+    @PostMapping("/joinRes")
     public ResponseEntity<JoinRequestReplyResponseDto> joinResponse(@RequestBody JoinRequestReplyDto dto) {
         return new ResponseEntity<>(clubMemberService.joinResponse(dto), HttpStatus.OK);
     }
