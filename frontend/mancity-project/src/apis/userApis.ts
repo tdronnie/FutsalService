@@ -54,13 +54,35 @@ export const loginApi = async (loginData: loginApiType) => {
     });
 };
 
-// 프로필
-export const fetchProfileApi = async (userId: number) => {
+// 유저 정보
+export const fetchUserApi = async (userId: number) => {
   return publicRequest
     .get(`user/${userId}`)
     .then((res) => res.data)
     .catch((error) => {
       console.log(error);
+      throw new Error("유저 정보 api 에러");
+    });
+};
+
+// 프로필 페이지 ()
+export const fetchProfileApi = async (userId: number) => {
+  return publicRequest
+    .get(`user/profile/${userId}`)
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
       throw new Error("유저 프로필 api 에러");
+    });
+};
+
+// 프로필 수정
+export const profileEditApi = async (profileEditData: FormData) => {
+  return publicRequest
+    .put(`user/update`, profileEditData)
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+      throw new Error("개인정보 수정 api 에러");
     });
 };

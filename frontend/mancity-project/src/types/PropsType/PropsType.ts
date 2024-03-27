@@ -16,10 +16,8 @@ interface TailwindPropsType {
   rounded?: string;
   label?: string;
   placeholder?: string;
-  textValue?: string | number;
-  setTextValue?:
-    | React.Dispatch<React.SetStateAction<string>>
-    | React.Dispatch<React.SetStateAction<number>>;
+  textValue?: string;
+  setTextValue?: React.Dispatch<React.SetStateAction<string>>;
   isdisabled?: boolean;
 
   bgimg?: string;
@@ -56,13 +54,9 @@ interface ClubListPropsType {
 interface ShadcnDropdownPropsType {
   items: { value: number; label: string }[];
   width?: string;
-  position: string | number | undefined;
-  setPosition?:
-    | React.Dispatch<React.SetStateAction<number>>
-    | React.Dispatch<React.SetStateAction<string>>;
-  setNumberValue?:
-    | React.Dispatch<React.SetStateAction<number>>
-    | React.Dispatch<React.SetStateAction<string>>;
+  position: string | undefined;
+  setPosition?: React.Dispatch<React.SetStateAction<string>>;
+  setNumberValue?: React.Dispatch<React.SetStateAction<number>>;
 }
 
 interface DropdownPropsType extends ShadcnDropdownPropsType {
@@ -84,11 +78,9 @@ interface InputGroupPropsType {
   placeholder?: string;
   checking: boolean;
   checkingLabel?: string;
-  textValue?: string | number;
-  setTextValue?:
-    | React.Dispatch<React.SetStateAction<string>>
-    | React.Dispatch<React.SetStateAction<number>>;
-  setIsCheck?: React.Dispatch<React.SetStateAction<boolean>>;
+  textValue?: string;
+  setTextValue?: React.Dispatch<React.SetStateAction<string>>;
+  setIsCheck?: React.Dispatch<React.SetStateAction<boolean | null>>;
 }
 
 interface GlobalCardProps {
@@ -164,4 +156,11 @@ interface FollowCardPropsType {
 interface matchPlace {
   value: number;
   label: string;
+}
+
+interface muiModalPropsType {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  handleOpen: () => void;
+  handleClose: () => void;
 }
