@@ -6,7 +6,7 @@ import { useParams } from "react-router";
 const ProfilePage = () => {
   const { user_id } = useParams<{ user_id: string }>();
 
-  const { isLoading, data, error } = useQuery<ProfilePropsType>({
+  const { isLoading, data, error } = useQuery({
     queryKey: ["profile"],
     queryFn: () => fetchProfileApi(Number(user_id)),
   });

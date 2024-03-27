@@ -53,6 +53,7 @@ const ProfileEditBody = ({ userInfoData }: UserInfoPropsType) => {
   const [playerValue, setPlayerValue] = useState<boolean>(userInfoData.player);
   const [isNicknameCheck, setIsNicknameCheck] = useState<boolean | null>(null);
 
+  // get 받아 온 이전 데이터 data에 입력
   const [profileEditData, setProfileEditData] = useState({
     image: imageFilesValue,
     dto: {
@@ -64,11 +65,6 @@ const ProfileEditBody = ({ userInfoData }: UserInfoPropsType) => {
       isPlayer: playerValue,
     },
   });
-
-  // const [submitData, setSubmitData] = useState({
-  //   image:'',
-  //   dto: {},
-  // });
 
   // 데이터 하나에 묶기
   useEffect(() => {
@@ -84,7 +80,6 @@ const ProfileEditBody = ({ userInfoData }: UserInfoPropsType) => {
         isPlayer: playerValue,
       },
     }));
-    console.log(profileEditData);
   }, [
     imageFilesValue,
     nickNameValue,
@@ -119,6 +114,7 @@ const ProfileEditBody = ({ userInfoData }: UserInfoPropsType) => {
     },
   });
 
+  // 파일 formData로 인코딩 후 제출
   const onEditProfile = () => {
     const formData: FormData = new FormData();
     if (imageFilesValue.length > 0) {
