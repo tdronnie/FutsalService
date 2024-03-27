@@ -1,5 +1,8 @@
 package com.mancity.user.user.domain;
 
+import com.mancity.user.stat.domain.LastStat;
+import com.mancity.user.stat.domain.MainStat;
+import com.mancity.user.stat.domain.Stat;
 import com.mancity.user.ClubMember.domain.ClubMember;
 import com.mancity.user.user.application.dto.request.UpdateRequestDto;
 import jakarta.persistence.*;
@@ -45,6 +48,30 @@ public class User {
     private boolean isPlayer;
 
     private String fcmToken;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn
+    private Stat stat;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn
+    private MainStat mainStat;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn
+    private LastStat lastStat;
+
+    public void updateStat(Stat stat) {
+        this.stat = stat;
+    }
+
+    public void updateMainStat(MainStat mainStat) {
+        this.mainStat = mainStat;
+    }
+
+    public void updateLastStat(LastStat lastStat) {
+        this.lastStat = lastStat;
+    }
 
     public void updateFcmToken(String token) {
         this.fcmToken = token;

@@ -10,12 +10,12 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
 @Entity
-public class MainStat {
+public class LastStat {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,16 +31,12 @@ public class MainStat {
 
     private double defense;
 
-    public double getOverall() {
-        return goalDecision + distanceCovered + pass + speed + defense;
-    }
-
-    public void update(Stat stat) {
-        this.goalDecision = (calc(stat.getGoal(), stat.getShot()));
-        this.pass = (calc(stat.getPass(), stat.getPlayedTimes()));
-        this.distanceCovered = (calc(stat.getDistanceCovered(), stat.getPlayedTimes()));
-        this.speed = (calc(stat.getSpeed(), stat.getPlayedTimes()));
-        this.defense = (calc(stat.getTurnOverInDefense(), stat.getPlayedTimes()));
+    public void update(PlusRequestDto dto){
+        this.goalDecision = calc(dto.getGoal(), dto.getShot());
+        this.pass = dto.getPass();
+        this.distanceCovered = dto.getDistanceCovered();
+        this.speed = dto.getSpeed();
+        this.defense = dto.getTurnOverInDefense();
     }
 
     private static double calc(int x, int y) {

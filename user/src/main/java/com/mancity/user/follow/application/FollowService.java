@@ -1,5 +1,6 @@
 package com.mancity.user.follow.application;
 
+import com.mancity.user.alarm.application.AlarmService;
 import com.mancity.user.follow.application.dto.request.FollowSendRequestDto;
 import com.mancity.user.follow.application.dto.request.UnfollowSendRequestDto;
 import com.mancity.user.follow.application.dto.response.FollowResponseDto;
@@ -27,7 +28,7 @@ public class FollowService {
 
     private final UserRepository userRepository;
 
-    private final StatRepository statRepository;
+    private final AlarmService alarmService;
 
     public void follow(FollowSendRequestDto dto) {
         followRepository.save(dto.toEntity());
@@ -46,9 +47,7 @@ public class FollowService {
 
         List<FollowerInfo> followers = new ArrayList<>();
         for(User user : senders){
-            Stat stat = statRepository.findById(user.getId()).orElseThrow(UserNotExistException::new);
-            MainStat mainStat = MainStat.from(stat);
-            FollowerInfo info = FollowerInfo.of(user, mainStat);
+            FollowerInfo info = FollowerInfo.of(user);
 
             followers.add(info);
         }
@@ -61,11 +60,9 @@ public class FollowService {
         List<User> receivers = userRepository.findAllById(receiverIds);
 
         List<FollowerInfo> followings = new ArrayList<>();
-        for(User user : receivers){
-            Stat stat = statRepository.findById(user.getId()).orElseThrow(UserNotExistException::new);
 
-            MainStat mainStat = MainStat.from(stat);
-            FollowerInfo info = FollowerInfo.of(user, mainStat);
+        for(User user : receivers){
+            FollowerInfo info = FollowerInfo.of(user);
 
             followings.add(info);
         }
