@@ -1,6 +1,5 @@
 import ShadcnSwitch from "@/components/atoms/shadcn_switch/ShadcnSwitch";
 import Typography from "@/components/atoms/typography/Typography";
-import { useEffect } from "react";
 
 const GlobalSwitch = (props: GlobalSwitchPropsType) => {
   const { label, isSwitchOn, setIsSwitchOn, switchMarginTop } = props;
