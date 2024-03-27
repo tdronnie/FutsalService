@@ -32,5 +32,4 @@ public class ClubResponseDto {
                 .region(club.getRegion())
                 .build();
     }
-
 }

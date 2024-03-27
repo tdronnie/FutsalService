@@ -3,11 +3,14 @@ package com.mancity.user.club.presentation;
 import com.mancity.user.club.application.ClubService;
 import com.mancity.user.club.application.dto.request.*;
 import com.mancity.user.club.application.dto.response.ClubDetailResponseDto;
+import com.mancity.user.club.application.dto.response.ClubResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -32,5 +35,12 @@ public class ClubController {
     public ResponseEntity<ClubDetailResponseDto> clubDetail(@PathVariable(name = "clubId") Long id) {
         return new ResponseEntity<>(clubService.clubDetail(id), HttpStatus.OK);
     }
+
+    @GetMapping("/clubs")
+    public ResponseEntity<List<ClubResponseDto>> getClubsWithFilter(@RequestParam(required = false) String region) {
+        return new ResponseEntity<>(clubService.getClubsFilterByRegion(region), HttpStatus.OK);
+    }
+
+
 
 }
