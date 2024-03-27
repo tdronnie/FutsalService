@@ -43,8 +43,8 @@ public class ProfileResponseDto {
                 .id(user.getId())
                 .image(user.getImage())
                 .nickName(user.getNickName())
-                .clubId(user.getClubMember().get(0).getClub().getId())
-                .club(ClubResponseDto.from(user.getClubMember().get(0).getClub()))
+                .clubId(findClub(user) == null ? null : findClub(user).getId())
+                .club(findClub(user))
                 .follower(followDto.getFollowers().size())
                 .following(followDto.getFollowings().size())
                 .isPlayer(user.isPlayer())
@@ -52,5 +52,12 @@ public class ProfileResponseDto {
                 .mainStat(MainStatResponseDto.from(user.getMainStat()))
 //                .highlights()
                 .build();
+    }
+
+    private static ClubResponseDto findClub(User user) {
+        if (!user.getClubMember().isEmpty()) {
+            return ClubResponseDto.from(user.getClubMember().get(0).getClub());
+        } else
+            return null;
     }
 }
