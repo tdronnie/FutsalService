@@ -4,6 +4,7 @@ import com.mancity.user.ClubMember.domain.ClubMember;
 import com.mancity.user.club.application.dto.request.ClubEmblemUploadDto;
 import com.mancity.user.club.application.dto.request.CreateRequestDto;
 import com.mancity.user.club.application.dto.response.ClubDetailResponseDto;
+import com.mancity.user.club.application.dto.response.ClubResponseDto;
 import com.mancity.user.club.domain.Club;
 import com.mancity.user.club.domain.repository.ClubRepository;
 import com.mancity.user.club.exception.NoSuchClubException;
@@ -15,6 +16,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -59,6 +63,32 @@ public class ClubService {
                 .memberCnt(club.getMemberCnt())
                 .region(club.getRegion())
                 .build();
+    }
+
+    public List<ClubResponseDto> getClubsFilterByRegion(String region) {
+
+        List<Club> clubs;
+        if (region != null && !region.isEmpty()) {
+            clubs = clubRepository.findAllByRegion(region);
+        }
+        else{
+            clubs = clubRepository.findAll();
+        }
+        List<ClubResponseDto> list = new ArrayList<>();
+
+        for (Club c : clubs) {
+            ClubResponseDto dto = ClubResponseDto.builder()
+                    .id(c.getId())
+                    .name(c.getName())
+                    .emblem(c.getEmblem())
+                    .memberCnt(c.getMemberCnt())
+                    .region(c.getRegion())
+                    .build();
+
+            list.add(dto);
+        }
+        return list;
+
     }
 
 }
