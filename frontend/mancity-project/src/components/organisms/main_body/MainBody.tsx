@@ -3,6 +3,8 @@ import GlobalCard from "@/components/molecules/global_card/GlobalCard";
 import Typography from "@/components/atoms/typography/Typography";
 import ClubList from "@/components/molecules/club_list/ClubList";
 import { useNavigate } from "react-router-dom";
+import HalfCard from "@/components/molecules/half_card/HalfCard";
+import HomeCard from "@/components/molecules/home_card/HomeCard";
 
 const MainBody = () => {
   const settings = {
@@ -18,10 +20,29 @@ const MainBody = () => {
   };
   return (
     <>
-      {/* 매치등록하기랑 매치둘러보기 버튼 */}
-      {/* 용병 둘러보기 버튼 */}
+      {/* 매치등록하기랑 매치둘러보기 버튼
+      <div className="flex justify-around">
+        <div className="w-full ml-3 mr-1">
+        <HalfCard maintext="매치등록하기" />
+        </div>
+        <div className="w-full ml-1 mr-3">
+        <HalfCard maintext="매치둘러보기" />
+        </div>
+      </div> */}
 
-      <div id="glassui" className="m-4">
+      {/* 용병 둘러보기 버튼 */}
+      <div className="mx-4 mb-4">
+        <HomeCard
+          maintext="매치를 구경해보세요"
+          subtext="마음에 드는 매치가 없다면 매치 등록!"
+        />
+      </div>
+
+      <div className="relative flex justify-center h-[50vh]">
+        <img src="/src/assets/imgs/comeon.png" alt="man" />
+      </div>
+
+      <div id="glassui" className="px-2 mx-4 mb-4">
         <div className="flex items-end justify-between p-3">
           <Typography
             fontWeight="font-medium"
@@ -29,7 +50,9 @@ const MainBody = () => {
             textColor="text-black"
             textSize="text-2xl"
           />
-          <span onClick={() => handleNavigate({ path: "/replay" })}>더보기</span>
+          <span onClick={() => handleNavigate({ path: "/replay" })}>
+            더보기
+          </span>
         </div>
         <div className="flex items-center w-full p-2 overflow-y-hidden">
           <GlobalCard
