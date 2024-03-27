@@ -1,17 +1,17 @@
-import FontawsomeIcon from "@/components/atoms/fontawsome_icon/FontawsomeIcon"
-import GlobalInput from "@/components/atoms/global_input/GlobalInput"
+import FontawsomeIcon from "@/components/atoms/fontawsome_icon/FontawsomeIcon";
+import MuiAutocomplete from "@/components/atoms/mui_autocomplete/MuiAutocomplete";
 
-const SearchBar = () => {
+const SearchBar = ({ contents }: { contents: matchPlace[] }) => {
   return (
     <div className="flex items-center mr-3">
-      <div className="flex-grow">
-        <GlobalInput placeholder="검색어를 입력하세요" width="w-full"/>
+      <div className="flex-grow w-full">
+        <MuiAutocomplete contents={contents} />
       </div>
       <div className="flex-grow-0 cursor-pointer">
         <FontawsomeIcon icon="magnifying-glass" />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SearchBar
+export default SearchBar;

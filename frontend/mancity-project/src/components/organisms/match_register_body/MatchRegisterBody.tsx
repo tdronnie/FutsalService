@@ -4,7 +4,6 @@ import Dropdown from "@/components/molecules/dropdown/Dropdown";
 import { forwardRef, useEffect, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import DatePicker from "react-datepicker";
-import FontawsomeIcon from "@/components/atoms/fontawsome_icon/FontawsomeIcon";
 
 import "react-datepicker/dist/react-datepicker.css";
 import Typography from "@/components/atoms/typography/Typography";
@@ -55,12 +54,29 @@ const MatchRegisterBody = () => {
 
   // 수준
   const LevelInfo = [
-    { value: 1, label: "하수준" },
-    { value: 2, label: "중수준" },
-    { value: 3, label: "상수준" },
+    { value: 1, label: "취미풋살" },
+    { value: 2, label: "선출포함" },
+    { value: 3, label: "프로풋살" },
   ];
-  const [levelLabel, setLevelLabel] = useState("수준");
+  const [levelLabel, setLevelLabel] = useState("선출");
   const [levelValue, setLevelValue] = useState(0);
+
+  const matchPlace: matchPlace[] = [
+    { value: 1, label: "서울" },
+    { value: 2, label: "경기" },
+    { value: 3, label: "광주" },
+    { value: 4, label: "대구" },
+    { value: 5, label: "대전" },
+    { value: 6, label: "인천" },
+    { value: 7, label: "강원" },
+    { value: 8, label: "경상" },
+    { value: 9, label: "부산" },
+    { value: 10, label: "세종" },
+    { value: 11, label: "울산" },
+    { value: 12, label: "전라" },
+    { value: 13, label: "제주" },
+    { value: 14, label: "충청" },
+  ];
 
   // 유효성 검사 상태 추가
   const [isFormValid, setIsFormValid] = useState(false);
@@ -97,17 +113,27 @@ const MatchRegisterBody = () => {
       <div>
         <WheelPicker timeValue={timeValue} setTimeValue={setTimeValue} />
       </div>
-      {/* 장소 */}
+      {/* 경기장 */}
       <div className="mt-6 ml-4 mr-1">
         <div className="flex-row">
           <Typography
             textSize="text-sm"
             fontWeight="font-medium"
             textColor="text-sofcity"
-            label="장소"
+            label="경기장"
           />
-          <SearchBar />
+          <SearchBar contents={matchPlace} />
         </div>
+      </div>
+      {/* 인원 */}
+      <div>
+        <Dropdown
+          typographyLabel="인원"
+          items={RuleInfo}
+          position={ruleLabel}
+          setPosition={setRuleLabel}
+          setNumberValue={setRuleValue}
+        />
       </div>
       {/* 성별 */}
 
@@ -120,19 +146,10 @@ const MatchRegisterBody = () => {
           setNumberValue={setGenderValue}
         />
       </div>
-      <div>
-        <Dropdown
-          typographyLabel="인원"
-          items={RuleInfo}
-          position={ruleLabel}
-          setPosition={setRuleLabel}
-          setNumberValue={setRuleValue}
-        />
-      </div>
 
       <div>
         <Dropdown
-          typographyLabel="수준"
+          typographyLabel="선출"
           items={LevelInfo}
           position={levelLabel}
           setPosition={setLevelLabel}
