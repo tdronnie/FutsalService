@@ -25,7 +25,7 @@ const TimePicker = (props: TimePickerPropsType) => {
           checking={false}
         />
         {open && (
-          <div className="absolute bg-white border-stone-300 border-2 w-auto top-full left-4 mt-1 ml-[32%] z-10">
+          <div className="absolute bg-white border-stone-300 border-2 w-[94%] top-full left-4 mt-1 z-10">
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer
                 components={["DigitalClock", "MultiSectionDigitalClock"]}
