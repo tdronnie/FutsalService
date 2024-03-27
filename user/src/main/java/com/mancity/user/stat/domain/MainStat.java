@@ -1,5 +1,10 @@
 package com.mancity.user.stat.domain;
 
+import com.mancity.user.stat.application.dto.request.PlusRequestDto;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,7 +14,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Getter
 @Builder
+@Entity
 public class MainStat {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private double goalDecision;
 
     private double pass;
@@ -24,14 +35,12 @@ public class MainStat {
         return goalDecision + distanceCovered + pass + speed + defense;
     }
 
-    public static MainStat from(Stat stat) {
-        return MainStat.builder()
-                .goalDecision(calc(stat.getGoal(), stat.getShot()))
-                .pass(calc(stat.getPass(), stat.getPlayedTimes()))
-                .distanceCovered(calc(stat.getDistanceCovered(), stat.getPlayedTimes()))
-                .speed(calc(stat.getSpeed(), stat.getPlayedTimes()))
-                .defense(calc(stat.getTurnOverInDefense(), stat.getPlayedTimes()))
-                .build();
+    public void update(Stat stat) {
+        this.goalDecision = (calc(stat.getGoal(), stat.getShot()));
+        this.pass = (calc(stat.getPass(), stat.getPlayedTimes()));
+        this.distanceCovered = (calc(stat.getDistanceCovered(), stat.getPlayedTimes()));
+        this.speed = (calc(stat.getSpeed(), stat.getPlayedTimes()));
+        this.defense = (calc(stat.getTurnOverInDefense(), stat.getPlayedTimes()));
     }
 
     private static double calc(int x, int y) {
