@@ -82,7 +82,9 @@ interface InputGroupPropsType {
   setTextValue?:
     | React.Dispatch<React.SetStateAction<string>>
     | React.Dispatch<React.SetStateAction<number>>;
-  setIsCheck?: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsCheck?:
+    | React.Dispatch<React.SetStateAction<boolean>>
+    | React.Dispatch<React.SetStateAction<null>>;
 }
 
 interface GlobalCardProps {
