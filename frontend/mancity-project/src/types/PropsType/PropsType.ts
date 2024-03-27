@@ -175,3 +175,7 @@ interface muiModalPropsType {
   handleOpen: () => void;
   handleClose: () => void;
 }
+
+interface userStatModalPropsType {
+  userId: number;
+}

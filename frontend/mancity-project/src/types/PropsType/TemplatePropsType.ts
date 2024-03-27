@@ -20,8 +20,15 @@ interface ProfilePropsType {
     follower: number;
     following: number;
     // club
-    club: string | null;
     clubId: number | null;
+    club: {
+      id: number;
+      name: string;
+      emblem: string;
+      memberCnt: number;
+      score: number;
+      region: string;
+    };
     // 용병 여부
     player: boolean;
     // 평균 스탯
