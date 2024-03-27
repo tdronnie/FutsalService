@@ -3,7 +3,7 @@ import time
 
 app = Flask(__name__)
 
-@app.route("/track", methods=['POST'])
+@app.route("/api/track", methods=['POST'])
 def track_request():
     args_dict = request.form.to_dict()
     time.sleep(100)
