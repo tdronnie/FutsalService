@@ -20,9 +20,8 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequestDto dto) throws Exception {
-        userService.login(dto); // 토큰 생성 후 리턴해주는 로직 필요
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<Long> login(@RequestBody LoginRequestDto dto) throws Exception {
+        return new ResponseEntity<>(userService.login(dto), HttpStatus.OK);
     }
 
     @GetMapping("/logout")

@@ -31,7 +31,7 @@ public class UserService {
 
     private final S3Uploader s3Uploader;
 
-    public void login(LoginRequestDto dto) {
+    public long login(LoginRequestDto dto) {
         User user = userRepository.findByEmail(dto.getEmail())
                 .orElseThrow(UserNotExistException::new);
 
@@ -42,6 +42,8 @@ public class UserService {
             // token 생성 후 response dto는 구현 안되어있습니다.
             // 토큰이랑 유저 정보를 넘겨줘야 할 수도 ?
         }
+
+        return user.getId();
     }
 
     public void signUp(SingUpRequestDto dto) {
