@@ -26,6 +26,8 @@ public class UserResponseDto {
 
     private boolean isPlayer;
 
+    private String image;
+
     public static UserResponseDto from(User user) {
         return UserResponseDto.builder()
                 .id(user.getId())
@@ -35,6 +37,7 @@ public class UserResponseDto {
                 .weight(user.getWeight())
                 .foot(user.getFoot())
                 .isPlayer(user.isPlayer())
+                .image(user.getImage())
                 .build();
     }
 
