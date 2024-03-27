@@ -3,24 +3,98 @@ import Dropdown from "@/components/molecules/dropdown/Dropdown";
 import EditContentBox from "@/components/molecules/edit_content_box/EditContentBox";
 import InputGroup from "@/components/molecules/input_group/InputGroup";
 import GlobalSwitch from "@/components/molecules/global_switch/GlobalSwitch";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import Typography from "@/components/atoms/typography/Typography";
+import { useMutation } from "@tanstack/react-query";
+import { profileEditApi } from "@/apis/userApis";
 import { useNavigate } from "react-router-dom";
 
-const ProfileEditBody = ({ profileData }: ProfilePropsType) => {
+const ProfileEditBody = ({ userInfoData }: UserInfoPropsType) => {
   const navigate = useNavigate();
   const MainFootInfo = [
     { value: 1, label: "왼발" },
     { value: 2, label: "오른발" },
   ];
 
-  const [mainFootPosition, setMainFootPosition] = useState(profileData.foot);
-  const [mainFootValue, setMainFootValue] = useState(profileData.foot);
-  const [nickNameValue, setNickNameValue] = useState(profileData.nickName);
-  const [heightValue, setHeightValue] = useState(profileData.height);
-  const [weightValue, setWeightValue] = useState(profileData.weight);
+  const inputFileRef = useRef<HTMLInputElement>(null);
 
-  const [isSwitchOn, setIsSwitchOn] = useState(false);
+  const triggerFileInput = () => {
+    // inputFileRef.current가 존재하면 해당 요소의 클릭 이벤트를 실행
+    inputFileRef.current?.click();
+  };
 
+  // 프로필 이미지 저장
+  const [imageFilesValue, setImageFiles] = useState<File[]>([]);
+  const [imageViewValue, setImageView] = useState<string[]>([]);
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.target;
+    const imageUrlLists: string[] = [];
+    if (files) {
+      const fileArray = Array.from(files, (f) => f as File);
+      setImageFiles(fileArray);
+      const currentImageUrl = URL.createObjectURL(files[0]);
+      imageUrlLists.push(currentImageUrl);
+    }
+    setImageView(imageUrlLists);
+  };
+
+  const [mainFootPosition, setMainFootPosition] = useState(
+    userInfoData.foot === 0 ? "왼발" : "오른발"
+  );
+  const [mainFootValue, setMainFootValue] = useState<number>(userInfoData.foot);
+  const [nickNameValue, setNickNameValue] = useState<string>(
+    userInfoData.nickName
+  );
+  const [heightValue, setHeightValue] = useState<string>(
+    String(userInfoData.height)
+  );
+  const [weightValue, setWeightValue] = useState(String(userInfoData.weight));
+  const [playerValue, setPlayerValue] = useState<boolean>(userInfoData.player);
+  const [isNicknameCheck, setIsNicknameCheck] = useState<boolean | null>(null);
+
+  const [profileEditData, setProfileEditData] = useState({
+    image: imageFilesValue,
+    dto: {
+      id: userInfoData.id,
+      nickName: nickNameValue,
+      height: Number(heightValue),
+      weight: Number(weightValue),
+      foot: mainFootValue,
+      isPlayer: playerValue,
+    },
+  });
+
+  // const [submitData, setSubmitData] = useState({
+  //   image:'',
+  //   dto: {},
+  // });
+
+  // 데이터 하나에 묶기
+  useEffect(() => {
+    setProfileEditData((prevState) => ({
+      ...prevState,
+      image: imageFilesValue,
+      dto: {
+        ...prevState.dto,
+        nickName: nickNameValue,
+        height: Number(heightValue),
+        weight: Number(weightValue),
+        foot: mainFootValue,
+        isPlayer: playerValue,
+      },
+    }));
+    console.log(profileEditData);
+  }, [
+    imageFilesValue,
+    nickNameValue,
+    heightValue,
+    weightValue,
+    mainFootValue,
+    playerValue,
+  ]);
+
+  // 유효성 검사
   const isNotEmpty = (value: string) => {
     return value.trim() !== "";
   };
@@ -28,33 +102,85 @@ const ProfileEditBody = ({ profileData }: ProfilePropsType) => {
   const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
-    // 모든 입력값의 유효성 검사
     const isValid =
-      isNotEmpty(nickNameValue) &&
-      mainFootValue !== 0 &&
-      heightValue !== 0 &&
-      weightValue != 0;
+      isNotEmpty(nickNameValue) && heightValue !== "" && weightValue !== "";
 
     setIsFormValid(isValid);
   }, [nickNameValue, mainFootValue, heightValue, weightValue]);
 
+  // put api 로직
+  const { mutate } = useMutation({
+    mutationFn: profileEditApi,
+    onSuccess(result: boolean) {
+      console.log(result);
+    },
+    onError(error) {
+      console.log(error);
+    },
+  });
+
   const onEditProfile = () => {
-    console.log("수정된 회원정보 제출");
+    const formData: FormData = new FormData();
+    if (imageFilesValue.length > 0) {
+      formData.append("image", imageFilesValue[0]);
+    }
+    formData.append(
+      "dto",
+      new Blob([JSON.stringify(profileEditData.dto)], {
+        type: "application/json",
+      })
+    );
+
+    mutate(formData);
     navigate("/");
   };
 
   return (
     <div className="">
-      <div className=" flex m-3 justify-center  ">
-        <EditContentBox width="w-36" height="h-36" rounded="rounded-full" />
+      {/* 프로필 이미지 */}
+      <div className=" flex m-3 justify-center " onClick={triggerFileInput}>
+        <EditContentBox
+          width="w-36"
+          height="h-36"
+          rounded="rounded-full"
+          file={imageViewValue[0]}
+        />
+        <div className="absolute opacity-0  w-36 h-36 text-sm">
+          <input
+            className=""
+            id="image"
+            type="file"
+            accept="image/*"
+            onChange={handleFileUpload}
+            ref={inputFileRef}
+          />
+        </div>
       </div>
+
       <div className="my-6">
         <InputGroup
           typographyLabel="닉네임"
           checking={true}
           textValue={nickNameValue}
           setTextValue={setNickNameValue}
+          setIsCheck={setIsNicknameCheck}
         />
+        <div className="text-mancity mx-4 -my-3 ">
+          {nickNameValue && (
+            <>
+              {isNicknameCheck !== null && (
+                <Typography
+                  textSize="text-sm"
+                  label={
+                    isNicknameCheck
+                      ? "중복된 닉네임입니다."
+                      : "사용 가능한 닉네임입니다."
+                  }
+                />
+              )}
+            </>
+          )}
+        </div>
       </div>
       <div className="mb-6">
         <div className="flex flex-row ">
@@ -63,7 +189,7 @@ const ProfileEditBody = ({ profileData }: ProfilePropsType) => {
               typographyLabel="키 (cm)"
               placeholder="175"
               checking={false}
-              textValue={heightValue}
+              textValue={String(heightValue)}
               setTextValue={setHeightValue}
             />
           </div>
@@ -72,7 +198,7 @@ const ProfileEditBody = ({ profileData }: ProfilePropsType) => {
               typographyLabel="몸무게 (kg)"
               placeholder="70"
               checking={false}
-              textValue={weightValue}
+              textValue={String(weightValue)}
               setTextValue={setWeightValue}
             />
           </div>
@@ -91,17 +217,17 @@ const ProfileEditBody = ({ profileData }: ProfilePropsType) => {
             {/* checked에는 해당 회원이 등록허용 해 뒀는지 값을 넣기 */}
             <GlobalSwitch
               label="용병등록"
-              isSwitchOn={isSwitchOn}
-              setIsSwitchOn={setIsSwitchOn}
+              isSwitchOn={playerValue}
+              setIsSwitchOn={setPlayerValue}
               switchMarginTop="ml-8 mt-16 "
             />
           </div>
         </div>
-        <div className=" flex justify-end">
+        {/* <div className=" flex justify-end">
           <div className="text-red-500 text-right mr-4 cursor-pointer">
             회원탈퇴
           </div>
-        </div>
+        </div> */}
       </div>
       <div onClick={onEditProfile} className="flex justify-end m-4 ">
         <ReverseButton

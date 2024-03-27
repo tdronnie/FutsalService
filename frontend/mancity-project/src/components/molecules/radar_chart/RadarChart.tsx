@@ -47,6 +47,7 @@ export const RadarChart = () => {
         ticks: {
           stepSize: 25,
           display: true,
+          backdropColor: "rgba(0, 0, 0, 0)",
         },
         grid: {
           // 원형

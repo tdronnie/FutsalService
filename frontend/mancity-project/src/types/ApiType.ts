@@ -13,3 +13,15 @@ interface loginApiType {
   email: string;
   password: string;
 }
+
+interface profileEditApiType {
+  image: File[] | null;
+  dto: {
+    id: number;
+    nickName: string;
+    height: number;
+    weight: number;
+    foot: number;
+    isPlayer: boolean;
+  };
+}

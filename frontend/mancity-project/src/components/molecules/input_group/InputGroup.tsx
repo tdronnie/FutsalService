@@ -22,10 +22,11 @@ const InputGroup = (props: InputGroupPropsType) => {
     onSuccess(result: boolean) {
       if (setIsCheck) {
         if (!result) {
-          console.log("사용 가능한 이메일입니다.");
+          // console.log("사용 가능한 이메일입니다.");
           setIsCheck(false);
         } else {
-          console.log("사용할 수 없는 이메일입니다.");
+          // console.log("사용할 수 없는 이메일입니다.");
+          setIsCheck(true);
         }
       }
     },
@@ -40,10 +41,11 @@ const InputGroup = (props: InputGroupPropsType) => {
     onSuccess(result: boolean) {
       if (setIsCheck) {
         if (!result) {
-          console.log("사용 가능한 닉네임입니다.");
+          // console.log("사용 가능한 닉네임입니다.");
           setIsCheck(false);
         } else {
-          console.log("사용할 수 없는 닉네임입니다.");
+          // console.log("사용할 수 없는 닉네임입니다.");
+          setIsCheck(true);
         }
       }
     },

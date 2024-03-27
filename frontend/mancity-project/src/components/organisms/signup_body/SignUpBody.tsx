@@ -30,8 +30,10 @@ const SignUpBody = () => {
   const [birthValue, setBirthValue] = useState("");
   const [heightValue, setHeightValue] = useState("");
   const [weightValue, setWeightValue] = useState("");
-  const [isEmailCheck, setIsEmailCheck] = useState(true);
-  const [isNicknameCheck, setIsNicknameCheck] = useState(true);
+  const [isEmailCheck, setIsEmailCheck] = useState<boolean | null>(null);
+  const [isNicknameCheck, setIsNicknameCheck] = useState<boolean | null>(null);
+
+  console.log(isEmailCheck);
 
   const [signupData, setSignupData] = useState({
     email: "",
@@ -128,12 +130,10 @@ const SignUpBody = () => {
 
   // 회원가입 제출
   const onSubmitSignup = () => {
-    console.log(signupData);
-    console.log("회원가입 정보 제출");
     if (isFormValid) {
       mutate(signupData);
     }
-    // navigate("/");
+    navigate("/login");
   };
 
   return (
@@ -153,6 +153,20 @@ const SignUpBody = () => {
               textSize="text-sm"
               label="이메일 형식이 맞지 않습니다"
             />
+          )}
+          {emailValue && validateEmail(emailValue) && (
+            <>
+              {isEmailCheck !== null && (
+                <Typography
+                  textSize="text-sm"
+                  label={
+                    isEmailCheck
+                      ? "중복된 이메일입니다."
+                      : "사용 가능한 이메일입니다."
+                  }
+                />
+              )}
+            </>
           )}
         </div>
       </div>
@@ -201,6 +215,22 @@ const SignUpBody = () => {
           setTextValue={setNickNameValue}
           setIsCheck={setIsNicknameCheck}
         />
+        <div className="text-mancity mx-4 -my-3 ">
+          {nickNameValue && (
+            <>
+              {isNicknameCheck !== null && (
+                <Typography
+                  textSize="text-sm"
+                  label={
+                    isNicknameCheck
+                      ? "중복된 닉네임입니다."
+                      : "사용 가능한 닉네임입니다."
+                  }
+                />
+              )}
+            </>
+          )}
+        </div>
       </div>
       <div className="mt-6">
         <InputGroup
