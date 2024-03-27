@@ -5,6 +5,9 @@ import com.mancity.user.stat.application.dto.response.StatAvgResponseDto;
 import com.mancity.user.stat.application.dto.response.StatTotalResponseDto;
 import com.mancity.user.stat.domain.Stat;
 import com.mancity.user.stat.domain.repository.StatRepository;
+import com.mancity.user.user.domain.User;
+import com.mancity.user.user.domain.repository.UserRepository;
+import com.mancity.user.user.exception.UserNotExistException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,10 +21,15 @@ public class StatService {
 
     private final StatRepository statRepository;
 
+    private final UserRepository userRepository;
+
     public void plus(PlusRequestDto dto){
-        Stat stat = statRepository.findById(dto.getId())
-                .orElseThrow();
-        stat.plusStat(dto);
+        User user = userRepository.findById(dto.getId()).orElseThrow(UserNotExistException::new);
+        user.getStat().plusStat(dto);
+        user.getMainStat().update(user.getStat());
+        user.getLastStat().update(dto);
+
+        userRepository.save(user);
     }
 
     public StatAvgResponseDto findAvgById(long id){
