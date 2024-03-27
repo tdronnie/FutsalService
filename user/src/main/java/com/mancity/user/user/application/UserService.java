@@ -5,6 +5,7 @@ import com.mancity.user.follow.application.dto.response.FollowResponseDto;
 import com.mancity.user.stat.domain.LastStat;
 import com.mancity.user.stat.domain.MainStat;
 import com.mancity.user.stat.domain.Stat;
+import com.mancity.user.common.s3.util.S3Uploader;
 import com.mancity.user.user.application.dto.request.*;
 import com.mancity.user.user.application.dto.response.ProfileResponseDto;
 import com.mancity.user.user.application.dto.response.UserResponseDto;
@@ -17,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @RequiredArgsConstructor
@@ -26,6 +28,8 @@ public class UserService {
     private final UserRepository userRepository;
 
     private final FollowService followService;
+
+    private final S3Uploader s3Uploader;
 
     public void login(LoginRequestDto dto) {
         User user = userRepository.findByEmail(dto.getEmail())
@@ -56,9 +60,13 @@ public class UserService {
         // 얘가 가진거 다 삭제해줘야할 듯
     }
 
-    public void updateInfo(UpdateRequestDto dto) {
+    public void updateInfo(MultipartFile image, UpdateRequestDto dto) {
         User user = userRepository.findById(dto.getId())
                 .orElseThrow(UserNotExistException::new);
+        if (image != null) {
+            String url = s3Uploader.uploadEmblem("image", image);
+            user.uploadImage(url);
+        }
         user.update(dto);
     }
 
