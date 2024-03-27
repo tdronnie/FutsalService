@@ -16,7 +16,7 @@ export default defineConfig({
     port: 3000,
     host: true,
     hmr: {
-      host: "localhost",
+      host: "j10c201.p.ssafy.io/",
       protocol: "ws",
   },
   },
