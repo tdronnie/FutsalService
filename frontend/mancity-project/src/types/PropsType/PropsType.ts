@@ -78,13 +78,9 @@ interface InputGroupPropsType {
   placeholder?: string;
   checking: boolean;
   checkingLabel?: string;
-  textValue?: string | number;
-  setTextValue?:
-    | React.Dispatch<React.SetStateAction<string>>
-    | React.Dispatch<React.SetStateAction<number>>;
-  setIsCheck?:
-    | React.Dispatch<React.SetStateAction<boolean>>
-    | React.Dispatch<React.SetStateAction<null>>;
+  textValue?: string;
+  setTextValue?: React.Dispatch<React.SetStateAction<string>>;
+  setIsCheck?: React.Dispatch<React.SetStateAction<boolean | null>>;
 }
 
 interface GlobalCardProps {

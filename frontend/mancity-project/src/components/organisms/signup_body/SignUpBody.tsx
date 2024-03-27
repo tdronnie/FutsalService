@@ -30,8 +30,8 @@ const SignUpBody = () => {
   const [birthValue, setBirthValue] = useState("");
   const [heightValue, setHeightValue] = useState("");
   const [weightValue, setWeightValue] = useState("");
-  const [isEmailCheck, setIsEmailCheck] = useState(null);
-  const [isNicknameCheck, setIsNicknameCheck] = useState(null);
+  const [isEmailCheck, setIsEmailCheck] = useState<boolean | null>(null);
+  const [isNicknameCheck, setIsNicknameCheck] = useState<boolean | null>(null);
 
   console.log(isEmailCheck);
 
@@ -130,12 +130,10 @@ const SignUpBody = () => {
 
   // 회원가입 제출
   const onSubmitSignup = () => {
-    console.log(signupData);
-    console.log("회원가입 정보 제출");
     if (isFormValid) {
       mutate(signupData);
     }
-    // navigate("/");
+    navigate("/");
   };
 
   return (
@@ -218,7 +216,7 @@ const SignUpBody = () => {
           setIsCheck={setIsNicknameCheck}
         />
         <div className="text-mancity mx-4 -my-3 ">
-          {nickNameValue && validateEmail(emailValue) && (
+          {nickNameValue && (
             <>
               {isNicknameCheck !== null && (
                 <Typography
