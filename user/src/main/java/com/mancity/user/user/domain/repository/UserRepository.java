@@ -20,4 +20,20 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("select u.id, u.nickName, u.image, u.mainStat.goalDecision, u.mainStat.pass, u.mainStat.speed, u.mainStat.distanceCovered, u.mainStat.defense from User u where u.isPlayer = true")
     List<Object[]> findAllPlayers();
+
+    @Query("select u.id, u.nickName, u.image, u.mainStat.goalDecision, u.mainStat.pass, u.mainStat.speed, u.mainStat.distanceCovered, u.mainStat.defense from User u where u.isPlayer = true order by u.mainStat.goalDecision DESC")
+    List<Object[]> getListOrderByGoalDecision();
+
+    @Query("select u.id, u.nickName, u.image, u.mainStat.goalDecision, u.mainStat.pass, u.mainStat.speed, u.mainStat.distanceCovered, u.mainStat.defense from User u where u.isPlayer = true order by u.mainStat.pass DESC")
+    List<Object[]> getListOrderByPass();
+
+    @Query("select u.id, u.nickName, u.image, u.mainStat.goalDecision, u.mainStat.pass, u.mainStat.speed, u.mainStat.distanceCovered, u.mainStat.defense from User u where u.isPlayer = true order by u.mainStat.speed DESC")
+    List<Object[]> getListOrderBySpeed();
+
+    @Query("select u.id, u.nickName, u.image, u.mainStat.goalDecision, u.mainStat.pass, u.mainStat.speed, u.mainStat.distanceCovered, u.mainStat.defense from User u where u.isPlayer = true order by u.mainStat.distanceCovered DESC")
+    List<Object[]> getListOrderByCovered();
+
+    @Query("select u.id, u.nickName, u.image, u.mainStat.goalDecision, u.mainStat.pass, u.mainStat.speed, u.mainStat.distanceCovered, u.mainStat.defense from User u where u.isPlayer = true order by u.mainStat.defense DESC")
+    List<Object[]> getListOrderByDefense();
+
 }

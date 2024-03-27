@@ -78,8 +78,17 @@ public class UserController {
         return new ResponseEntity<>(userService.getProfilePage(id), HttpStatus.OK);
     }
 
-    @GetMapping("/players")
-    public ResponseEntity<List<PlayerListResponseDto>> playerList() {
-        return new ResponseEntity<>(userService.playerList(), HttpStatus.OK);
+    @GetMapping( "/players")
+    public ResponseEntity<List<PlayerListResponseDto>> getPlayerList() {
+        return new ResponseEntity<>(userService.getPlayerList(), HttpStatus.OK);
     }
+
+    @GetMapping("/players/{mainStat}")
+    public ResponseEntity<List<PlayerListResponseDto>> getPlayerListOrderByMainStat(@PathVariable String mainStat) {
+        return new ResponseEntity<>(userService.getPlayerListOrderByMainStat(mainStat), HttpStatus.OK);
+    }
+
+
+
+
 }

@@ -10,12 +10,15 @@ import com.mancity.user.user.application.dto.request.*;
 import com.mancity.user.user.application.dto.response.PlayerListResponseDto;
 import com.mancity.user.user.application.dto.response.ProfileResponseDto;
 import com.mancity.user.user.application.dto.response.UserResponseDto;
+import com.mancity.user.user.domain.PlayerOrderType;
 import com.mancity.user.user.domain.User;
 import com.mancity.user.user.domain.repository.UserRepository;
+import com.mancity.user.user.exception.NotSupportSuchTypeException;
 import com.mancity.user.user.exception.PasswordNotMatchException;
 import com.mancity.user.user.exception.UserNotExistException;
 import com.mancity.user.user.infrastructure.util.PasswordEncoder;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,6 +29,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional
+@Slf4j
 public class UserService {
 
     private final UserRepository userRepository;
@@ -105,9 +109,40 @@ public class UserService {
         return ProfileResponseDto.of(user, dto);
     }
 
-    public List<PlayerListResponseDto> playerList() {
+    public List<PlayerListResponseDto> getPlayerListOrderByMainStat(String mainStat) {
+
+        List<Object[]> players;
+        PlayerOrderType orderType = PlayerOrderType.valueOf(mainStat);
+        log.info("정렬 스탯={}", orderType);
+
+        try {
+            players = orderType.getListByPlayerOrderType(userRepository);
+        } catch (IllegalArgumentException e) {
+            throw new NotSupportSuchTypeException();
+        }
+
+
+        List<PlayerListResponseDto> dtoList = new ArrayList<>();
+
+        for (Object[] player : players) {
+            dtoList.add(PlayerListResponseDto.builder()
+                    .id((Long) player[0])
+                    .nickName((String) player[1])
+                    .image((String) player[2])
+                    .goalDecision((double) player[3])
+                    .pass((double) player[4])
+                    .speed((double) player[5])
+                    .distanceCovered((double) player[6])
+                    .defense((double) player[7])
+                    .build());
+        }
+        return dtoList;
+    }
+
+    public List<PlayerListResponseDto> getPlayerList() {
 
         List<Object[]> players = userRepository.findAllPlayers();
+
         List<PlayerListResponseDto> dtoList = new ArrayList<>();
 
         for (Object[] player : players) {
