@@ -13,7 +13,12 @@ export default defineConfig({
     },
   },
   server: {
-    port: 3000,
+    watch: {
+      usePolling: true,
+    },
     host: true,
+    strictPort: true,
+    port: 3000,
+    hmr: false,
   },
 });

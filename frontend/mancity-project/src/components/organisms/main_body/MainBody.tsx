@@ -1,12 +1,8 @@
-import Slider from "react-slick";
 import "./slick.css";
-import WideCard from "@/components/molecules/wide_card/WideCard";
 import GlobalCard from "@/components/molecules/global_card/GlobalCard";
 import Typography from "@/components/atoms/typography/Typography";
-import SubButton from "@/components/atoms/sub_button/SubButton";
 import ClubList from "@/components/molecules/club_list/ClubList";
 import { useNavigate } from "react-router-dom";
-import IconButton from "@/components/atoms/icon_button/IconButton";
 
 const MainBody = () => {
   const settings = {
@@ -22,18 +18,18 @@ const MainBody = () => {
   };
   return (
     <>
-
-{/* 매치등록하기랑 매치둘러보기 버튼 */}
-{/* 용병 둘러보기 버튼 */}
+      {/* 매치등록하기랑 매치둘러보기 버튼 */}
+      {/* 용병 둘러보기 버튼 */}
 
       <div id="glassui" className="m-4">
-        <div className="p-3">
+        <div className="flex items-end justify-between p-3">
           <Typography
             fontWeight="font-medium"
             label="지난 경기 다시보기"
             textColor="text-black"
             textSize="text-2xl"
           />
+          <span onClick={() => handleNavigate({ path: "/replay" })}>더보기</span>
         </div>
         <div className="flex items-center w-full p-2 overflow-y-hidden">
           <GlobalCard
@@ -94,12 +90,6 @@ const MainBody = () => {
           clubInfo="3경기 10골 8도움"
           file="/src/assets/imgs/mancity_logo.png"
         />
-        {/* <div
-          className="flex justify-center my-2"
-          onClick={() => handleNavigate({ path: "/club" })}
-        >
-          <SubButton label="더보기" hover={true} />
-        </div> */}
       </div>
     </>
   );
