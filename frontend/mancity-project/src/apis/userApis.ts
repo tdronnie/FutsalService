@@ -110,3 +110,14 @@ export const unFollowApi = async (followData: followDataType) => {
       throw new Error("언팔로잉 api 에러");
     });
 };
+
+// total stat
+export const totalStatApi = async (userId: number) => {
+  return publicRequest
+    .get(`user/stat/total/${userId}`)
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+      throw new Error("total stat api 에러");
+    });
+};
