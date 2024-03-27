@@ -195,13 +195,7 @@
   max-width: 576px;
   min-height: 100vh;
   margin: auto;
-  background-image: linear-gradient(
-    to bottom,
-    #e3f2fd 0vh,
-    #bbdefb 60vh,
-    #90caf9 90vh,
-    #64b5f6 100vh
-  );
+  background-color: #fff;
 }
 .TooSmall {
   display: none;
@@ -226,7 +220,7 @@
 }
 
 /* 글래스모피즘 구현 */
-#glassbox {
+#glassnav {
   backdrop-filter: blur(5px);
   background-color: rgba(255, 255, 255, 0.5);
   box-shadow:
