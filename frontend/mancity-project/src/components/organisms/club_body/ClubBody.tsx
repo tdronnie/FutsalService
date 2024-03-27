@@ -36,7 +36,7 @@ const ClubBody = () => {
                 <SortButton label="정렬" width="w-16" hover={false} />
               </div>
               <div className="w-full">
-                <SearchBar />
+                <SearchBar contents={[]} />
               </div>
             </div>
             <WideCard
@@ -59,7 +59,7 @@ const ClubBody = () => {
                 <SortButton label="필터" width="w-16" hover={true} />
               </div>
               <div className="w-full">
-                <SearchBar />
+                <SearchBar contents={[]} />
               </div>
             </div>
             <WideCard
