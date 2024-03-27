@@ -35,6 +35,17 @@ interface WideCardPropsType {
   buttonlabel: string;
 }
 
+interface HalfCardPropsType {
+  file?: string;
+  maintext: string;
+}
+
+interface HomeCardPropsType {
+  file?: string;
+  maintext: string;
+  subtext: string;
+}
+
 interface CommunityCardPropsType {
   file?: string;
   subtext: string;

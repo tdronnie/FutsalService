@@ -7,9 +7,8 @@ const MainHeader = () => {
     navigate(path);
   };
   return (
-    <>
       <div className="flex justify-between py-3">
-        <div className="flex items-center">
+        <div id="glassui" className="flex items-center pr-4 ml-3">
           <img
             src="/src/assets/imgs/mancity_logo_no_background.png"
             alt="logo"
@@ -23,8 +22,8 @@ const MainHeader = () => {
           </div>
         </div>
         <div className="flex">
-          <div
-            className="m-5 cursor-pointer"
+          <div id="glassui"
+            className="p-2 my-5 mr-5 cursor-pointer"
             onClick={() => handleNavigate({ path: "/alert" })}
           >
             <FontawsomeIcon
@@ -35,7 +34,6 @@ const MainHeader = () => {
           </div>
         </div>
       </div>
-    </>
   );
 };
 
