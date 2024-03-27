@@ -56,9 +56,13 @@ interface ClubListPropsType {
 interface ShadcnDropdownPropsType {
   items: { value: number; label: string }[];
   width?: string;
-  position: number;
-  setPosition?: React.Dispatch<React.SetStateAction<number>>;
-  setNumberValue?: React.Dispatch<React.SetStateAction<number>>;
+  position: string | number | undefined;
+  setPosition?:
+    | React.Dispatch<React.SetStateAction<number>>
+    | React.Dispatch<React.SetStateAction<string>>;
+  setNumberValue?:
+    | React.Dispatch<React.SetStateAction<number>>
+    | React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface DropdownPropsType extends ShadcnDropdownPropsType {
@@ -155,4 +159,9 @@ interface FollowCardPropsType {
   nickName: string;
   isFollow: boolean;
   setIsFollow: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+interface matchPlace {
+  value: number;
+  label: string;
 }
