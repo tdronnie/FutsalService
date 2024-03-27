@@ -2,6 +2,7 @@ package com.mancity.user.user.presentation;
 
 import com.mancity.user.user.application.UserService;
 import com.mancity.user.user.application.dto.request.*;
+import com.mancity.user.user.application.dto.response.PlayerListResponseDto;
 import com.mancity.user.user.application.dto.response.ProfileResponseDto;
 import com.mancity.user.user.application.dto.response.UserResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -73,5 +76,10 @@ public class UserController {
     @GetMapping("/profile/{id}")
     public ResponseEntity<ProfileResponseDto> getProfilePage(@PathVariable("id") long id) {
         return new ResponseEntity<>(userService.getProfilePage(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/players")
+    public ResponseEntity<List<PlayerListResponseDto>> playerList() {
+        return new ResponseEntity<>(userService.playerList(), HttpStatus.OK);
     }
 }
