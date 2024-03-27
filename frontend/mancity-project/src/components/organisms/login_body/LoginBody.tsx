@@ -1,8 +1,8 @@
-import { loginApi } from "@/apis/userApis";
+import { fetchUserApi, loginApi } from "@/apis/userApis";
 import GlobalButton from "@/components/atoms/global_button/GlobalButton";
 import Typography from "@/components/atoms/typography/Typography";
 import InputGroup from "@/components/molecules/input_group/InputGroup";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
@@ -41,22 +41,33 @@ const LoginBody = () => {
     });
   }, [emailValue, passwordValue]);
 
+  // 로그인 한 사용자
+  const [loginId, setLoginId] = useState(0);
+
+  const { data } = useQuery({
+    queryKey: ["loginUserData", loginId],
+    queryFn: () => fetchUserApi(loginId),
+  });
+
+  const { mutate: loginMutate } = useMutation({
+    mutationFn: loginApi,
+    onSuccess(res) {
+      setLoginId(res);
+    },
+    onError() {
+      console.log("로그인 에러");
+    },
+  });
+
   const onSubmitLogin = () => {
     console.log("로그인 정보 제출");
-    mutate(loginData);
+    loginMutate(loginData);
     console.log(loginData);
     setLoginError("이메일 또는 비밀번호가 맞지 않습니다. 다시 확인해 주세요.");
   };
 
-  const { mutate } = useMutation({
-    mutationFn: loginApi,
-    onSuccess() {
-      console.log("로그인되었슴도");
-    },
-    onError() {
-      console.log("여기서 왜 에러남?");
-    },
-  });
+  // 유저정보를 상태관리해야합니다
+  console.log(`유저정보: ${data}`);
 
   return (
     <div>

@@ -8,7 +8,6 @@ import { useMutation } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 
 const ProfileUserInfo = ({ profileData }: ProfilePropsType) => {
-  console.log(profileData);
   // 유저 본인인지 확인해야 한다.
   // 본인이면 프로필 수정버튼, 본인이 아니면 팔로우 혹은 팔로잉 버튼 보이도록 조건 작성해야 한다.
   const userNo = 1;
@@ -77,7 +76,7 @@ const ProfileUserInfo = ({ profileData }: ProfilePropsType) => {
               borderColor="border-[#D4A11E]"
               hoverTextColor="hover:text-white"
               hoverBgColor="hover:bg-[#D4A11E]"
-              label={profileData.club}
+              label={profileData.club.name}
             />
           ) : (
             <></>
