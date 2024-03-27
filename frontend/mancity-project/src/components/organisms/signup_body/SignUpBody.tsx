@@ -133,7 +133,7 @@ const SignUpBody = () => {
     if (isFormValid) {
       mutate(signupData);
     }
-    navigate("/");
+    navigate("/login");
   };
 
   return (
@@ -222,7 +222,7 @@ const SignUpBody = () => {
                 <Typography
                   textSize="text-sm"
                   label={
-                    isEmailCheck
+                    isNicknameCheck
                       ? "중복된 닉네임입니다."
                       : "사용 가능한 닉네임입니다."
                   }
