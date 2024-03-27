@@ -19,10 +19,6 @@ public class Stat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "id")
-    private User user;
-
     private int speed; // 최고속도
 
     private int distanceCovered; // 총 이동 거리

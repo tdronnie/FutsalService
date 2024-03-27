@@ -21,13 +21,13 @@ public class FollowerInfo {
 
     private double overall;
 
-    public static FollowerInfo of(User user, MainStat mainStat){
+    public static FollowerInfo of(User user){
         return FollowerInfo.builder()
                 .userId(user.getId())
                 .nickname(user.getNickName())
 //                .profileImage(user.profileImage())
                 .profileImage("이세은님이 추가하실겁니다.")
-                .overall(mainStat.getOverall())
+                .overall(user.getMainStat().getOverall())
                 .build();
     }
 }

@@ -2,14 +2,15 @@ package com.mancity.user.alarm.application.dto.request;
 
 import com.mancity.user.alarm.domain.Alarm;
 import com.mancity.user.alarm.domain.AlarmDomain;
-import com.mancity.user.alarm.domain.AlarmText;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class AlarmCreateDto {
 
     private long senderId;

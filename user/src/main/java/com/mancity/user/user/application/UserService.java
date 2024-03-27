@@ -1,8 +1,13 @@
 package com.mancity.user.user.application;
 
+import com.mancity.user.follow.application.FollowService;
+import com.mancity.user.follow.application.dto.response.FollowResponseDto;
+import com.mancity.user.stat.domain.LastStat;
+import com.mancity.user.stat.domain.MainStat;
+import com.mancity.user.stat.domain.Stat;
 import com.mancity.user.common.s3.util.S3Uploader;
-import com.mancity.user.stat.application.StatGenerator;
 import com.mancity.user.user.application.dto.request.*;
+import com.mancity.user.user.application.dto.response.ProfileResponseDto;
 import com.mancity.user.user.application.dto.response.UserResponseDto;
 import com.mancity.user.user.domain.User;
 import com.mancity.user.user.domain.repository.UserRepository;
@@ -10,6 +15,7 @@ import com.mancity.user.user.exception.PasswordNotMatchException;
 import com.mancity.user.user.exception.UserNotExistException;
 import com.mancity.user.user.infrastructure.util.PasswordEncoder;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,7 +27,7 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    private final StatGenerator statGenerator;
+    private final FollowService followService;
 
     private final S3Uploader s3Uploader;
 
@@ -40,9 +46,13 @@ public class UserService {
 
     public void signUp(SingUpRequestDto dto) {
         User user = dto.toEntity();
-        // 해당 유저의 stat 생성 필요
+        Stat stat = Stat.builder().build();
+        MainStat mainStat = MainStat.builder().build();
+        LastStat lastStat = LastStat.builder().build();
+        user.updateMainStat(mainStat);
+        user.updateStat(stat);
+        user.updateLastStat(lastStat);
         userRepository.save(user);
-        statGenerator.create(user.getId());
     }
 
     public void withdraw() { // 탈퇴
@@ -85,4 +95,10 @@ public class UserService {
         return true;
     }
 
+    public ProfileResponseDto getProfilePage(long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(UserNotExistException::new);
+        FollowResponseDto dto = followService.findFollowersAndFollowings(id);
+        return ProfileResponseDto.of(user, dto);
+    }
 }
