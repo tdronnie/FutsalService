@@ -16,7 +16,7 @@ const ProfileTemplate = ({ profileData }: ProfilePropsType) => {
       />
       <ProfileUserInfo profileData={profileData} />
       <ProfileUserStats />
-      <GroupGlobalCard />
+      {/* <GroupGlobalCard /> */}
       <GroupHighlightCard />
     </div>
   );
