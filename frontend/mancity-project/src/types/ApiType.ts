@@ -25,3 +25,8 @@ interface profileEditApiType {
     isPlayer: boolean;
   };
 }
+
+interface followDataType {
+  senderId: number;
+  receiverId: number;
+}

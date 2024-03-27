@@ -86,3 +86,27 @@ export const profileEditApi = async (profileEditData: FormData) => {
       throw new Error("개인정보 수정 api 에러");
     });
 };
+
+// 팔로잉
+export const followApi = async (followData: followDataType) => {
+  return publicRequest
+    .post(`user/follow/send`, { data: followData })
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+      throw new Error("팔로잉 api 에러");
+    });
+};
+
+// 언팔로우
+export const unFollowApi = async (followData: followDataType) => {
+  return publicRequest
+    .delete(`user/follow/unfollow`, {
+      data: followData,
+    })
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+      throw new Error("언팔로잉 api 에러");
+    });
+};
