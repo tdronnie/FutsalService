@@ -14,19 +14,16 @@ interface UserInfoPropsType {
 interface ProfilePropsType {
   profileData: {
     id: number;
-    image: string;
+    image: string | null;
     nickName: string;
-    // club
-    club: {
-      id: number;
-      name: string;
-      emblem: string;
-      memberCnt: number;
-      score: number;
-      region: string;
-    };
+    // 팔로우
     follower: number;
     following: number;
+    // club
+    club: string | null;
+    clubId: number | null;
+    // 용병 여부
+    player: boolean;
     // 평균 스탯
     mainStat: {
       goalDecision: number;
@@ -43,7 +40,5 @@ interface ProfilePropsType {
       distanceCovered: number;
       defense: number;
     };
-    // 용병 여부
-    player: boolean;
   };
 }

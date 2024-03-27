@@ -9,11 +9,11 @@ const ProfileUserStats = () => {
         <div className="-mr-4 ">
           <Typography
             label="개인 스텟"
-            textColor="text-sofcity"
+            textColor="black"
             textSize="text-2xl"
-            fontWeight="font-semibold"
+            fontWeight="font-medium"
           />
-          <hr className="border-[#d9d9d9] border-[1.5px] mt-3 w-[97%]" />
+          <hr className="border-[#d9d9d9] border-[1.5px] mt-3 w-[96%]" />
           <div className="m-4">
             <RadarChart />
           </div>
