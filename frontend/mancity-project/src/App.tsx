@@ -46,7 +46,7 @@ const App = () => {
       if (Notification.permission === 'granted') {
         const messaging = getMessaging(app);
         const token = await getToken(messaging, {
-          vapidKey: "BLuopbozIqH5NnVASrPlVZXTae_NcsaY9bju7WrChj77PpcHfg79r7t3YehYTf3riIFbDfvuz79xhRTshmnxmnE",
+          vapidKey: process.env.VITE_VAPID_KEY,
         });
         console.log(token); // 성공적으로 토큰을 받아온 경우, 로직 처리
       } else {
