@@ -17,7 +17,7 @@ export default defineConfig({
     host: true,
     hmr: {
       host: "j10c201.p.ssafy.io/",
-      protocol: "ws",
+      protocol: "wss",
   },
   },
 });
