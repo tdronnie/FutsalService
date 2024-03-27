@@ -7,10 +7,6 @@ const GlobalSwitch = (props: GlobalSwitchPropsType) => {
 
   const toggleSwitch = () => setIsSwitchOn(!isSwitchOn);
 
-  useEffect(() => {
-    console.log(isSwitchOn);
-  }, [isSwitchOn]);
-
   return (
     <div className="flex items-center justify-end mx-4">
       <div>
