@@ -33,8 +33,6 @@ const SignUpBody = () => {
   const [isEmailCheck, setIsEmailCheck] = useState<boolean | null>(null);
   const [isNicknameCheck, setIsNicknameCheck] = useState<boolean | null>(null);
 
-  console.log(isEmailCheck);
-
   const [signupData, setSignupData] = useState({
     email: "",
     password: "",
