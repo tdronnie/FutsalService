@@ -3,7 +3,7 @@ import Header from "@/components/organisms/header/Header";
 import ProfileUserInfo from "@/components/organisms/profile_userInfo/ProfileUserInfo";
 import ProfileUserStats from "@/components/organisms/profile_userStats/ProfileUserStats";
 
-const ProfileTemplate = ({profileData}: ProfilePropsType) => {
+const ProfileTemplate = ({ profileData }: ProfilePropsType) => {
   return (
     <div>
       <Header
@@ -14,7 +14,7 @@ const ProfileTemplate = ({profileData}: ProfilePropsType) => {
         toWhere="/profile/edit/1"
       />
       <ProfileUserInfo profileData={profileData} />
-      <ProfileUserStats />
+      <ProfileUserStats profileData={profileData} />
       <GroupHighlightCard />
     </div>
   );

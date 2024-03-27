@@ -18,21 +18,37 @@ ChartJS.register(
   Legend
 );
 
-export const RadarChart = () => {
+export const RadarChart = ({ profileData }: ProfilePropsType) => {
   // 차트에 들어가는 데이터
+
+  const mainStat = profileData.mainStat;
+  const lastStat = profileData.lastStat;
+
   const data = {
     labels: ["골 결정력", "스피드", "활동량", "패스 성공률", "수비력"],
     datasets: [
       {
         label: "- 최근 한 경기",
-        data: [32, 44, 53, 66, 74],
+        data: [
+          lastStat.goalDecision,
+          lastStat.speed,
+          lastStat.distanceCovered,
+          lastStat.pass,
+          lastStat.defense,
+        ],
         backgroundColor: "rgba(137, 234, 255, 0.25)",
         borderColor: "rgba(137, 234, 255, 1)",
         borderWidth: 1,
       },
       {
         label: "- 전체 평균",
-        data: [13, 25, 43, 74, 55],
+        data: [
+          mainStat.goalDecision,
+          mainStat.speed,
+          mainStat.distanceCovered,
+          mainStat.pass,
+          mainStat.defense,
+        ],
         backgroundColor: "rgba(164, 164, 164, 0.25)",
         borderColor: "rgba(164, 164, 164, 1)",
         borderWidth: 1,
