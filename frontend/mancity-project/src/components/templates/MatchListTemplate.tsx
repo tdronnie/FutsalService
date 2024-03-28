@@ -139,7 +139,7 @@ const MatchListTemplate = () => {
       />
       <div id="glassui" className="flex items-center justify-between p-3 m-3">
         <div
-          className="flex items-center ml-4 cursor-pointer"
+          className="flex items-center ml-4"
         >
           <p className="text-[1.2rem] text-sofcity font-medium">날짜 선택:</p>
         </div>
