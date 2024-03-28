@@ -7,9 +7,10 @@ import { useEffect, useState, useRef } from "react";
 import Typography from "@/components/atoms/typography/Typography";
 import { useMutation } from "@tanstack/react-query";
 import { profileEditApi } from "@/apis/userApis";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ProfileEditBody = ({ userInfoData }: UserInfoPropsType) => {
+  const { user_id } = useParams<{ user_id: string }>();
   const navigate = useNavigate();
   const MainFootInfo = [
     { value: 1, label: "왼발" },
@@ -131,6 +132,10 @@ const ProfileEditBody = ({ userInfoData }: UserInfoPropsType) => {
     navigate("/");
   };
 
+  const goProfile = () => {
+    navigate(`/profile/${user_id}`);
+  };
+
   return (
     <div className="">
       {/* 프로필 이미지 */}
@@ -225,12 +230,23 @@ const ProfileEditBody = ({ userInfoData }: UserInfoPropsType) => {
           </div>
         </div> */}
       </div>
-      <div onClick={onEditProfile} className="flex justify-end m-4 ">
-        <ReverseButton
-          width="w-full"
-          label="수정 완료"
-          isdisabled={isFormValid}
-        />
+
+      <div className="flex  w-full">
+        <div onClick={goProfile} className="w-full px-2">
+          <ReverseButton
+            width="w-full"
+            label="뒤로 가기"
+            isdisabled={isFormValid}
+          />
+        </div>
+
+        <div onClick={onEditProfile} className=" w-full px-2">
+          <ReverseButton
+            width="w-full"
+            label="수정 완료"
+            isdisabled={isFormValid}
+          />
+        </div>
       </div>
     </div>
   );
