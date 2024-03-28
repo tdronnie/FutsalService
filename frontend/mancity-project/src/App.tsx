@@ -78,7 +78,7 @@ const App = () => {
       matchPath("/community/:community_id", currentPathname) ||
       matchPath("/club/:club_id", currentPathname) ||
       matchPath("/club/edit/:club_id", currentPathname) ||
-      matchPath("/players/:match_id", currentPathname)
+      matchPath("/playerfix/:match_id", currentPathname)
     ) {
       return null;
     }
