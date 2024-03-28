@@ -50,7 +50,9 @@ class track_service:
                     self.team_B_player_id_map = result_info.get('team_B_player_id_map')
                 else:
                     self.team_A_goal_post, self.team_B_goal_post = util.validator_goal_post(objs_goal_post)
-                    self.team_A_players, self.team_B_players, self.team_A_player_id_map, self.team_B_player_id_map = util.validator_player(self.team_A_player_id_map, self.team_B_player_id_map, self.lost_players, objs_player)
+                    self.team_A_players, self.team_B_players, self.team_A_player_id_map, self.team_B_player_id_map = util.validator_player(
+                        self.field, self.team_A_player_id_map, self.team_B_player_id_map, self.lost_players,
+                        objs_player)
 
                 result.get('data').append({
                     'frame_num': frame_num,

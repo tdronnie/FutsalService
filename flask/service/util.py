@@ -75,44 +75,70 @@ def validator_goal_post(objs_goal_post):
 
 
 ################################## 임시 ############################################
-def validator_player(id_map, lost_players, objs_player):
-    mapped_players = []
-    new_lost_players = []
-
-    for player in objs_player:
-        if player.get('track_id') in id_map.values():
-            mapped_players.append(player.get('track_id'))
-            continue
-        new_lost_players.append(player)
-    '''
-    기존 id_map에 없는 player를 confidence score로 sort해 가장 높은 player를 잃었던 객체에 mapping
-    '''
-    lost_players = filter(lambda x: x.get('confidence') > 0.7, lost_players)
-    lost_players.sort(key=lambda x: get_distance(x))
-    if len(lost_players) != 0:
-        for player in lost_players:
-
-    #     new_lost_players.sort(key=lambda x:x.get('confidence'))
-
-    # if len(lost_players) != 0:
-    #     new_lost_players.
-    return id_map
+# def validator_player(id_map, lost_players, objs_player):
+#     mapped_players = []
+#     new_lost_players = []
+#
+#     for player in objs_player:
+#         if player.get('track_id') in id_map.values():
+#             mapped_players.append(player.get('track_id'))
+#             continue
+#         new_lost_players.append(player)
+#     '''
+#     기존 id_map에 없는 player를 confidence score로 sort해 가장 높은 player를 잃었던 객체에 mapping
+#     '''
+#     lost_players = filter(lambda x: x.get('confidence') > 0.7, lost_players)
+#     lost_players.sort(key=lambda x: get_distance(x))
+#     if len(lost_players) != 0:
+#         for player in lost_players:
+#
+#     #     new_lost_players.sort(key=lambda x:x.get('confidence'))
+#
+#     # if len(lost_players) != 0:
+#     #     new_lost_players.
+#     return id_map
 ################################## 임시 ############################################
 
 
-def validator_player(team_A_player_id_map, team_B_player_id_map, lost_players, objs_player):
-    mapped_players = []
-    new_lost_players = []
+def validator_player(field, team_A_player_id_map, team_B_player_id_map, lost_players, objs_player):
+    not_mapped_players = []
+    team_A_players = []
+    team_B_players = []
 
     for player in objs_player:
         if player.get('track_id') in team_A_player_id_map.values():
-            pass
-        if player.get('track_id') in team_B_player_id_map.values():
-            pass
-    return team_A_players, team_B_players, team_A_player_id_map, team_B_player_id_map, lost_players
+            team_A_players.append(player)
+        elif player.get('track_id') in team_B_player_id_map.values():
+            team_B_players.append(player)
+        else:
+            not_mapped_players.append(player)
+
+    not_mapped_players = field_area_filter(field, not_mapped_players)
+    new_lost_players = not_mapped_players.copy()
+
+    lost_num = len(lost_players)
+    for idx, player in enumerate(not_mapped_players):
+        if idx < lost_num:
+            old_id = lost_players[idx].get('track_id')
+            new_id = player.get('track_id')
+            for num, id in team_A_player_id_map.items():
+                if id == old_id:
+                    team_A_player_id_map.update({num: new_id})
+            for num, id in team_B_player_id_map.items():
+                if id == old_id:
+                    team_B_player_id_map.update({num: new_id})
+            new_lost_players = [i for i in new_lost_players if i.get('track_id' != new_id)]
+            lost_num -= 1
+        else:
+            break
+    return team_A_players, team_B_players, team_A_player_id_map, team_B_player_id_map, new_lost_players
+
+
 '''
 첫 프레임 객체 인식 및 선수, 골대 팀 분배 부분
 '''
+
+
 def player_team_divider(field, players):
     players = field_area_filter(field, players)
     players.sort(key=lambda x: x['confidence'])
