@@ -94,7 +94,7 @@ public class GameController {
     }
 
 
-    @GetMapping("/teamData/{id}")
+    @GetMapping("/feedback/team/{id}")
     public ResponseEntity<TeamFeedbackResponseDto> getTeamsResultData(@PathVariable Long id) {
         return new ResponseEntity<>(gameService.getTeamsFeedback(id), HttpStatus.OK);
 
