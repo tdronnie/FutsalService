@@ -6,6 +6,7 @@ import com.mancity.social.game.application.dto.response.GameMainResponseDto;
 import com.mancity.social.game.application.dto.response.GameResponseDto;
 import com.mancity.social.game.application.dto.response.PlayerDataResponseDto;
 import com.mancity.social.game.application.dto.response.TeamDataResponseDto;
+import com.mancity.social.game.application.dto.response.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -107,4 +108,15 @@ public class GameController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+
+    @GetMapping("/feedback/team/{id}")
+    public ResponseEntity<TeamFeedbackResponseDto> getTeamsResultData(@PathVariable Long id) {
+        return new ResponseEntity<>(gameService.getTeamsFeedback(id), HttpStatus.OK);
+
+    }
+
+    @GetMapping("/feedback/player/{game}/{player}")
+    public ResponseEntity<PlayerFeedBackResponseDto> getPlayerResultData(@PathVariable("game") Long gameId, @PathVariable("player") Long playerId) {
+        return new ResponseEntity<>(gameService.getPersonalFeedBack(gameId, playerId), HttpStatus.OK);
+    }
 }
