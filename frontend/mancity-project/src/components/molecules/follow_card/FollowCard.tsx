@@ -1,20 +1,18 @@
 import ContentBox from "@/components/atoms/content_box/ContentBox";
+import FontawsomeIcon from "@/components/atoms/fontawsome_icon/FontawsomeIcon";
 import SubmitButton from "@/components/atoms/submit_button/SubmitButton";
 import Typography from "@/components/atoms/typography/Typography";
 
 const FollowCard = (props: FollowCardPropsType) => {
-  const { file, nickName, isFollow, setIsFollow } = props;
+  const { file, nickName, overall } = props;
 
-  const onClickFollow = () => {
-    setIsFollow(!isFollow);
-  };
   return (
     <div>
       <div className="flex items-center justify-between mx-3">
         <div className="flex items-center justify-between">
           <div className="mr-2">
             <ContentBox
-              file={file}
+              file={file ? file : `/src/assets/imgs/mancity_logo.png`}
               height="h-10"
               rounded="rounded-full"
               width="w-10"
@@ -27,12 +25,15 @@ const FollowCard = (props: FollowCardPropsType) => {
             textSize="text-lg"
           />
         </div>
-        <div onClick={onClickFollow}>
-          {isFollow ? (
-            <SubmitButton label="팔로우" hover={false} />
-          ) : (
-            <SubmitButton label="언팔로우" reverse={true} hover={false} />
-          )}
+        <div className="flex">
+          <SubmitButton
+            label={`총스탯 ${overall}`}
+            reverse={false}
+            hover={false}
+          />
+          <div className="ml-3 ">
+            <FontawsomeIcon icon="chevron-right" />
+          </div>
         </div>
       </div>
       <div className="flex justify-center">
