@@ -2,14 +2,14 @@ package com.mancity.user.user.application;
 
 import com.mancity.user.follow.application.FollowService;
 import com.mancity.user.follow.application.dto.response.FollowResponseDto;
+import com.mancity.user.game.application.response.GameMainResponseDto;
+import com.mancity.user.game.presentation.GameFeignClient;
 import com.mancity.user.stat.domain.LastStat;
 import com.mancity.user.stat.domain.MainStat;
 import com.mancity.user.stat.domain.Stat;
 import com.mancity.user.common.s3.util.S3Uploader;
 import com.mancity.user.user.application.dto.request.*;
-import com.mancity.user.user.application.dto.response.PlayerListResponseDto;
-import com.mancity.user.user.application.dto.response.ProfileResponseDto;
-import com.mancity.user.user.application.dto.response.UserResponseDto;
+import com.mancity.user.user.application.dto.response.*;
 import com.mancity.user.user.domain.PlayerOrderType;
 import com.mancity.user.user.domain.User;
 import com.mancity.user.user.domain.repository.UserRepository;
@@ -37,6 +37,8 @@ public class UserService {
     private final FollowService followService;
 
     private final S3Uploader s3Uploader;
+
+    private final GameFeignClient gameFeignClient;
 
     public long login(LoginRequestDto dto) {
         User user = userRepository.findByEmail(dto.getEmail())
@@ -161,4 +163,14 @@ public class UserService {
         }
         return dtoList;
     }
+
+    public MainPageResponseDto getMainPage(long id) {
+        List<MainPagePlayerDto> players = userRepository.getListOrderByGoalAndAssist();
+        List<MainPageGameDto> games = gameFeignClient.findMyGameOver(id)
+                .stream()
+                .map(MainPageGameDto::from)
+                .toList();
+        return MainPageResponseDto.from(players, games);
+    }
+
 }
