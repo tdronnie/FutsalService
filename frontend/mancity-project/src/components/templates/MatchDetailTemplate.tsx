@@ -21,7 +21,7 @@ const MatchDetailTemplate = () => {
       <div className="h-20"></div>
 
       <Footer
-        label="남자 ∙ 5vs5 ∙ 중 수준"
+        label="남자 ∙ 5vs5 ∙ 세미프로"
         buttonLabel="매치 참여 신청"
         onButtonClick={onButtonClick}
       />

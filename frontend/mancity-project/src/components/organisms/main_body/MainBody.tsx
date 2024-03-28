@@ -20,21 +20,21 @@ const MainBody = () => {
   };
   return (
     <>
-      {/* 매치등록하기랑 매치둘러보기 버튼
-      <div className="flex justify-around">
+      {/* 매치등록하기랑 매치둘러보기 버튼 */}
+      <div className="flex justify-around mb-2">
         <div className="w-full ml-3 mr-1">
         <HalfCard maintext="매치등록하기" />
         </div>
         <div className="w-full ml-1 mr-3">
         <HalfCard maintext="매치둘러보기" />
         </div>
-      </div> */}
+      </div>
 
       {/* 용병 둘러보기 버튼 */}
       <div className="mx-4 mb-4">
         <HomeCard
-          maintext="매치를 구경해보세요"
-          subtext="마음에 드는 매치가 없다면 매치 등록!"
+          maintext="다양한 사람들과 뛰어볼까요?"
+          subtext="용병으로 등록하거나 호출할 수 있어요"
         />
       </div>
 
@@ -54,6 +54,7 @@ const MainBody = () => {
             더보기
           </span>
         </div>
+        <hr className="border border-sofcity" />
         <div className="flex items-center w-full p-2 overflow-y-hidden">
           <GlobalCard
             file="/src/assets/imgs/mancity_logo.png"
@@ -87,6 +88,7 @@ const MainBody = () => {
             textSize="text-2xl"
           />
         </div>
+        <hr className="border border-sofcity" />
 
         <ClubList
           clubTitile="맨시티파워"

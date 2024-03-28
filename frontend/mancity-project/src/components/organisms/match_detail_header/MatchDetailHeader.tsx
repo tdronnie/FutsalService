@@ -9,8 +9,8 @@ const MatchDetailHeader = () => {
   };
 
   return (
-    <div className="flex justify-between m-2">
-      <div className="">
+    <div id="glassui" className="flex justify-between p-4 m-2">
+      <div>
         <div>
           <Typography
             label="3월 12일 (화) 오전 10시"
@@ -34,7 +34,8 @@ const MatchDetailHeader = () => {
           />
         </div>
       </div>
-      <div className="">
+
+      <div>
         <div
           className="flex cursor-pointer"
           onClick={() => handleNavigate({ path: "/club" })}
