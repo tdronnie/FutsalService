@@ -99,4 +99,9 @@ public class GameController {
         return new ResponseEntity<>(gameService.getTeamsFeedback(id), HttpStatus.OK);
 
     }
+
+    @GetMapping("/feedback/player/{game}/{player}")
+    public ResponseEntity<PlayerFeedBackResponseDto> getPlayerResultData(@PathVariable("game") Long gameId, @PathVariable("player") Long playerId) {
+        return new ResponseEntity<>(gameService.getPersonalFeedBack(gameId, playerId), HttpStatus.OK);
+    }
 }
