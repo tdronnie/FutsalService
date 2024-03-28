@@ -7,6 +7,8 @@ interface TailwindPropsType {
   bgColor?: string;
   borderColor?: string;
 
+  id?: string;
+
   hoverTextColor?: string;
   hoverBgColor?: string;
   hoverBorderColor?: string;
@@ -33,6 +35,17 @@ interface WideCardPropsType {
   maintext: string;
   minitext?: string;
   buttonlabel: string;
+}
+
+interface HalfCardPropsType {
+  file?: string;
+  maintext: string;
+}
+
+interface HomeCardPropsType {
+  file?: string;
+  maintext: string;
+  subtext: string;
 }
 
 interface CommunityCardPropsType {
