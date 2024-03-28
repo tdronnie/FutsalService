@@ -1,10 +1,13 @@
 package com.mancity.social.game.application;
 
 import com.mancity.social.game.application.dto.request.*;
+import com.mancity.social.game.application.dto.response.GameMainResponseDto;
 import com.mancity.social.game.application.dto.response.GameResponseDto;
 import com.mancity.social.game.application.dto.response.PlayerDataResponseDto;
 import com.mancity.social.game.application.dto.response.TeamDataResponseDto;
 import com.mancity.social.game.domain.repository.GameRepositorySupport;
+import com.mancity.social.participant.domain.Participant;
+import com.mancity.social.user.application.UserService;
 import com.mancity.social.user.application.dto.response.UserResponseDto;
 import com.mancity.social.game.domain.Game;
 import com.mancity.social.game.domain.Player;
@@ -35,6 +38,8 @@ public class GameService {
     private final S3Uploader uploader;
 
     private final UserFeignClient userFeignClient;
+
+    private final UserService userService;
 
     private final GameRepositorySupport gameRepositorySupport;
 
@@ -113,4 +118,19 @@ public class GameService {
         return PlayerDataResponseDto.from(game);
     }
 
+    public List<GameMainResponseDto> findMyGameOver(long id) {
+        return gameRepositorySupport.findGamesByParticipantUserId(id)
+                .stream()
+                .filter(Game::isOver)
+                .map(GameMainResponseDto::from)
+                .collect(Collectors.toList());
+    }
+
+    public void updateCalcStatus(long id) {
+        Game game = gameRepository.findById(id).orElseThrow(NoSuchGameException::new);
+        List<Participant> participants = game.getParticipants();
+        participants.forEach(p -> userService.generateAlarm(game.getManager(), p.getUserId(), "CALC_COMPLETE", 0));
+
+        game.updateCalcOver();
+    }
 }

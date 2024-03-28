@@ -19,6 +19,9 @@ import com.mancity.social.participant.exception.AlreadyParticipatedException;
 import com.mancity.social.participant.exception.AlreadyRequestedGameException;
 import com.mancity.social.participant.exception.GameFullException;
 import com.mancity.social.participant.exception.NoSuchParticipantRequestException;
+import com.mancity.social.user.application.UserService;
+import com.mancity.social.user.application.dto.request.AlarmCreateDto;
+import com.mancity.social.user.presentation.UserFeignClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,12 +39,14 @@ public class ParticipantService {
 
     private final ParticipateSuggestRepository participateSuggestRepository;
 
+    private final UserService userService;
+
     public void requestParticipate(GameParticipateRequestDto dto) {
         validateParticipateRequest(dto);
         Game game = gameRepository.findById(dto.getGameId())
                 .orElseThrow(NoSuchGameException::new);
-        participateRequestRepoisotry.save(dto.toEntity());
-        // TODO : 알람만들기
+        ParticipateRequest pr = participateRequestRepoisotry.save(dto.toEntity());
+        userService.generateAlarm(dto.getUserId(), game.getManager(), "GAME_REQUEST", pr.getId());
     }
 
     public void replyRequestParticipate(ParticipateRequestReplyDto dto) {
@@ -59,8 +64,10 @@ public class ParticipantService {
                     .game(game)
                     .build();
             game.participate(participant);
+            userService.generateAlarm(game.getManager(), participateRequest.getSender(), "GAME_REQUEST_REPLY", 0);
         }
         // TODO : sender 에게 매치장이 수락/거절에 대한 알람 보내기 구현 필요
+
     }
 
     public List<ParticipantResponseDto> findParticipantsByGameId(long id) {
@@ -82,7 +89,8 @@ public class ParticipantService {
         // 유효성
         Game game = gameRepository.findById(dto.getGameId())
                 .orElseThrow(NoSuchGameException::new);
-        participateSuggestRepository.save(dto.toEntity());
+        ParticipateSuggest ps = participateSuggestRepository.save(dto.toEntity());
+        userService.generateAlarm(dto.getSenderId(), dto.getReceiverId(), "GAME_SUGGEST", ps.getId());
     }
 
     private void validateParticipateRequest(GameParticipateRequestDto dto) {
@@ -116,6 +124,7 @@ public class ParticipantService {
                     .game(game)
                     .build();
             game.participate(participant);
+            userService.generateAlarm(participateSuggest.getReceiverId(), participateSuggest.getSenderId(), "GAME_SUGGEST_REPLY", 0);
         }
     }
 

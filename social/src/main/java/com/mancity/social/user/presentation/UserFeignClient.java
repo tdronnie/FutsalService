@@ -1,5 +1,6 @@
 package com.mancity.social.user.presentation;
 
+import com.mancity.social.user.application.dto.request.AlarmCreateDto;
 import com.mancity.social.user.application.dto.request.UserPlusRequestDto;
 import com.mancity.social.user.application.dto.response.UserResponseDto;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -17,7 +18,7 @@ public interface UserFeignClient {
     @PostMapping("/api/user/stat/plus")
     public void plus(@RequestBody UserPlusRequestDto dto);
 
-//    TODO : 알람요청 API 작성 필요
-//    @PostMapping("/api/user/alarm")
-//    public void alarm(@RequestBody AlarmRequestDto dto);
+    @PostMapping("/api/user/alarm/create")
+    public void alarm(@RequestBody AlarmCreateDto dto);
+
 }
