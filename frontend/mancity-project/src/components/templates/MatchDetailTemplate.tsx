@@ -4,13 +4,16 @@ import MatchDetailBody from "@/components/organisms/match_detail_body/MatchDetai
 import MatchDetailHeader from "@/components/organisms/match_detail_header/MatchDetailHeader";
 import { useNavigate } from "react-router-dom";
 
-const MatchDetailTemplate = () => {
+const MatchDetailTemplate = ({
+  matchDetailPropsData,
+}: {
+  matchDetailPropsData: matchDetailPropsDataType;
+}) => {
   const navigate = useNavigate();
 
   const onButtonClick = () => {
     navigate("/");
   };
-
   return (
     <div>
       <Header label="매치 상세" backArrow={true} headerButton={false} />
