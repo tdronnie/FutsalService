@@ -37,13 +37,13 @@ public class FollowController {
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
-    @GetMapping("/followers/{id}") // 팔로잉, 팔로워 전체 조회
+    @GetMapping("/followers/{id}") // 팔로워 조회
     public ResponseEntity<List<FollowerInfo>> findMyFollowers(@PathVariable("id") long id){
         List<FollowerInfo> dtos = followService.findMyFollowers(id);
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
 
-    @GetMapping("/followings/{id}") // 팔로잉, 팔로워 전체 조회
+    @GetMapping("/followings/{id}") // 팔로잉 조회
     public ResponseEntity<List<FollowerInfo>> findMyFollowings(@PathVariable("id") long id){
         List<FollowerInfo> dtos = followService.findMyFollowings(id);
         return new ResponseEntity<>(dtos, HttpStatus.OK);
@@ -51,7 +51,6 @@ public class FollowController {
 
     @GetMapping("/check")
     public ResponseEntity<Boolean> checkFollow(@RequestParam(value = "sender", required = false) Long sender, @RequestParam("receiver") long recevier){
-
         return new ResponseEntity<>(followService.check(sender, recevier), HttpStatus.OK);
     }
 
