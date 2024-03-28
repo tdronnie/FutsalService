@@ -5,6 +5,7 @@ import com.mancity.social.game.application.dto.response.GameMainResponseDto;
 import com.mancity.social.game.application.dto.response.GameResponseDto;
 import com.mancity.social.game.application.dto.response.PlayerDataResponseDto;
 import com.mancity.social.game.application.dto.response.TeamDataResponseDto;
+import com.mancity.social.game.application.dto.response.*;
 import com.mancity.social.game.domain.repository.GameRepositorySupport;
 import com.mancity.social.participant.domain.Participant;
 import com.mancity.social.user.application.UserService;
@@ -19,6 +20,7 @@ import com.mancity.social.game.infrastructure.file.util.S3Uploader;
 import com.mancity.social.user.presentation.UserFeignClient;
 import com.mancity.social.user.application.dto.request.UserPlusRequestDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -29,6 +31,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Transactional
+@Slf4j
 public class GameService {
 
     private final GameRepository gameRepository;
@@ -133,4 +136,111 @@ public class GameService {
 
         game.updateCalcOver();
     }
+
+    public TeamFeedbackResponseDto getTeamsFeedback(Long id) {
+        Game game = findById(id);
+        return TeamFeedbackResponseDto.builder()
+                .possession(game.getTeamA().getPass() > game.getTeamB().getPass() ? 1 : 2)
+                .shot(game.getTeamA().getShot() > game.getTeamB().getShot() ? 1 : 2)
+                .pass(game.getTeamA().getPass() > game.getTeamB().getPass() ? 1 : 2)
+                .goal(game.getTeamA().getGoal() > game.getTeamB().getGoal() ? 1 : 2)
+                .activityLevel((compare(game.getPlayersA(), game.getPlayersB())))
+                .build();
+
+    }
+
+    public int compare(List<Player> teamA, List<Player> teamB) {
+        int actLvA = 0;
+        int actLvB = 0;
+        for (Player p : teamA) {
+            actLvA += p.getDistanceCovered();
+        }
+        for (Player p : teamB) {
+            actLvB += p.getDistanceCovered();
+        }
+        return actLvA > actLvB ? 1 : 2;
+    }
+
+    public PlayerFeedBackResponseDto getPersonalFeedBack(Long gameId, Long playerId) {
+        Game game = gameRepository.findById(gameId).orElseThrow(NoSuchGameException::new);
+        Player player = playerRepository.findById(playerId).orElseThrow(NoSuchPlayerException::new);
+
+        //플레이어가 진행한 경기 가져오기
+        List<Game> games = gameRepository.findAllByNickname(player.getNickname());
+        //진행한 경기 중 gameId와 맞는 경기 찾기
+        int sumCovered = 0;
+        int sumSpeed = 0;
+        int sumGoal = 0;
+        int sumAssist = 0;
+        int sumShotOnTargetPerShot = 0;
+        int sumPass = 0;
+        int sumTurnOverOOff = 0;
+        int sumTurnOverDef = 0;
+
+        Player feedP = new Player();
+        for (Game g : games) {
+            if (game.getId() == g.getId()) {
+                //모든 플레이어의 평균 보다 높으면 1 낮으면 2
+                for (Player p : g.getPlayersA()) {
+                    sumCovered += p.getDistanceCovered();
+                    sumSpeed += p.getSpeed();
+                    sumGoal += p.getGoal();
+                    sumAssist += p.getAssist();
+                    if(p.getShot() == 0) sumShotOnTargetPerShot = 0;
+                    else sumShotOnTargetPerShot = p.getShotOnTarget() / p.getShot();
+                    sumPass += p.getPass();
+                    sumTurnOverOOff += p.getTurnOverInOffense();
+                    sumTurnOverDef += p.getTurnOverInDefense();
+
+                    if (player.getId() == p.getId()) {
+                        feedP = p;
+                    }
+                }
+                for (Player p : g.getPlayersB()) {
+                    sumCovered += p.getDistanceCovered();
+                    sumSpeed += p.getSpeed();
+                    sumGoal += p.getGoal();
+                    sumAssist += p.getAssist();
+                    if(p.getShot() == 0) sumShotOnTargetPerShot = 0;
+                    else sumShotOnTargetPerShot = p.getShotOnTarget() / p.getShot();
+                    sumPass += p.getPass();
+                    sumTurnOverOOff += p.getTurnOverInOffense();
+                    sumTurnOverDef += p.getTurnOverInDefense();
+                    if (player.getId() == p.getId()) {
+                        feedP = p;
+                    }
+                }
+                break;
+            }
+        }
+        double avgCovered = (double) sumCovered / game.getPlayerNumber();
+        double avgSpeed = (double) sumSpeed / game.getPlayerNumber();
+        double avgGoal = (double) sumGoal / game.getPlayerNumber();
+        double avgAssist = (double) sumAssist / game.getPlayerNumber();
+        double avgShotOnTargetPerShot = (double) sumShotOnTargetPerShot / game.getPlayerNumber();
+        double avgPass = (double) sumPass / game.getPlayerNumber();
+        double avgOff = (double) sumTurnOverOOff / game.getPlayerNumber();
+        double avgDef = (double) sumTurnOverDef / game.getPlayerNumber();
+        log.info("avgCovered={}", avgCovered);
+        log.info("avgSpeed={}", avgSpeed);
+        log.info("avgGoal={}", avgGoal);
+        log.info("avgAssist={}", avgAssist);
+        log.info("avgShotOnTargetPerShot={}", avgShotOnTargetPerShot);
+        log.info("avgPass={}", avgPass);
+        log.info("avgOff={}", avgOff);
+        log.info("avgDef={}", avgDef);
+        return PlayerFeedBackResponseDto.builder()
+                .id(feedP.getId())
+                .distanceCovered(feedP.getDistanceCovered() > avgCovered ? 1 : 2)
+                .speed(feedP.getSpeed() > avgSpeed ? 1 : 2)
+                .goal(feedP.getGoal() > avgGoal ? 1 : 2)
+                .assist(feedP.getAssist() > avgAssist ? 1 : 2)
+                .avgShotOnTargetPerShot((double) feedP.getShotOnTarget() / feedP.getShot() > avgShotOnTargetPerShot ? 1 : 2)
+                .pass(feedP.getPass() > avgPass ? 1 : 2)
+                .turnOverInOffense(feedP.getTurnOverInOffense() > avgOff ? 1 : 2)
+                .turnOverInDefense(feedP.getTurnOverInDefense() > avgDef ? 1 : 2)
+                .build();
+
+    }
+
 }
