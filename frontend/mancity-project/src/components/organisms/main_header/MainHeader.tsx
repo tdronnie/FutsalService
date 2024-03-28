@@ -8,7 +8,7 @@ const MainHeader = () => {
   };
   return (
       <div className="flex justify-between py-3">
-        <div id="glassui" className="flex items-center pr-4 ml-3">
+        <div className="flex items-center pr-4 ml-3">
           <img
             src="/src/assets/imgs/mancity_logo_no_background.png"
             alt="logo"
@@ -21,8 +21,8 @@ const MainHeader = () => {
             </p>
           </div>
         </div>
-        <div className="flex">
-          <div id="glassui"
+        <div className="flex items-center justify-center">
+          {/* <div id="glassui"
             className="p-2 my-5 mr-5 cursor-pointer"
             onClick={() => handleNavigate({ path: "/alert" })}
           >
@@ -31,7 +31,8 @@ const MainHeader = () => {
               size="2x"
               color="#00A9FF"
             ></FontawsomeIcon>
-          </div>
+          </div> */}
+          <img src="/src/assets/imgs/bell.svg" alt="bell" className="w-[2.5rem] h-[2.5rem] mr-4" />
         </div>
       </div>
   );

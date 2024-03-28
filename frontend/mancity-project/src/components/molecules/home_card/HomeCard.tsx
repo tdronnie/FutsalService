@@ -10,7 +10,7 @@ const HomeCard = (props: HomeCardPropsType) => {
   return (
     <div
       id="glassui"
-      className="flex items-center w-full p-2 rounded-md shadow-nav"
+      className="flex items-center w-full p-2 rounded-md cursor-pointer shadow-nav"
     >
       <div>
         <ContentBox
