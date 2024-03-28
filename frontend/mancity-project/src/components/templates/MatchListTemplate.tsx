@@ -154,14 +154,19 @@ const MatchListTemplate = () => {
         </div>
       </div>
       {matches.map((match) => (
-        <WideCard
-          key={match.id}
-          file={match.file}
-          subtext={match.subtext}
-          maintext={match.maintext}
-          minitext={match.minitext}
-          buttonlabel={match.buttonlabel}
-        />
+        <div
+        className="cursor-pointer"
+        onClick={() => handleNavigate({ path: "/match/1" })}
+        >
+          <WideCard
+            key={match.id}
+            file={match.file}
+            subtext={match.subtext}
+            maintext={match.maintext}
+            minitext={match.minitext}
+            buttonlabel={match.buttonlabel}
+          />
+        </div>
       ))}
     </div>
   );
