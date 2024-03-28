@@ -1,7 +1,7 @@
-package com.mancity.user.ClubMember.application.dto.request;
+package com.mancity.user.clubmember.application.dto.request;
 
-import com.mancity.user.ClubMember.domain.JoinRequest;
-import com.mancity.user.ClubMember.domain.JoinStatus;
+import com.mancity.user.clubmember.domain.JoinRequest;
+import com.mancity.user.clubmember.domain.JoinStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

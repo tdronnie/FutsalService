@@ -1,4 +1,4 @@
-package com.mancity.user.ClubMember.application.dto.response;
+package com.mancity.user.clubmember.application.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

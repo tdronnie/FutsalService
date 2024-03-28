@@ -1,6 +1,6 @@
-package com.mancity.user.ClubMember.domain.repository;
+package com.mancity.user.clubmember.domain.repository;
 
-import com.mancity.user.ClubMember.domain.JoinRequest;
+import com.mancity.user.clubmember.domain.JoinRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

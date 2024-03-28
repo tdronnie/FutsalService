@@ -1,9 +1,9 @@
-package com.mancity.user.ClubMember.presentation;
+package com.mancity.user.clubmember.presentation;
 
-import com.mancity.user.ClubMember.application.ClubMemberService;
-import com.mancity.user.ClubMember.application.dto.request.JoinRequestReplyDto;
-import com.mancity.user.ClubMember.application.dto.request.JoinRequestDto;
-import com.mancity.user.ClubMember.application.dto.response.JoinRequestReplyResponseDto;
+import com.mancity.user.clubmember.application.ClubMemberService;
+import com.mancity.user.clubmember.application.dto.request.JoinRequestReplyDto;
+import com.mancity.user.clubmember.application.dto.request.JoinRequestDto;
+import com.mancity.user.clubmember.application.dto.response.JoinRequestReplyResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
