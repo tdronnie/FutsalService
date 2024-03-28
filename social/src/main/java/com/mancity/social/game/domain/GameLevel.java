@@ -7,19 +7,19 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum GameLevel {
 
-    H("상") {
+    H("프로") {
         @Override
         public String getGameLevel() {
             return H.getLevel();
         }
     },
-    M("중") {
+    M("세미프로") {
         @Override
         public String getGameLevel() {
             return M.getLevel();
         }
     },
-    L("하") {
+    L("아마추어") {
         @Override
         public String getGameLevel() {
             return L.getLevel();
