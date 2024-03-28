@@ -10,12 +10,16 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "rgba(255, 255, 255, 0.7)",
+  width: 300,
+  bgcolor: "rgba(255, 255, 255, 1)",
   border: "2px solid transparent",
-  borderRadius: "10px",
+  borderRadius: "20px",
   // boxShadow: "none",
   outline: "none",
+  textAlign: "center",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
   p: 4,
 };
 
@@ -34,10 +38,7 @@ const MuiModal = (props: userStatModalPropsType) => {
     <div>
       {!isLoading && data && (
         <div>
-          <div
-            className="text-mancity text-sm font-medium"
-            onClick={handleOpen}
-          >
+          <div className="text-white text-sm font-medium" onClick={handleOpen}>
             누적기록
           </div>
           <Modal
@@ -50,40 +51,43 @@ const MuiModal = (props: userStatModalPropsType) => {
               <Typography id="modal-modal-title" variant="h6" component="h2">
                 누적기록
               </Typography>
-              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                <div className="flex">
+              <Typography
+                id="modal-modal-description"
+                sx={{ mt: 2, width: "100%" }}
+              >
+                <div className="flex justify-center items-center">
                   <div className="w-24 flex justify-center">속도</div>
                   <div>{data.speed}</div>
                 </div>
-                <div className="flex">
+                <div className="flex justify-center items-center">
                   <div className="w-24 ">유효슈팅</div>
                   <div>{data.distanceCovered}</div>
                 </div>
-                <div className="flex">
+                <div className="flex justify-center items-center">
                   <div className="w-24">패스</div>
                   <div>{data.pass}</div>
                 </div>
-                <div className="flex">
+                <div className="flex justify-center items-center">
                   <div className="w-24">샷츠온타겟</div>
                   <div>{data.shotsOnTarget}</div>
                 </div>
-                <div className="flex">
+                <div className="flex justify-center items-center">
                   <div className="w-24">골</div>
                   <div>{data.goal}</div>
                 </div>
-                <div className="flex">
+                <div className="flex justify-center items-center">
                   <div className="w-24">도움</div>
                   <div>{data.assist}</div>
                 </div>
-                <div className="flex">
+                <div className="flex justify-center items-center">
                   <div className="w-24">턴오버</div>
                   <div>{data.turnOverInOffense}</div>
                 </div>
-                <div className="flex">
+                <div className="flex justify-center items-center">
                   <div className="w-24">턴오버 방어</div>
                   <div>{data.turnOverInDefense}</div>
                 </div>
-                <div className="flex">
+                <div className="flex justify-center items-center">
                   <div className="w-24">경기 시간</div>
                   <div>{data.playedTimes}</div>
                 </div>

@@ -121,3 +121,27 @@ export const totalStatApi = async (userId: number) => {
       throw new Error("total stat api 에러");
     });
 };
+
+//follow list
+export const followPageApi = async (userId: number) => {
+  return publicRequest
+    .get(`user/follow/${userId}`)
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+      throw new Error("follow list api 에러");
+    });
+};
+
+//is follow
+export const isFollowDataApi = async (followData: followDataType) => {
+  return publicRequest
+    .get(
+      `user/follow/check?sender=${followData.senderId}&receiver=${followData.receiverId}`
+    )
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+      throw new Error("is follow api 에러");
+    });
+};
