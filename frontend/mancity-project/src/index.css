@@ -105,6 +105,7 @@
 @layer base {
   html {
     font-family:
+      "KCC",
       "SCDream",
       -apple-system,
       BlinkMacSystemFont,
@@ -119,6 +120,14 @@
       "Segoe UI Symbol",
       "Noto Color Emoji";
   }
+}
+
+/* 새로운 폰트 입력 */
+@font-face {
+  font-family: "KCC";
+  font-weight: 500;
+  font-display: swap;
+  src: url("./fonts/KCC-Hanbit.woff2") format("woff2");
 }
 
 /* 에스코어드림 폰트 입력 */
@@ -245,11 +254,11 @@
     inset 0px 11px 28px 0px rgb(255, 255, 255);
 }
 #glassui {
-  backdrop-filter: blur(5px);
+  /* backdrop-filter: blur(5px); */
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   box-shadow:
-    35px 35px 68px 0px rgba(100, 181, 246, 0.5),
+    /* 35px 35px 68px 0px rgba(100, 181, 246, 0.5), */
     inset -8px -8px 16px 0px rgba(100, 181, 246, 0.6),
     inset 0px 11px 28px 0px rgb(255, 255, 255);
 }
@@ -263,4 +272,28 @@
 }
 input {
   background-color: transparent;
+}
+#responsive-p {
+  font-size: 1.1rem;
+}
+@media (min-width: 400px) {
+  #responsive-p {
+    font-size: 1.25rem;
+  }
+}
+@media (min-width: 440px) {
+  #responsive-p {
+    font-size: 1.35rem;
+  }
+}
+@media (min-width: 500px) {
+  #responsive-p {
+    font-size: 1.45rem;
+  }
+}
+@media (min-width: 480px) {
+  #responsive-img {
+    width: 3.2rem;
+    height: 3.2rem;
+  }
 }
