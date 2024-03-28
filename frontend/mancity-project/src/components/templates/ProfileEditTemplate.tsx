@@ -4,7 +4,7 @@ import ProfileEditBody from "@/components/organisms/profile_edit_body/ProfileEdi
 const ProfileEditTemplate = ({ userInfoData }: UserInfoPropsType) => {
   return (
     <div>
-      <Header label="프로필 수정" backArrow={true} headerButton={false} />
+      <Header label="프로필 수정" backArrow={false} headerButton={false} />
       <ProfileEditBody userInfoData={userInfoData} />
     </div>
   );

@@ -6,16 +6,20 @@ import ProfileUserStats from "@/components/organisms/profile_userStats/ProfileUs
 const ProfileTemplate = ({ profileData }: ProfilePropsType) => {
   return (
     <div>
-      <Header
-        label="프로필"
-        backArrow={true}
-        headerButton={true}
-        buttonLabel="정보 수정"
-        toWhere="/profile/edit/1"
-      />
-      <ProfileUserInfo profileData={profileData} />
-      <ProfileUserStats profileData={profileData} />
-      <GroupHighlightCard />
+      {profileData && (
+        <div>
+          <Header
+            label="프로필"
+            backArrow={true}
+            headerButton={true}
+            buttonLabel="정보 수정"
+            toWhere="/profile/edit/1"
+          />
+          <ProfileUserInfo profileData={profileData} />
+          <ProfileUserStats profileData={profileData} />
+          <GroupHighlightCard />
+        </div>
+      )}
     </div>
   );
 };
