@@ -2,10 +2,10 @@ const SubmitButton = (props: TailwindPropsType) => {
   const { label, reverse, hover } = props;
   return (
     <button
-    id="glassbtn"
+      id="glassbtn"
       type="button"
       className={` 
-      w-16 font-medium text-[0.7rem] h-7 rounded-3xl
+      w-[4.5rem] font-medium text-[0.7rem] h-7 rounded-3xl
       ${
         hover
           ? // 호버 true일 뗴
