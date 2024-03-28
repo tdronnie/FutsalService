@@ -1,10 +1,9 @@
 from ultralytics import YOLO
 
 
-class get_tracked_data:
-    def __init__(self, source, detector='yolov9e', tracker='bytetrack', conf=0.15, iou=0.2,
+class track:
+    def __init__(self, detector='yolov9e', tracker='bytetrack', conf=0.15, iou=0.2,
                  max_det=600):
-        self.source = source
         self.model = YOLO('./models/detector/' + detector + '.pt')
         self.tracker = './models/tracker/' + tracker + '.yaml'
         self.conf = conf
@@ -13,7 +12,7 @@ class get_tracked_data:
 
     def track(self, source):
         results = self.model.track(
-            source=self.source,
+            source=source,
             tracker=self.tracker,
             conf=self.conf,
             iou=self.iou,
@@ -36,7 +35,7 @@ class get_tracked_data:
 
     def detect(self, source):
         results = self.model.predict(
-            source=self.source,
+            source=source,
             conf=self.conf,
             iou=self.iou,
             device=0,
