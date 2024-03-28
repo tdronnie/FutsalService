@@ -8,6 +8,7 @@ import {
   faCalendarDays,
   faCamera,
   faChessBoard,
+  faChevronRight,
   faCircleUser,
   faFilter,
   faHeart,
@@ -61,5 +62,6 @@ library.add(
   faMap,
   faPeopleGroup,
   faVuejs,
-  faBrave
+  faBrave,
+  faChevronRight
 );

@@ -162,8 +162,7 @@ interface TextareaContainerPropsType {
 interface FollowCardPropsType {
   file: string;
   nickName: string;
-  isFollow: boolean;
-  setIsFollow: React.Dispatch<React.SetStateAction<boolean>>;
+  overall: number;
 }
 
 interface matchPlace {

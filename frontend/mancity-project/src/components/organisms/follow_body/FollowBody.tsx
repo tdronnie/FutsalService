@@ -3,16 +3,14 @@ import FollowCard from "@/components/molecules/follow_card/FollowCard";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const FollowBody = () => {
+const FollowBody = ({ followListData }: followListDataType) => {
   const [selectedTab, setSelectedTab] = useState(false);
   const tabSwitch = () => setSelectedTab(!selectedTab);
 
   const navigate = useNavigate();
-  //   const handleNavigate = ({ path }: NavigateType) => {
-  //     navigate(path);
-  const file = "";
-  const nickName = "김포이세은";
-  const [isFollow, setIsFollow] = useState(false);
+
+  const followers = followListData.followers;
+  const followings = followListData.followings;
 
   return (
     <div>
@@ -25,22 +23,45 @@ const FollowBody = () => {
         />
       </div>
       <div className="p-2">
-        {!selectedTab && (
-          <div> 
+        {selectedTab && (
+          <div>
             <div>
-              <FollowCard
-                file={file}
-                nickName={nickName}
-                isFollow={isFollow}
-                setIsFollow={setIsFollow}
-              />
+              {followers.map((follower) => (
+                <div
+                  onClick={() => {
+                    navigate(`/profile/${follower.userId}`);
+                  }}
+                >
+                  <FollowCard
+                    key={follower.userId}
+                    file={follower.profileImage}
+                    nickName={follower.nickname}
+                    overall={follower.overall}
+                  />
+                </div>
+              ))}
             </div>
           </div>
         )}
 
-        {selectedTab && (
+        {!selectedTab && (
           <div>
-            <div className="flex">하이</div>
+            <div>
+              {followings.map((following) => (
+                <div
+                  onClick={() => {
+                    navigate(`/profile/${following.userId}`);
+                  }}
+                >
+                  <FollowCard
+                    key={following.userId}
+                    file={following.profileImage}
+                    nickName={following.nickname}
+                    overall={following.overall}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         )}
       </div>
