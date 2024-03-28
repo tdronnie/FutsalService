@@ -1,4 +1,4 @@
-package com.mancity.user.ClubMember.domain;
+package com.mancity.user.clubmember.domain;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
