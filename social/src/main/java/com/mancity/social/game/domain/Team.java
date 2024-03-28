@@ -25,8 +25,5 @@ public class Team {
 
     private int shotOnTarget;
 
-    private int activityLevel; //활동량
-
-    private int possession; //점유율
 
 }

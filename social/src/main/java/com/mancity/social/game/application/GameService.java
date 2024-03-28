@@ -116,13 +116,25 @@ public class GameService {
     public TeamFeedbackResponseDto getTeamsFeedback(Long id) {
         Game game = findById(id);
         return TeamFeedbackResponseDto.builder()
-                .possession(game.getTeamA().getPossession() > game.getTeamB().getPossession() ? 1 : 2)
+                .possession(game.getTeamA().getPass() > game.getTeamB().getPass() ? 1 : 2)
                 .shot(game.getTeamA().getShot() > game.getTeamB().getShot() ? 1 : 2)
                 .pass(game.getTeamA().getPass() > game.getTeamB().getPass() ? 1 : 2)
                 .goal(game.getTeamA().getGoal() > game.getTeamB().getGoal() ? 1 : 2)
-                .activityLevel(game.getTeamA().getGoal() > game.getTeamB().getGoal() ? 1 : 2)
+                .activityLevel((compare(game.getPlayersA(), game.getPlayersB())))
                 .build();
 
+    }
+
+    public int compare(List<Player> teamA, List<Player> teamB) {
+        int actLvA = 0;
+        int actLvB = 0;
+        for (Player p : teamA) {
+            actLvA += p.getDistanceCovered();
+        }
+        for (Player p : teamB) {
+            actLvB += p.getDistanceCovered();
+        }
+        return actLvA > actLvB ? 1 : 2;
     }
 
     public PlayerFeedBackResponseDto getPersonalFeedBack(Long gameId, Long playerId) {
