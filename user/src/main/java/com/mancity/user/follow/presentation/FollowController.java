@@ -48,4 +48,11 @@ public class FollowController {
         List<FollowerInfo> dtos = followService.findMyFollowings(id);
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
+
+    @GetMapping("/check")
+    public ResponseEntity<Boolean> checkFollow(@RequestParam(value = "sender", required = false) Long sender, @RequestParam("receiver") long recevier){
+
+        return new ResponseEntity<>(followService.check(sender, recevier), HttpStatus.OK);
+    }
+
 }

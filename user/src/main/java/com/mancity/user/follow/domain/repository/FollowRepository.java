@@ -19,4 +19,6 @@ public interface FollowRepository extends JpaRepository<Follow, Long> {
     @Query("delete from Follow f where senderId=:senderId and receiverId=:receiverId")
     int deleteBySenderIdAndReceiverId(long senderId, long receiverId);
 
+    boolean existsBySenderIdAndReceiverId(Long senderId, long receiverId);
+
 }
