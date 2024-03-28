@@ -30,3 +30,20 @@ interface followDataType {
   senderId: number;
   receiverId: number;
 }
+
+interface followListDataType {
+  followListData: {
+    followers: {
+      userId: number;
+      nickname: string;
+      profileImage: string;
+      overall: number;
+    }[];
+    followings: {
+      userId: number;
+      nickname: string;
+      profileImage: string;
+      overall: number;
+    }[];
+  };
+}
