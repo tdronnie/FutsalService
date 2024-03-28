@@ -2,9 +2,7 @@ package com.mancity.social.game.presentation;
 
 import com.mancity.social.game.application.GameService;
 import com.mancity.social.game.application.dto.request.*;
-import com.mancity.social.game.application.dto.response.GameResponseDto;
-import com.mancity.social.game.application.dto.response.PlayerDataResponseDto;
-import com.mancity.social.game.application.dto.response.TeamDataResponseDto;
+import com.mancity.social.game.application.dto.response.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -61,7 +59,8 @@ public class GameController {
         return new ResponseEntity<>(gameService.findAllByUserId(id), HttpStatus.OK);
     }
 
-    @GetMapping("/participated/{id}") // 회원별 참여 상태인 매치 목록
+    @GetMapping("/participated/{id}")
+        // 회원별 참여 상태인 매치 목록
     ResponseEntity<List<GameResponseDto>> findGamesByParticipantUserId(@PathVariable long id) {
         return new ResponseEntity<>(gameService.findGamesByParticipantUserId(id), HttpStatus.OK);
     }
@@ -94,4 +93,10 @@ public class GameController {
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
 
+
+    @GetMapping("/teamData/{id}")
+    public ResponseEntity<TeamFeedbackResponseDto> getTeamsResultData(@PathVariable Long id) {
+        return new ResponseEntity<>(gameService.getTeamsFeedback(id), HttpStatus.OK);
+
+    }
 }
