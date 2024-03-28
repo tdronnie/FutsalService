@@ -1,7 +1,10 @@
+import PlayerFixTemplete from "@/components/templates/PlayerFixTemplete"
 
 const PlayerFixPage = () => {
   return (
-    <div>PlayerFixPage</div>
+    <div>
+      <PlayerFixTemplete />
+    </div>
   )
 }
 
