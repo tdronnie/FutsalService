@@ -28,9 +28,9 @@ const ScoreTemplete = () => {
 
           {/* 팀 구분 하는 자리 */}
           <div className="flex justify-around my-1 text-xl font-bold">
-            <span>HOME팀</span>
+            <span className="text-red-500">HOME팀</span>
             <span>|</span>
-            <span>AWAY팀</span>
+            <span className="text-blue-600">AWAY팀</span>
           </div>
         </div>
       </div>
@@ -50,9 +50,9 @@ const ScoreTemplete = () => {
         <div className="px-2 m-3 bg-white bg-opacity-30 opacity-90 rounded-xl">
           {/* 팀 */}
           <div className="flex justify-around p-2">
-            <span>HOME</span>
+            <span className="font-bold text-red-500">HOME</span>
             <span>팀</span>
-            <span>AWAY</span>
+            <span className="font-bold text-blue-600">AWAY</span>
           </div>
           <hr className="border border-sofcity" />
 
