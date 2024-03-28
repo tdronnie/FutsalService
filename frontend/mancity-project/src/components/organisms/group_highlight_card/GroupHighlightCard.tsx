@@ -3,7 +3,7 @@ import HighlightCard from "@/components/molecules/highlight_card/HighlightCard";
 
 const GroupHighlightCard = () => {
   return (
-    <div id="glassui" className="justify-center m-4 py-2 ">
+    <div id="glassui" className="justify-center py-2 m-4 ">
       <div className="mx-4 my-2">
         <Typography
           label="저장된 하이라이트"
@@ -12,6 +12,8 @@ const GroupHighlightCard = () => {
           fontWeight="font-medium"
         />
       </div>
+      <hr className="border border-sofcity" />
+
       <div className="flex mx-2 overflow-x-scroll ">
         <div className="m-2">
           <HighlightCard
