@@ -1,6 +1,6 @@
 package com.mancity.user.club.domain;
 
-import com.mancity.user.ClubMember.domain.ClubMember;
+import com.mancity.user.clubmember.domain.ClubMember;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -58,9 +58,6 @@ public class Club {
     public void joinMember(ClubMember clubMember) {
         log.info("memberCnt= {}", this.memberCnt);
         this.clubMembers.add(clubMember);
-//        for (ClubMember cm: clubMembers) {
-//            log.info("clubMember ={}", cm.getUser().getId());
-//        }
         this.memberCnt = clubMembers.size(); //인원 업데이트
         log.info("추가 후 memberCnt= {}", this.memberCnt);
     }
