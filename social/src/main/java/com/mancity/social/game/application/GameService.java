@@ -1,6 +1,7 @@
 package com.mancity.social.game.application;
 
 import com.mancity.social.game.application.dto.request.*;
+import com.mancity.social.game.application.dto.response.GameMainResponseDto;
 import com.mancity.social.game.application.dto.response.GameResponseDto;
 import com.mancity.social.game.application.dto.response.PlayerDataResponseDto;
 import com.mancity.social.game.application.dto.response.TeamDataResponseDto;
@@ -111,6 +112,14 @@ public class GameService {
     public PlayerDataResponseDto findPlayerDataByGameId(Long id) {
         Game game = findById(id);
         return PlayerDataResponseDto.from(game);
+    }
+
+    public List<GameMainResponseDto> findMyGameOver(long id) {
+        return gameRepositorySupport.findGamesByParticipantUserId(id)
+                .stream()
+                .filter(Game::isOver)
+                .map(GameMainResponseDto::from)
+                .collect(Collectors.toList());
     }
 
 }
