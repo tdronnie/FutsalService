@@ -2,6 +2,7 @@ package com.mancity.social.game.presentation;
 
 import com.mancity.social.game.application.GameService;
 import com.mancity.social.game.application.dto.request.*;
+import com.mancity.social.game.application.dto.response.GameMainResponseDto;
 import com.mancity.social.game.application.dto.response.GameResponseDto;
 import com.mancity.social.game.application.dto.response.PlayerDataResponseDto;
 import com.mancity.social.game.application.dto.response.TeamDataResponseDto;
@@ -92,6 +93,12 @@ public class GameController {
                                                                        @RequestParam(required = false) String level) {
         List<GameResponseDto> dtos = gameService.findAllByFilters(gender, region, playernumber, level);
         return new ResponseEntity<>(dtos, HttpStatus.OK);
+    }
+
+    @GetMapping("/main/{id}")
+    public ResponseEntity<List<GameMainResponseDto>> findMyGameOver(@PathVariable("id") long id){
+        log.info("MAIN PAGE - 분석 완료된 게임 리스트 조회 : {}", id);
+        return new ResponseEntity<>(gameService.findMyGameOver(id), HttpStatus.OK);
     }
 
 }
