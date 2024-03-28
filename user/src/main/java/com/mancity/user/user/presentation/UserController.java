@@ -2,6 +2,7 @@ package com.mancity.user.user.presentation;
 
 import com.mancity.user.user.application.UserService;
 import com.mancity.user.user.application.dto.request.*;
+import com.mancity.user.user.application.dto.response.MainPageResponseDto;
 import com.mancity.user.user.application.dto.response.PlayerListResponseDto;
 import com.mancity.user.user.application.dto.response.ProfileResponseDto;
 import com.mancity.user.user.application.dto.response.UserResponseDto;
@@ -77,7 +78,7 @@ public class UserController {
         return new ResponseEntity<>(userService.getProfilePage(id), HttpStatus.OK);
     }
 
-    @GetMapping( "/players")
+    @GetMapping("/players")
     public ResponseEntity<List<PlayerListResponseDto>> getPlayerList() {
         return new ResponseEntity<>(userService.getPlayerList(), HttpStatus.OK);
     }
@@ -87,7 +88,10 @@ public class UserController {
         return new ResponseEntity<>(userService.getPlayerListOrderByMainStat(mainStat), HttpStatus.OK);
     }
 
-
+    @GetMapping("/main/{id}")
+    public ResponseEntity<MainPageResponseDto> getMainPage(@PathVariable("id") Long id){
+        return new ResponseEntity<>(userService.getMainPage(id), HttpStatus.OK);
+    }
 
 
 }

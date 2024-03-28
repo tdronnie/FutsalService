@@ -1,4 +1,4 @@
-package com.mancity.user.ClubMember.domain;
+package com.mancity.user.clubmember.domain;
 
 import com.mancity.user.club.domain.Club;
 import com.mancity.user.user.domain.User;

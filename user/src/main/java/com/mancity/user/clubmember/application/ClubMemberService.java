@@ -1,14 +1,14 @@
-package com.mancity.user.ClubMember.application;
+package com.mancity.user.clubmember.application;
 
-import com.mancity.user.ClubMember.application.dto.request.JoinRequestDto;
-import com.mancity.user.ClubMember.application.dto.request.JoinRequestReplyDto;
-import com.mancity.user.ClubMember.application.dto.response.JoinRequestReplyResponseDto;
-import com.mancity.user.ClubMember.domain.ClubMember;
-import com.mancity.user.ClubMember.domain.JoinRequest;
-import com.mancity.user.ClubMember.domain.repository.JoinRequestRepository;
-import com.mancity.user.ClubMember.exception.AlreadyExsitClubMemberException;
-import com.mancity.user.ClubMember.exception.AlreadyExsitJoinRequestException;
-import com.mancity.user.ClubMember.exception.NoSuchJoinRequestException;
+import com.mancity.user.clubmember.application.dto.request.JoinRequestDto;
+import com.mancity.user.clubmember.application.dto.request.JoinRequestReplyDto;
+import com.mancity.user.clubmember.application.dto.response.JoinRequestReplyResponseDto;
+import com.mancity.user.clubmember.domain.ClubMember;
+import com.mancity.user.clubmember.domain.JoinRequest;
+import com.mancity.user.clubmember.domain.repository.JoinRequestRepository;
+import com.mancity.user.clubmember.exception.AlreadyExsitClubMemberException;
+import com.mancity.user.clubmember.exception.AlreadyExsitJoinRequestException;
+import com.mancity.user.clubmember.exception.NoSuchJoinRequestException;
 import com.mancity.user.club.domain.Club;
 import com.mancity.user.club.domain.repository.ClubRepository;
 import com.mancity.user.club.exception.NoSuchClubException;

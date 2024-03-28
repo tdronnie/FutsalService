@@ -3,7 +3,7 @@ package com.mancity.user.user.domain;
 import com.mancity.user.stat.domain.LastStat;
 import com.mancity.user.stat.domain.MainStat;
 import com.mancity.user.stat.domain.Stat;
-import com.mancity.user.ClubMember.domain.ClubMember;
+import com.mancity.user.clubmember.domain.ClubMember;
 import com.mancity.user.user.application.dto.request.UpdateRequestDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
