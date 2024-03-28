@@ -73,4 +73,9 @@ public class FollowService {
     public void unfollow(UnfollowSendRequestDto dto) {
         followRepository.deleteBySenderIdAndReceiverId(dto.getSenderId(), dto.getReceiverId());
     }
+
+    public Boolean check(Long sender, long receiver) {
+        return followRepository.existsBySenderIdAndReceiverId(sender, receiver);
+    }
+
 }
