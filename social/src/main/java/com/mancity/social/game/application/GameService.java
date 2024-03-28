@@ -122,4 +122,8 @@ public class GameService {
                 .collect(Collectors.toList());
     }
 
+    public void updateCalcStatus(long id) {
+        Game game = gameRepository.findById(id).orElseThrow(NoSuchGameException::new);
+        game.updateCalcOver();
+    }
 }

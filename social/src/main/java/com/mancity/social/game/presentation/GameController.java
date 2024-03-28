@@ -101,4 +101,10 @@ public class GameController {
         return new ResponseEntity<>(gameService.findMyGameOver(id), HttpStatus.OK);
     }
 
+    @PutMapping("/calcOver/{id}")
+    public ResponseEntity<?> calcOver(@PathVariable("id") long id){
+        gameService.updateCalcStatus(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }
