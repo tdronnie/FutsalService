@@ -90,7 +90,7 @@ export const profileEditApi = async (profileEditData: FormData) => {
 // 팔로잉
 export const followApi = async (followData: followDataType) => {
   return publicRequest
-    .post(`user/follow/send`, { data: followData })
+    .post(`user/follow/send`, followData)
     .then((res) => res.data)
     .catch((error) => {
       console.log(error);
