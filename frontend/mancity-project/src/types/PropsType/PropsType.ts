@@ -7,6 +7,8 @@ interface TailwindPropsType {
   bgColor?: string;
   borderColor?: string;
 
+  id?: string;
+
   hoverTextColor?: string;
   hoverBgColor?: string;
   hoverBorderColor?: string;
