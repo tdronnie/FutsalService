@@ -99,7 +99,7 @@ const ScoreTemplete = () => {
         </div>
         <div
           className="w-full ml-1 mr-3 cursor-pointer"
-          onClick={() => handleNavigate({ path: "/personalfeedback/1" })}
+          onClick={() => handleNavigate({ path: "/playerfix/1" })}
         >
           <HalfCard maintext="개인 기록" />
         </div>
