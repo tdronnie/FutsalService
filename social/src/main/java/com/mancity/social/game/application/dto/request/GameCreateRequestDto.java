@@ -31,6 +31,8 @@ public class GameCreateRequestDto {
 
     private long courtId;
 
+    private boolean isCalcOver;
+
     public Game toEntity() {
         return Game.builder()
                 .replayUrl("")
@@ -39,6 +41,7 @@ public class GameCreateRequestDto {
                 .startDate(startDate)
                 .time(time)
                 .isOver(isOver)
+                .isCalcOver(false)
                 .playerNumber(playerNumber)
                 .level(GameLevel.valueOf(level))
                 .courtId(courtId)

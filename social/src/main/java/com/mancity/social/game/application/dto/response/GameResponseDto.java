@@ -35,6 +35,8 @@ public class GameResponseDto {
 
     private int playerNumber;
 
+    private boolean isCalcOver;
+
     private TeamResponseDto teamA;
 
     private TeamResponseDto teamB;
@@ -59,6 +61,7 @@ public class GameResponseDto {
                 .startDate(game.getStartDate())
                 .time(game.getTime())
                 .isOver(game.isOver())
+                .isCalcOver(game.isCalcOver())
                 .teamA(TeamResponseDto.fromTeamA(game))
                 .teamB(TeamResponseDto.fromTeamB(game))
                 .playersA(PlayerResonseDto.fromPlayersA(game))
