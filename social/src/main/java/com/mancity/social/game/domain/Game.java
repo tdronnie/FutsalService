@@ -40,6 +40,8 @@ public class Game {
 
     private int playerNumber; // 총 인원 수
 
+    private boolean isCalcOver;
+
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn
     private Team teamA;
@@ -95,4 +97,7 @@ public class Game {
         this.participants.add(participant);
     }
 
+    public void updateCalcOver(){
+        this.isCalcOver = true;
+    }
 }
