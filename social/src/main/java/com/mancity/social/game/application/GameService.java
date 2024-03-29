@@ -46,8 +46,9 @@ public class GameService {
 
     private final GameRepositorySupport gameRepositorySupport;
 
-    public void create(GameCreateRequestDto dto) {
-        gameRepository.save(dto.toEntity());
+    public Long create(GameCreateRequestDto dto) {
+        Game game = gameRepository.save(dto.toEntity());
+        return game.getId();
     }
 
     public GameResponseDto upload(List<MultipartFile> files, GameVideoUploadDto dto) {
