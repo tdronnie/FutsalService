@@ -1,5 +1,7 @@
 package com.mancity.user.clubmember.application;
 
+import com.mancity.user.alarm.application.AlarmService;
+import com.mancity.user.alarm.application.dto.request.AlarmCreateDto;
 import com.mancity.user.clubmember.application.dto.request.JoinRequestDto;
 import com.mancity.user.clubmember.application.dto.request.JoinRequestReplyDto;
 import com.mancity.user.clubmember.application.dto.response.JoinRequestReplyResponseDto;
@@ -32,6 +34,8 @@ public class ClubMemberService {
 
     private final JoinRequestRepository joinRequestRepository;
 
+    private final AlarmService alarmService;
+
 
     public void joinRequest(JoinRequestDto dto) {
         Club club = clubRepository.findById(dto.getClubId()).orElseThrow(NoSuchClubException::new);
@@ -52,9 +56,8 @@ public class ClubMemberService {
             throw new AlreadyExsitJoinRequestException();
         }
 
-        Long masterId = club.getMasterId();
-        //마스터에게 참여 요청 알림 필요!!
-        joinRequestRepository.save(dto.toEntity());
+        JoinRequest joinRequest = joinRequestRepository.save(dto.toEntity());
+        alarmService.createAlarm(AlarmCreateDto.of(dto.getUserId(), club.getMasterId(), "CLUB_REQUEST", joinRequest.getId()));
 
     }
 
@@ -83,9 +86,7 @@ public class ClubMemberService {
             //클럽 멤버에 가입
             club.joinMember(clubMember);
 
-            //가입 완료 후 매치장이 가입요청 사용자에게 응답에 대한 알림 필요!!
-
-
+            alarmService.createAlarm(AlarmCreateDto.of(club.getMasterId(), joinRequest.getRequestUserId(), "CLUB_REQUEST_REPLY", 0L));
         }
 
         return new JoinRequestReplyResponseDto(dto.isResponse());

@@ -30,6 +30,6 @@ public class AlarmController {
     public ResponseEntity<List<AlarmResponseDto>> findAllByUserId(@PathVariable("id") long id) {
         log.info("Alarm - 알람 조회 요청 : {}", id);
         return new ResponseEntity<>(alarmService.findAllByUserId(id), HttpStatus.OK);
-
     }
+
 }

@@ -21,7 +21,7 @@ public class AlarmCreateDto {
 
     private String domain;
 
-    public Alarm toEntity(){
+    public Alarm toEntity() {
         return Alarm.builder()
                 .senderId(senderId)
                 .receiverId(receiverId)
@@ -32,4 +32,12 @@ public class AlarmCreateDto {
                 .build();
     }
 
+    public static AlarmCreateDto of(long senderId, long receiverId, String domain, long domainId) {
+        return AlarmCreateDto.builder()
+                .senderId(senderId)
+                .receiverId(receiverId)
+                .domain(domain)
+                .domainId(domainId)
+                .build();
+    }
 }
