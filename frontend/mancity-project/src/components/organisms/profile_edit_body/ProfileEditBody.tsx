@@ -190,7 +190,7 @@ const ProfileEditBody = ({ userInfoData }: UserInfoPropsType) => {
               MyTypographyLabel="키 (cm)"
               placeholder="175"
               checking={false}
-              textValue={String(heightValue)}
+              textValue={heightValue}
               setTextValue={setHeightValue}
             />
           </div>
@@ -199,7 +199,7 @@ const ProfileEditBody = ({ userInfoData }: UserInfoPropsType) => {
               MyTypographyLabel="몸무게 (kg)"
               placeholder="70"
               checking={false}
-              textValue={String(weightValue)}
+              textValue={weightValue}
               setTextValue={setWeightValue}
             />
           </div>
