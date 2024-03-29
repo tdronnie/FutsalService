@@ -50,6 +50,7 @@ const LoginBody = () => {
       const response = await fetchUserApi(loginId)
       return response;
     },
+    enabled: loginId !== 0,
   });
 
   const { mutate: loginMutate } = useMutation({
@@ -68,9 +69,6 @@ const LoginBody = () => {
     console.log(loginData);
     setLoginError("이메일 또는 비밀번호가 맞지 않습니다. 다시 확인해 주세요.");
   };
-
-  // 유저정보를 전역으로 상태 관리해야 합니다
-  console.log(data);
 
   return (
     <div>

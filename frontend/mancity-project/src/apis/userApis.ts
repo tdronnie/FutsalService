@@ -54,16 +54,29 @@ export const loginApi = async (loginData: loginApiType) => {
     });
 };
 
-// 유저 정보
-export const fetchUserApi = async (userId: number) => {
+// fcm토큰 보내기
+export const sendFcmTokenApi = async (fcmData: fcmDataType) => {
   return publicRequest
-    .get(`user/${userId}`)
+    .post(`user/fcm`, fcmData)
     .then((res) => res.data)
     .catch((error) => {
       console.log(error);
-      throw new Error("유저 정보 api 에러");
+      throw new Error("회원가입 api 에러");
     });
 };
+
+// 유저 정보
+export const fetchUserApi = async (userId: number) => {
+  try {
+    const response = await publicRequest.get(`user/${userId}`);
+    console.log(response.data);
+    return response.data; // 데이터 반환
+  } catch (error) {
+    console.log(error);
+    throw new Error("유저 정보 api 에러");
+  }
+};
+
 
 // 프로필 페이지 ()
 export const fetchProfileApi = async (userId: number) => {
