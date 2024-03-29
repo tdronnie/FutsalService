@@ -8,7 +8,7 @@ const GlobalCard = (props: GlobalCardProps) => {
       <div>
         <ContentBox file={file} rounded="rounded-t-[10px]" />
       </div>
-      <div className="mx-2 my-1">
+      <div className="my-1">
         <div className="my-1 mr-2 overflow-hidden whitespace-nowrap overflow-ellipsis">
           <MyTypography label={subTitle} textSize="text-sm" />
         </div>

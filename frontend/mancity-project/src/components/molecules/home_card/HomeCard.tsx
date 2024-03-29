@@ -10,13 +10,14 @@ const HomeCard = (props: HomeCardPropsType) => {
   return (
     <div
       id="glassui"
-      className="flex items-center w-full p-2 rounded-md cursor-pointer shadow-nav"
+      className="flex items-center w-full p-2 h-[5.5rem] rounded-md cursor-pointer shadow-nav"
     >
       <div>
         <ContentBox
-          height="h-16"
+          height="h-14"
           width="w-16"
-          rounded="rounded-lg"
+          // rounded지만 배경색 스타일 설정으로 사용ㅎ...급하니깐
+          rounded="bg-transparent object-fill"
           file={file}
         />
       </div>
