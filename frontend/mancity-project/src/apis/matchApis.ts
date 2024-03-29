@@ -1,10 +1,11 @@
 import { publicRequest } from "@/hooks/requestMethods";
 
+// 경기 상세 페이지 정보 조회
 export const fetchMatchDetail = async (
   match_id: number
 ): Promise<matchDetailPropsDataType> => {
   return publicRequest
-    .get(`social/game/${match_id}`)
+    .get(`social/game/detail/${match_id}`)
     .then((res) => res.data)
     .catch((error) => {
       console.log(error);
