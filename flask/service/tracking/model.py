@@ -1,7 +1,7 @@
 from ultralytics import YOLO
 
 
-class track:
+class model:
     def __init__(self, detector='yolov9e', tracker='bytetrack', conf=0.15, iou=0.2,
                  max_det=600):
         self.model = YOLO('./models/detector/' + detector + '.pt')

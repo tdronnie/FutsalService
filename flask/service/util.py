@@ -134,11 +134,6 @@ def validator_player(field, team_A_player_id_map, team_B_player_id_map, lost_pla
     return team_A_players, team_B_players, team_A_player_id_map, team_B_player_id_map, new_lost_players
 
 
-'''
-첫 프레임 객체 인식 및 선수, 골대 팀 분배 부분
-'''
-
-
 def player_team_divider(field, players):
     players = field_area_filter(field, players)
     players.sort(key=lambda x: x['confidence'])
@@ -164,7 +159,7 @@ def goal_post_team_divider(goal_posts):
     return goal_posts[0], goal_posts[1]
 
 
-def obj_devider(frame_objs):
+def obj_divider(frame_objs):
     objs_field = []
     objs_goal_post = []
     objs_player = []
@@ -203,3 +198,15 @@ def define_objs(field, objs_goal_post, objs_player):
         result_info.update({'team_B_player_id_map': team_B_player_id_map})
 
     return result_info
+
+
+def set_format(players):
+    formatted = []
+    for player in players:
+        x, y = get_position(player.get('box'))
+        formatted.append({
+            'id': player.get('track_id'),
+            'x': x,
+            'y': y
+        })
+    return formatted
