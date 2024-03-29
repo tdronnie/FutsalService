@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -173,4 +174,10 @@ public class UserService {
         return MainPageResponseDto.from(players, games);
     }
 
+    public List<UserSearchResponseDto> findByNickNameAndEmail(String word) {
+        return userRepository.findByNickNameOrEmail(word)
+                .stream()
+                .map(UserSearchResponseDto::from)
+                .collect(Collectors.toList());
+    }
 }

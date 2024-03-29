@@ -2,10 +2,7 @@ package com.mancity.user.user.presentation;
 
 import com.mancity.user.user.application.UserService;
 import com.mancity.user.user.application.dto.request.*;
-import com.mancity.user.user.application.dto.response.MainPageResponseDto;
-import com.mancity.user.user.application.dto.response.PlayerListResponseDto;
-import com.mancity.user.user.application.dto.response.ProfileResponseDto;
-import com.mancity.user.user.application.dto.response.UserResponseDto;
+import com.mancity.user.user.application.dto.response.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -47,7 +44,7 @@ public class UserController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<?> updateInfo(@RequestPart(required = false) MultipartFile image, @RequestPart UpdateRequestDto dto){
+    public ResponseEntity<?> updateInfo(@RequestPart(required = false) MultipartFile image, @RequestPart UpdateRequestDto dto) {
         userService.updateInfo(image, dto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -89,9 +86,12 @@ public class UserController {
     }
 
     @GetMapping("/main/{id}")
-    public ResponseEntity<MainPageResponseDto> getMainPage(@PathVariable("id") Long id){
+    public ResponseEntity<MainPageResponseDto> getMainPage(@PathVariable("id") Long id) {
         return new ResponseEntity<>(userService.getMainPage(id), HttpStatus.OK);
     }
 
-
+    @GetMapping("/search/{word}")
+    public ResponseEntity<List<UserSearchResponseDto>> findByNickNameAndEmail(@PathVariable("word") String word) {
+        return new ResponseEntity<>(userService.findByNickNameAndEmail(word), HttpStatus.OK);
+    }
 }
