@@ -7,17 +7,23 @@ app = Flask(__name__)
 
 @app.route("/api/track", methods=['POST'])
 def track_request():
-    args_dict = request.form.to_dict()
+    args_dict = request.get_json()
     instance = track_service()
-    # time.sleep(100)
-    if args_dict.get('url') is None or args_dict.get('game_id') is None:
-        return make_response(400)
+    source = args_dict.get('url')
+    game_id = args_dict.get('game_id')
+    
+#     start = time.time()
+    if source is None or game_id is None:
+        return make_response("bad req",400)
     else:
-        source = args_dict.get('url')
-        game_id = args_dict.get('game_id')
         result = instance.get_result(source)
         result.update({'game_id':game_id})
-    return make_response(jsonify(result),200)
+        
+#     end = time.time()
+    
+#     print((end-start)/60)
+    
+    return make_response(jsonify(result), 200)
 
 
 if __name__ == '__main__':

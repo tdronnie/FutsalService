@@ -31,8 +31,6 @@ def get_distance(obj1, obj2):
 
 
 def calc_iou(obj1, obj2):
-    obj1 = obj1.get('box')
-    obj2 = obj2.get('box')
     intersection_x1 = max(obj1.get('x1'), obj2.get('x1'))
     intersection_x2 = min(obj1.get('x2'), obj2.get('x2'))
     intersection_y1 = max(obj1.get('y1'), obj2.get('y1'))
@@ -47,57 +45,35 @@ def calc_iou(obj1, obj2):
 
 def validator_field(field, objs_field):
     if len(objs_field) == 0:
-        return field.get('box')
+        return field
 
     max_similarity_obj = field
     max_similarity = -1
-
+    
     for obj in objs_field:
         obj_similarity = calc_iou(field, obj.get('box'))
         if obj_similarity > max_similarity:
             max_similarity_obj = obj
             max_similarity = obj_similarity
     if max_similarity_obj is None:
-        return field.get('box')
+        return field
     else:
         return max_similarity_obj.get('box')
 
 
 def validator_ball(field, objs_ball):
     objs_ball = field_area_filter(field, objs_ball)
+    if len(objs_ball) == 0:
+        return None
     objs_ball.sort(key=lambda x: -x.get('confidence'))
     return objs_ball[0].get('box')
 
 
 def validator_goal_post(objs_goal_post):
+    if len(objs_goal_post) < 2:
+        return None
     objs_goal_post.sort(key=lambda x: -x.get('confidence'))
     return objs_goal_post[0].get('box'), objs_goal_post[1].get('box')
-
-
-################################## 임시 ############################################
-# def validator_player(id_map, lost_players, objs_player):
-#     mapped_players = []
-#     new_lost_players = []
-#
-#     for player in objs_player:
-#         if player.get('track_id') in id_map.values():
-#             mapped_players.append(player.get('track_id'))
-#             continue
-#         new_lost_players.append(player)
-#     '''
-#     기존 id_map에 없는 player를 confidence score로 sort해 가장 높은 player를 잃었던 객체에 mapping
-#     '''
-#     lost_players = filter(lambda x: x.get('confidence') > 0.7, lost_players)
-#     lost_players.sort(key=lambda x: get_distance(x))
-#     if len(lost_players) != 0:
-#         for player in lost_players:
-#
-#     #     new_lost_players.sort(key=lambda x:x.get('confidence'))
-#
-#     # if len(lost_players) != 0:
-#     #     new_lost_players.
-#     return id_map
-################################## 임시 ############################################
 
 
 def validator_player(field, team_A_player_id_map, team_B_player_id_map, lost_players, objs_player):
@@ -146,17 +122,20 @@ def player_team_divider(field, players):
     else:
         half = 6
 
-    players.sort(key=lambda x: get_position(x.box)[0])
+    players.sort(key=lambda x: get_position(x.get('box'))[0])
     team_A_players = players[:half]
     team_B_players = players[half:]
     return team_A_players, team_B_players
 
 
 def goal_post_team_divider(goal_posts):
-    goal_posts.sort(key=lambda x: x['c_score'])
+    if len(goal_posts) <2:
+        return None
+    goal_posts.sort(key=lambda x: x['confidence'])
     goal_posts = goal_posts[:2]
-    goal_posts.sort(key=lambda x: x['x1'])
-    return goal_posts[0], goal_posts[1]
+    goal_posts.sort(key=lambda x: x.get('box').get('x1'))
+    
+    return goal_posts[0].get('box'), goal_posts[1].get('box')
 
 
 def obj_divider(frame_objs):
@@ -181,14 +160,13 @@ def define_objs(field, objs_goal_post, objs_player):
     team_A_player_id_map = {}
     team_B_player_id_map = {}
 
-    if len(objs_goal_post) != 0:
+    if len(objs_goal_post) >= 2:
         team_A_goal_post, team_B_goal_post = goal_post_team_divider(objs_goal_post)
         result_info.update({'team_A_goal_post': team_A_goal_post})
         result_info.update({'team_B_goal_post': team_B_goal_post})
-
-    if len(objs_player) != 0:
+    if len(objs_player) >= 10:
         team_A_players, team_B_players = player_team_divider(field, objs_player)
-
+    
         for i in range(len(team_A_players)):
             team_A_player_id_map.update({str(i): team_A_players[i].get('track_id')})
             team_B_player_id_map.update({str(i): team_B_players[i].get('track_id')})
