@@ -31,7 +31,7 @@ const CommunityListBody = () => {
                 <SortButton label="인기순" width="w-16" hover={true} />
               </div>
               <div className="w-full">
-                <SearchBar />
+                <SearchBar contents={[]} />
               </div>
             </div>
             <CommunityCard
@@ -82,7 +82,7 @@ const CommunityListBody = () => {
                 <SortButton label="인기순" width="w-16" hover={true} />
               </div>
               <div className="w-full">
-                <SearchBar />
+                <SearchBar contents={[]} />
               </div>
             </div>
             <CommunityCard

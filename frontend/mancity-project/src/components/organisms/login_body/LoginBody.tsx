@@ -46,7 +46,10 @@ const LoginBody = () => {
 
   const { data } = useQuery({
     queryKey: ["loginUserData", loginId],
-    queryFn: () => fetchUserApi(loginId),
+    queryFn: async () => {
+      const response = await fetchUserApi(loginId)
+      return response;
+    },
   });
 
   const { mutate: loginMutate } = useMutation({
@@ -66,8 +69,8 @@ const LoginBody = () => {
     setLoginError("이메일 또는 비밀번호가 맞지 않습니다. 다시 확인해 주세요.");
   };
 
-  // 유저정보를 상태관리해야합니다
-  console.log(`유저정보: ${data}`);
+  // 유저정보를 전역으로 상태 관리해야 합니다
+  console.log(data);
 
   return (
     <div>
@@ -90,7 +93,7 @@ const LoginBody = () => {
           setTextValue={setPasswordValue}
         />
       </div>
-      <div className="text-mancity mx-4 -mt-2 mb-2 ">
+      <div className="mx-4 mb-2 -mt-2 text-mancity ">
         {LoginError !== "" && (
           <Typography textSize="text-sm" label={LoginError} />
         )}
@@ -100,7 +103,7 @@ const LoginBody = () => {
       </div>
 
       <div
-        className="flex text-sm justify-end mr-4 mt-4 hover:underline hover:cursor-pointer"
+        className="flex justify-end mt-4 mr-4 text-sm hover:underline hover:cursor-pointer"
         onClick={goSignup}
       >
         <div className="mr-2">아직 회원이 아니신가요?</div>
