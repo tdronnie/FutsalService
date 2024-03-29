@@ -64,7 +64,25 @@ interface matchCreateType {
   over: boolean;
 }
 
-interface matchDetailPropsDataType extends matchCreateType {
+interface matchDetailPropsDataType {
+  gameId: number;
+  replayUrl: string;
+  gender: number;
+  managerId: number;
+  startDate: string;
+  time: number;
+  playerNumber: number;
+  participants: {
+    id: number;
+    userId: number;
+  }[];
+  level: string;
+  courtId: number;
+  over: boolean;
+  calcOver: boolean;
+}
+
+interface matchDetailAllDataPropsType extends matchCreateType {
   gameId: number;
 
   highlights: string[];

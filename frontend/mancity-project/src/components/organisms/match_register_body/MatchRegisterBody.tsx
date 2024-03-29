@@ -10,6 +10,7 @@ import SearchBar from "@/components/molecules/search_bar/SearchBar";
 import { useMutation } from "@tanstack/react-query";
 import { fetchMatchCreate } from "@/apis/matchApis";
 import { useNavigate } from "react-router-dom";
+import futsalCourtData from "@/data/futsalCourts.json";
 
 const MatchRegisterBody = () => {
   const navigate = useNavigate();
@@ -26,10 +27,12 @@ const MatchRegisterBody = () => {
     over: true,
   });
 
+  // 경기 생성 post 로직
   const { mutate } = useMutation({
     mutationFn: fetchMatchCreate,
     onSuccess(result: string) {
-      console.log(result);
+      // 해당 경기 페이지로 바로 렌더링
+      navigate(`/match/${result}`);
     },
     onError(error) {
       console.log(error);
@@ -87,27 +90,15 @@ const MatchRegisterBody = () => {
   const [levelValue, setLevelValue] = useState("");
 
   // 경기장
-  const matchPlace: matchPlace[] = [
-    { value: 1, label: "서울" },
-    { value: 2, label: "경기" },
-    { value: 3, label: "광주" },
-    { value: 4, label: "대구" },
-    { value: 5, label: "대전" },
-    { value: 6, label: "인천" },
-    { value: 7, label: "강원" },
-    { value: 8, label: "경상" },
-    { value: 9, label: "부산" },
-    { value: 10, label: "세종" },
-    { value: 11, label: "울산" },
-    { value: 12, label: "전라" },
-    { value: 13, label: "제주" },
-    { value: 14, label: "충청" },
-  ];
-
   const [placeValue, setPlaceValue] = useState(0);
 
+  // 오늘 날짜 저장
   const today = dayjs().format("YYYY-MM-DD");
+
+  // 날짜 형식 변경
   const formattedSelectedDate = dayjs(selectedDate).format("YYYY-MM-DD");
+
+  // 경기가 현재 날짜와 비교해서 지났는지 여부
   const isOver = dayjs(formattedSelectedDate).isBefore(today);
 
   // 유효성 검사 상태 추가
@@ -120,6 +111,7 @@ const MatchRegisterBody = () => {
     setIsFormValid(isValid);
   }, [genderValue, ruleValue, levelValue]);
 
+  // 입력값을 data 형식에 할당
   useEffect(() => {
     if (isFormValid) {
       setMatchRegisterData({
@@ -146,11 +138,10 @@ const MatchRegisterBody = () => {
   // 매치 등록
   const onSubmitMatchMake = () => {
     if (isFormValid) {
-      console.log(matchRegisterData);
       mutate(matchRegisterData);
     }
-    navigate("/match/detail");
   };
+
   return (
     <div className="">
       {/* 날짜 */}
@@ -185,7 +176,7 @@ const MatchRegisterBody = () => {
             textColor="text-sofcity"
             label="경기장"
           />
-          <SearchBar contents={matchPlace} setPlaceValue={setPlaceValue} />
+          <SearchBar contents={futsalCourtData} setPlaceValue={setPlaceValue} />
         </div>
       </div>
       {/* 인원 */}

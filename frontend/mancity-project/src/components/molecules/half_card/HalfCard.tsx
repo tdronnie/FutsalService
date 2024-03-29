@@ -2,7 +2,11 @@ import ContentBox from "@/components/atoms/content_box/ContentBox";
 import MyTypography from "@/components/atoms/my_typography/MyTypography";
 
 const HalfCard = (props: HalfCardPropsType) => {
-  const { file = "/src/assets/imgs/mancity_logo.png", maintext } = props;
+  const {
+    file = "/src/assets/imgs/mancity_logo.png",
+    maintext,
+    rounded = "rounded-full",
+  } = props;
   return (
     <div id="glassui" className="flex items-center w-full h-[4.5rem] p-2 rounded-md cursor-pointer shadow-nav">
       <div>
@@ -11,6 +15,7 @@ const HalfCard = (props: HalfCardPropsType) => {
           width="w-10"
           // rounded지만 배경색 스타일 설정으로 사용ㅎ...급하니깐
           rounded="bg-transparent"
+          // rounded={rounded}
           file={file}
           id="responsive-img"
         />
