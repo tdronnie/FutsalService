@@ -29,9 +29,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-import { getToken } from 'firebase/messaging';
+import { getToken } from "firebase/messaging";
 // `messaging` 인스턴스 생성 코드 추가
-import { getMessaging } from 'firebase/messaging';
+import { getMessaging } from "firebase/messaging";
 import { useEffect } from "react";
 
 const App = () => {
@@ -39,21 +39,22 @@ const App = () => {
   useEffect(() => {
     const fetchFCMToken = async () => {
       // 권한 요청 전에 먼저 알림 권한이 있는지 확인
-      if (Notification.permission === 'default') {
+      if (Notification.permission === "default") {
         requestPermission();
       }
-  
-      if (Notification.permission === 'granted') {
+
+      if (Notification.permission === "granted") {
         const messaging = getMessaging(app);
         const token = await getToken(messaging, {
-          vapidKey: "BLuopbozIqH5NnVASrPlVZXTae_NcsaY9bju7WrChj77PpcHfg79r7t3YehYTf3riIFbDfvuz79xhRTshmnxmnE",
+          vapidKey:
+            "BLuopbozIqH5NnVASrPlVZXTae_NcsaY9bju7WrChj77PpcHfg79r7t3YehYTf3riIFbDfvuz79xhRTshmnxmnE",
         });
         console.log(token); // 성공적으로 토큰을 받아온 경우, 로직 처리
       } else {
         console.log("알림 권한이 없어 토큰을 받아올 수 없습니다.");
       }
     };
-  
+
     fetchFCMToken();
   }, []);
 
@@ -66,7 +67,8 @@ const App = () => {
     if (
       location.pathname === "/entry" ||
       location.pathname === "/login" ||
-      location.pathname === "/signup" ||
+      // 소문자로 하면 네비바 안지워짐.. 왜지?
+      location.pathname === "/signUp" ||
       location.pathname === "/alert" ||
       location.pathname === "/map" ||
       location.pathname === "/match/register" ||
