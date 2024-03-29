@@ -66,9 +66,9 @@ pipeline {
 //                    } else {
 //                        echo "No exited containers to remove."
 //                    }
-//                }
-//            }
-//        }
+                }
+            }
+        }
 
         stage('Prune Docker Object'){
             steps {
