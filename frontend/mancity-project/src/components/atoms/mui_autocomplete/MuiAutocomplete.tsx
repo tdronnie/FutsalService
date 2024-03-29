@@ -1,6 +1,7 @@
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
+
 const MuiAutocomplete = ({ contents, setPlaceValue }: SearchBarPropsType) => {
   return (
     <Stack spacing={2} sx={{ width: "80%" }}>
@@ -35,7 +36,7 @@ const MuiAutocomplete = ({ contents, setPlaceValue }: SearchBarPropsType) => {
                   borderBottomWidth: "1px",
                   borderColor: "#5D7A93",
                 },
-                marginTop: "-12px",
+                marginTop: "-5px",
                 textAlign: "center",
                 width: "128%",
                 borderRadius: "0",
@@ -46,6 +47,7 @@ const MuiAutocomplete = ({ contents, setPlaceValue }: SearchBarPropsType) => {
                 textAlign: "center",
                 color: "#5D7A93",
                 marginLeft: "3rem",
+                marginBottom: "-10px",
               },
               "& .MuiInputLabel-root.Mui-focused": {
                 color: "#5D7A93",

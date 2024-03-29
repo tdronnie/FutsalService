@@ -1658,6 +1658,11 @@
   resolved "https://registry.npmjs.org/@floating-ui/utils/-/utils-0.2.1.tgz"
   integrity sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==
 
+"@fontsource/inter@^5.0.17":
+  version "5.0.17"
+  resolved "https://registry.npmjs.org/@fontsource/inter/-/inter-5.0.17.tgz"
+  integrity sha512-2meBGx1kt7u5LwzGc5Sz5rka6ZDrydg6nT3x6Wkt310vHXUchIywrO8pooWMzZdHYcyFY/cv4lEpJZgMD94bCg==
+
 "@fortawesome/fontawesome-common-types@6.5.1":
   version "6.5.1"
   resolved "https://registry.npmjs.org/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-6.5.1.tgz"
@@ -1861,6 +1866,20 @@
   version "5.15.14"
   resolved "https://registry.npmjs.org/@mui/core-downloads-tracker/-/core-downloads-tracker-5.15.14.tgz"
   integrity sha512-on75VMd0XqZfaQW+9pGjSNiqW+ghc5E2ZSLRBXwcXl/C4YzjfyjrLPhrEpKnR9Uym9KXBvxrhoHfPcczYHweyA==
+
+"@mui/joy@^5.0.0-beta.32":
+  version "5.0.0-beta.32"
+  resolved "https://registry.npmjs.org/@mui/joy/-/joy-5.0.0-beta.32.tgz"
+  integrity sha512-QJW5Mu2GTJUX4sXjxt4nQBugpJAiSkUT49S/bwoKCCWx8bCfsEyplTzZPK+FraweiGhGgZWExWOTAPpxH83RUQ==
+  dependencies:
+    "@babel/runtime" "^7.23.9"
+    "@mui/base" "5.0.0-beta.40"
+    "@mui/core-downloads-tracker" "^5.15.14"
+    "@mui/system" "^5.15.14"
+    "@mui/types" "^7.2.14"
+    "@mui/utils" "^5.15.14"
+    clsx "^2.1.0"
+    prop-types "^15.8.1"
 
 "@mui/material@^5.15.14", "@mui/material@^5.8.6":
   version "5.15.14"

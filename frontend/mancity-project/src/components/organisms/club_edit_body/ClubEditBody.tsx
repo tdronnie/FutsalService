@@ -5,9 +5,12 @@ import ReverseButton from "@/components/atoms/reverse_button/ReverseButton";
 import SearchBar from "@/components/molecules/search_bar/SearchBar";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 
 const ClubEditBody = () => {
+    // 서치바 최초 값 0 초기화
+    const [placeValue, setPlaceValue] = useState(0);
+    
   // 지역
   const LocationInfo = [
     { value: 1, label: "서울" },
@@ -69,7 +72,7 @@ const ClubEditBody = () => {
       </div>
       <div className="m-3">
         <Dropdown
-          typographyLabel="지역"
+          MyTypographyLabel="지역"
           items={LocationInfo}
           position={locationLabel}
           setPosition={setLocationLabel}
@@ -78,7 +81,7 @@ const ClubEditBody = () => {
       </div>
       <div className="m-3">
         <InputGroup
-          typographyLabel="클럽명"
+          MyTypographyLabel="클럽명"
           checking={true}
           textValue={clubTitleValue}
           setTextValue={setClubTitleValue}
@@ -86,7 +89,7 @@ const ClubEditBody = () => {
       </div>
       <div className="m-3">
         <Dropdown
-          typographyLabel="인원"
+          MyTypographyLabel="인원"
           items={PlayerNumberInfo}
           position={playerNumberLabel}
           setPosition={setPlayerNumberLabel}
@@ -94,13 +97,13 @@ const ClubEditBody = () => {
         />
       </div>
       <div className="m-3 ml-7">
-        <Typography
+        <MyTypography
           label="홈그라운드 구장"
           textColor="text-sofcity"
           fontWeight="font-medium  "
           textSize="text-sm"
         />
-        <SearchBar />
+        <SearchBar contents={[]} setPlaceValue={setPlaceValue} />
       </div>
 
       <div onClick={onEditProfile} className="flex justify-end m-7 ">

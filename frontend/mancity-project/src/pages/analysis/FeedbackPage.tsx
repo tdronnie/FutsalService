@@ -1,7 +1,10 @@
+import FeedbackTemplet from "@/components/templates/FeedbackTemplet"
 
 const FeedbackPage = () => {
   return (
-    <div>FeedbackPage</div>
+    <div>
+      <FeedbackTemplet />
+    </div>
   )
 }
 

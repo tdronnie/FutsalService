@@ -1,5 +1,5 @@
 import ContentBox from "@/components/atoms/content_box/ContentBox";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import TypographyLine from "@/components/atoms/typography_line/TypographyLine";
 import MemberList from "@/components/molecules/member_list/MemberList";
 import MiniMap from "@/components/molecules/mini_map/MiniMap";
@@ -20,21 +20,21 @@ const ClubDetailBody = () => {
       <div className="flex justify-between m-2">
         <div>
           <div>
-            <Typography
+            <MyTypography
               label="경기도 지역"
               fontWeight="font-medium"
               textSize="text-base"
             />
           </div>
           <div>
-            <Typography
+            <MyTypography
               label="아르마딜로FC"
               fontWeight="font-semibold"
               textSize="text-[1.6rem]"
             />
           </div>
           <div>
-            <Typography
+            <MyTypography
               label="클럽 인원 36명/40명"
               fontWeight="font-medium"
               textSize="text-base"
@@ -44,7 +44,7 @@ const ClubDetailBody = () => {
         </div>
         <div className="mt-auto">
           <div className="mt-4 text-end">
-            <Typography
+            <MyTypography
               label="클럽장"
               fontWeight="font-medium"
               textSize="text-sm"
@@ -52,7 +52,7 @@ const ClubDetailBody = () => {
             />
           </div>
           <div className="text-end">
-            <Typography
+            <MyTypography
               label="축구짱준성"
               fontWeight="font-medium"
               textSize="text-sm"

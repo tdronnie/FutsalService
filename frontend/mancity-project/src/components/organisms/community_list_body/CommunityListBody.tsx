@@ -7,7 +7,10 @@ import { useNavigate } from "react-router-dom";
 
 const CommunityListBody = () => {
   const [selectedTab, setSelectedTab] = useState(false);
-  const tabSwitch = () => setSelectedTab(!selectedTab);
+  const tabSwitch = () => setSelectedTab(!selectedTab)
+    
+      // 서치바 최초 값 0 초기화
+  const [placeValue, setPlaceValue] = useState(0);
 
   const navigate = useNavigate();
   const handleNavigate = ({ path }: NavigateType) => {
@@ -31,7 +34,7 @@ const CommunityListBody = () => {
                 <SortButton label="인기순" width="w-16" hover={true} />
               </div>
               <div className="w-full">
-                <SearchBar />
+                <SearchBar contents={[]} setPlaceValue={setPlaceValue} />
               </div>
             </div>
             <CommunityCard
@@ -82,7 +85,7 @@ const CommunityListBody = () => {
                 <SortButton label="인기순" width="w-16" hover={true} />
               </div>
               <div className="w-full">
-                <SearchBar />
+                <SearchBar contents={[]} setPlaceValue={setPlaceValue} />
               </div>
             </div>
             <CommunityCard

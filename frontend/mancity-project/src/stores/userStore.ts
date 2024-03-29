@@ -1,7 +1,7 @@
 import create from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
 
-type userType = {
+interface userType {
   id: number;
   email: string;
   password: string;

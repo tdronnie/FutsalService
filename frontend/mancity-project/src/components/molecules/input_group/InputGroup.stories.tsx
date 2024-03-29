@@ -6,7 +6,7 @@ const meta: Meta<typeof InputGroup> = {
   tags: ["autodocs"],
   component: InputGroup,
   argTypes: {
-    typographyLabel: {
+    MyTypographyLabel: {
       description: "input창의 이름을 지정합니다.",
       control: "text",
       table: {
@@ -45,7 +45,7 @@ type Story = StoryObj<typeof InputGroup>;
 
 export const Email: Story = {
   args: {
-    typographyLabel: "이메일",
+    MyTypographyLabel: "이메일",
     placeholder: "email@ssafy.com",
     checking: true,
     checkingLabel: "중복 확인",
@@ -54,14 +54,14 @@ export const Email: Story = {
 
 export const Password: Story = {
   args: {
-    typographyLabel: "비밀번호",
+    MyTypographyLabel: "비밀번호",
     placeholder: "8자리 이상",
     checking: false,
   },
 };
 export const Comment: Story = {
   args: {
-    typographyLabel: "댓글",
+    MyTypographyLabel: "댓글",
     placeholder: "댓글은 매너있게 달아주세요 :)",
     checking: true,
     checkingLabel: "입력",

@@ -1,6 +1,6 @@
 import ContentBox from "@/components/atoms/content_box/ContentBox";
 import SubButton from "@/components/atoms/sub_button/SubButton";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 
 const WideCard = (props: WideCardPropsType) => {
   const {
@@ -22,13 +22,13 @@ const WideCard = (props: WideCardPropsType) => {
         </div>
         <div className="flex flex-col justify-around">
           <div>
-            <Typography
+            <MyTypography
               fontWeight="font-medium"
               label={subtext}
               textColor="text-black"
               textSize="text-lg"
             />
-            <Typography
+            <MyTypography
               fontWeight="font-medium"
               label={maintext}
               textColor="text-black"
@@ -36,7 +36,7 @@ const WideCard = (props: WideCardPropsType) => {
             />
           </div>
           <div>
-            <Typography
+            <MyTypography
               fontWeight="font-medium"
               label={minitext}
               textSize="text-sm"

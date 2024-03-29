@@ -1,4 +1,4 @@
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 
 const MatchDetailHeader = () => {
   return (
@@ -6,13 +6,13 @@ const MatchDetailHeader = () => {
       <div className="flex justify-between px-2">
         <div>
           <div>
-            <Typography
+            <MyTypography
               label="광주 신화 풋살장"
               fontWeight="font-semibold"
               textSize="text-[1.6rem]"
             />
           </div>
-          <Typography
+          <MyTypography
             label="3월 12일 (화) 오전 10시"
             fontWeight="font-medium"
             textSize="text-base"
@@ -22,7 +22,7 @@ const MatchDetailHeader = () => {
 
       <div className="text-right px-2">
         <div>
-          <Typography
+          <MyTypography
             label="매치장"
             fontWeight="font-medium"
             textSize="text-sm"
@@ -30,7 +30,7 @@ const MatchDetailHeader = () => {
           />
         </div>
         <div>
-          <Typography
+          <MyTypography
             label="하남최성호"
             fontWeight="font-medium"
             textSize="text-sm"
