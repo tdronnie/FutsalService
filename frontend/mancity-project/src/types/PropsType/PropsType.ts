@@ -70,11 +70,13 @@ interface ClubListPropsType {
 }
 
 interface ShadcnDropdownPropsType {
-  items: { value: number; label: string }[];
+  items: { value: number | string; label: string }[];
   width?: string;
   position: string | undefined;
   setPosition?: React.Dispatch<React.SetStateAction<string>>;
-  setNumberValue?: React.Dispatch<React.SetStateAction<number>>;
+  setNumberValue?:
+    | React.Dispatch<React.SetStateAction<number>>
+    | React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface DropdownPropsType extends ShadcnDropdownPropsType {
@@ -184,4 +186,9 @@ interface muiModalPropsType {
 
 interface userStatModalPropsType {
   userId: number;
+}
+
+interface SearchBarPropsType {
+  contents: matchPlace[];
+  setPlaceValue: React.Dispatch<React.SetStateAction<number>>;
 }

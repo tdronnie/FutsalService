@@ -4,22 +4,47 @@ import Dropdown from "@/components/molecules/dropdown/Dropdown";
 import { forwardRef, useEffect, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import DatePicker from "react-datepicker";
-
 import "react-datepicker/dist/react-datepicker.css";
 import Typography from "@/components/atoms/typography/Typography";
 import SearchBar from "@/components/molecules/search_bar/SearchBar";
+import { useMutation } from "@tanstack/react-query";
+import { fetchMatchCreate } from "@/apis/matchApis";
+import { useNavigate } from "react-router-dom";
 
 const MatchRegisterBody = () => {
+  const navigate = useNavigate();
+  // 임시로 로그인 한 유저의 id값 1로 두기
+  const userId = 1;
+  const [matchRegisterData, setMatchRegisterData] = useState<matchCreateType>({
+    gender: 0,
+    manager: 0,
+    startDate: "",
+    time: 0,
+    playerNumber: 0,
+    level: "",
+    courtId: 0,
+    over: true,
+  });
+
+  const { mutate } = useMutation({
+    mutationFn: fetchMatchCreate,
+    onSuccess(result: string) {
+      console.log(result);
+    },
+    onError(error) {
+      console.log(error);
+    },
+  });
+
   // 날짜 설정
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
-
   const ExampleCustomInput = forwardRef<
     HTMLButtonElement,
     ExampleCustomInputProps
   >(({ value, onClick }, ref) => (
     <button onClick={onClick} ref={ref}>
       <div className="flex justify-end">
-        <div className="w-[85vw] max-w-[510px]   ">
+        <div className="w-[85vw] max-w-[510px]">
           <div className=" mb-1">
             <span>{value}</span>
           </div>
@@ -46,21 +71,22 @@ const MatchRegisterBody = () => {
   // 인원
 
   const RuleInfo = [
-    { value: 1, label: "5vs5" },
-    { value: 2, label: "6vs6" },
+    { value: 10, label: "5vs5" },
+    { value: 12, label: "6vs6" },
   ];
   const [ruleLabel, setRuleLabel] = useState("인원");
   const [ruleValue, setRuleValue] = useState(0);
 
   // 수준
   const LevelInfo = [
-    { value: 1, label: "취미풋살" },
-    { value: 2, label: "선출포함" },
-    { value: 3, label: "프로풋살" },
+    { value: "L", label: "취미풋살" },
+    { value: "M", label: "선출포함" },
+    { value: "H", label: "프로풋살" },
   ];
   const [levelLabel, setLevelLabel] = useState("선출");
-  const [levelValue, setLevelValue] = useState(0);
+  const [levelValue, setLevelValue] = useState("");
 
+  // 경기장
   const matchPlace: matchPlace[] = [
     { value: 1, label: "서울" },
     { value: 2, label: "경기" },
@@ -78,16 +104,53 @@ const MatchRegisterBody = () => {
     { value: 14, label: "충청" },
   ];
 
+  const [placeValue, setPlaceValue] = useState(0);
+
+  const today = dayjs().format("YYYY-MM-DD");
+  const formattedSelectedDate = dayjs(selectedDate).format("YYYY-MM-DD");
+  const isOver = dayjs(formattedSelectedDate).isBefore(today);
+
   // 유효성 검사 상태 추가
   const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
     // 모든 입력값의 유효성 검사
-    const isValid = genderValue !== 0 && ruleValue !== 0 && levelValue !== 0;
+    const isValid = genderValue !== 0 && ruleValue !== 0 && levelValue !== "";
 
     setIsFormValid(isValid);
   }, [genderValue, ruleValue, levelValue]);
 
+  useEffect(() => {
+    if (isFormValid) {
+      setMatchRegisterData({
+        gender: genderValue,
+        manager: userId,
+        startDate: formattedSelectedDate,
+        time: hour,
+        playerNumber: ruleValue,
+        level: levelValue,
+        courtId: placeValue,
+        over: isOver,
+      });
+    }
+  }, [
+    isFormValid,
+    genderValue,
+    userId,
+    selectedDate,
+    hour,
+    levelValue,
+    placeValue,
+  ]);
+
+  // 매치 등록
+  const onSubmitMatchMake = () => {
+    if (isFormValid) {
+      console.log(matchRegisterData);
+      mutate(matchRegisterData);
+    }
+    navigate("/match/detail");
+  };
   return (
     <div className="">
       {/* 날짜 */}
@@ -122,7 +185,7 @@ const MatchRegisterBody = () => {
             textColor="text-sofcity"
             label="경기장"
           />
-          <SearchBar contents={matchPlace} />
+          <SearchBar contents={matchPlace} setPlaceValue={setPlaceValue} />
         </div>
       </div>
       {/* 인원 */}
@@ -156,7 +219,7 @@ const MatchRegisterBody = () => {
           setNumberValue={setLevelValue}
         />
       </div>
-      <div className="flex justify-end mt-10 mx-4">
+      <div className="flex justify-end mt-10 mx-4" onClick={onSubmitMatchMake}>
         <ReverseButton
           width="w-1/2"
           label="매치 등록하기"

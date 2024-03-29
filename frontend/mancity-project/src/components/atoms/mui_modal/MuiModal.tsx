@@ -34,13 +34,16 @@ const MuiModal = (props: userStatModalPropsType) => {
     queryKey: ["totalStat", userId],
     queryFn: () => totalStatApi(userId),
   });
+
   return (
     <div>
       {!isLoading && data && (
         <div>
+          {/*  이 div 누르면 모달 열리는 로직 */}
           <div className="text-white text-sm font-medium" onClick={handleOpen}>
             누적기록
           </div>
+          {/* 모달 시작 */}
           <Modal
             open={open}
             onClose={handleClose}
@@ -48,9 +51,11 @@ const MuiModal = (props: userStatModalPropsType) => {
             aria-describedby="modal-modal-description"
           >
             <Box sx={style}>
+              {/* 제목 */}
               <Typography id="modal-modal-title" variant="h6" component="h2">
                 누적기록
               </Typography>
+              {/* 내용 */}
               <Typography
                 id="modal-modal-description"
                 sx={{ mt: 2, width: "100%" }}
