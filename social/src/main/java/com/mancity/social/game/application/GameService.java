@@ -173,7 +173,11 @@ public class GameService {
         int sumSpeed = 0;
         int sumGoal = 0;
         int sumAssist = 0;
-        int sumShotOnTargetPerShot = 0;
+//        int sumShotOnTargetPerShot = 0;
+
+        int sumShot = 0;
+        int sumShotOnTarget = 0;
+
         int sumPass = 0;
         int sumTurnOverOOff = 0;
         int sumTurnOverDef = 0;
@@ -187,8 +191,11 @@ public class GameService {
                     sumSpeed += p.getSpeed();
                     sumGoal += p.getGoal();
                     sumAssist += p.getAssist();
-                    if(p.getShot() == 0) sumShotOnTargetPerShot = 0;
-                    else sumShotOnTargetPerShot = p.getShotOnTarget() / p.getShot();
+//                    if(p.getShot() == 0) sumShotOnTargetPerShot = 0;
+//                    else sumShotOnTargetPerShot = p.getShotOnTarget() / p.getShot();
+                    sumShot += p.getShot();
+                    sumShotOnTarget += p.getShotOnTarget();
+
                     sumPass += p.getPass();
                     sumTurnOverOOff += p.getTurnOverInOffense();
                     sumTurnOverDef += p.getTurnOverInDefense();
@@ -202,8 +209,11 @@ public class GameService {
                     sumSpeed += p.getSpeed();
                     sumGoal += p.getGoal();
                     sumAssist += p.getAssist();
-                    if(p.getShot() == 0) sumShotOnTargetPerShot = 0;
-                    else sumShotOnTargetPerShot = p.getShotOnTarget() / p.getShot();
+//                    if(p.getShot() == 0) sumShotOnTargetPerShot = 0;
+//                    else sumShotOnTargetPerShot = p.getShotOnTarget() / p.getShot();
+                    sumShot += p.getShot();
+                    sumShotOnTarget += p.getShotOnTarget();
+
                     sumPass += p.getPass();
                     sumTurnOverOOff += p.getTurnOverInOffense();
                     sumTurnOverDef += p.getTurnOverInDefense();
@@ -218,7 +228,10 @@ public class GameService {
         double avgSpeed = (double) sumSpeed / game.getPlayerNumber();
         double avgGoal = (double) sumGoal / game.getPlayerNumber();
         double avgAssist = (double) sumAssist / game.getPlayerNumber();
-        double avgShotOnTargetPerShot = (double) sumShotOnTargetPerShot / game.getPlayerNumber();
+//        double avgShotOnTargetPerShot = (double) sumShotOnTargetPerShot / game.getPlayerNumber();
+
+        double avgShot = (double) sumShot / game.getPlayerNumber();
+        double avgShotOnTarget = (double) sumShotOnTarget / game.getPlayerNumber();
         double avgPass = (double) sumPass / game.getPlayerNumber();
         double avgOff = (double) sumTurnOverOOff / game.getPlayerNumber();
         double avgDef = (double) sumTurnOverDef / game.getPlayerNumber();
@@ -226,7 +239,9 @@ public class GameService {
         log.info("avgSpeed={}", avgSpeed);
         log.info("avgGoal={}", avgGoal);
         log.info("avgAssist={}", avgAssist);
-        log.info("avgShotOnTargetPerShot={}", avgShotOnTargetPerShot);
+//        log.info("avgShotOnTargetPerShot={}", avgShotOnTargetPerShot);
+        log.info("avgShot={}", avgShot);
+        log.info("avgShotOnTarget={}",avgShotOnTarget);
         log.info("avgPass={}", avgPass);
         log.info("avgOff={}", avgOff);
         log.info("avgDef={}", avgDef);
@@ -236,7 +251,9 @@ public class GameService {
                 .speed(feedP.getSpeed() > avgSpeed ? 1 : 2)
                 .goal(feedP.getGoal() > avgGoal ? 1 : 2)
                 .assist(feedP.getAssist() > avgAssist ? 1 : 2)
-                .avgShotOnTargetPerShot((double) feedP.getShotOnTarget() / feedP.getShot() > avgShotOnTargetPerShot ? 1 : 2)
+//                .avgShotOnTargetPerShot((double) feedP.getShotOnTarget() / feedP.getShot() > avgShotOnTargetPerShot ? 1 : 2)
+                .shot(feedP.getShot() > avgShot ? 1 : 2)
+                .shotOnTarget(feedP.getShotOnTarget() > avgShotOnTarget ? 1 : 2)
                 .pass(feedP.getPass() > avgPass ? 1 : 2)
                 .turnOverInOffense(feedP.getTurnOverInOffense() > avgOff ? 1 : 2)
                 .turnOverInDefense(feedP.getTurnOverInDefense() > avgDef ? 1 : 2)
@@ -244,4 +261,9 @@ public class GameService {
 
     }
 
+    public GameDetailResponseDto findGameDetails(long id) {
+        Game game = gameRepository.findById(id)
+                .orElseThrow(NoSuchGameException::new);
+        return GameDetailResponseDto.from(game);
+    }
 }
