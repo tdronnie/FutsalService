@@ -134,6 +134,11 @@ const SignUpBody = () => {
     navigate("/login");
   };
 
+  // 로그인 페이지로 이동
+  const goLogin = () => {
+    navigate("/login");
+  };
+
   return (
     <div>
       <div className="my-4">
@@ -230,7 +235,7 @@ const SignUpBody = () => {
           )}
         </div>
       </div>
-      <div className="mt-6">
+      <div className="mt-8">
         <InputGroup
           MyTypographyLabel="생년월일"
           placeholder="ex) 990503"
@@ -239,7 +244,7 @@ const SignUpBody = () => {
           setTextValue={setBirthValue}
         />
       </div>
-      <div className="flex flex-row ">
+      <div className="flex flex-row -mt-2 ">
         <div className="w-2/4">
           <Dropdown
             MyTypographyLabel="성별"
@@ -287,6 +292,19 @@ const SignUpBody = () => {
           label="회원가입"
           isdisabled={isFormValid}
         />
+      </div>
+      <div
+        className="flex justify-end mt-4 mr-4 text-sm hover:underline hover:cursor-pointer"
+        onClick={goLogin}
+      >
+        <div className="mr-2">이미 회원이신가요?</div>
+        <div className="underline">
+          <MyTypography
+            label="로그인하기"
+            fontWeight="font-medium"
+            textColor=""
+          />
+        </div>
       </div>
     </div>
   );
