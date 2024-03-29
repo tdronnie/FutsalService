@@ -86,7 +86,7 @@ public class ClubMemberService {
             //클럽 멤버에 가입
             club.joinMember(clubMember);
 
-            alarmService.createAlarm(AlarmCreateDto.of(club.getMasterId(), joinRequest.getRequestUserId(), "CLUB_REQUEST_REPLY", 0));
+            alarmService.createAlarm(AlarmCreateDto.of(club.getMasterId(), joinRequest.getRequestUserId(), "CLUB_REQUEST_REPLY", 0L));
         }
 
         return new JoinRequestReplyResponseDto(dto.isResponse());
