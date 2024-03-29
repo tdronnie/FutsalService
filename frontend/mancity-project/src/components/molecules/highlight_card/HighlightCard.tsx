@@ -9,7 +9,7 @@ const HighlightCard = (props: HighlightCardProps) => {
       <div>
         <ContentBox file={file} rounded="rounded-[10px]"/>
       </div>
-      <div className="flex justify-around m-2">
+      <div className="flex justify-around my-2">
         <div className="mr-2 overflow-hidden whitespace-nowrap overflow-ellipsis">
           <MyTypography
             label={mainTitle}

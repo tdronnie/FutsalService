@@ -5,8 +5,12 @@ import InputGroup from "@/components/molecules/input_group/InputGroup";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import useUserStore from "@/stores/userStore";
 
 const LoginBody = () => {
+  // useUserStore의 setUser 함수 사용
+  const setUser = useUserStore((state) => state.setUser);
+  
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
@@ -41,24 +45,25 @@ const LoginBody = () => {
     });
   }, [emailValue, passwordValue]);
 
-  // 로그인 한 사용자
-  const [loginId, setLoginId] = useState(0);
-
-  const { data } = useQuery({
-    queryKey: ["loginUserData", loginId],
-    queryFn: async () => {
-      const response = await fetchUserApi(loginId)
-      return response;
-    },
-  });
-
+  // 로그인 후 사용자 정보 전역 상태 저장
   const { mutate: loginMutate } = useMutation({
     mutationFn: loginApi,
-    onSuccess(res) {
-      setLoginId(res);
+    onSuccess: async (userId) => {
+      try {
+        // 사용자 정보를 패치하고 전역 상태에 저장
+        const userData = await fetchUserApi(userId);
+        if (userData) {
+          setUser(userData);
+          navigate("/");
+        }
+      } catch (error) {
+        console.error("사용자 정보를 가져오는 데 실패했습니다.", error);
+        setLoginError("사용자 정보를 가져올 수 없습니다. 다시 시도해 주세요.");
+      }
     },
-    onError() {
+    onError: () => {
       console.log("로그인 에러");
+      setLoginError("이메일 또는 비밀번호가 맞지 않습니다. 다시 확인해 주세요.");
     },
   });
 
@@ -68,9 +73,6 @@ const LoginBody = () => {
     console.log(loginData);
     setLoginError("이메일 또는 비밀번호가 맞지 않습니다. 다시 확인해 주세요.");
   };
-
-  // 유저정보를 전역으로 상태 관리해야 합니다
-  console.log(data);
 
   return (
     <div>
@@ -98,8 +100,8 @@ const LoginBody = () => {
           <MyTypography textSize="text-sm" label={LoginError} />
         )}
       </div>
-      <div className="mt-8" onClick={onSubmitLogin}>
-        <GlobalButton label="로그인" width="w-full" isdisabled={isFormValid} />
+      <div className="flex justify-center mt-8" onClick={onSubmitLogin}>
+        <GlobalButton label="로그인" width="w-[90%]" isdisabled={isFormValid} />
       </div>
 
       <div
