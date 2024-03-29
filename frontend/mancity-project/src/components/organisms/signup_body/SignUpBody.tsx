@@ -124,7 +124,7 @@ const SignUpBody = () => {
         weight: Number(weightValue),
       });
     }
-  }, [isFormValid]);
+  }, [isFormValid, heightValue, weightValue]);
 
   // 회원가입 제출
   const onSubmitSignup = () => {
