@@ -7,14 +7,14 @@ const MuiAutocomplete = ({ contents, setPlaceValue }: SearchBarPropsType) => {
       <Autocomplete
         id="free-solo-demo"
         options={contents}
-        getOptionLabel={(option) => option.label}
+        getOptionLabel={(option) => option.title}
         // options를 객체 배열로 사용하고, label을 표시하기 위한 함수
         onChange={(event, newValue) => {
           // 사용자가 항목을 선택하면 해당 항목의 value로 placeValue 상태를 업데이트
-          setPlaceValue(newValue ? newValue.value : 0);
+          setPlaceValue(newValue ? newValue.id : 0);
         }}
         // 선택된 값과 옵션의 id 프로퍼티가 같은 지 비교하도록 사용해야 한다.
-        isOptionEqualToValue={(option, value) => option.value === value.value}
+        isOptionEqualToValue={(option, value) => option.title === value.title}
         renderInput={(params) => (
           <TextField
             {...params}
