@@ -1,5 +1,5 @@
 import ContentBox from "@/components/atoms/content_box/ContentBox";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 
 const HalfCard = (props: HalfCardPropsType) => {
   const { file = "/src/assets/imgs/mancity_logo.png", maintext } = props;
@@ -15,7 +15,7 @@ const HalfCard = (props: HalfCardPropsType) => {
         />
       </div>
       <div className="flex flex-col items-center justify-center flex-grow text-center">
-        <Typography
+        <MyTypography
         id="responsive-p"
           fontWeight="font-medium"
           label={maintext}

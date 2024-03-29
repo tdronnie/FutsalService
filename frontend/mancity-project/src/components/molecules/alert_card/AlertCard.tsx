@@ -1,6 +1,6 @@
 import ContentBox from "@/components/atoms/content_box/ContentBox";
 import SubButton from "@/components/atoms/sub_button/SubButton";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 
 const AlertCard = (props: WideCardPropsType) => {
   const { maintext, subtext, minitext, buttonlabel } = props;
@@ -8,14 +8,14 @@ const AlertCard = (props: WideCardPropsType) => {
       <div id="glassui" className="p-2 m-3 rounded-md shadow-nav">
         <div className="flex flex-col justify-around">
           <div className="p-1">
-            <Typography
+            <MyTypography
               fontWeight="font-medium"
               label={maintext}
               textColor="text-black"
               textSize="text-xl"
             />
             <div className="mt-1">
-              <Typography
+              <MyTypography
                 fontWeight="font-medium"
                 label={subtext}
                 textColor="text-sofcity"
@@ -25,7 +25,7 @@ const AlertCard = (props: WideCardPropsType) => {
           </div>
           <div className="flex">
           <div className="mt-3">
-            <Typography
+            <MyTypography
               fontWeight="font-medium"
               label={minitext}
               textSize="text-sm"

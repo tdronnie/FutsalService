@@ -1,5 +1,5 @@
 import ContentBox from "@/components/atoms/content_box/ContentBox";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import { useNavigate } from "react-router-dom";
 
 const CommunityCard = (props: CommunityCardPropsType) => {
@@ -37,13 +37,13 @@ const CommunityCard = (props: CommunityCardPropsType) => {
 
         <div className="flex flex-1 justify-between">
           <div>
-            <Typography
+            <MyTypography
               fontWeight="font-medium"
               label={truncateMainText(maintext)}
               textColor="text-black"
               textSize="text-lg"
             />
-            <Typography
+            <MyTypography
               fontWeight="font-sm"
               label={truncateSubText(subtext)}
               textColor="text-gray-400"
@@ -52,7 +52,7 @@ const CommunityCard = (props: CommunityCardPropsType) => {
           </div>
 
           <div className="w-16 mt-1 ">
-            <Typography
+            <MyTypography
               fontWeight="font-medium"
               label={`❤${likes} 💬${comments}`}
               textSize="text-xs"

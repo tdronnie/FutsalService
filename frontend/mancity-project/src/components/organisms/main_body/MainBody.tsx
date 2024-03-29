@@ -1,6 +1,6 @@
 import "./slick.css";
 import GlobalCard from "@/components/molecules/global_card/GlobalCard";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import ClubList from "@/components/molecules/club_list/ClubList";
 import { useNavigate } from "react-router-dom";
 import HalfCard from "@/components/molecules/half_card/HalfCard";
@@ -53,7 +53,7 @@ const MainBody = () => {
 
       <div id="glassui" className="mx-4 mb-4">
         <div className="flex items-end justify-between p-3">
-          <Typography
+          <MyTypography
             fontWeight="font-medium"
             label="지난 경기 다시보기"
             textColor="text-black"
@@ -89,7 +89,7 @@ const MainBody = () => {
 
       <div id="glassui" className="m-5">
         <div className="p-3">
-          <Typography
+          <MyTypography
             fontWeight="font-medium"
             label="용병 랭킹 TOP5"
             textColor="text-black"

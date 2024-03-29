@@ -1,6 +1,6 @@
 import { signupApi } from "@/apis/userApis";
 import GlobalButton from "@/components/atoms/global_button/GlobalButton";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import Dropdown from "@/components/molecules/dropdown/Dropdown";
 import InputGroup from "@/components/molecules/input_group/InputGroup";
 import { useMutation } from "@tanstack/react-query";
@@ -138,7 +138,7 @@ const SignUpBody = () => {
     <div>
       <div className="my-4">
         <InputGroup
-          typographyLabel="이메일"
+          MyTypographyLabel="이메일"
           placeholder="ssafy@email.com"
           checking={true}
           textValue={emailValue}
@@ -147,7 +147,7 @@ const SignUpBody = () => {
         />
         <div className="text-mancity mx-4 -my-3 ">
           {emailValue && !validateEmail(emailValue) && (
-            <Typography
+            <MyTypography
               textSize="text-sm"
               label="이메일 형식이 맞지 않습니다"
             />
@@ -155,7 +155,7 @@ const SignUpBody = () => {
           {emailValue && validateEmail(emailValue) && (
             <>
               {isEmailCheck !== null && (
-                <Typography
+                <MyTypography
                   textSize="text-sm"
                   label={
                     isEmailCheck
@@ -171,7 +171,7 @@ const SignUpBody = () => {
       <div className="my-8">
         <InputGroup
           type="password"
-          typographyLabel="비밀번호"
+          MyTypographyLabel="비밀번호"
           placeholder="영문, 숫자, 특수문자 포함 8자리 이상"
           checking={false}
           textValue={passwordValue}
@@ -179,7 +179,7 @@ const SignUpBody = () => {
         />
         <div className="text-mancity mx-4 -my-3 ">
           {passwordValue && !validatePassword(passwordValue) && (
-            <Typography
+            <MyTypography
               textSize="text-sm"
               label="비밀번호 형식이 맞지 않습니다"
             />
@@ -189,7 +189,7 @@ const SignUpBody = () => {
       <div className="my-8">
         <InputGroup
           type="password"
-          typographyLabel="비밀번호 확인"
+          MyTypographyLabel="비밀번호 확인"
           placeholder="영문, 숫자, 특수문자 포함 8자리 이상"
           checking={false}
           textValue={secondPasswordValue}
@@ -198,7 +198,7 @@ const SignUpBody = () => {
         <div className="text-mancity mx-4 -my-3 ">
           {secondPasswordValue &&
             !validateSecondPassword(passwordValue, secondPasswordValue) && (
-              <Typography
+              <MyTypography
                 textSize="text-sm"
                 label="비밀번호가 일치하지 않습니다"
               />
@@ -207,7 +207,7 @@ const SignUpBody = () => {
       </div>
       <div className="my-6">
         <InputGroup
-          typographyLabel="닉네임"
+          MyTypographyLabel="닉네임"
           checking={true}
           textValue={nickNameValue}
           setTextValue={setNickNameValue}
@@ -217,7 +217,7 @@ const SignUpBody = () => {
           {nickNameValue && (
             <>
               {isNicknameCheck !== null && (
-                <Typography
+                <MyTypography
                   textSize="text-sm"
                   label={
                     isNicknameCheck
@@ -232,7 +232,7 @@ const SignUpBody = () => {
       </div>
       <div className="mt-6">
         <InputGroup
-          typographyLabel="생년월일"
+          MyTypographyLabel="생년월일"
           placeholder="ex) 990503"
           checking={false}
           textValue={birthValue}
@@ -242,7 +242,7 @@ const SignUpBody = () => {
       <div className="flex flex-row ">
         <div className="w-2/4">
           <Dropdown
-            typographyLabel="성별"
+            MyTypographyLabel="성별"
             items={GenderInfo}
             position={genderPosition}
             setPosition={setGenderPosition}
@@ -251,7 +251,7 @@ const SignUpBody = () => {
         </div>
         <div className="w-2/4">
           <Dropdown
-            typographyLabel="주발"
+            MyTypographyLabel="주발"
             items={MainFootInfo}
             position={mainFootPosition}
             setPosition={setMainFootPosition}
@@ -263,7 +263,7 @@ const SignUpBody = () => {
         <div className="flex flex-row ">
           <div className="w-2/4">
             <InputGroup
-              typographyLabel="키"
+              MyTypographyLabel="키"
               placeholder="175"
               checking={false}
               textValue={heightValue}
@@ -272,7 +272,7 @@ const SignUpBody = () => {
           </div>
           <div className="w-2/4">
             <InputGroup
-              typographyLabel="몸무게"
+              MyTypographyLabel="몸무게"
               placeholder="70"
               checking={false}
               textValue={weightValue}

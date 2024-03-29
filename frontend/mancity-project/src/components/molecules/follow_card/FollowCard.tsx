@@ -1,7 +1,7 @@
 import ContentBox from "@/components/atoms/content_box/ContentBox";
 import FontawsomeIcon from "@/components/atoms/fontawsome_icon/FontawsomeIcon";
 import SubmitButton from "@/components/atoms/submit_button/SubmitButton";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 
 const FollowCard = (props: FollowCardPropsType) => {
   const { file, nickName, overall } = props;
@@ -18,7 +18,7 @@ const FollowCard = (props: FollowCardPropsType) => {
               width="w-10"
             />
           </div>
-          <Typography
+          <MyTypography
             fontWeight="font-medium"
             label={nickName}
             textColor="text-black"

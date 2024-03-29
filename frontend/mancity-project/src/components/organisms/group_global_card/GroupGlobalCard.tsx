@@ -1,11 +1,11 @@
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import GlobalCard from "@/components/molecules/global_card/GlobalCard";
 
 const GroupGlobalCard = () => {
   return (
     <div className="justify-center">
       <div className="m-4">
-        <Typography
+        <MyTypography
           label="지난 경기"
           textColor="text-sofcity"
           textSize="text-2xl"

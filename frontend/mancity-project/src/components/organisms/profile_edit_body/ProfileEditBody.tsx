@@ -4,7 +4,7 @@ import EditContentBox from "@/components/molecules/edit_content_box/EditContentB
 import InputGroup from "@/components/molecules/input_group/InputGroup";
 import GlobalSwitch from "@/components/molecules/global_switch/GlobalSwitch";
 import { useEffect, useState, useRef } from "react";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import { useMutation } from "@tanstack/react-query";
 import { profileEditApi } from "@/apis/userApis";
 import { useNavigate, useParams } from "react-router-dom";
@@ -160,7 +160,7 @@ const ProfileEditBody = ({ userInfoData }: UserInfoPropsType) => {
 
       <div className="my-6">
         <InputGroup
-          typographyLabel="닉네임"
+          MyTypographyLabel="닉네임"
           checking={true}
           textValue={nickNameValue}
           setTextValue={setNickNameValue}
@@ -170,7 +170,7 @@ const ProfileEditBody = ({ userInfoData }: UserInfoPropsType) => {
           {nickNameValue && (
             <>
               {isNicknameCheck !== null && (
-                <Typography
+                <MyTypography
                   textSize="text-sm"
                   label={
                     isNicknameCheck
@@ -187,7 +187,7 @@ const ProfileEditBody = ({ userInfoData }: UserInfoPropsType) => {
         <div className="flex flex-row ">
           <div className="w-2/4">
             <InputGroup
-              typographyLabel="키 (cm)"
+              MyTypographyLabel="키 (cm)"
               placeholder="175"
               checking={false}
               textValue={String(heightValue)}
@@ -196,7 +196,7 @@ const ProfileEditBody = ({ userInfoData }: UserInfoPropsType) => {
           </div>
           <div className="w-2/4">
             <InputGroup
-              typographyLabel="몸무게 (kg)"
+              MyTypographyLabel="몸무게 (kg)"
               placeholder="70"
               checking={false}
               textValue={String(weightValue)}
@@ -207,7 +207,7 @@ const ProfileEditBody = ({ userInfoData }: UserInfoPropsType) => {
         <div className="flex flex-row ">
           <div className="w-1/2">
             <Dropdown
-              typographyLabel="주 발"
+              MyTypographyLabel="주 발"
               items={MainFootInfo}
               position={mainFootPosition}
               setPosition={setMainFootPosition}

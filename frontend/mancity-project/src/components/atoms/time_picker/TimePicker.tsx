@@ -20,7 +20,7 @@ const TimePicker = (props: TimePickerPropsType) => {
     <div className="relative">
       <div onClick={() => setOpen(!open)}>
         <InputGroup
-          typographyLabel="시간"
+          MyTypographyLabel="시간"
           textValue={`${hour}시`}
           checking={false}
         />

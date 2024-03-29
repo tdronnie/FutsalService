@@ -1,10 +1,10 @@
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import type { Meta, StoryObj } from "@storybook/react";
 
-const meta: Meta<typeof Typography> = {
-  title: "Components/atoms/Typography",
+const meta: Meta<typeof MyTypography> = {
+  title: "Components/atoms/MyTypography",
   tags: ["autodocs"],
-  component: Typography,
+  component: MyTypography,
   argTypes: {
     textSize: {
       description: "텍스트 크기를 설정합니다. ex) text-xs/sm/base/lg/xl/2xl...",
@@ -42,14 +42,14 @@ const meta: Meta<typeof Typography> = {
 
 export default meta;
 
-type Story = StoryObj<typeof Typography>;
+type Story = StoryObj<typeof MyTypography>;
 
 export const Default: Story = {
   args: {
     textSize: "text-sm",
     fontWeight: "font-medium",
     textColor: "text-[#5D7A93]",
-    label: "Typography",
+    label: "MyTypography",
   },
 };
 

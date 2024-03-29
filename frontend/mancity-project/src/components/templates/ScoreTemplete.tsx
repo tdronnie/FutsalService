@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/organisms/header/Header";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import GroupHighlightCard from "@/components/organisms/group_highlight_card/GroupHighlightCard";
 import HalfCard from "@/components/molecules/half_card/HalfCard";
 
@@ -38,7 +38,7 @@ const ScoreTemplete = () => {
       {/* 경기통계 */}
       <div id="glassui" className="py-1 m-4">
         <div className="mx-4 my-2">
-          <Typography
+          <MyTypography
             label="경기 통계"
             textColor="black"
             textSize="text-2xl"

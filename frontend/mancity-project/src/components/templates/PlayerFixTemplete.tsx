@@ -1,5 +1,5 @@
 import Header from "@/components/organisms/header/Header";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import PlayerInfo from "../molecules/player_info/PlayerInfo";
 
 const PlayerFixTemplete = () => {
@@ -22,7 +22,7 @@ const PlayerFixTemplete = () => {
 
       <div id="glassui" className="py-1 mx-4 mt-4">
       <div className="mx-4 my-2">
-          <Typography
+          <MyTypography
             label="선수 정보"
             textColor="black"
             textSize="text-2xl"

@@ -1,6 +1,6 @@
 import { fetchUserApi, loginApi } from "@/apis/userApis";
 import GlobalButton from "@/components/atoms/global_button/GlobalButton";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import InputGroup from "@/components/molecules/input_group/InputGroup";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
@@ -76,7 +76,7 @@ const LoginBody = () => {
     <div>
       <div className="mt-6">
         <InputGroup
-          typographyLabel="이메일"
+          MyTypographyLabel="이메일"
           placeholder="ssafy@email.com"
           checking={false}
           textValue={emailValue}
@@ -86,7 +86,7 @@ const LoginBody = () => {
       <div className="">
         <InputGroup
           type="password"
-          typographyLabel="비밀번호"
+          MyTypographyLabel="비밀번호"
           placeholder="영문, 숫자, 특수문자 포함 8자리 이상"
           checking={false}
           textValue={passwordValue}
@@ -95,7 +95,7 @@ const LoginBody = () => {
       </div>
       <div className="mx-4 mb-2 -mt-2 text-mancity ">
         {LoginError !== "" && (
-          <Typography textSize="text-sm" label={LoginError} />
+          <MyTypography textSize="text-sm" label={LoginError} />
         )}
       </div>
       <div className="mt-8" onClick={onSubmitLogin}>
@@ -108,7 +108,7 @@ const LoginBody = () => {
       >
         <div className="mr-2">아직 회원이 아니신가요?</div>
         <div className="underline">
-          <Typography label="회원가입" fontWeight="font-medium" textColor="" />
+          <MyTypography label="회원가입" fontWeight="font-medium" textColor="" />
         </div>
       </div>
     </div>

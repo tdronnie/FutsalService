@@ -45,7 +45,7 @@ const [genderValue, setGenderValue] = useState(0);
 
 // return 내부 값
 <Dropdown
-  typographyLabel="성별"
+  MyTypographyLabel="성별"
   items={GenderInfo}
   position={genderLabel}
   setPosition={setGenderLabel}
