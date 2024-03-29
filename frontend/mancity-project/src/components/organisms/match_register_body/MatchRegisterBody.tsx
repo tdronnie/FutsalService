@@ -26,10 +26,12 @@ const MatchRegisterBody = () => {
     over: true,
   });
 
+  // 경기 생성 post 로직
   const { mutate } = useMutation({
     mutationFn: fetchMatchCreate,
     onSuccess(result: string) {
-      console.log(result);
+      // 해당 경기 페이지로 바로 렌더링
+      navigate(`/match/detail/${result}`);
     },
     onError(error) {
       console.log(error);
@@ -106,8 +108,13 @@ const MatchRegisterBody = () => {
 
   const [placeValue, setPlaceValue] = useState(0);
 
+  // 오늘 날짜 저장
   const today = dayjs().format("YYYY-MM-DD");
+
+  // 날짜 형식 변경
   const formattedSelectedDate = dayjs(selectedDate).format("YYYY-MM-DD");
+
+  // 경기가 현재 날짜와 비교해서 지났는지 여부
   const isOver = dayjs(formattedSelectedDate).isBefore(today);
 
   // 유효성 검사 상태 추가
@@ -120,6 +127,7 @@ const MatchRegisterBody = () => {
     setIsFormValid(isValid);
   }, [genderValue, ruleValue, levelValue]);
 
+  // 입력값을 data 형식에 할당
   useEffect(() => {
     if (isFormValid) {
       setMatchRegisterData({
@@ -146,11 +154,10 @@ const MatchRegisterBody = () => {
   // 매치 등록
   const onSubmitMatchMake = () => {
     if (isFormValid) {
-      console.log(matchRegisterData);
       mutate(matchRegisterData);
     }
-    navigate("/match/detail");
   };
+
   return (
     <div className="">
       {/* 날짜 */}
