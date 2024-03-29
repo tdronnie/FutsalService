@@ -40,6 +40,7 @@ interface WideCardPropsType {
 interface HalfCardPropsType {
   file?: string;
   maintext: string;
+  rounded?: string;
 }
 
 interface HomeCardPropsType {
@@ -133,7 +134,10 @@ interface MapPropsType {
 }
 
 interface MemberListPropsType {
-  label: string;
+  participants: {
+    id: number;
+    userId: number;
+  }[];
 }
 
 interface ImgBoxType {
@@ -172,9 +176,13 @@ interface FollowCardPropsType {
   overall: number;
 }
 
-interface matchPlace {
-  value: number;
-  label: string;
+interface futsalCourts {
+  id: number;
+  title: string;
+  address: string;
+  lat: number;
+  lng: number;
+  tel: string;
 }
 
 interface muiModalPropsType {
@@ -189,6 +197,11 @@ interface userStatModalPropsType {
 }
 
 interface SearchBarPropsType {
-  contents: matchPlace[];
+  contents: futsalCourts[];
   setPlaceValue: React.Dispatch<React.SetStateAction<number>>;
+}
+
+interface MatchDetailPropsType {
+  matchDetailPropsData: matchDetailPropsDataType;
+  courtData: futsalCourts;
 }
