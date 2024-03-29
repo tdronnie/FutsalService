@@ -13,8 +13,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class GameCreateRequestDto {
 
-    private String replayUrl;
-
     private int gender;
 
     private Long manager;
@@ -30,8 +28,6 @@ public class GameCreateRequestDto {
     private String level;
 
     private long courtId;
-
-    private boolean isCalcOver;
 
     public Game toEntity() {
         return Game.builder()
