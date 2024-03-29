@@ -50,14 +50,13 @@ interface followListDataType {
 
 // 매치 생성 타입
 interface matchCreateType {
-  replayUrl: string;
   gender: number;
   manager: number;
-  startData: Date;
+  startDate: string;
   time: number;
   playerNumber: number;
   level: string;
-  courtId: string;
+  courtId: number;
   over: boolean;
 }
 
