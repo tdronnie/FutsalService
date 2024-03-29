@@ -40,4 +40,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("select u.id, u.nickName, u.image, u.stat.goal, u.stat.pass, u.stat.playedTimes from User u where u.isPlayer = true order by u.stat.goal DESC, u.stat.assist DESC limit 5")
     List<MainPagePlayerDto> getListOrderByGoalAndAssist();
 
+    @Query("select u from User u where u.nickName like %:word% or u.email like %:word%")
+    List<User> findByNickNameOrEmail(String word);
 }
