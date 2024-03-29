@@ -145,7 +145,7 @@ const SignUpBody = () => {
           setTextValue={setEmailValue}
           setIsCheck={setIsEmailCheck}
         />
-        <div className="text-mancity mx-4 -my-3 ">
+        <div className="mx-4 -my-3 text-mancity ">
           {emailValue && !validateEmail(emailValue) && (
             <MyTypography
               textSize="text-sm"
@@ -177,7 +177,7 @@ const SignUpBody = () => {
           textValue={passwordValue}
           setTextValue={setPasswordValue}
         />
-        <div className="text-mancity mx-4 -my-3 ">
+        <div className="mx-4 -my-3 text-mancity ">
           {passwordValue && !validatePassword(passwordValue) && (
             <MyTypography
               textSize="text-sm"
@@ -195,7 +195,7 @@ const SignUpBody = () => {
           textValue={secondPasswordValue}
           setTextValue={setSecondPasswordValue}
         />
-        <div className="text-mancity mx-4 -my-3 ">
+        <div className="mx-4 -my-3 text-mancity ">
           {secondPasswordValue &&
             !validateSecondPassword(passwordValue, secondPasswordValue) && (
               <MyTypography
@@ -213,7 +213,7 @@ const SignUpBody = () => {
           setTextValue={setNickNameValue}
           setIsCheck={setIsNicknameCheck}
         />
-        <div className="text-mancity mx-4 -my-3 ">
+        <div className="mx-4 -my-3 text-mancity ">
           {nickNameValue && (
             <>
               {isNicknameCheck !== null && (
@@ -281,9 +281,9 @@ const SignUpBody = () => {
           </div>
         </div>
       </div>
-      <div onClick={onSubmitSignup}>
+      <div className="flex justify-center" onClick={onSubmitSignup}>
         <GlobalButton
-          width="w-full"
+          width="w-[90%]"
           label="회원가입"
           isdisabled={isFormValid}
         />

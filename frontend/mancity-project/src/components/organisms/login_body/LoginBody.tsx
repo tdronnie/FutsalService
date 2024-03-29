@@ -98,8 +98,8 @@ const LoginBody = () => {
           <MyTypography textSize="text-sm" label={LoginError} />
         )}
       </div>
-      <div className="mt-8" onClick={onSubmitLogin}>
-        <GlobalButton label="로그인" width="w-full" isdisabled={isFormValid} />
+      <div className="flex justify-center mt-8" onClick={onSubmitLogin}>
+        <GlobalButton label="로그인" width="w-[90%]" isdisabled={isFormValid} />
       </div>
 
       <div
