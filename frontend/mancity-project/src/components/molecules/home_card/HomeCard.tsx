@@ -31,7 +31,7 @@ const HomeCard = (props: HomeCardPropsType) => {
           fontWeight="font-medium"
           label={subtext}
           textColor="text-darkcity"
-          textSize="text-sm"
+          textSize="text-[0.87rem]"
         />
       </div>
     </div>

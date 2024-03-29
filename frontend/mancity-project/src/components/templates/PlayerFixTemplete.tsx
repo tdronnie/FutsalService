@@ -12,12 +12,10 @@ const PlayerFixTemplete = () => {
           {/* 선수 지정을 위한 사진 나오는 자리 */}
           {/* AI단에서 받아오는 사진으로 대체할 예정 */}
           <div className="flex flex-col justify-center m-3">
-            <video id="myVideo">
-              <source
-                src="https://iandwe.s3.ap-northeast-2.amazonaws.com/match/yKa0ly3L"
-                type="video/mp4"
+              <img
+                src="/src/assets/imgs/temp.png"
+                alt="temp"
               />
-            </video>
           </div>
         </div>
       </div>
