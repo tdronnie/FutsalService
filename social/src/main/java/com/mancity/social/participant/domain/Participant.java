@@ -24,4 +24,6 @@ public class Participant {
 
     private Long userId;
 
+    private String image;
+
 }

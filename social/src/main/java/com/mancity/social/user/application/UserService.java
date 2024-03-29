@@ -1,6 +1,7 @@
 package com.mancity.social.user.application;
 
 import com.mancity.social.user.application.dto.request.AlarmCreateDto;
+import com.mancity.social.user.application.dto.response.UserResponseDto;
 import com.mancity.social.user.presentation.UserFeignClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -19,5 +20,9 @@ public class UserService {
                 .domainId(domainId)
                 .build();
         userFeignClient.alarm(alarmCreateDto);
+    }
+
+    public UserResponseDto findByIdFromUser(long id){
+        return userFeignClient.findById(id);
     }
 }

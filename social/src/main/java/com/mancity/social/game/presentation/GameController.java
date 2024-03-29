@@ -40,7 +40,7 @@ public class GameController {
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "게임 상세 조회", description = "id 를 통해서 매치 정보 가져오는 API, 해당 게임 관련 정보랑 데이터는 다 가져온다.")
+    @Operation(summary = "게임 전체 상세 조회", description = "id 를 통해서 매치 정보 가져오는 API, 해당 게임 관련 정보랑 데이터는 다 가져온다.")
     public ResponseEntity<GameResponseDto> findMatchById(@PathVariable Long id) {
         GameResponseDto response = gameService.findMatchById(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
@@ -133,5 +133,11 @@ public class GameController {
     @Operation(summary = "선수 피드백 API", description = "선수 피드백 API 인가봐요 세은이가 짬")
     public ResponseEntity<PlayerFeedBackResponseDto> getPlayerResultData(@PathVariable("game") Long gameId, @PathVariable("player") Long playerId) {
         return new ResponseEntity<>(gameService.getPersonalFeedBack(gameId, playerId), HttpStatus.OK);
+    }
+
+    @GetMapping("/detail/{id}")
+    @Operation(summary = "매치 정보 조회 API", description = "성호`s 매치의 정보에 해당하는 것만 조회하는 API")
+    public ResponseEntity<GameDetailResponseDto> findGameDetails(@PathVariable("id") long id) {
+        return new ResponseEntity<>(gameService.findGameDetails(id), HttpStatus.OK);
     }
 }
