@@ -23,6 +23,7 @@ const MatchDetailTemplate = ({
   const propData = matchDetailPropsData;
   const gender = `${propData?.gender === 1 ? "남자" : propData?.gender === 2 ? "여자" : "혼성"}`;
   const playerNumber = `${propData?.playerNumber === 10 ? "5vs5" : "6vs6"}`;
+  const level = `${propData?.level === "L" ? "취미풋살" : propData?.level === "M" ? "선출포함" : "프로풋살"}`;
 
   return (
     <div>
@@ -42,7 +43,7 @@ const MatchDetailTemplate = ({
           <div className="h-20"></div>
 
           <Footer
-            label={`${gender} ∙ ${playerNumber} ∙ ${propData.level} `}
+            label={`${gender} ∙ ${playerNumber} ∙ ${level} `}
             buttonLabel="매치 참여 신청"
             onButtonClick={onButtonClick}
           />
