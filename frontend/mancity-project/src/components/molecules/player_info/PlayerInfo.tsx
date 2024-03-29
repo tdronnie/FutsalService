@@ -18,6 +18,9 @@ const PlayerInfo = (props: PlayerInfoPropsType) => {
         {/* 매치장이면 확정, 그 외에는 ? 표시 */}
         확정
       </button>
+
+      {/* 선수 선택하는 모달 */}
+      
     </div>
   );
 };
