@@ -1,43 +1,39 @@
 import ContentBox from "@/components/atoms/content_box/ContentBox";
 import IconButton from "@/components/atoms/icon_button/IconButton";
-import TypographyLine from "@/components/atoms/typography_line/TypographyLine";
+import Typography from "@/components/atoms/typography/Typography";
+import { useNavigate } from "react-router-dom";
 
 const MemberList = (props: MemberListPropsType) => {
   const file = "/src/assets/imgs/go_to_analysis.jpg";
-  const { label } = props;
+  const navigate = useNavigate();
+  const { participants } = props;
   return (
     <div id="glassui" className="m-3 p-4">
-      <div>
-        <TypographyLine lineWidth="w-32" label={label} />
+      <div className="mx-2">
+        <div className="mb">
+          <Typography label="멤버 라인업" textSize="text-lg" />
+        </div>
+        <hr className="border-sofcity border-[0.05rem] my-1 mb-3" />
       </div>
       <div className="flex  m-2">
         <div className="mr-2">
-          <ContentBox
-            width="w-14"
-            height="h-14"
-            rounded="rounded-full"
-            file={file}
-          />
+          {participants.map((participant) => (
+            <div
+              key={participant.id}
+              onClick={() => navigate(`/profile/${participant.id}`)}
+            >
+              <ContentBox
+                width="w-14"
+                height="h-14"
+                rounded="rounded-full"
+                file={file}
+              />
+            </div>
+          ))}
         </div>
-        <div className="mr-2">
-          <ContentBox
-            width="w-14"
-            height="h-14"
-            rounded="rounded-full"
-            file={file}
-          />
-        </div>
-        <div className="mr-2">
-          <ContentBox
-            width="w-14"
-            height="h-14"
-            rounded="rounded-full"
-            file={file}
-          />
-        </div>
-        <div className="mr-2">
-          <IconButton icon="plus" />
-        </div>
+      </div>
+      <div className="mr-2">
+        <IconButton icon="plus" />
       </div>
     </div>
   );
