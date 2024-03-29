@@ -18,14 +18,6 @@ const MatchDetailBody = () => {
     }
   };
 
-  // MatchDatail get 호출
-  const { data } = useQuery({
-    queryKey: ["matchDetail"],
-    queryFn: fetchMatchDetail,
-  });
-
-  console.log(data);
-
   return (
     <div>
       {/* 경기 분석하기 경기다시보기 버튼 */}
@@ -56,7 +48,7 @@ const MatchDetailBody = () => {
       </div>
 
       {/* 지도 */}
-      <div id="glassui" className="py-1 m-4">
+      <div id="glassui" className="py-1 m-3">
         <div className="m-2">
           <Typography label="경기장" textSize="text-lg" />
         </div>
