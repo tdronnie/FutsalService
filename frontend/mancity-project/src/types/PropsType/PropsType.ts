@@ -40,6 +40,7 @@ interface WideCardPropsType {
 interface HalfCardPropsType {
   file?: string;
   maintext: string;
+  rounded?: string;
 }
 
 interface HomeCardPropsType {
