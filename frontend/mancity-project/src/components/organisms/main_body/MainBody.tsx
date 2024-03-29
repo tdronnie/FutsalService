@@ -114,7 +114,7 @@ const MainBody = () => {
           file="/src/assets/imgs/mancity_logo.png"
         />
         <ClubList
-          clubTitile="우리가맨시티"
+          clubTitile="우린맨시티"
           clubInfo="3경기 10골 8도움"
           file="/src/assets/imgs/mancity_logo.png"
         />
