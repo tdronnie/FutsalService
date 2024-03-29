@@ -13,7 +13,7 @@ const meta: Meta<typeof Dropdown> = {
   },
   // 인자 설명
   argTypes: {
-    typographyLabel: {
+    MyTypographyLabel: {
       description: "Dropdown의 이름을 지정합니다.",
       control: "text",
       table: {
@@ -45,7 +45,7 @@ const MainFootInfo = [
 ];
 export const Gender: Story = {
   args: {
-    typographyLabel: "성별",
+    MyTypographyLabel: "성별",
     items: GenderInfo,
     width: "w-40",
   },
@@ -53,7 +53,7 @@ export const Gender: Story = {
 
 export const MainFoot: Story = {
   args: {
-    typographyLabel: "주발",
+    MyTypographyLabel: "주발",
     items: MainFootInfo,
   },
 };

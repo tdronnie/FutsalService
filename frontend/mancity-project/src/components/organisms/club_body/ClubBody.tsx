@@ -9,6 +9,9 @@ const ClubBody = () => {
   const [selectedTab, setSelectedTab] = useState(false);
   const tabSwitch = () => setSelectedTab(!selectedTab);
 
+  // 서치바 최초 값 0 초기화
+  const [placeValue, setPlaceValue] = useState(0);
+
   const navigate = useNavigate();
   const handleNavigate = ({ path }: NavigateType) => {
     navigate(path);
@@ -36,7 +39,7 @@ const ClubBody = () => {
                 <SortButton label="정렬" width="w-16" hover={false} />
               </div>
               <div className="w-full">
-                <SearchBar contents={[]} />
+                <SearchBar contents={[]} setPlaceValue={setPlaceValue} />
               </div>
             </div>
             <WideCard
@@ -59,7 +62,7 @@ const ClubBody = () => {
                 <SortButton label="필터" width="w-16" hover={true} />
               </div>
               <div className="w-full">
-                <SearchBar contents={[]} />
+                <SearchBar contents={[]} setPlaceValue={setPlaceValue} />
               </div>
             </div>
             <WideCard

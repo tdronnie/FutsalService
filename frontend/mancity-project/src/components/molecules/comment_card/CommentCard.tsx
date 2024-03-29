@@ -1,5 +1,5 @@
 import ContentBox from "@/components/atoms/content_box/ContentBox";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 const CommentCard = () => {
   return (
     <div className="flex mx-4 mt-4">
@@ -12,7 +12,7 @@ const CommentCard = () => {
         <div className="flex mb-[0.3rem]">
           {/* 회원이름 */}
           <div className="">
-            <Typography
+            <MyTypography
               label="회원이름"
               textSize="text-base"
               fontWeight="font-medium"
@@ -21,7 +21,7 @@ const CommentCard = () => {
           </div>
           {/* 날짜 */}
           <div className="mt-1 mx-2">
-            <Typography
+            <MyTypography
               label="2024-03-12 16:40"
               textSize="text-sm"
               fontWeight="font-normal"
@@ -31,7 +31,7 @@ const CommentCard = () => {
         </div>
         {/* 댓글 내용 */}
         <div className="">
-          <Typography
+          <MyTypography
             label="좋은 글 잘 읽었습니다."
             textSize="text-sm"
             fontWeight="font-medium"

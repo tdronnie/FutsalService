@@ -1,7 +1,7 @@
 import ReverseButton from "@/components/atoms/reverse_button/ReverseButton";
 import ShadcnTabs from "@/components/atoms/shadcn_tabs/ShadcnTabs";
 import TextareaContainer from "@/components/atoms/textarea_container/TextareaContainer";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import InputGroup from "@/components/molecules/input_group/InputGroup";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -35,7 +35,7 @@ const CommunityRegisterBody = () => {
       </div>
       <div>
         <InputGroup
-          typographyLabel="제목"
+          MyTypographyLabel="제목"
           checking={false}
           placeholder="제목을 입력해주세요"
           textValue={titleValue}
@@ -44,7 +44,7 @@ const CommunityRegisterBody = () => {
       </div>
       <div className="m-4">
         <div className="my-2">
-          <Typography
+          <MyTypography
             label="내용"
             textColor="text-sofcity"
             textSize="text-sm"
@@ -59,7 +59,7 @@ const CommunityRegisterBody = () => {
         </div>
       </div>
       <div className="m-4">
-        <Typography
+        <MyTypography
           label="영상 업로드"
           textColor="text-sofcity"
           textSize="text-sm"

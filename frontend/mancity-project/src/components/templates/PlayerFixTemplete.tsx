@@ -1,5 +1,5 @@
 import Header from "@/components/organisms/header/Header";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import PlayerInfo from "../molecules/player_info/PlayerInfo";
 
 const PlayerFixTemplete = () => {
@@ -12,19 +12,17 @@ const PlayerFixTemplete = () => {
           {/* 선수 지정을 위한 사진 나오는 자리 */}
           {/* AI단에서 받아오는 사진으로 대체할 예정 */}
           <div className="flex flex-col justify-center m-3">
-            <video id="myVideo">
-              <source
-                src="https://iandwe.s3.ap-northeast-2.amazonaws.com/match/yKa0ly3L"
-                type="video/mp4"
+              <img
+                src="/src/assets/imgs/temp.png"
+                alt="temp"
               />
-            </video>
           </div>
         </div>
       </div>
 
       <div id="glassui" className="py-1 mx-4 mt-4">
       <div className="mx-4 my-2">
-          <Typography
+          <MyTypography
             label="선수 정보"
             textColor="black"
             textSize="text-2xl"

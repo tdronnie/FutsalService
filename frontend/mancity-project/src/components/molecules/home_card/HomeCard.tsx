@@ -1,5 +1,5 @@
 import ContentBox from "@/components/atoms/content_box/ContentBox";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 
 const HomeCard = (props: HomeCardPropsType) => {
   const {
@@ -21,17 +21,17 @@ const HomeCard = (props: HomeCardPropsType) => {
         />
       </div>
       <div className="flex flex-col justify-center flex-grow ml-3">
-        <Typography
+        <MyTypography
           fontWeight="font-medium"
           label={maintext}
           textColor="text-black"
           textSize="text-lg"
         />
-        <Typography
+        <MyTypography
           fontWeight="font-medium"
           label={subtext}
           textColor="text-darkcity"
-          textSize="text-sm"
+          textSize="text-[0.87rem]"
         />
       </div>
     </div>

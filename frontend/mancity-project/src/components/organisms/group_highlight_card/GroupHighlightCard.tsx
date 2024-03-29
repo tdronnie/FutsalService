@@ -1,11 +1,11 @@
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import HighlightCard from "@/components/molecules/highlight_card/HighlightCard";
 
 const GroupHighlightCard = () => {
   return (
     <div id="glassui" className="justify-center py-2 m-4 ">
       <div className="mx-4 my-2">
-        <Typography
+        <MyTypography
           label="저장된 하이라이트"
           textColor="black"
           textSize="text-2xl"

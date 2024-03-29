@@ -1,6 +1,6 @@
 import { fetchUserApi, loginApi } from "@/apis/userApis";
 import GlobalButton from "@/components/atoms/global_button/GlobalButton";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import InputGroup from "@/components/molecules/input_group/InputGroup";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
@@ -46,7 +46,10 @@ const LoginBody = () => {
 
   const { data } = useQuery({
     queryKey: ["loginUserData", loginId],
-    queryFn: () => fetchUserApi(loginId),
+    queryFn: async () => {
+      const response = await fetchUserApi(loginId)
+      return response;
+    },
   });
 
   const { mutate: loginMutate } = useMutation({
@@ -66,14 +69,14 @@ const LoginBody = () => {
     setLoginError("이메일 또는 비밀번호가 맞지 않습니다. 다시 확인해 주세요.");
   };
 
-  // 유저정보를 상태관리해야합니다
-  console.log(`유저정보: ${data}`);
+  // 유저정보를 전역으로 상태 관리해야 합니다
+  console.log(data);
 
   return (
     <div>
       <div className="mt-6">
         <InputGroup
-          typographyLabel="이메일"
+          MyTypographyLabel="이메일"
           placeholder="ssafy@email.com"
           checking={false}
           textValue={emailValue}
@@ -83,16 +86,16 @@ const LoginBody = () => {
       <div className="">
         <InputGroup
           type="password"
-          typographyLabel="비밀번호"
+          MyTypographyLabel="비밀번호"
           placeholder="영문, 숫자, 특수문자 포함 8자리 이상"
           checking={false}
           textValue={passwordValue}
           setTextValue={setPasswordValue}
         />
       </div>
-      <div className="text-mancity mx-4 -mt-2 mb-2 ">
+      <div className="mx-4 mb-2 -mt-2 text-mancity ">
         {LoginError !== "" && (
-          <Typography textSize="text-sm" label={LoginError} />
+          <MyTypography textSize="text-sm" label={LoginError} />
         )}
       </div>
       <div className="mt-8" onClick={onSubmitLogin}>
@@ -100,12 +103,12 @@ const LoginBody = () => {
       </div>
 
       <div
-        className="flex text-sm justify-end mr-4 mt-4 hover:underline hover:cursor-pointer"
+        className="flex justify-end mt-4 mr-4 text-sm hover:underline hover:cursor-pointer"
         onClick={goSignup}
       >
         <div className="mr-2">아직 회원이 아니신가요?</div>
         <div className="underline">
-          <Typography label="회원가입" fontWeight="font-medium" textColor="" />
+          <MyTypography label="회원가입" fontWeight="font-medium" textColor="" />
         </div>
       </div>
     </div>

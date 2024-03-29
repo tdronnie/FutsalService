@@ -1,5 +1,5 @@
 import ContentBox from "@/components/atoms/content_box/ContentBox";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 
 const GlobalCard = (props: GlobalCardProps) => {
   const { subTitle, mainTitle, file } = props;
@@ -10,10 +10,10 @@ const GlobalCard = (props: GlobalCardProps) => {
       </div>
       <div className="mx-2 my-1">
         <div className="my-1 mr-2 overflow-hidden whitespace-nowrap overflow-ellipsis">
-          <Typography label={subTitle} textSize="text-sm" />
+          <MyTypography label={subTitle} textSize="text-sm" />
         </div>
         <div className="mt-1">
-          <Typography
+          <MyTypography
             label={mainTitle}
             textSize="text-lg"
             fontWeight="font-medium"

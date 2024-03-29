@@ -1,5 +1,5 @@
 import FontawsomeIcon from "@/components/atoms/fontawsome_icon/FontawsomeIcon";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import useKakaoLoader from "@/hooks/useKakaoLoader";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import marker from "@/assets/imgs/marker.png";
@@ -39,7 +39,7 @@ const MiniMap = (props: MiniMapPropsType) => {
       </div>
       <div>
         <div className="flex mt-1 cursor-pointer" onClick={onClick}>
-          <Typography
+          <MyTypography
             label={address}
             fontWeight="font-medium"
             textSize="text-xs"
@@ -52,7 +52,7 @@ const MiniMap = (props: MiniMapPropsType) => {
             />
           </div>
 
-          <Typography
+          <MyTypography
             label="주소복사"
             fontWeight="font-medium"
             textSize="text-xs"
@@ -60,7 +60,7 @@ const MiniMap = (props: MiniMapPropsType) => {
           />
         </div>
         <div>
-          <Typography
+          <MyTypography
             label={tel}
             fontWeight="font-medium"
             textSize="text-xs"
