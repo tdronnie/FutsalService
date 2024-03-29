@@ -18,9 +18,19 @@ const MatchDetailBody = () => {
     }
   };
 
+  // MatchDatail get 호출
+  const { data } = useQuery({
+    queryKey: ["matchDetail"],
+    queryFn: fetchMatchDetail,
+  });
+
+  console.log(data);
+
   return (
     <div>
       {/* 경기 분석하기 경기다시보기 버튼 */}
+      {/* 분석하기는 input file 형식으로 */}
+      {/* 분석완료되면 버튼 형식으로 라우팅 설정 */}
       <div className="flex justify-around mb-2">
         <div
           className="w-full ml-3 mr-1 cursor-pointer"

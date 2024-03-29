@@ -48,6 +48,11 @@ interface HomeCardPropsType {
   subtext: string;
 }
 
+interface PlayerInfoPropsType {
+  player: string;
+  color: string;
+}
+
 interface CommunityCardPropsType {
   file?: string;
   subtext: string;

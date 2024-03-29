@@ -4,7 +4,7 @@ import Typography from "@/components/atoms/typography/Typography";
 const GlobalCard = (props: GlobalCardProps) => {
   const { subTitle, mainTitle, file } = props;
   return (
-    <div id="glassui" className="flex-shrink-0 mr-2 rounded-lg w-36 h-42">
+    <div id="glassui" className="flex-shrink-0 pt-2 mr-2 rounded-lg w-36 h-42">
       <div>
         <ContentBox file={file} rounded="rounded-t-[10px]" />
       </div>
