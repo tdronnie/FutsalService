@@ -1,4 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
 import {
   Chart as ChartJS,
   RadialLinearScale,
@@ -107,7 +106,7 @@ export const RadarChart = ({ profileData }: ProfilePropsType) => {
   };
   return (
     // @ts-ignore
-    <div>{profileData && <Radar data={data} options={chartOptions} />};</div>
+    <div>{profileData && <Radar data={data} options={chartOptions} />}</div>
   );
 };
 

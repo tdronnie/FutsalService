@@ -11,7 +11,7 @@ const ProfileTemplate = ({ profileData }: ProfilePropsType) => {
           <Header
             label="프로필"
             backArrow={true}
-            headerButton={true}
+            headerButton={false}
             buttonLabel="정보 수정"
             toWhere="/profile/edit/1"
           />
