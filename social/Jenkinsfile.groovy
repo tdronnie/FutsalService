@@ -75,7 +75,7 @@ pipeline {
                 echo '##### delete stopped containers, networks, volumes, images, cache... #####'
                 script {
 //                    sh "docker image prune -f"
-                    sh docker system prune --volumes -f
+                    sh "docker system prune --volumes -f"
                 }
             }
         }
