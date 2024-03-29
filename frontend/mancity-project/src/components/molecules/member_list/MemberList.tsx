@@ -6,7 +6,7 @@ const MemberList = (props: MemberListPropsType) => {
   const file = "/src/assets/imgs/go_to_analysis.jpg";
   const { label } = props;
   return (
-    <div className="">
+    <div id="glassui" className="m-3 p-4">
       <div>
         <TypographyLine lineWidth="w-32" label={label} />
       </div>

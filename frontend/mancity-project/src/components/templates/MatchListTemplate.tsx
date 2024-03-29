@@ -138,9 +138,7 @@ const MatchListTemplate = () => {
         toWhere="/match/register"
       />
       <div id="glassui" className="flex items-center justify-between p-3 m-3">
-        <div
-          className="flex items-center ml-4"
-        >
+        <div className="flex items-center ml-4">
           <p className="text-[1.2rem] text-sofcity font-medium">날짜 선택:</p>
         </div>
         <div className="flex mr-4 font-medium text-[1.2rem] text-sofcity bottom-0">
@@ -155,8 +153,9 @@ const MatchListTemplate = () => {
       </div>
       {matches.map((match) => (
         <div
-        className="cursor-pointer"
-        onClick={() => handleNavigate({ path: "/match/1" })}
+          key={match.id}
+          className="cursor-pointer"
+          onClick={() => handleNavigate({ path: "/match/1" })}
         >
           <WideCard
             key={match.id}
