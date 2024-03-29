@@ -25,6 +25,8 @@ public class GameDetailResponseDto {
 
     private Long managerId;
 
+    private String managerName;
+
     private LocalDate startDate;
 
     private int time;
@@ -41,12 +43,13 @@ public class GameDetailResponseDto {
 
     private boolean isOver;
 
-    public static GameDetailResponseDto from(Game game){
+    public static GameDetailResponseDto from(Game game, String managerName){
         return GameDetailResponseDto.builder()
                 .gameId(game.getId())
                 .replayUrl(game.getReplayUrl())
                 .gender(game.getGender())
                 .managerId(game.getManager())
+                .managerName(managerName)
                 .startDate(game.getStartDate())
                 .time(game.getTime())
                 .playerNumber(game.getPlayerNumber())

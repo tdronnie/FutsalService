@@ -264,6 +264,7 @@ public class GameService {
     public GameDetailResponseDto findGameDetails(long id) {
         Game game = gameRepository.findById(id)
                 .orElseThrow(NoSuchGameException::new);
-        return GameDetailResponseDto.from(game);
+        String managerName = findByIdFromUserService(game.getManager()).getNickName();
+        return GameDetailResponseDto.from(game, managerName);
     }
 }
