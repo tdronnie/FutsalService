@@ -1,17 +1,14 @@
 package com.mancity.user.follow.application;
 
 import com.mancity.user.alarm.application.AlarmService;
+import com.mancity.user.alarm.application.dto.request.AlarmCreateDto;
 import com.mancity.user.follow.application.dto.request.FollowSendRequestDto;
 import com.mancity.user.follow.application.dto.request.UnfollowSendRequestDto;
 import com.mancity.user.follow.application.dto.response.FollowResponseDto;
 import com.mancity.user.follow.application.dto.response.FollowerInfo;
 import com.mancity.user.follow.domain.repository.FollowRepository;
-import com.mancity.user.stat.domain.MainStat;
-import com.mancity.user.stat.domain.Stat;
-import com.mancity.user.stat.domain.repository.StatRepository;
 import com.mancity.user.user.domain.User;
 import com.mancity.user.user.domain.repository.UserRepository;
-import com.mancity.user.user.exception.UserNotExistException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +29,13 @@ public class FollowService {
 
     public void follow(FollowSendRequestDto dto) {
         followRepository.save(dto.toEntity());
+        AlarmCreateDto alarmCreateDto = AlarmCreateDto.builder()
+                .senderId(dto.getSenderId())
+                .receiverId(dto.getReceiverId())
+                .domain("FOLLOW")
+                .domainId(0L)
+                .build();
+        alarmService.createAlarm(alarmCreateDto);
     }
 
     public FollowResponseDto findFollowersAndFollowings(long id) {
