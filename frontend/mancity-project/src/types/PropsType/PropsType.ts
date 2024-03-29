@@ -133,7 +133,10 @@ interface MapPropsType {
 }
 
 interface MemberListPropsType {
-  label: string;
+  participants: {
+    id: number;
+    userId: number;
+  }[];
 }
 
 interface ImgBoxType {
@@ -195,4 +198,9 @@ interface userStatModalPropsType {
 interface SearchBarPropsType {
   contents: futsalCourts[];
   setPlaceValue: React.Dispatch<React.SetStateAction<number>>;
+}
+
+interface MatchDetailPropsType {
+  matchDetailPropsData: matchDetailPropsDataType;
+  courtData: futsalCourts;
 }
