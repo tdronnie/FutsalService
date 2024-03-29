@@ -25,4 +25,6 @@ public class UserResponseDto {
 
     private boolean isPlayer;
 
+    private String image;
+
 }
