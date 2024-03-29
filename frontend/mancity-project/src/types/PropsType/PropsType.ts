@@ -172,9 +172,13 @@ interface FollowCardPropsType {
   overall: number;
 }
 
-interface matchPlace {
-  value: number;
-  label: string;
+interface futsalCourts {
+  id: number;
+  title: string;
+  address: string;
+  lat: number;
+  lng: number;
+  tel: string;
 }
 
 interface muiModalPropsType {
@@ -189,6 +193,6 @@ interface userStatModalPropsType {
 }
 
 interface SearchBarPropsType {
-  contents: matchPlace[];
+  contents: futsalCourts[];
   setPlaceValue: React.Dispatch<React.SetStateAction<number>>;
 }
