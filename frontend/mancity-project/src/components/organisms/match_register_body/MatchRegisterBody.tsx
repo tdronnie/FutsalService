@@ -5,7 +5,7 @@ import { forwardRef, useEffect, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import SearchBar from "@/components/molecules/search_bar/SearchBar";
 import { useMutation } from "@tanstack/react-query";
 import { fetchMatchCreate } from "@/apis/matchApis";
@@ -147,7 +147,7 @@ const MatchRegisterBody = () => {
       {/* 날짜 */}
       <div className="m-4">
         <div className="mb-1">
-          <Typography
+          <MyTypography
             textSize="text-sm"
             fontWeight="font-medium"
             textColor="text-sofcity"
@@ -170,7 +170,7 @@ const MatchRegisterBody = () => {
       {/* 경기장 */}
       <div className="mt-6 ml-4 mr-1">
         <div className="flex-row">
-          <Typography
+          <MyTypography
             textSize="text-sm"
             fontWeight="font-medium"
             textColor="text-sofcity"
@@ -182,7 +182,7 @@ const MatchRegisterBody = () => {
       {/* 인원 */}
       <div>
         <Dropdown
-          typographyLabel="인원"
+          MyTypographyLabel="인원"
           items={RuleInfo}
           position={ruleLabel}
           setPosition={setRuleLabel}
@@ -193,7 +193,7 @@ const MatchRegisterBody = () => {
 
       <div className="w-full">
         <Dropdown
-          typographyLabel="성별"
+          MyTypographyLabel="성별"
           items={GenderInfo}
           position={genderLabel}
           setPosition={setGenderLabel}
@@ -203,7 +203,7 @@ const MatchRegisterBody = () => {
 
       <div>
         <Dropdown
-          typographyLabel="선출"
+          MyTypographyLabel="선출"
           items={LevelInfo}
           position={levelLabel}
           setPosition={setLevelLabel}

@@ -1,12 +1,16 @@
 import { fetchUserApi, loginApi } from "@/apis/userApis";
 import GlobalButton from "@/components/atoms/global_button/GlobalButton";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import InputGroup from "@/components/molecules/input_group/InputGroup";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import useUserStore from "@/stores/userStore";
 
 const LoginBody = () => {
+  // useUserStore의 setUser 함수 사용
+  const setUser = useUserStore((state) => state.setUser);
+  
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
@@ -41,21 +45,25 @@ const LoginBody = () => {
     });
   }, [emailValue, passwordValue]);
 
-  // 로그인 한 사용자
-  const [loginId, setLoginId] = useState(0);
-
-  const { data } = useQuery({
-    queryKey: ["loginUserData", loginId],
-    queryFn: () => fetchUserApi(loginId),
-  });
-
+  // 로그인 후 사용자 정보 전역 상태 저장
   const { mutate: loginMutate } = useMutation({
     mutationFn: loginApi,
-    onSuccess(res) {
-      setLoginId(res);
+    onSuccess: async (userId) => {
+      try {
+        // 사용자 정보를 패치하고 전역 상태에 저장
+        const userData = await fetchUserApi(userId);
+        if (userData) {
+          setUser(userData);
+          navigate("/");
+        }
+      } catch (error) {
+        console.error("사용자 정보를 가져오는 데 실패했습니다.", error);
+        setLoginError("사용자 정보를 가져올 수 없습니다. 다시 시도해 주세요.");
+      }
     },
-    onError() {
+    onError: () => {
       console.log("로그인 에러");
+      setLoginError("이메일 또는 비밀번호가 맞지 않습니다. 다시 확인해 주세요.");
     },
   });
 
@@ -66,14 +74,11 @@ const LoginBody = () => {
     setLoginError("이메일 또는 비밀번호가 맞지 않습니다. 다시 확인해 주세요.");
   };
 
-  // 유저정보를 상태관리해야합니다
-  console.log(`유저정보: ${data}`);
-
   return (
     <div>
       <div className="mt-6">
         <InputGroup
-          typographyLabel="이메일"
+          MyTypographyLabel="이메일"
           placeholder="ssafy@email.com"
           checking={false}
           textValue={emailValue}
@@ -83,29 +88,29 @@ const LoginBody = () => {
       <div className="">
         <InputGroup
           type="password"
-          typographyLabel="비밀번호"
+          MyTypographyLabel="비밀번호"
           placeholder="영문, 숫자, 특수문자 포함 8자리 이상"
           checking={false}
           textValue={passwordValue}
           setTextValue={setPasswordValue}
         />
       </div>
-      <div className="text-mancity mx-4 -mt-2 mb-2 ">
+      <div className="mx-4 mb-2 -mt-2 text-mancity ">
         {LoginError !== "" && (
-          <Typography textSize="text-sm" label={LoginError} />
+          <MyTypography textSize="text-sm" label={LoginError} />
         )}
       </div>
-      <div className="mt-8" onClick={onSubmitLogin}>
-        <GlobalButton label="로그인" width="w-full" isdisabled={isFormValid} />
+      <div className="flex justify-center mt-8" onClick={onSubmitLogin}>
+        <GlobalButton label="로그인" width="w-[90%]" isdisabled={isFormValid} />
       </div>
 
       <div
-        className="flex text-sm justify-end mr-4 mt-4 hover:underline hover:cursor-pointer"
+        className="flex justify-end mt-4 mr-4 text-sm hover:underline hover:cursor-pointer"
         onClick={goSignup}
       >
         <div className="mr-2">아직 회원이 아니신가요?</div>
         <div className="underline">
-          <Typography label="회원가입" fontWeight="font-medium" textColor="" />
+          <MyTypography label="회원가입" fontWeight="font-medium" textColor="" />
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 
 // 한국 날짜 설정
 import dayjs from "dayjs";
@@ -28,13 +28,13 @@ const MatchDetailHeader = ({
       <div className="flex justify-between px-2">
         <div>
           <div>
-            <Typography
+            <MyTypography
               label={courtData?.title}
               fontWeight="font-semibold"
               textSize="text-[1.6rem]"
             />
           </div>
-          <Typography
+          <MyTypography
             label={`${date} ${formatTime(time)}`}
             fontWeight="font-medium"
             textSize="text-base"
@@ -44,7 +44,7 @@ const MatchDetailHeader = ({
 
       <div className="text-right px-2">
         <div>
-          <Typography
+          <MyTypography
             label="매치장"
             fontWeight="font-medium"
             textSize="text-sm"
@@ -52,7 +52,7 @@ const MatchDetailHeader = ({
           />
         </div>
         <div>
-          <Typography
+          <MyTypography
             label={String(matchDetailPropsData.managerId)}
             fontWeight="font-medium"
             textSize="text-sm"

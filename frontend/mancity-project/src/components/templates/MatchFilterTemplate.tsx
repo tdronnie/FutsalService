@@ -73,28 +73,28 @@ const MatchFilterTemplate = () => {
     <>
       <Header label="필터" backArrow={true} headerButton={false} />
       <Dropdown
-        typographyLabel="성별"
+        MyTypographyLabel="성별"
         items={GenderInfo}
         position={genderLabel}
         setPosition={setGenderLabel}
         setNumberValue={setGenderValue}
       />
       <Dropdown
-        typographyLabel="지역"
+        MyTypographyLabel="지역"
         items={LocationInfo}
         position={locationLabel}
         setPosition={setLocationLabel}
         setNumberValue={setLocationValue}
       />
       <Dropdown
-        typographyLabel="인원"
+        MyTypographyLabel="인원"
         items={RuleInfo}
         position={ruleLabel}
         setPosition={setRuleLabel}
         setNumberValue={setRuleValue}
       />
       <Dropdown
-        typographyLabel="수준"
+        MyTypographyLabel="수준"
         items={LevelInfo}
         position={levelLabel}
         setPosition={setLevelLabel}

@@ -1,13 +1,13 @@
 import { checkEmailApi, checkNicknameApi } from "@/apis/userApis";
 import GlobalInput from "@/components/atoms/global_input/GlobalInput";
 import SubButton from "@/components/atoms/sub_button/SubButton";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import { useMutation } from "@tanstack/react-query";
 
 const InputGroup = (props: InputGroupPropsType) => {
   const {
     type,
-    typographyLabel,
+    MyTypographyLabel,
     placeholder,
     checking,
     checkingLabel = "중복 확인",
@@ -56,9 +56,9 @@ const InputGroup = (props: InputGroupPropsType) => {
 
   const handleCheckingClick = () => {
     if (textValue) {
-      if (typographyLabel === "이메일") {
+      if (MyTypographyLabel === "이메일") {
         emailMutate(textValue);
-      } else if (typographyLabel === "닉네임") {
+      } else if (MyTypographyLabel === "닉네임") {
         nicknameMutate(textValue);
       }
     }
@@ -67,11 +67,11 @@ const InputGroup = (props: InputGroupPropsType) => {
   return (
     <div className="flex m-4">
       <div className="w-full">
-        <Typography
+        <MyTypography
           textSize="text-sm"
           fontWeight="font-medium"
           textColor="text-sofcity"
-          label={typographyLabel}
+          label={MyTypographyLabel}
         />
         <GlobalInput
           type={type}

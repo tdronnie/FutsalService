@@ -4,6 +4,7 @@ import Modal from "@mui/material/Modal";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { totalStatApi } from "@/apis/userApis";
+import useModalStore from "@/stores/modalStore";
 
 const style = {
   position: "absolute" as "absolute",
@@ -25,9 +26,7 @@ const style = {
 
 const MuiModal = (props: userStatModalPropsType) => {
   const { userId } = props;
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const { isTotalStatOpen, toggleTotalStatModal } = useModalStore();
 
   // 누적 기록 api 요청
   const { isLoading, data } = useQuery({
@@ -40,13 +39,13 @@ const MuiModal = (props: userStatModalPropsType) => {
       {!isLoading && data && (
         <div>
           {/*  이 div 누르면 모달 열리는 로직 */}
-          <div className="text-white text-sm font-medium" onClick={handleOpen}>
+          <div className="text-sm font-medium text-white" onClick={toggleTotalStatModal}>
             누적기록
           </div>
           {/* 모달 시작 */}
           <Modal
-            open={open}
-            onClose={handleClose}
+            open={isTotalStatOpen}
+            onClose={toggleTotalStatModal}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
@@ -60,39 +59,39 @@ const MuiModal = (props: userStatModalPropsType) => {
                 id="modal-modal-description"
                 sx={{ mt: 2, width: "100%" }}
               >
-                <div className="flex justify-center items-center">
-                  <div className="w-24 flex justify-center">속도</div>
+                <div className="flex items-center justify-center">
+                  <div className="flex justify-center w-24">속도</div>
                   <div>{data.speed}</div>
                 </div>
-                <div className="flex justify-center items-center">
+                <div className="flex items-center justify-center">
                   <div className="w-24 ">유효슈팅</div>
                   <div>{data.distanceCovered}</div>
                 </div>
-                <div className="flex justify-center items-center">
+                <div className="flex items-center justify-center">
                   <div className="w-24">패스</div>
                   <div>{data.pass}</div>
                 </div>
-                <div className="flex justify-center items-center">
+                <div className="flex items-center justify-center">
                   <div className="w-24">샷츠온타겟</div>
                   <div>{data.shotsOnTarget}</div>
                 </div>
-                <div className="flex justify-center items-center">
+                <div className="flex items-center justify-center">
                   <div className="w-24">골</div>
                   <div>{data.goal}</div>
                 </div>
-                <div className="flex justify-center items-center">
+                <div className="flex items-center justify-center">
                   <div className="w-24">도움</div>
                   <div>{data.assist}</div>
                 </div>
-                <div className="flex justify-center items-center">
+                <div className="flex items-center justify-center">
                   <div className="w-24">턴오버</div>
                   <div>{data.turnOverInOffense}</div>
                 </div>
-                <div className="flex justify-center items-center">
+                <div className="flex items-center justify-center">
                   <div className="w-24">턴오버 방어</div>
                   <div>{data.turnOverInDefense}</div>
                 </div>
-                <div className="flex justify-center items-center">
+                <div className="flex items-center justify-center">
                   <div className="w-24">경기 시간</div>
                   <div>{data.playedTimes}</div>
                 </div>

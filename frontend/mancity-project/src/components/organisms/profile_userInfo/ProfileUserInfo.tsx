@@ -3,7 +3,7 @@ import ClubButton from "@/components/atoms/club_button/ClubButton";
 import ContentBox from "@/components/atoms/content_box/ContentBox";
 import FontawsomeIcon from "@/components/atoms/fontawsome_icon/FontawsomeIcon";
 import GlobalButton from "@/components/atoms/global_button/GlobalButton";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -112,7 +112,7 @@ const ProfileUserInfo = ({ profileData }: ProfilePropsType) => {
             <div
               className={`my-2  w-36  ml-1 ${profileData.club ? "-mt-[0.1rem]" : "mb-3"}`}
             >
-              <Typography
+              <MyTypography
                 label={profileData.nickName}
                 textSize="text-3xl"
                 textColor="text-black"

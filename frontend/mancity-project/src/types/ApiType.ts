@@ -14,6 +14,10 @@ interface loginApiType {
   password: string;
 }
 
+interface fcmDataType {
+  fcmtoken: string;
+}
+
 interface profileEditApiType {
   image: File[] | null;
   dto: {

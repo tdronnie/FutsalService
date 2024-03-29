@@ -1,6 +1,6 @@
 import FontawsomeIcon from "@/components/atoms/fontawsome_icon/FontawsomeIcon";
 import SubmitButton from "@/components/atoms/submit_button/SubmitButton";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import { useNavigate } from "react-router-dom";
 
 const Header = (props: HeaderPropsType) => {
@@ -28,7 +28,7 @@ const Header = (props: HeaderPropsType) => {
         <div
           className={`flex-grow text-center ${label ? "visible" : "invisible"}`}
         >
-          <Typography
+          <MyTypography
             textSize="text-[1.6rem]"
             fontWeight="font-medium"
             textColor="text-mancity"

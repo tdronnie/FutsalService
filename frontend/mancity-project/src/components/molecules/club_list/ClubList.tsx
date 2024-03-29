@@ -1,5 +1,5 @@
 import ContentBox from "@/components/atoms/content_box/ContentBox";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 
 const ClubList = (props: ClubListPropsType) => {
   const { file, clubTitile, clubInfo } = props;
@@ -15,7 +15,7 @@ const ClubList = (props: ClubListPropsType) => {
               width="w-10"
             />
           </div>
-          <Typography
+          <MyTypography
             fontWeight="font-medium"
             label={clubTitile}
             textColor="text-black"
@@ -23,7 +23,7 @@ const ClubList = (props: ClubListPropsType) => {
           />
         </div>
         <div>
-          <Typography
+          <MyTypography
             fontWeight="font-medium"
             label={clubInfo}
             textColor="text-darkcity"

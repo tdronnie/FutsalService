@@ -1,6 +1,6 @@
 import "./slick.css";
 import GlobalCard from "@/components/molecules/global_card/GlobalCard";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import ClubList from "@/components/molecules/club_list/ClubList";
 import { useNavigate } from "react-router-dom";
 import HalfCard from "@/components/molecules/half_card/HalfCard";
@@ -23,16 +23,16 @@ const MainBody = () => {
       {/* 매치등록하기랑 매치둘러보기 버튼 */}
       <div className="flex justify-around mb-2">
         <div
-          className="w-full ml-3 mr-1 cursor-pointer"
+          className="w-full ml-4 mr-1 cursor-pointer"
           onClick={() => handleNavigate({ path: "/match/register" })}
         >
-          <HalfCard maintext="매치등록하기" />
+          <HalfCard maintext="매치등록하기" file="/src/assets/imgs/match_register.png" />
         </div>
         <div
-          className="w-full ml-1 mr-3 cursor-pointer"
+          className="w-full ml-1 mr-4 cursor-pointer"
           onClick={() => handleNavigate({ path: "/match" })}
         >
-          <HalfCard maintext="매치둘러보기" />
+          <HalfCard maintext="매치둘러보기" file="/src/assets/imgs/match_lookaround.png" />
         </div>
       </div>
 
@@ -44,6 +44,7 @@ const MainBody = () => {
         <HomeCard
           maintext="다양한 사람들과 뛰어볼까요?"
           subtext="용병으로 등록하거나 호출할 수 있어요"
+          file="/src/assets/imgs/finding_players.png"
         />
       </div>
 
@@ -53,7 +54,7 @@ const MainBody = () => {
 
       <div id="glassui" className="mx-4 mb-4">
         <div className="flex items-end justify-between p-3">
-          <Typography
+          <MyTypography
             fontWeight="font-medium"
             label="지난 경기 다시보기"
             textColor="text-black"
@@ -89,7 +90,7 @@ const MainBody = () => {
 
       <div id="glassui" className="m-5">
         <div className="p-3">
-          <Typography
+          <MyTypography
             fontWeight="font-medium"
             label="용병 랭킹 TOP5"
             textColor="text-black"
@@ -114,7 +115,7 @@ const MainBody = () => {
           file="/src/assets/imgs/mancity_logo.png"
         />
         <ClubList
-          clubTitile="우리가맨시티"
+          clubTitile="우린맨시티"
           clubInfo="3경기 10골 8도움"
           file="/src/assets/imgs/mancity_logo.png"
         />

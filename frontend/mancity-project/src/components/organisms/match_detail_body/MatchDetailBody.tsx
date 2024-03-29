@@ -2,7 +2,7 @@ import MemberList from "@/components/molecules/member_list/MemberList";
 import MiniMap from "@/components/molecules/mini_map/MiniMap";
 import HalfCard from "@/components/molecules/half_card/HalfCard";
 import { useNavigate, useParams } from "react-router-dom";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 
 // 한국 날짜 설정
 import dayjs from "dayjs";
@@ -89,7 +89,7 @@ const MatchDetailBody = ({
       {/* 지도 */}
       <div id="glassui" className="py-1 m-3">
         <div className="m-2">
-          <Typography label="경기장" textSize="text-lg" />
+          <MyTypography label="경기장" textSize="text-lg" />
         </div>
         <hr className="border-sofcity border-[0.05rem] m-2" />
         <MiniMap

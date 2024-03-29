@@ -1,6 +1,6 @@
 import ContentBox from "@/components/atoms/content_box/ContentBox";
 import FontawsomeIcon from "@/components/atoms/fontawsome_icon/FontawsomeIcon";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import CommentCard from "@/components/molecules/comment_card/CommentCard";
 import InputGroup from "@/components/molecules/input_group/InputGroup";
 
@@ -20,7 +20,7 @@ const CommunityDetailBody = () => {
       {/* 댓글 입력창 */}
       <div className="m-2">
         <InputGroup
-          typographyLabel="댓글"
+          MyTypographyLabel="댓글"
           placeholder="댓글은 매너있게 달아주세요 :)"
           checking={true}
           checkingLabel="입력"
@@ -37,7 +37,7 @@ const CommunityDetailBody = () => {
               <div className="mr-1">
                 <FontawsomeIcon icon="heart" />
               </div>
-              <Typography
+              <MyTypography
                 label="좋아요"
                 textSize="text-md"
                 textColor="text-sofcity"
@@ -50,7 +50,7 @@ const CommunityDetailBody = () => {
               <div className="mr-1">
                 <FontawsomeIcon icon="share-from-square" />
               </div>
-              <Typography
+              <MyTypography
                 label="공유하기"
                 textSize="text-md"
                 textColor="text-sofcity"

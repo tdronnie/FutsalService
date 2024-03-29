@@ -1,6 +1,6 @@
 import ContentBox from "@/components/atoms/content_box/ContentBox";
 import FontawsomeIcon from "@/components/atoms/fontawsome_icon/FontawsomeIcon";
-import Typography from "@/components/atoms/typography/Typography";
+import MyTypography from "@/components/atoms/my_typography/MyTypography";
 
 const HighlightCard = (props: HighlightCardProps) => {
   const { mainTitle, file } = props;
@@ -9,9 +9,9 @@ const HighlightCard = (props: HighlightCardProps) => {
       <div>
         <ContentBox file={file} rounded="rounded-[10px]"/>
       </div>
-      <div className="flex justify-around m-2">
+      <div className="flex justify-around my-2">
         <div className="mr-2 overflow-hidden whitespace-nowrap overflow-ellipsis">
-          <Typography
+          <MyTypography
             label={mainTitle}
             textSize="text-md"
             fontWeight="font-medium"
