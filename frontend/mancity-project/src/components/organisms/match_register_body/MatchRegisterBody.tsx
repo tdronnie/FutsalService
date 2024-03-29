@@ -31,7 +31,7 @@ const MatchRegisterBody = () => {
     mutationFn: fetchMatchCreate,
     onSuccess(result: string) {
       // 해당 경기 페이지로 바로 렌더링
-      navigate(`/match/detail/${result}`);
+      navigate(`/match/${result}`);
     },
     onError(error) {
       console.log(error);
