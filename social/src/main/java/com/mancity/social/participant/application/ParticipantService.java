@@ -62,11 +62,11 @@ public class ParticipantService {
             Participant participant = Participant.builder()
                     .userId(participateRequest.getSender())
                     .game(game)
+                    .image(getImageFromUser(participateRequest.getSender()))
                     .build();
             game.participate(participant);
             userService.generateAlarm(game.getManager(), participateRequest.getSender(), "GAME_REQUEST_REPLY", 0);
         }
-        // TODO : sender 에게 매치장이 수락/거절에 대한 알람 보내기 구현 필요
 
     }
 
@@ -122,6 +122,7 @@ public class ParticipantService {
             Participant participant = Participant.builder()
                     .userId(participateSuggest.getSenderId())
                     .game(game)
+                    .image(getImageFromUser(participateSuggest.getSenderId()))
                     .build();
             game.participate(participant);
             userService.generateAlarm(participateSuggest.getReceiverId(), participateSuggest.getSenderId(), "GAME_SUGGEST_REPLY", 0);
@@ -147,6 +148,10 @@ public class ParticipantService {
                 .stream()
                 .map(ParticipateSuggestResponseDto::from)
                 .toList();
+    }
+
+    private String getImageFromUser(long id){
+        return userService.findByIdFromUser(id).getImage();
     }
 
 }

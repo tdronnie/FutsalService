@@ -16,10 +16,13 @@ public class ParticipantResponseDto {
 
     private Long userId;
 
+    private String image;
+
     public static ParticipantResponseDto from(Participant participant){
         return ParticipantResponseDto.builder()
                 .id(participant.getId())
                 .userId(participant.getUserId())
+                .image(participant.getImage())
                 .build();
     }
 }

@@ -21,13 +21,14 @@ public class PlayerFeedBackResponseDto {
 
     private int assist; //어시스트 수
 
-    private int avgShotOnTargetPerShot; //유효슈팅/총 슈팅
+    private int shot; //총 슈팅
+
+    private int shotOnTarget; //유효슈팅
 
     private int pass; //패스 수
 
     private int turnOverInOffense; // 공격 시 턴오버 당한 총 횟수
 
     private int turnOverInDefense; // 수비 시 턴오버 성공한 총 횟수
-
 
 }
