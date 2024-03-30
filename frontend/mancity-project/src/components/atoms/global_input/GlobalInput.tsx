@@ -1,4 +1,4 @@
-const GlobalInput = (props: TailwindPropsType) => {
+const GlobalInput = (props: GlobalInputType) => {
   const { type = "text", placeholder, width, textValue, setTextValue } = props;
 
   const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -6,8 +6,6 @@ import { useEffect } from "react";
 
 const ProfileUserStats = ({ profileData }: ProfilePropsType) => {
   const { data } = useQuery({ queryKey: ["loginUserData"] });
-
-  console.log(data);
   useEffect(() => {
     if (data) {
       console.log(data);

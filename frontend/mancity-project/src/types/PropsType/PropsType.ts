@@ -29,6 +29,29 @@ interface TailwindPropsType {
   reverse?: boolean;
 }
 
+
+
+interface MyTypographyType {
+  textSize?: string;
+  fontWeight?: string;
+  textColor?: string;
+  label?: string;
+  id?: string;
+}
+
+interface GlobalInputType {
+  type?: string;
+  width?: string;
+  placeholder?: string;
+  textValue?: string;
+  setTextValue?: React.Dispatch<React.SetStateAction<string>>;
+  // 숫자 prop 내리는 형식 따로 생성
+  numberTextValue?: number;
+  setNumberTextValue?: React.Dispatch<React.SetStateAction<number>>;
+}
+
+/////////////////////////////////////
+
 interface WideCardPropsType {
   file?: string;
   subtext: string;
@@ -101,6 +124,11 @@ interface InputGroupPropsType {
   checkingLabel?: string;
   textValue?: string;
   setTextValue?: React.Dispatch<React.SetStateAction<string>>;
+
+  // 숫자 prop 내리는 형식 따로 생성
+  numberTextValue?: number;
+  setNumberTextValue?: React.Dispatch<React.SetStateAction<number>>;
+
   setIsCheck?: React.Dispatch<React.SetStateAction<boolean | null>>;
 }
 
