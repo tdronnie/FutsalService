@@ -1,5 +1,4 @@
-import MainTemplate from "@/components/templates/MainTemplate";
-import { useEffect, useState } from "react";
+import MainTemplate from "@/components/templates/main/MainTemplate";
 
 const HomePage = () => {
   return (

@@ -1,5 +1,5 @@
 import { fetchUserApi } from "@/apis/userApis";
-import ProfileEditTemplate from "@/components/templates/ProfileEditTemplate";
+import ProfileEditTemplate from "@/components/templates/user/ProfileEditTemplate";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
 

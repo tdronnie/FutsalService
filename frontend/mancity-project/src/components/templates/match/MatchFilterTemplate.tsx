@@ -1,10 +1,19 @@
 import { useEffect, useState } from "react";
-import Dropdown from "../molecules/dropdown/Dropdown";
-import Header from "../organisms/header/Header";
-import GlobalButton from "../atoms/global_button/GlobalButton";
-import GlobalSwitch from "../molecules/global_switch/GlobalSwitch";
+import Dropdown from "../../molecules/dropdown/Dropdown";
+import Header from "../../organisms/header/Header";
+import GlobalButton from "../../atoms/global_button/GlobalButton";
+import GlobalSwitch from "../../molecules/global_switch/GlobalSwitch";
 
-const ClubFilterTemplete = () => {
+const MatchFilterTemplate = () => {
+  // 성별
+  const GenderInfo = [
+    { value: 1, label: "남성" },
+    { value: 2, label: "여성" },
+    { value: 3, label: "혼성" },
+  ];
+  const [genderLabel, setGenderLabel] = useState("성별");
+  const [genderValue, setGenderValue] = useState(0);
+
   // 지역
   const LocationInfo = [
     { value: 1, label: "서울" },
@@ -25,6 +34,14 @@ const ClubFilterTemplete = () => {
   const [locationLabel, setLocationLabel] = useState("지역");
   const [locationValue, setLocationValue] = useState(0);
 
+  // 인원
+  const RuleInfo = [
+    { value: 1, label: "5vs5" },
+    { value: 2, label: "6vs6" },
+  ];
+  const [ruleLabel, setRuleLabel] = useState("인원");
+  const [ruleValue, setRuleValue] = useState(0);
+
   // 수준
   const LevelInfo = [
     { value: 1, label: "하수준" },
@@ -43,21 +60,38 @@ const ClubFilterTemplete = () => {
   useEffect(() => {
     // 하나라도 선택을 해야함! 하나도 안하면 버튼 비활성화
     const isValid =
-      locationValue !== 0 || isSwitchOn !== false || levelValue !== 0;
+      genderValue !== 0 ||
+      locationValue !== 0 ||
+      ruleValue !== 0 ||
+      isSwitchOn !== false ||
+      levelValue !== 0;
 
-      
     setIsFormValid(isValid);
-  }, [locationValue, levelValue, isSwitchOn]);
+  }, [genderValue, locationValue, ruleValue, levelValue, isSwitchOn]);
 
   return (
     <>
       <Header label="필터" backArrow={true} headerButton={false} />
+      <Dropdown
+        MyTypographyLabel="성별"
+        items={GenderInfo}
+        position={genderLabel}
+        setPosition={setGenderLabel}
+        setNumberValue={setGenderValue}
+      />
       <Dropdown
         MyTypographyLabel="지역"
         items={LocationInfo}
         position={locationLabel}
         setPosition={setLocationLabel}
         setNumberValue={setLocationValue}
+      />
+      <Dropdown
+        MyTypographyLabel="인원"
+        items={RuleInfo}
+        position={ruleLabel}
+        setPosition={setRuleLabel}
+        setNumberValue={setRuleValue}
       />
       <Dropdown
         MyTypographyLabel="수준"
@@ -79,4 +113,4 @@ const ClubFilterTemplete = () => {
   );
 };
 
-export default ClubFilterTemplete;
+export default MatchFilterTemplate;

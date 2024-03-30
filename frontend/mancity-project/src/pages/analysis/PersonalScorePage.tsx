@@ -1,11 +1,11 @@
-import PersonalScoreTemplete from "@/components/templates/PersonalScoreTemplete"
+import PersonalScoreTemplete from "@/components/templates/analysis/PersonalScoreTemplete";
 
 const PersonalScorePage = () => {
   return (
     <div>
-        <PersonalScoreTemplete />
+      <PersonalScoreTemplete />
     </div>
-  )
-}
+  );
+};
 
-export default PersonalScorePage
+export default PersonalScorePage;
