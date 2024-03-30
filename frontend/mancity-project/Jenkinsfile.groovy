@@ -44,29 +44,17 @@ pipeline {
         stage('Delete Previous frontend Docker Container'){
             steps {
                 script {
-                    def  frontendContainerExists = sh(script: "docker ps --filter=name=${CONTAINER_NAME}", returnStdout: true).trim()
-                    if (frontendContainerExists) {
-                        sh "docker stop ${CONTAINER_NAME}"
-                        sh "docker rm ${CONTAINER_NAME}"
-                    } else {
-                        echo "frontend container does not exist. Skipping deletion."
-                    }
-
-                    def exitedContainers = sh(script: "docker ps --filter status=exited -q", returnStdout: true).trim()
-                    if (exitedContainers) {
-                        sh "docker rm ${exitedContainers}"
-                    } else {
-                        echo "No exited containers to remove."
-                    }
+                    // 컨테이너가 실행중이 아니거나 중지되어 있는 경우 아무런 동작하지 않고 넘어가도록
+                    sh "docker stop ${CONTAINER_NAME} || true"
                 }
             }
         }
 
-        stage('Prune Image'){
+        stage('Prune Docker Object'){
             steps {
-                echo '##### delete <none> TAG images #####'
+                echo '##### delete stopped containers, networks, volumes, images, cache... #####'
                 script {
-                    sh "docker image prune -f"
+                    sh "docker system prune --volumes -f"
                 }
             }
         }
