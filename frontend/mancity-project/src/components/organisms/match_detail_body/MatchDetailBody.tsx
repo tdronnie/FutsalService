@@ -30,7 +30,6 @@ const MatchDetailBody = ({
   // 경기가 현재 날짜와 비교해서 지났는지 여부
   const isOver = dayjs(today).isBefore(matchDetailPropsData.startDate);
 
-  console.log(matchDetailPropsData);
   return (
     <div>
       {/* 경기 분석하기 경기다시보기 버튼 */}

@@ -4,7 +4,7 @@ import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import { useNavigate } from "react-router-dom";
 
 const MemberList = (props: MemberListPropsType) => {
-  const file = "/src/assets/imgs/go_to_analysis.jpg";
+  const file = "/src/assets/imgs/mancity_logo.jpg";
   const navigate = useNavigate();
   const { participants } = props;
   return (
@@ -26,7 +26,7 @@ const MemberList = (props: MemberListPropsType) => {
                 width="w-14"
                 height="h-14"
                 rounded="rounded-full"
-                file={file}
+                file={participant.image ? participant.image : file}
               />
             </div>
           ))}

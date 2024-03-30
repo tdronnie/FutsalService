@@ -1,8 +1,11 @@
+import ReplayTemplate from "@/components/templates/ReplayTemplate";
 
 const ReplayPage = () => {
   return (
-    <div>ReplayPage</div>
-  )
-}
+    <div>
+      <ReplayTemplate />
+    </div>
+  );
+};
 
-export default ReplayPage
+export default ReplayPage;

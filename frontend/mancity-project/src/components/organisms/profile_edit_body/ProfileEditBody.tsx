@@ -147,7 +147,7 @@ const ProfileEditBody = ({ userInfoData, isLoading }: UserInfoPropsType) => {
               rounded="rounded-full"
               file={imageViewValue[0]}
             />
-            <div className="absolute opacity-0  w-36 h-36 text-sm">
+            <div className="absolute opacity-0  w-36 h-36 text-[1px]">
               <input
                 className=""
                 id="image"
