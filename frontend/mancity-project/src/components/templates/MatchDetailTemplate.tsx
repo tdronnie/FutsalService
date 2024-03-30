@@ -40,7 +40,7 @@ const MatchDetailTemplate = ({
           />
 
           {/* Footer의 크기만큼 스크롤이 되지 않아서 공백 삽입 */}
-          <div className="h-20"></div>
+          <div className="h-16"></div>
 
           <Footer
             label={`${gender} ∙ ${playerNumber} ∙ ${level} `}

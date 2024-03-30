@@ -53,7 +53,7 @@ const MatchDetailHeader = ({
         </div>
         <div>
           <MyTypography
-            label={String(matchDetailPropsData.managerId)}
+            label={String(matchDetailPropsData.managerName)}
             fontWeight="font-medium"
             textSize="text-sm"
             textColor="text-gray-500"

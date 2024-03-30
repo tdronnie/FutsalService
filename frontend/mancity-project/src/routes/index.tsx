@@ -28,6 +28,7 @@ import FollowPage from "@/pages/user/FollowPage";
 import PersonalFeedbackPage from "@/pages/analysis/PersonalFeedbackPage";
 import ScorePage from "@/pages/analysis/ScorePage";
 import PersonalScorePage from "@/pages/analysis/PersonalScorePage";
+import TacticalBoardPage from "@/pages/analysis/TacticalBoardPage";
 
 const AppRoutes = () => (
   <Routes>
@@ -45,7 +46,10 @@ const AppRoutes = () => (
     <Route path="/playerfix/:match_id" element={<PlayerFixPage />} />
     <Route path="/feedback/:match_id" element={<FeedbackPage />} />
     <Route path="/replay/:match_id" element={<ReplayPage />} />
-    <Route path="/personalfeedback/:player_id" element={<PersonalFeedbackPage />} />
+    <Route
+      path="/personalfeedback/:player_id"
+      element={<PersonalFeedbackPage />}
+    />
     <Route path="/personalscore/:player_id" element={<PersonalScorePage />} />
     <Route path="/score/:match_id" element={<ScorePage />} />
     <Route path="/community" element={<CommunityPage />} />
@@ -60,6 +64,7 @@ const AppRoutes = () => (
     <Route path="/profile/:user_id" element={<ProfilePage />} />
     <Route path="/profile/edit/:user_id" element={<ProfileEditPage />} />
     <Route path="/follow/:user_id" element={<FollowPage />} />
+    <Route path="/tactical_board" element={<TacticalBoardPage />} />
   </Routes>
 );
 

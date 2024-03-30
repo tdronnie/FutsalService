@@ -29,7 +29,12 @@ interface TailwindPropsType {
   reverse?: boolean;
 }
 
-
+interface GlobalButton {
+  isdisabled?: boolean;
+  width?: string;
+  label?: string;
+  hover?: boolean;
+}
 
 interface MyTypographyType {
   textSize?: string;
@@ -165,6 +170,7 @@ interface MemberListPropsType {
   participants: {
     id: number;
     userId: number;
+    image: string;
   }[];
 }
 

@@ -15,8 +15,8 @@ const ProfileUserStats = ({ profileData }: ProfilePropsType) => {
     <div>
       {profileData && (
         <div id="glassui" className="justify-center m-4">
-          <div className=" p-4">
-            <div className="-mr-4 ">
+          <div className="p-4">
+            <div>
               <MyTypography
                 label="개인 스텟"
                 textColor="black"
@@ -24,7 +24,7 @@ const ProfileUserStats = ({ profileData }: ProfilePropsType) => {
                 fontWeight="font-medium"
               />
               <hr className="border-[#d9d9d9] border mt-3 w-[96%]" />
-              <div className="m-4">
+              <div className="my-2">
                 <RadarChart profileData={profileData} />
               </div>
             </div>
