@@ -27,5 +27,9 @@ public class Highlight {
 
     private String url;
 
+    public void addStoredHighlights(Myhighlight myhighlight) {
+        myhighlights.add(myhighlight);
+    }
+
 
 }
