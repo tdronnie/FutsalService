@@ -69,12 +69,14 @@ interface matchDetailPropsDataType {
   replayUrl: string;
   gender: number;
   managerId: number;
+  managerName: string;
   startDate: string;
   time: number;
   playerNumber: number;
   participants: {
     id: number;
     userId: number;
+    image: string;
   }[];
   level: string;
   courtId: number;
