@@ -1,4 +1,4 @@
-import MatchRegisterTemplate from "@/components/templates/MatchRegisterTemplate";
+import MatchRegisterTemplate from "@/components/templates/match/MatchRegisterTemplate";
 
 const MatchRegisterPage = () => {
   return (

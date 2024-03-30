@@ -1,5 +1,5 @@
 import { fetchMatchDetail } from "@/apis/matchApis";
-import MatchDetailTemplate from "@/components/templates/MatchDetailTemplate";
+import MatchDetailTemplate from "@/components/templates/match/MatchDetailTemplate";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 

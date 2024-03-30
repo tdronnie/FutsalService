@@ -1,4 +1,4 @@
-import ClubFilterTemplete from "@/components/templates/ClubFilterTemplete";
+import ClubFilterTemplete from "@/components/templates/club/ClubFilterTemplete";
 
 const ClubFilterPage = () => {
   return (

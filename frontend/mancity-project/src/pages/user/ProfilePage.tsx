@@ -1,5 +1,5 @@
 import { fetchProfileApi } from "@/apis/userApis";
-import ProfileTemplate from "@/components/templates/ProfileTemplate";
+import ProfileTemplate from "@/components/templates/user/ProfileTemplate";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
 

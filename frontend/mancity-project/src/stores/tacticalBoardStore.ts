@@ -1,3 +1,4 @@
+import { useState } from "react";
 import create from "zustand";
 
 interface TacticalBoardStoreType {
@@ -15,19 +16,60 @@ const screenHeight = window.innerHeight;
 
 const initialPlayers = [
   // A team
-  { x: screenWidth * 0.2, y: screenHeight * 0.2 },
-  { x: screenWidth * 0.7, y: screenHeight * 0.2 },
-  { x: screenWidth * 0.1, y: screenHeight * 0.3 },
-  { x: screenWidth * 0.47, y: screenHeight * 0.3 },
-  { x: screenWidth * 0.8, y: screenHeight * 0.3 },
-  { x: screenWidth * 0.47, y: screenHeight * 0.08 },
+  {
+    x: screenWidth < 577 ? screenWidth * 0.27 : 576 * 0.27,
+    y: screenHeight * 0.25,
+  },
+  {
+    x: screenWidth < 577 ? screenWidth * 0.65 : 576 * 0.65,
+    y: screenHeight * 0.25,
+  },
+  {
+    x: screenWidth < 577 ? screenWidth * 0.1 : 576 * 0.1,
+    y: screenHeight * 0.35,
+  },
+  {
+    x: screenWidth < 577 ? screenWidth * 0.48 : 576 * 0.48,
+    y: screenHeight * 0.35,
+  },
+  {
+    x: screenWidth < 577 ? screenWidth * 0.8 : 576 * 0.8,
+    y: screenHeight * 0.35,
+  },
+  {
+    x: screenWidth < 577 ? screenWidth * 0.48 : 576 * 0.48,
+    y: screenHeight * 0.11,
+  },
   // B team
-  { x: screenWidth * 0.2, y: screenHeight * 0.5 },
-  { x: screenWidth * 0.7, y: screenHeight * 0.5 },
-  { x: screenWidth * 0.1, y: screenHeight * 0.4 },
-  { x: screenWidth * 0.47, y: screenHeight * 0.4 },
-  { x: screenWidth * 0.8, y: screenHeight * 0.4 },
-  { x: screenWidth * 0.47, y: screenHeight * 0.61 },
+  {
+    x: screenWidth < 577 ? screenWidth * 0.25 : 576 * 0.25,
+    y: screenHeight * 0.65,
+  },
+  {
+    x: screenWidth < 577 ? screenWidth * 0.65 : 576 * 0.65,
+    y: screenHeight * 0.65,
+  },
+  {
+    x: screenWidth < 577 ? screenWidth * 0.1 : 576 * 0.1,
+    y: screenHeight * 0.55,
+  },
+  {
+    x: screenWidth < 577 ? screenWidth * 0.48 : 576 * 0.48,
+    y: screenHeight * 0.55,
+  },
+  {
+    x: screenWidth < 577 ? screenWidth * 0.8 : 576 * 0.8,
+    y: screenHeight * 0.55,
+  },
+  {
+    x: screenWidth < 577 ? screenWidth * 0.48 : 576 * 0.48,
+    y: screenHeight * 0.777,
+  },
+  // ball
+  {
+    x: screenWidth < 577 ? screenWidth * 0.48 : 576 * 0.48,
+    y: screenHeight * 0.44,
+  },
 ];
 
 // Zustand 스토어 생성 및 타입 적용

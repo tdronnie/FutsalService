@@ -1,4 +1,4 @@
-import CommunityDetailTemplate from "@/components/templates/CommunityDetailTemplate";
+import CommunityDetailTemplate from "@/components/templates/community/CommunityDetailTemplate";
 
 const CommunityDetailPage = () => {
   return (

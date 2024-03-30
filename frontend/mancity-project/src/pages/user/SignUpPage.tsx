@@ -1,4 +1,4 @@
-import SingUpTemplate from "@/components/templates/SingUpTemplate";
+import SingUpTemplate from "@/components/templates/user/SingUpTemplate";
 
 const SignUpPage = () => {
   return (

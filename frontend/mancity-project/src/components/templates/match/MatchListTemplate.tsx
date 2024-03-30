@@ -1,7 +1,7 @@
 import { forwardRef, useEffect, useState } from "react";
 import Header from "@/components/organisms/header/Header";
-import WideCard from "../molecules/wide_card/WideCard";
-import FontawsomeIcon from "../atoms/fontawsome_icon/FontawsomeIcon";
+import WideCard from "../../molecules/wide_card/WideCard";
+import FontawsomeIcon from "../../atoms/fontawsome_icon/FontawsomeIcon";
 import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";

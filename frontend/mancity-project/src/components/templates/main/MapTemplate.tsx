@@ -2,7 +2,7 @@ import Header from "@/components/organisms/header/Header";
 import useKakaoLoader from "@/hooks/useKakaoLoader";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import marker from "@/assets/imgs/marker.png";
-import FontawsomeIcon from "../atoms/fontawsome_icon/FontawsomeIcon";
+import FontawsomeIcon from "../../atoms/fontawsome_icon/FontawsomeIcon";
 
 const MapTemplate = (props: MapPropsType) => {
   useKakaoLoader();

@@ -1,4 +1,4 @@
-import PersonalFeedbackTemplete from "@/components/templates/PersonalFeedbackTemplete";
+import PersonalFeedbackTemplete from "@/components/templates/analysis/PersonalFeedbackTemplete";
 
 const PersonalFeedbackPage = () => {
   return (
