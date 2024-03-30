@@ -1,20 +1,25 @@
-import { useState } from "react";
 import create from "zustand";
 
 interface TacticalBoardStoreType {
-  players: {
+  horizonPlayers: {
+    x: number;
+    y: number;
+  }[];
+  verticalPlayers: {
     x: number;
     y: number;
   }[];
 
-  setPosition: (index: number, x: number, y: number) => void;
+  setHorizonPosition: (index: number, x: number, y: number) => void;
+  setVerticalPosition: (index: number, x: number, y: number) => void;
 }
 
 // 브라우저의 너비, 높이
 const screenWidth = window.innerWidth;
 const screenHeight = window.innerHeight;
 
-const initialPlayers = [
+// 가로화면 플레이어 default 위치
+const horizonPlayers = [
   // A team
   {
     x: screenWidth < 577 ? screenWidth * 0.27 : 576 * 0.27,
@@ -72,12 +77,80 @@ const initialPlayers = [
   },
 ];
 
+// 세로화면 플레이어 default 위치
+const verticalPlayers = [
+  // A team
+  {
+    x: screenWidth < 577 ? screenWidth * 0.28 : 576 * 0.28,
+    y: screenWidth < 577 ? screenWidth * 0.2 : 576 * 0.2,
+  },
+  {
+    x: screenWidth < 577 ? screenWidth * 0.28 : 576 * 0.28,
+    y: screenWidth < 577 ? screenWidth * 0.4 : 576 * 0.4,
+  },
+  {
+    x: screenWidth < 577 ? screenWidth * 0.38 : 576 * 0.38,
+    y: screenWidth < 577 ? screenWidth * 0.1 : 576 * 0.1,
+  },
+  {
+    x: screenWidth < 577 ? screenWidth * 0.38 : 576 * 0.38,
+    y: screenWidth < 577 ? screenWidth * 0.31 : 576 * 0.31,
+  },
+  {
+    x: screenWidth < 577 ? screenWidth * 0.38 : 576 * 0.38,
+    y: screenWidth < 577 ? screenWidth * 0.5 : 576 * 0.5,
+  },
+  {
+    x: screenWidth < 577 ? screenWidth * 0.11 : 576 * 0.11,
+    y: screenWidth < 577 ? screenWidth * 0.31 : 576 * 0.31,
+  },
+  // B team
+  {
+    x: screenWidth < 577 ? screenWidth * 0.67 : 576 * 0.67,
+    y: screenWidth < 577 ? screenWidth * 0.2 : 576 * 0.2,
+  },
+  {
+    x: screenWidth < 577 ? screenWidth * 0.67 : 576 * 0.67,
+    y: screenWidth < 577 ? screenWidth * 0.4 : 576 * 0.4,
+  },
+  {
+    x: screenWidth < 577 ? screenWidth * 0.57 : 576 * 0.57,
+    y: screenWidth < 577 ? screenWidth * 0.1 : 576 * 0.1,
+  },
+  {
+    x: screenWidth < 577 ? screenWidth * 0.57 : 576 * 0.57,
+    y: screenWidth < 577 ? screenWidth * 0.31 : 576 * 0.31,
+  },
+  {
+    x: screenWidth < 577 ? screenWidth * 0.57 : 576 * 0.57,
+    y: screenWidth < 577 ? screenWidth * 0.5 : 576 * 0.5,
+  },
+  {
+    x: screenWidth < 577 ? screenWidth * 0.84 : 576 * 0.84,
+    y: screenWidth < 577 ? screenWidth * 0.31 : 576 * 0.31,
+  },
+  // ball
+  {
+    x: screenWidth < 577 ? screenWidth * 0.48 : 576 * 0.48,
+    y: screenWidth < 577 ? screenWidth * 0.31 : 576 * 0.31,
+  },
+];
+
 // Zustand 스토어 생성 및 타입 적용
 const TacticalBoardStore = create<TacticalBoardStoreType>((set) => ({
-  players: initialPlayers,
-  setPosition: (index, x, y) =>
+  horizonPlayers: horizonPlayers,
+  verticalPlayers: verticalPlayers,
+  setHorizonPosition: (index, x, y) =>
     set((state) => ({
-      players: state.players.map((p, i) => (i === index ? { ...p, x, y } : p)),
+      horizonPlayers: state.horizonPlayers.map((p, i) =>
+        i === index ? { ...p, x, y } : p
+      ),
+    })),
+  setVerticalPosition: (index, x, y) =>
+    set((state) => ({
+      verticalPlayers: state.verticalPlayers.map((p, i) =>
+        i === index ? { ...p, x, y } : p
+      ),
     })),
 }));
 
