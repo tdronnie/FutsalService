@@ -14,6 +14,8 @@ const InputGroup = (props: InputGroupPropsType) => {
     setIsCheck,
     textValue,
     setTextValue,
+    numberTextValue,
+    setNumberTextValue
   } = props;
 
   // 이메일 유효성 로직
@@ -79,6 +81,8 @@ const InputGroup = (props: InputGroupPropsType) => {
           placeholder={placeholder}
           textValue={textValue}
           setTextValue={setTextValue}
+          numberTextValue={numberTextValue}
+          setNumberTextValue={setNumberTextValue}
         />
       </div>
       {/* checkingLabel 존재하면 단순 입력, 존재하지 않으면 중복 확인 */}
