@@ -103,7 +103,6 @@ const App = () => {
       </div>
       <div className="AppSize">
         <Router>
-          <div className="h-2"></div>
           <AppRoutes />
           <ConditionalBottomNav />
         </Router>
