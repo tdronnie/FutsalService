@@ -63,12 +63,12 @@ export const RadarChart = ({ profileData }: ProfilePropsType) => {
         grid: {
           // 원형
           circular: true,
-          color: "#D9D9D9",
+          color: "#aaaaaa",
         },
         //라벨 속성 지정.
         pointLabels: {
           font: {
-            size: 16,
+            size: "12vw",
             weight: "500",
             family: "SCDream",
           },
@@ -88,7 +88,7 @@ export const RadarChart = ({ profileData }: ProfilePropsType) => {
         align: "end",
         labels: {
           // labels 에 대한 스타일링
-          padding: 10,
+          padding: 6,
           boxWidth: 12,
           boxheight: 12,
           color: "#000",
