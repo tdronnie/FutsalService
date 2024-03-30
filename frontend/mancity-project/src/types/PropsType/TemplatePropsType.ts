@@ -9,6 +9,7 @@ interface UserInfoPropsType {
     foot: number;
     player: boolean;
   };
+  isLoading: boolean;
 }
 
 interface ProfilePropsType {

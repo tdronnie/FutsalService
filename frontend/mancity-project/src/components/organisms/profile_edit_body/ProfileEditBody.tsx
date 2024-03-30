@@ -9,7 +9,7 @@ import { useMutation } from "@tanstack/react-query";
 import { profileEditApi } from "@/apis/userApis";
 import { useNavigate, useParams } from "react-router-dom";
 
-const ProfileEditBody = ({ userInfoData }: UserInfoPropsType) => {
+const ProfileEditBody = ({ userInfoData, isLoading }: UserInfoPropsType) => {
   const { user_id } = useParams<{ user_id: string }>();
   const navigate = useNavigate();
   const MainFootInfo = [
@@ -47,10 +47,8 @@ const ProfileEditBody = ({ userInfoData }: UserInfoPropsType) => {
   const [nickNameValue, setNickNameValue] = useState<string>(
     userInfoData.nickName
   );
-  const [heightValue, setHeightValue] = useState<string>(
-    String(userInfoData.height)
-  );
-  const [weightValue, setWeightValue] = useState(String(userInfoData.weight));
+  const [heightValue, setHeightValue] = useState(userInfoData.height);
+  const [weightValue, setWeightValue] = useState(userInfoData.weight);
   const [playerValue, setPlayerValue] = useState<boolean>(userInfoData.player);
   const [isNicknameCheck, setIsNicknameCheck] = useState<boolean | null>(null);
 
@@ -60,8 +58,8 @@ const ProfileEditBody = ({ userInfoData }: UserInfoPropsType) => {
     dto: {
       id: userInfoData.id,
       nickName: nickNameValue,
-      height: Number(heightValue),
-      weight: Number(weightValue),
+      height: heightValue,
+      weight: weightValue,
       foot: mainFootValue,
       isPlayer: playerValue,
     },
@@ -88,6 +86,7 @@ const ProfileEditBody = ({ userInfoData }: UserInfoPropsType) => {
     weightValue,
     mainFootValue,
     playerValue,
+    isLoading,
   ]);
 
   // 유효성 검사
@@ -99,7 +98,7 @@ const ProfileEditBody = ({ userInfoData }: UserInfoPropsType) => {
 
   useEffect(() => {
     const isValid =
-      isNotEmpty(nickNameValue) && heightValue !== "" && weightValue !== "";
+      isNotEmpty(nickNameValue) && heightValue !== 0 && weightValue !== 0;
 
     setIsFormValid(isValid);
   }, [nickNameValue, mainFootValue, heightValue, weightValue]);
@@ -137,117 +136,122 @@ const ProfileEditBody = ({ userInfoData }: UserInfoPropsType) => {
   };
 
   return (
-    <div className="">
-      {/* 프로필 이미지 */}
-      <div className=" flex m-3 justify-center " onClick={triggerFileInput}>
-        <EditContentBox
-          width="w-36"
-          height="h-36"
-          rounded="rounded-full"
-          file={imageViewValue[0]}
-        />
-        <div className="absolute opacity-0  w-36 h-36 text-sm">
-          <input
-            className=""
-            id="image"
-            type="file"
-            accept="image/*"
-            onChange={handleFileUpload}
-            ref={inputFileRef}
-          />
-        </div>
-      </div>
+    <div>
+      {!isLoading && (
+        <div className="">
+          {/* 프로필 이미지 */}
+          <div className=" flex m-3 justify-center " onClick={triggerFileInput}>
+            <EditContentBox
+              width="w-36"
+              height="h-36"
+              rounded="rounded-full"
+              file={imageViewValue[0]}
+            />
+            <div className="absolute opacity-0  w-36 h-36 text-sm">
+              <input
+                className=""
+                id="image"
+                type="file"
+                accept="image/*"
+                onChange={handleFileUpload}
+                ref={inputFileRef}
+              />
+            </div>
+          </div>
 
-      <div className="my-6">
-        <InputGroup
-          MyTypographyLabel="닉네임"
-          checking={true}
-          textValue={nickNameValue}
-          setTextValue={setNickNameValue}
-          setIsCheck={setIsNicknameCheck}
-        />
-        <div className="text-mancity mx-4 -my-3 ">
-          {nickNameValue && (
-            <>
-              {isNicknameCheck !== null && (
-                <MyTypography
-                  textSize="text-sm"
-                  label={
-                    isNicknameCheck
-                      ? "중복된 닉네임입니다."
-                      : "사용 가능한 닉네임입니다."
-                  }
-                />
+          <div className="my-6">
+            <InputGroup
+              MyTypographyLabel="닉네임"
+              checking={true}
+              textValue={nickNameValue}
+              setTextValue={setNickNameValue}
+              setIsCheck={setIsNicknameCheck}
+            />
+            <div className="text-mancity mx-4 -my-3 ">
+              {nickNameValue && (
+                <>
+                  {isNicknameCheck !== null && (
+                    <MyTypography
+                      textSize="text-sm"
+                      label={
+                        isNicknameCheck
+                          ? "중복된 닉네임입니다."
+                          : "사용 가능한 닉네임입니다."
+                      }
+                    />
+                  )}
+                </>
               )}
-            </>
-          )}
-        </div>
-      </div>
-      <div className="mb-6">
-        <div className="flex flex-row ">
-          <div className="w-2/4">
-            <InputGroup
-              MyTypographyLabel="키 (cm)"
-              placeholder="175"
-              checking={false}
-              textValue={heightValue}
-              setTextValue={setHeightValue}
-            />
+            </div>
           </div>
-          <div className="w-2/4">
-            <InputGroup
-              MyTypographyLabel="몸무게 (kg)"
-              placeholder="70"
-              checking={false}
-              textValue={weightValue}
-              setTextValue={setWeightValue}
-            />
-          </div>
-        </div>
-        <div className="flex flex-row ">
-          <div className="w-1/2">
-            <Dropdown
-              MyTypographyLabel="주 발"
-              items={MainFootInfo}
-              position={mainFootPosition}
-              setPosition={setMainFootPosition}
-              setNumberValue={setMainFootValue}
-            />
-          </div>
-          <div className="w-1/2 flex -mt-10">
-            {/* checked에는 해당 회원이 등록허용 해 뒀는지 값을 넣기 */}
-            <GlobalSwitch
-              label="용병등록"
-              isSwitchOn={playerValue}
-              setIsSwitchOn={setPlayerValue}
-              switchMarginTop="ml-8 mt-16 "
-            />
-          </div>
-        </div>
-        {/* <div className=" flex justify-end">
+          <div className="mb-6">
+            <div className="flex flex-row ">
+              <div className="w-2/4">
+                <InputGroup
+                  MyTypographyLabel="키 (cm)"
+                  placeholder="175"
+                  checking={false}
+                  // type이 number로 가면 에러나서 prop타입 따로 생성함
+                  numberTextValue={heightValue}
+                  setNumberTextValue={setHeightValue}
+                />
+              </div>
+              <div className="w-2/4">
+                <InputGroup
+                  MyTypographyLabel="몸무게 (kg)"
+                  placeholder="70"
+                  checking={false}
+                  numberTextValue={weightValue}
+                  setNumberTextValue={setWeightValue}
+                />
+              </div>
+            </div>
+            <div className="flex flex-row ">
+              <div className="w-1/2">
+                <Dropdown
+                  MyTypographyLabel="주 발"
+                  items={MainFootInfo}
+                  position={mainFootPosition}
+                  setPosition={setMainFootPosition}
+                  setNumberValue={setMainFootValue}
+                />
+              </div>
+              <div className="w-1/2 flex -mt-10">
+                {/* checked에는 해당 회원이 등록허용 해 뒀는지 값을 넣기 */}
+                <GlobalSwitch
+                  label="용병등록"
+                  isSwitchOn={playerValue}
+                  setIsSwitchOn={setPlayerValue}
+                  switchMarginTop="ml-8 mt-16 "
+                />
+              </div>
+            </div>
+            {/* <div className=" flex justify-end">
           <div className="text-red-500 text-right mr-4 cursor-pointer">
             회원탈퇴
           </div>
         </div> */}
-      </div>
+          </div>
 
-      <div className="flex  w-full">
-        <div onClick={goProfile} className="w-full px-2">
-          <ReverseButton
-            width="w-full"
-            label="뒤로 가기"
-            isdisabled={isFormValid}
-          />
-        </div>
+          <div className="flex  w-full">
+            <div onClick={goProfile} className="w-full px-2">
+              <ReverseButton
+                width="w-full"
+                label="뒤로 가기"
+                isdisabled={isFormValid}
+              />
+            </div>
 
-        <div onClick={onEditProfile} className=" w-full px-2">
-          <ReverseButton
-            width="w-full"
-            label="수정 완료"
-            isdisabled={isFormValid}
-          />
+            <div onClick={onEditProfile} className=" w-full px-2">
+              <ReverseButton
+                width="w-full"
+                label="수정 완료"
+                isdisabled={isFormValid}
+              />
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
