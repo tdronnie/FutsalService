@@ -20,8 +20,8 @@ public class Myhighlight {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "highlight", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Highlight> highlights = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Highlight highlight;
 
     private Long userId;
 }
