@@ -1,4 +1,4 @@
-import TacticalBoardTemplate from "@/components/templates/TacticalBoardTemplate";
+import TacticalBoardTemplate from "@/components/templates/analysis/TacticalBoardTemplate";
 
 const TacticalBoardPage = () => {
   return (

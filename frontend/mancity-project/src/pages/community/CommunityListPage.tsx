@@ -1,4 +1,4 @@
-import CommunityListTemplate from "@/components/templates/CommunityListTemplate";
+import CommunityListTemplate from "@/components/templates/community/CommunityListTemplate";
 
 const CommunityListPage = () => {
   return (

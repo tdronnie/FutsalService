@@ -1,5 +1,5 @@
 import Header from "@/components/organisms/header/Header";
-import AlertCard from "../molecules/alert_card/AlertCard";
+import AlertCard from "../../molecules/alert_card/AlertCard";
 
 const AlertTemplate = () => {
   return (

@@ -1,4 +1,4 @@
-import ClubListTemplate from "@/components/templates/ClubListTemplate";
+import ClubListTemplate from "@/components/templates/club/ClubListTemplate";
 
 const ClubListPage = () => {
   return (

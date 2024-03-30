@@ -1,4 +1,4 @@
-import ClubRegisterTemplete from "@/components/templates/ClubRegisterTemplete";
+import ClubRegisterTemplete from "@/components/templates/club/ClubRegisterTemplete";
 
 const ClubRegisterPage = () => {
   return (

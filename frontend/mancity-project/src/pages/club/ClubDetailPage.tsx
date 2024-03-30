@@ -1,4 +1,4 @@
-import ClubDetailTemplete from "@/components/templates/ClubDetailTemplete";
+import ClubDetailTemplete from "@/components/templates/club/ClubDetailTemplete";
 
 const ClubDetailPage = () => {
   return (

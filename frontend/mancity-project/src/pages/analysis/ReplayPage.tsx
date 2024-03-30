@@ -1,4 +1,4 @@
-import ReplayTemplate from "@/components/templates/ReplayTemplate";
+import ReplayTemplate from "@/components/templates/analysis/ReplayTemplate";
 
 const ReplayPage = () => {
   return (

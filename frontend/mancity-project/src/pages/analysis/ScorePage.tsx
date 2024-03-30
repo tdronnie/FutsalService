@@ -1,11 +1,11 @@
-import ScoreTemplete from "@/components/templates/ScoreTemplete"
+import ScoreTemplete from "@/components/templates/analysis/ScoreTemplete";
 
 const ScorePage = () => {
   return (
     <div>
-        <ScoreTemplete />
+      <ScoreTemplete />
     </div>
-  )
-}
+  );
+};
 
-export default ScorePage
+export default ScorePage;

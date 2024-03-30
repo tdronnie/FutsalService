@@ -1,11 +1,11 @@
-import ClubEditTemplete from "@/components/templates/ClubEditTemplete"
+import ClubEditTemplete from "@/components/templates/club/ClubEditTemplete";
 
 const ClubEditPage = () => {
   return (
     <div>
       <ClubEditTemplete />
     </div>
-  )
-}
+  );
+};
 
-export default ClubEditPage
+export default ClubEditPage;
