@@ -3,6 +3,7 @@ package com.mancity.social.highlight.application;
 import com.mancity.social.game.domain.Game;
 import com.mancity.social.game.domain.repository.GameRepository;
 import com.mancity.social.game.exception.NoSuchGameException;
+import com.mancity.social.highlight.application.dto.request.CreateHighlightRequestDto;
 import com.mancity.social.highlight.application.dto.request.HighlightStoreRequestDto;
 import com.mancity.social.highlight.application.dto.response.HighlightReponseDto;
 import com.mancity.social.highlight.domain.Highlight;
@@ -27,6 +28,16 @@ public class HighlightService {
     private final HighlightRepository highlightRepository;
 
     private final UserFeignClient userFeignClient;
+
+
+    public void createHighlights(CreateHighlightRequestDto dto) {
+        Game game = gameRepository.findById(dto.getGameId()).orElseThrow(NoSuchGameException::new);
+        highlightRepository.save(Highlight.builder()
+                .gameId(game.getId())
+                .myhighlights(new ArrayList<>())
+                .time(dto.getTime())
+                .build());
+    }
 
 
     public List<HighlightReponseDto> getGameHighlights(Long id) {

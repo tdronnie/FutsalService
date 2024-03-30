@@ -25,7 +25,7 @@ public class Highlight {
 
     private Long gameId;
 
-    private String url;
+    private String time;
 
     public void addStoredHighlights(Myhighlight myhighlight) {
         myhighlights.add(myhighlight);
