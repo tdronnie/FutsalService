@@ -14,7 +14,7 @@ const ProfileEditPage = () => {
     !isLoading &&
     data && (
       <div>
-        <ProfileEditTemplate userInfoData={data} />
+        <ProfileEditTemplate userInfoData={data} isLoading={isLoading}/>
       </div>
     )
   );

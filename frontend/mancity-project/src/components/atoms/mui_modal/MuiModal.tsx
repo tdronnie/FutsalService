@@ -39,7 +39,10 @@ const MuiModal = (props: userStatModalPropsType) => {
       {!isLoading && data && (
         <div>
           {/*  이 div 누르면 모달 열리는 로직 */}
-          <div className="text-sm font-medium text-white" onClick={toggleTotalStatModal}>
+          <div
+            className="text-sm font-medium text-white"
+            onClick={toggleTotalStatModal}
+          >
             누적기록
           </div>
           {/* 모달 시작 */}
