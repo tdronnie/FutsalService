@@ -35,6 +35,18 @@ import { getMessaging } from "firebase/messaging";
 import { useEffect } from "react";
 
 const App = () => {
+// 알림 권한 요청 함수
+const requestPermission = () => {
+  Notification.requestPermission().then((permission) => {
+    if (permission === "granted") {
+      console.log("알림 권한이 허용됨");
+      // FCM 메세지 처리 등의 추가 로직을 여기에 작성합니다.
+    } else {
+      console.log("알림 권한 허용 안됨");
+    }
+  });
+};
+
   // FCM 알람 파이어베이스 설정
   useEffect(() => {
     const fetchFCMToken = async () => {
@@ -112,16 +124,3 @@ const App = () => {
 };
 
 export default App;
-
-function requestPermission() {
-  console.log("권한 요청 중...");
-  Notification.requestPermission().then((permission) => {
-    if (permission === "granted") {
-      console.log("알림 권한이 허용됨");
-
-      // FCM 메세지 처리
-    } else {
-      console.log("알림 권한 허용 안됨");
-    }
-  });
-}

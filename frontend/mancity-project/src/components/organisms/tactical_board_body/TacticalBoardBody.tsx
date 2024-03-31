@@ -44,8 +44,8 @@ const TacticalBoardBody = () => {
   }, []);
 
   return (
-    <div className={`h-full bg-[#45930B] -mb-20`}>
-      <div className="flex justify-end mr-2 pt-1">
+    <div className={`h-full bg-[#45930B] -mb-20 min-h-[100vh]`}>
+      <div className="flex justify-end pt-1 pb-5 mr-2">
         <div className="border-[0.6vw] border-white text-white font-extralight rounded-lg p-[0.1rem]">
           하이라이트 선택하기
         </div>
@@ -76,16 +76,16 @@ const TacticalBoardBody = () => {
             </div>
           </Draggable>
         ))}
-        <div className="h-[91vh]">
+        <div className="flex items-center justify-center">
           <ContentBox
             file="/src/assets/imgs/futsal_court_vertical.jpg"
-            width="w-full"
-            height="h-full"
+            width="w-[360px]"
+            height="h-[540px]"
           />
         </div>
       </div>
       {/* 배경을 초록으로 하기 위한 설정 */}
-      <div className="h-[5.6vh]"></div>
+      <div className="h-[100%]"></div>
     </div>
   );
 };
