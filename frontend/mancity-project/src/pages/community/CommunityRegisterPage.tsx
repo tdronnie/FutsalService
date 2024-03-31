@@ -1,4 +1,4 @@
-import CommunityRegisterTemplate from "@/components/templates/CommunityRegisterTemplate";
+import CommunityRegisterTemplate from "@/components/templates/community/CommunityRegisterTemplate";
 
 const CommunityRegisterPage = () => {
   return (

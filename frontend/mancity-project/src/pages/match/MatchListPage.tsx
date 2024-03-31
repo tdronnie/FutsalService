@@ -1,4 +1,4 @@
-import MatchListTemplate from "@/components/templates/MatchListTemplate";
+import MatchListTemplate from "@/components/templates/match/MatchListTemplate";
 
 const MatchListPage = () => {
   return (

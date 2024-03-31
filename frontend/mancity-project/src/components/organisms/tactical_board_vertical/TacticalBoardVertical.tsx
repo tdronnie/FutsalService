@@ -4,15 +4,15 @@ import { createRef, useEffect, useRef, useState } from "react";
 import Draggable from "react-draggable";
 
 const TacticalBoardBody = () => {
-  const { horizonPlayers, setHorizonPosition } = TacticalBoardStore();
+  const { verticalPlayers, setVerticalPosition } = TacticalBoardStore();
 
   // findDOMNode 에러가 발생해 추가한 nodeRef, 공식문서에서 추천하는 방법
   // 각 플레이어에 대한 ref 배열을 생성
   const nodeRefs = useRef<Array<React.RefObject<HTMLDivElement>>>([]);
 
-  if (nodeRefs.current.length !== horizonPlayers.length) {
+  if (nodeRefs.current.length !== verticalPlayers.length) {
     // players 배열의 길이만큼 ref를 초기화
-    nodeRefs.current = horizonPlayers.map(
+    nodeRefs.current = verticalPlayers.map(
       (_, i) => nodeRefs.current[i] || createRef()
     );
   }
@@ -31,9 +31,9 @@ const TacticalBoardBody = () => {
       const screenHeight = window.innerHeight;
       setBounds({
         left: 0,
-        top: 0,
+        top: -35,
         right: screenWidth > 575 ? 550 : screenWidth - 30,
-        bottom: screenHeight - 140,
+        bottom: screenHeight * 0.34,
       });
     };
 
@@ -46,18 +46,16 @@ const TacticalBoardBody = () => {
   return (
     <div className={`h-full bg-[#45930B] -mb-20`}>
       <div className="flex justify-end mr-2 pt-1">
-        <div className="border-[0.6vw] border-white text-white font-extralight rounded-lg p-[0.1rem]">
-          하이라이트 선택하기
-        </div>
+        <div className="h-8"></div>
       </div>
       <div>
-        {horizonPlayers.map((player, index) => (
+        {verticalPlayers.map((player, index) => (
           <Draggable
             nodeRef={nodeRefs.current[index]} // 고유한 ref 사용
             key={index}
             position={{ x: player.x, y: player.y }}
             onStop={(e, data) => {
-              setHorizonPosition(index, data.x, data.y);
+              setVerticalPosition(index, data.x, data.y);
             }}
             bounds={bounds}
           >
@@ -76,9 +74,9 @@ const TacticalBoardBody = () => {
             </div>
           </Draggable>
         ))}
-        <div className="h-[91vh]">
+        <div className="">
           <ContentBox
-            file="/src/assets/imgs/futsal_court_vertical.jpg"
+            file="/src/assets/imgs/futsal_court.jpg"
             width="w-full"
             height="h-full"
           />

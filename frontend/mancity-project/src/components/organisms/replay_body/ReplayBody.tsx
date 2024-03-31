@@ -1,3 +1,4 @@
+import TacticalBoardVertical from "@/components/organisms/tactical_board_vertical/TacticalBoardVertical";
 import { useEffect, useRef, useState } from "react";
 
 const ReplayBody = () => {
@@ -10,7 +11,7 @@ const ReplayBody = () => {
   };
 
   // 비디오 멈추면 멈춘 시간 저장
-  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [stopTime, setStopTime] = useState<number>(0);
   useEffect(() => {
     const video = videoRef.current;
@@ -49,12 +50,15 @@ const ReplayBody = () => {
           가로일 때는 아래에 전술판을 같이 띄우기로, 세로모드는 따로 만들자..
         </div>
         <div className="w-full h-full">
-          <video id="myVideo" controls autoPlay ref={videoRef}>
+          <video id="myVideo" controls muted loop playsInline ref={videoRef}>
             <source
               src="https://iandwe.s3.ap-northeast-2.amazonaws.com/match/g3iO5Rrb"
               type="video/mp4"
             />
           </video>
+        </div>
+        <div>
+          <TacticalBoardVertical />
         </div>
       </div>
       {/* 가로모드일 때 */}

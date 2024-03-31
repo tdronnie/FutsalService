@@ -7,7 +7,7 @@ const MainHeader = () => {
     navigate(path);
   };
   return (
-    <div className="flex justify-between pt-1 pb-3">
+    <div className="flex justify-between py-3">
       <div className="flex items-end pr-4">
         <img
           src="/src/assets/imgs/mancity_logo_no_background.png"

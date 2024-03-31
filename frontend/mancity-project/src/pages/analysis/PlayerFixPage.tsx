@@ -1,11 +1,11 @@
-import PlayerFixTemplete from "@/components/templates/PlayerFixTemplete"
+import PlayerFixTemplete from "@/components/templates/analysis/PlayerFixTemplete";
 
 const PlayerFixPage = () => {
   return (
     <div>
       <PlayerFixTemplete />
     </div>
-  )
-}
+  );
+};
 
-export default PlayerFixPage
+export default PlayerFixPage;

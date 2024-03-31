@@ -88,7 +88,7 @@ const requestPermission = () => {
       location.pathname === "/community/edit" ||
       location.pathname === "/club/register" ||
       matchPath("/match/:match_id", currentPathname) ||
-      matchPath("/replay/:match_id", currentPathname) ||
+      // matchPath("/replay/:match_id", currentPathname) ||
       matchPath("/community/:community_id", currentPathname) ||
       matchPath("/club/:club_id", currentPathname) ||
       matchPath("/club/edit/:club_id", currentPathname) ||
@@ -115,7 +115,6 @@ const requestPermission = () => {
       </div>
       <div className="AppSize">
         <Router>
-          <div className="h-2"></div>
           <AppRoutes />
           <ConditionalBottomNav />
         </Router>

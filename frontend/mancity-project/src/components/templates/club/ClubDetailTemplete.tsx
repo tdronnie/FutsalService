@@ -1,6 +1,6 @@
-import ClubDetailBody from "../organisms/club_detail_body/ClubDetailBody";
-import Footer from "../organisms/footer/Footer";
-import Header from "../organisms/header/Header";
+import ClubDetailBody from "../../organisms/club_detail_body/ClubDetailBody";
+import Footer from "../../organisms/footer/Footer";
+import Header from "../../organisms/header/Header";
 import { useNavigate } from "react-router-dom";
 
 const ClubDetailTemplete = () => {

@@ -1,4 +1,4 @@
-import MatchFilterTemplate from "@/components/templates/MatchFilterTemplate";
+import MatchFilterTemplate from "@/components/templates/match/MatchFilterTemplate";
 
 const MatchFilterPage = () => {
   return (

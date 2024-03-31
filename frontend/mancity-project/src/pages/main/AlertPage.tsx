@@ -1,4 +1,4 @@
-import AlertTemplate from "@/components/templates/AlertTemplate";
+import AlertTemplate from "@/components/templates/main/AlertTemplate";
 
 const AlertPage = () => {
   return (
