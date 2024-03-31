@@ -11,8 +11,8 @@ const HalfCard = (props: HalfCardPropsType) => {
     <div id="glassui" className="flex items-center w-full h-[4.5rem] p-2 rounded-md cursor-pointer shadow-nav">
       <div>
         <ContentBox
-          height="h-10"
-          width="w-10"
+          height="h-8"
+          width="w-8"
           // rounded지만 배경색 스타일 설정으로 사용ㅎ...급하니깐
           rounded="bg-transparent"
           // rounded={rounded}
@@ -20,7 +20,7 @@ const HalfCard = (props: HalfCardPropsType) => {
           id="responsive-img"
         />
       </div>
-      <div className="flex flex-col items-center justify-center flex-grow text-center">
+      <div className="flex flex-col items-center justify-center flex-grow ml-1 text-center">
         <MyTypography
         id="responsive-p"
           fontWeight="font-medium"
