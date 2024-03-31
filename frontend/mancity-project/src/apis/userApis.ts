@@ -61,7 +61,7 @@ export const sendFcmTokenApi = async (fcmData: fcmDataType) => {
     .then((res) => res.data)
     .catch((error) => {
       console.log(error);
-      throw new Error("회원가입 api 에러");
+      throw new Error("fcm 토큰 api 에러");
     });
 };
 

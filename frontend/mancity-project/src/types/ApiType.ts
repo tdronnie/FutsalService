@@ -15,7 +15,8 @@ interface loginApiType {
 }
 
 interface fcmDataType {
-  fcmtoken: string;
+  id: number;
+  fcmToken: string;
 }
 
 interface profileEditApiType {
