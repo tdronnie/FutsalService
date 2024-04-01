@@ -22,3 +22,14 @@ export const fetchMatchCreate = async (matchData: matchCreateType) => {
       throw new Error("경기 호출 에러");
     });
 };
+
+// main page
+export const MainPageApi = async (userId: number) => {
+  return publicRequest
+    .get(`user/main/${userId}`)
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+      throw new Error("main page api 호출 에러");
+    });
+};

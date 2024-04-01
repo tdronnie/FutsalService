@@ -104,8 +104,12 @@ const ReplayBody = () => {
           onClose={() => setLayout(undefined)}
           sx={modalStyle}
         >
-          <ModalDialog layout={layout} sx={{ padding: "0px" }}>
+          <ModalDialog
+            layout={layout}
+            sx={{ padding: "0px", backgroundColor: "#45930B" }}
+          >
             {/* 모달 닫기 버튼 */}
+
             <ModalClose
               size="lg"
               color="primary"
@@ -118,9 +122,12 @@ const ReplayBody = () => {
                 padding: "1px",
               }}
             />
-
-            <div className=" bg-[#45930B] pt-12">
-              <div></div>
+            <div className=" bg-[#45930B]">
+              <div className="flex justify-center">
+                <div className="border-[3px] rounded-md text-white px-2 py-1 m-2">
+                  전술보드
+                </div>
+              </div>
 
               <TacticalBoardBody />
             </div>

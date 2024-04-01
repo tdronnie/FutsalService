@@ -1,10 +1,26 @@
+import { MainPageApi } from "@/apis/matchApis";
 import ContentBox from "@/components/atoms/content_box/ContentBox";
+import ReplayModal from "@/components/organisms/replay_modal/ReplayModal";
 import TacticalBoardStore from "@/stores/tacticalBoardStore";
+import { useQuery } from "@tanstack/react-query";
 import { createRef, useEffect, useRef, useState } from "react";
 import Draggable from "react-draggable";
 import { useLocation } from "react-router-dom";
 
 const TacticalBoardBody = () => {
+  // 임시로 유저 id는 1
+  const user_id = 1;
+  // 모달 열고 닫고
+  const [openModal, setOpenModal] = useState<boolean>(false);
+  // 다시보기 버튼 누르면 띄울 리스트
+  const { data, isLoading } = useQuery({
+    queryKey: ["replayList", user_id],
+    queryFn: async () => {
+      const response = await MainPageApi(user_id);
+      return response;
+    },
+  });
+
   const { players, setPosition } = TacticalBoardStore();
   const location = useLocation();
 
@@ -45,13 +61,42 @@ const TacticalBoardBody = () => {
     return () => window.removeEventListener("resize", updateBounds);
   }, []);
 
+  const dummyData = {
+    games: [
+      {
+        id: 1,
+        courtId: 1,
+        startDate: "2024-04-01",
+        time: 30,
+        replayUrl: "qwer",
+      },
+      {
+        id: 2,
+        courtId: 3,
+        startDate: "2024-04-01",
+        time: 30,
+        replayUrl: "qwer",
+      },
+    ],
+  };
+
   return (
     <div className={`h-full bg-[#45930B] -mb-20 min-h-[100vh]`}>
       {/* 전술판 페이지에서만 보이기 */}
       {location.pathname === "/tactical_board" && (
-        <div className="flex justify-end pt-1 pb-5 mr-2">
-          <div className="border-[3.1px] border-white text-white font-extralight rounded-lg p-[0.1rem]">
-            경기 다시보기
+        <div className="flex justify-center ">
+          <div className="flex  max-w-[360px] justify-around pt-2 pb-2 ">
+            <div className="-ml-2 border-[3.1px]  border-white text-white font-extralight rounded-lg p-[0.1rem] cursor-pointer">
+              전술보드로 전략을 기획 해보세요
+            </div>
+            <div
+              className="-mr-2 ml-3 border-[3.1px] border-white text-white font-extralight rounded-lg p-[0.1rem] cursor-pointer"
+              onClick={() => {
+                setOpenModal(true);
+              }}
+            >
+              경기 다시보기
+            </div>
           </div>
         </div>
       )}
@@ -91,6 +136,17 @@ const TacticalBoardBody = () => {
       </div>
       {/* 배경을 초록으로 하기 위한 설정 */}
       <div className="h-[100%]"></div>
+
+      {/* 다시보기 modal  */}
+      <div>
+        {!isLoading && data && (
+          <ReplayModal
+            games={dummyData.games}
+            openModal={openModal}
+            setOpenModal={setOpenModal}
+          />
+        )}
+      </div>
     </div>
   );
 };
