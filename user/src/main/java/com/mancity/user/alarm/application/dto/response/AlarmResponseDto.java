@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -27,6 +29,8 @@ public class AlarmResponseDto {
 
     private String content;
 
+    private LocalDate createDate;
+
     public static AlarmResponseDto from(Alarm alarm){
         return AlarmResponseDto.builder()
                 .id(alarm.getId())
@@ -36,6 +40,7 @@ public class AlarmResponseDto {
                 .domainId(alarm.getDomainId())
                 .title(alarm.getTitle())
                 .content(alarm.getContent())
+                .createDate(alarm.getCreateDate())
                 .build();
     }
 
