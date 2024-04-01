@@ -81,7 +81,6 @@ const LoginBody = () => {
           vapidKey:
             "BLuopbozIqH5NnVASrPlVZXTae_NcsaY9bju7WrChj77PpcHfg79r7t3YehYTf3riIFbDfvuz79xhRTshmnxmnE",
         });
-        // console.log("FCM Token:", token);
         // 토큰 세팅
         setFcmToken(token);
       } catch (error) {
@@ -135,13 +134,16 @@ const LoginBody = () => {
     if (fcmToken) {
       // 토큰을 서버로 전송
       sendFcmTokenMutation({ id: userId, fcmToken });
+      // 테스트콘솔
+      // console.log(fcmToken);
       navigate("/");
     }
   }, [fcmToken]);
 
   const onSubmitLogin = () => {
     loginMutate(loginData);
-    console.log(loginData);
+    // 테스트콘솔
+    // console.log(loginData);
     setLoginError("이메일 또는 비밀번호가 맞지 않습니다. 다시 확인해 주세요.");
   };
 
