@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -100,10 +101,10 @@ public class GameController {
     @GetMapping("/filter")
     @Operation(summary = "필터를 통한 매치 리스트 조회 API", description = "성별, 인원수, 레벨, 지역 매치 리스트 조회 API인데, 모두 nullable 이어서 필요한 값만 쿼리스트링에 담아서 보내면 됩니다.")
     public ResponseEntity<List<GameResponseDto>> findAllGamesByFilters(@RequestParam(required = false) Integer gender,
-                                                                       @RequestParam(required = false) Integer region,
+                                                                       @RequestParam(required = false) String startDate,
                                                                        @RequestParam(required = false) Integer playernumber,
                                                                        @RequestParam(required = false) String level) {
-        List<GameResponseDto> dtos = gameService.findAllByFilters(gender, region, playernumber, level);
+        List<GameResponseDto> dtos = gameService.findAllByFilters(gender, LocalDate.parse(startDate), playernumber, level);
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
 
