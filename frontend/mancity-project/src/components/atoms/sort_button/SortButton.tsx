@@ -4,7 +4,7 @@ const SortButton = (props: TailwindPropsType) => {
   return (
     <button
       type="button"
-      className={`${width} font-medium text-sm h-9 rounded-lg bg-white text-sofcity border-sofcity border
+      className={`${width} cursor-default font-medium text-sm h-9 rounded-lg bg-white text-sofcity border-sofcity border
     ${hover ? " hover:bg-sofcity hover:text-white": "inline-block"}`}
     >
       {label}

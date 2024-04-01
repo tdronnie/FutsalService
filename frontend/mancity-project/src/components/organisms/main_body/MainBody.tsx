@@ -66,9 +66,12 @@ const MainBody = () => {
   const handleNavigate = ({ path }: NavigateType) => {
     navigate(path);
   };
-  if (data) {
-    console.log(data.players[0]);
-  }
+
+  // 테스트 콘솔
+  // if (data) {
+  //   console.log(data.players[0]);
+  // }
+
   return (
     <div>
       {/* 매치등록하기랑 매치둘러보기 버튼 */}
@@ -191,8 +194,8 @@ const MainBody = () => {
         </div>
       )}
       {isLoading && (
-        <div id="glassui" className="m-4 p-4 h-16 text-lg">
-          로딩중입니다...
+        <div id="glassui" className="h-16 p-4 m-4 text-lg">
+          정보를 불러오는 중입니다⚽
         </div>
       )}
     </div>

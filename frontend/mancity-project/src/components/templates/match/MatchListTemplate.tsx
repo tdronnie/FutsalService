@@ -155,7 +155,7 @@ const MatchListTemplate = () => {
         <div
           key={match.id}
           className="cursor-pointer"
-          onClick={() => handleNavigate({ path: "/match/1" })}
+          onClick={() => handleNavigate({ path: `/match/${match.id}` })}
         >
           <WideCard
             key={match.id}

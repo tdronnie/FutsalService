@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import HomePage from "@/pages/main/HomePage";
 import NotFoundPage from "@/pages/main/NotFoundPage";
 import SignUpPage from "@/pages/user/SignUpPage";
@@ -30,7 +30,34 @@ import ScorePage from "@/pages/analysis/ScorePage";
 import PersonalScorePage from "@/pages/analysis/PersonalScorePage";
 import TacticalBoardPage from "@/pages/analysis/TacticalBoardPage";
 
+const RedirectToEntryIfInvalidId = () => {
+  const location = useLocation(); // 현재 경로 정보를 가져옴
+  const userStore = localStorage.getItem('userStore');
+  let userIdValid = false;
+
+  if (userStore) {
+    const userStoreParsed = JSON.parse(userStore);
+    if (userStoreParsed.state && userStoreParsed.state.id > 1) {
+      userIdValid = true;
+    }
+  }
+
+  // 로그인 및 회원가입 페이지는 리다이렉트 예외 처리
+  if (location.pathname === '/login' || location.pathname === '/signup') {
+    return null;
+  }
+
+  // userId가 유효하지 않으면, /entry로 리다이렉트
+  if (!userIdValid) {
+    return <Navigate to="/entry" replace />;
+  }
+
+  return null;
+};
+
 const AppRoutes = () => (
+  <>
+  <RedirectToEntryIfInvalidId />
   <Routes>
     <Route path="/" element={<HomePage />} />
     <Route path="*" element={<NotFoundPage />} />
@@ -66,6 +93,7 @@ const AppRoutes = () => (
     <Route path="/follow/:user_id" element={<FollowPage />} />
     <Route path="/tactical_board" element={<TacticalBoardPage />} />
   </Routes>
+  </>
 );
 
 export default AppRoutes;

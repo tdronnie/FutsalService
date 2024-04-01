@@ -55,9 +55,9 @@ const ReplayModal = ({
                 <div
                   key={game.id}
                   onClick={() => {
-                    navigate(`/match/${game.id}`);
+                    navigate(`/replay/${game.id}`);
                   }}
-                  className="flex justify-between py-2 px-3 m-1 rounded-lg bg-gray-100 hover:bg-gray-200 cursor-pointer"
+                  className="flex justify-between px-3 py-2 m-1 bg-gray-100 rounded-lg cursor-pointer hover:bg-gray-200"
                 >
                   <div>
                     {courtData?.title} <br /> {game.startDate}
