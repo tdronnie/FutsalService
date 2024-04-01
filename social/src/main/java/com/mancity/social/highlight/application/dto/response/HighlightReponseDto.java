@@ -11,5 +11,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class HighlightReponseDto {
 
-    private String highligtUrl;
+    private Long id;
+
 }
