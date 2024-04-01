@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchAlertApi } from "@/apis/userApis";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import LoadingMolecule from "@/components/molecules/loading_molecule/LoadingMolecule";
 
 interface AlertItem {
   title: string;
@@ -44,7 +45,13 @@ const AlertTemplate = () => {
     enabled: !!userId, // userId가 유효한 경우에만 API 호출을 활성화
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading)
+    return (
+      <>
+        <Header label="주요 알림" backArrow={true} headerButton={false} />
+        <LoadingMolecule />
+      </>
+    );
 
   if (Array.isArray(data) && data.length > 0) {
     return (
@@ -67,7 +74,9 @@ const AlertTemplate = () => {
     return (
       <>
         <Header label="주요 알림" backArrow={true} headerButton={false} />
-        <div onClick={() => handleNavigate({ path: `/profile/edit/${userId}` })}>
+        <div
+          onClick={() => handleNavigate({ path: `/profile/edit/${userId}` })}
+        >
           <AlertCard
             maintext="👶 아직 받은 알림이 없습니다"
             subtext="용병을 등록하고 매치에 초대받아보세요!"
