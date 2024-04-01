@@ -45,3 +45,14 @@ export const videoUploadApi = async (videoUploadData: FormData) => {
       throw new Error("분석할 영상 업로드 api 에러");
     });
 };
+
+// 경기 분석 요청 API
+export const calcRequestApi = async (match_id: number) => {
+  return publicRequest
+    .post(`social/game/calculate/${match_id}`)
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+      throw new Error("경기 분석 요청 에러");
+    });
+};
