@@ -1,18 +1,21 @@
-package com.mancity.calc.gamedata.application.dto.response;
+package com.mancity.calc.gamedata.application.dto.request;
 
-import com.mancity.calc.gamedata.domain.GameData;
+
+import com.mancity.calc.gamedata.domain.Data;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class GamedataResponseDto {
+public class GamedataRequestDto {
 
     private Long gameId;
 
-    private GameData data;
+    private List<Data> data;
 }
