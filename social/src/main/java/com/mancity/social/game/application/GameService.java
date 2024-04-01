@@ -287,17 +287,4 @@ public class GameService {
         return GameDetailResponseDto.from(game, managerName);
     }
 
-    public void calculate(long id) {
-        // flask call
-        // FE -> social -> flask -> calc -> social -> FE
-        // flaskClient.requestTracking(S3Url, gameId);
-        log.info("SOCIAL - FLASK CALL");
-        // TODO : flask client 생성 후 트래킹 요청하는 API 생성 필요
-        try {
-            Thread.sleep(10000);
-            log.info("SOCIAL THREAD COMPLETE");
-        } catch (Exception e){
-            log.info("THREAD ERROR : {}", e.getMessage());
-        }
-    }
 }
