@@ -139,7 +139,7 @@ interface InputGroupPropsType {
 
 interface GlobalCardProps {
   mainTitle: string;
-  subTitle: string;
+  subTitle?: string;
   file?: string;
 }
 
@@ -238,4 +238,28 @@ interface SearchBarPropsType {
 interface MatchDetailPropsType {
   matchDetailPropsData: matchDetailPropsDataType;
   courtData: futsalCourts;
+}
+
+// 메인페이지에서 플레이어 랭킹 type
+interface MainPlayer {
+  id: number;
+  nickName: string;
+  image: string;
+  goal: string;
+  pass: number;
+  playedTimes: number;
+}
+
+interface ReplayGame {
+  id: number;
+  courtId: number;
+  startDate: string;
+  time: number;
+  replayUrl: string;
+}
+interface ReplayModalPropsType {
+  players?: MainPlayer[];
+  games: ReplayGame[];
+  openModal: boolean;
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
