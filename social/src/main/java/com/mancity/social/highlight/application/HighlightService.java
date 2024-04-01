@@ -43,14 +43,17 @@ public class HighlightService {
 
 
     public List<HighlightReponseDto> getGameHighlights(Long id) {
-        gameRepository.findById(id).orElseThrow(NoSuchGameException::new);
+        Game game = gameRepository.findById(id).orElseThrow(NoSuchGameException::new);
 
         //gameId로 하이라이트 추출
         List<Highlight> highlights = highlightRepository.findByGameId(id);
+
         List<HighlightReponseDto> lists = new ArrayList<>();
         for (Highlight h : highlights) {
             lists.add(HighlightReponseDto.builder()
                     .id(h.getId())
+                    .url(game.getReplayUrl())
+                    .time(h.getTime())
                     .build());
 
         }
@@ -76,16 +79,22 @@ public class HighlightService {
 
     public List<MyhighlightResponseDto> getMyHighlights(Long id) {
         UserResponseDto userDto = userFeignClient.findById(id);
+
+
         List<Myhighlight> myhighlights = highlightRepository.findAllByUserId(userDto.getId());
 
-        List<MyhighlightResponseDto> responseList = new ArrayList<>();
+        List<MyhighlightResponseDto> list = new ArrayList<>();
         for (Myhighlight h : myhighlights) {
-            responseList.add(MyhighlightResponseDto.builder()
-                    .highlight(h.getHighlight())
+
+            Game game = gameRepository.findById(h.getHighlight().getGameId()).orElseThrow(NoSuchGameException::new);
+            list.add(MyhighlightResponseDto.builder()
+                    .id(h.getId())
+                    .url(game.getReplayUrl())
+                    .time(h.getHighlight().getTime())
                     .build());
         }
 
-        return responseList;
+        return list;
     }
 
 
