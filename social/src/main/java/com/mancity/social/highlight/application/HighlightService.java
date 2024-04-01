@@ -6,10 +6,12 @@ import com.mancity.social.game.exception.NoSuchGameException;
 import com.mancity.social.highlight.application.dto.request.CreateHighlightRequestDto;
 import com.mancity.social.highlight.application.dto.request.StoreHighlightRequestDto;
 import com.mancity.social.highlight.application.dto.response.HighlightReponseDto;
+import com.mancity.social.highlight.application.dto.response.MyhighlightResponseDto;
 import com.mancity.social.highlight.domain.Highlight;
 import com.mancity.social.highlight.domain.Myhighlight;
 import com.mancity.social.highlight.domain.repository.HighlightRepository;
 import com.mancity.social.highlight.exception.NoSuchHighlightException;
+import com.mancity.social.user.application.dto.response.UserResponseDto;
 import com.mancity.social.user.presentation.UserFeignClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -69,6 +71,21 @@ public class HighlightService {
         highlight.addStoredHighlights(myhighlight);
 
 
+    }
+
+
+    public List<MyhighlightResponseDto> getMyHighlights(Long id) {
+        UserResponseDto userDto = userFeignClient.findById(id);
+        List<Myhighlight> myhighlights = highlightRepository.findAllByUserId(userDto.getId());
+
+        List<MyhighlightResponseDto> responseList = new ArrayList<>();
+        for (Myhighlight h : myhighlights) {
+            responseList.add(MyhighlightResponseDto.builder()
+                    .highlight(h.getHighlight())
+                    .build());
+        }
+
+        return responseList;
     }
 
 
