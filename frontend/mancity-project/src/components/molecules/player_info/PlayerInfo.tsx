@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import SearchBar from "@/components/molecules/search_bar/SearchBar";
 import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import * as React from "react";
@@ -8,6 +9,11 @@ import Typography from "@mui/joy/Typography";
 import Sheet from "@mui/joy/Sheet";
 
 const PlayerInfo = (props: PlayerInfoPropsType) => {
+  const navigate = useNavigate();
+  const handleNavigate = ({ path }: NavigateType) => {
+    navigate(path);
+  };
+
   // 서치바 최초 값 0 초기화
   const [placeValue, setPlaceValue] = useState(0);
 
@@ -23,7 +29,9 @@ const PlayerInfo = (props: PlayerInfoPropsType) => {
           textSize="text-xl"
         />
       </div>
-      <span className="text-lg underline cursor-pointer text-mancity">
+      <span className="text-lg underline cursor-pointer text-mancity"
+        onClick={() => handleNavigate({ path: "/personalfeedback/1" })}
+        >
         개인 기록
       </span>
       <button
