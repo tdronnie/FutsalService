@@ -7,11 +7,9 @@ const GlobalButton = (props: GlobalButton) => {
       className={`${width}
         font-medium text-sm h-10 rounded-lg text-white bg-mancity
         ${
-          hover
-            ? !isdisabled
-              ? "opacity-40"
-              : " hover:text-mancity hover:bg-white hover:border-mancity hover:border-2" // disabled가 아닐 때의 기본 스타일 + 호버 스타일
-            : "block"
+          isdisabled
+            ? "hover:text-mancity hover:bg-white hover:border-mancity hover:border-2"
+            : "block opacity-40"
         }`}
     >
       {label}

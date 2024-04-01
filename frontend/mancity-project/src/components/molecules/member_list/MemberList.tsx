@@ -1,5 +1,4 @@
 import ContentBox from "@/components/atoms/content_box/ContentBox";
-import IconButton from "@/components/atoms/icon_button/IconButton";
 import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import { useNavigate } from "react-router-dom";
 
@@ -21,6 +20,7 @@ const MemberList = (props: MemberListPropsType) => {
             <div
               key={participant.id}
               onClick={() => navigate(`/profile/${participant.id}`)}
+              className="border rounded-full border-sofcity"
             >
               <ContentBox
                 width="w-14"
@@ -31,9 +31,6 @@ const MemberList = (props: MemberListPropsType) => {
             </div>
           ))}
         </div>
-      </div>
-      <div className="mr-2">
-        <IconButton icon="plus" />
       </div>
     </div>
   );
