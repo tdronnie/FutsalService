@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class HighlightStoreRequestDto {
+public class StoreHighlightRequestDto {
 
     private Long highlightId;
 

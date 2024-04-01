@@ -2,7 +2,7 @@ package com.mancity.social.highlight.presentation;
 
 import com.mancity.social.highlight.application.HighlightService;
 import com.mancity.social.highlight.application.dto.request.CreateHighlightRequestDto;
-import com.mancity.social.highlight.application.dto.request.HighlightStoreRequestDto;
+import com.mancity.social.highlight.application.dto.request.StoreHighlightRequestDto;
 import com.mancity.social.highlight.application.dto.response.HighlightReponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -37,7 +37,7 @@ public class HighlightController {
 
     @PostMapping("/store")
     @Operation(summary = "나의 하이라이트 저장 API", description = "경기 분석 후 생성된 하이라이트를 유저의 나의 하이라이트로 저장하는 API")
-    public ResponseEntity<?> storeMyHighlight(@RequestBody HighlightStoreRequestDto dto) {
+    public ResponseEntity<?> storeMyHighlight(@RequestBody StoreHighlightRequestDto dto) {
         highlightService.storeMyHighlight(dto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
