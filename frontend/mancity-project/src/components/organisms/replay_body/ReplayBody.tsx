@@ -1,7 +1,9 @@
+import { fetchMatchDetail } from "@/apis/matchApis";
 import HalfCard from "@/components/molecules/half_card/HalfCard";
 import Navbar from "@/components/molecules/navbar/Navbar";
 import TacticalBoardBody from "@/components/organisms/tactical_board_body/TacticalBoardBody";
 import { Modal, ModalClose, ModalDialog, ModalDialogProps } from "@mui/joy";
+import { useQuery } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -11,6 +13,11 @@ const ReplayBody = () => {
   const handleNavigate = ({ path }: NavigateType) => {
     navigate(path);
   };
+
+  const { data } = useQuery({
+    queryKey: ["matchData", match_id],
+    queryFn: () => fetchMatchDetail(Number(match_id)),
+  });
 
   // 비디오 멈추면 멈춘 시간 저장
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -58,12 +65,9 @@ const ReplayBody = () => {
           loop
           playsInline
           ref={videoRef}
-          className="rounded-xl"
+          className="rounded-xl w-full h-full"
         >
-          <source
-            src="https://iandwe.s3.ap-northeast-2.amazonaws.com/match/g3iO5Rrb"
-            type="video/mp4"
-          />
+          <source src={data?.replayUrl} type="video/mp4" />
         </video>
       </div>
       {/* 전술보드보기, 경기분석보기 */}

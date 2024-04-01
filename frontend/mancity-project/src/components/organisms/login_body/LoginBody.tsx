@@ -2,7 +2,7 @@ import { fetchUserApi, loginApi, sendFcmTokenApi } from "@/apis/userApis";
 import GlobalButton from "@/components/atoms/global_button/GlobalButton";
 import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import InputGroup from "@/components/molecules/input_group/InputGroup";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import useUserStore from "@/stores/userStore";
@@ -132,7 +132,6 @@ const LoginBody = () => {
 
   const onSubmitLogin = () => {
     loginMutate(loginData);
-    console.log(loginData);
     setLoginError("이메일 또는 비밀번호가 맞지 않습니다. 다시 확인해 주세요.");
   };
 
