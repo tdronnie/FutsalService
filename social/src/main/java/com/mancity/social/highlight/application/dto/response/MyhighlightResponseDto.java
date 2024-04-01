@@ -9,12 +9,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class HighlightReponseDto {
+public class MyhighlightResponseDto {
 
     private Long id;
 
     private String url;
 
     private String time;
-
 }
