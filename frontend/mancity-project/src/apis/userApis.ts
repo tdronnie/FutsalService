@@ -57,6 +57,17 @@ export const isFollowDataApi = async (followData: followDataType) => {
     });
 };
 
+// 알림 불러오기
+export const fetchAlertApi = async (userId: number) => {
+  return publicRequest
+    .get(`user/alarm/${userId}`)
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+      throw new Error("알림 불러오기 api 에러");
+    });
+};
+
 // POST 요청 API
 // 이메일 중복 확인
 import { publicRequest } from "@/hooks/requestMethods";
