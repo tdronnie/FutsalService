@@ -29,7 +29,7 @@ public class FlaskService {
     @Async
     public void callTracking(long id){
         Game game = gameRepository.findById(id).orElseThrow(NoSuchGameException::new);
-        log.info("FLASK CALL TRACKING ... ");
+        log.info("CALL FLASK TRACKING ... ");
         flaskFeignClient.callFlask(FlaskTestDto.builder()
                 .url(game.getReplayUrl())
                 .game_id(game.getId())

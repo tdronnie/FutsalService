@@ -46,7 +46,9 @@ public class GameController {
     @PostMapping("/calculate/{id}")
     @Operation(summary = "임시 분석 요청", description = "업로된 동영상을 통해 분석을 요청하는 API")
     public ResponseEntity<?> calculate(@PathVariable("id") long id){
+        log.info("FLASK CALL REQUEST START ... ");
         flaskService.callTrackingAsync(id);
+        log.info("FLASK CALL REQUEST END !!! ");
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
