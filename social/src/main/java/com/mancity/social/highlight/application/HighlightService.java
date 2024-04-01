@@ -4,7 +4,7 @@ import com.mancity.social.game.domain.Game;
 import com.mancity.social.game.domain.repository.GameRepository;
 import com.mancity.social.game.exception.NoSuchGameException;
 import com.mancity.social.highlight.application.dto.request.CreateHighlightRequestDto;
-import com.mancity.social.highlight.application.dto.request.HighlightStoreRequestDto;
+import com.mancity.social.highlight.application.dto.request.StoreHighlightRequestDto;
 import com.mancity.social.highlight.application.dto.response.HighlightReponseDto;
 import com.mancity.social.highlight.domain.Highlight;
 import com.mancity.social.highlight.domain.Myhighlight;
@@ -41,23 +41,23 @@ public class HighlightService {
 
 
     public List<HighlightReponseDto> getGameHighlights(Long id) {
-        Game game = gameRepository.findById(id).orElseThrow(NoSuchGameException::new);
-        List<String> highlights = game.getHighlights();
+        gameRepository.findById(id).orElseThrow(NoSuchGameException::new);
+
+        //gameId로 하이라이트 추출
+        List<Highlight> highlights = highlightRepository.findByGameId(id);
         List<HighlightReponseDto> lists = new ArrayList<>();
-        for (String url : highlights) {
+        for (Highlight h : highlights) {
             lists.add(HighlightReponseDto.builder()
-                    .highligtUrl(url)
+                    .id(h.getId())
                     .build());
 
         }
         return lists;
     }
 
-    public void storeMyHighlight(HighlightStoreRequestDto dto) {
-        //하이라이트를 마이하이라이트에 저장
-        Highlight highlight = highlightRepository.findById(dto.getHighlightId()).orElseThrow(NoSuchHighlightException::new);
-        //유저 정보 가져오기
+    public void storeMyHighlight(StoreHighlightRequestDto dto) {
         Long user = userFeignClient.findById(dto.getUserId()).getId();
+        Highlight highlight = highlightRepository.findById(dto.getHighlightId()).orElseThrow(NoSuchHighlightException::new);
 
         //마이 하이라이트 생성 후 하이라이트와 유저에 업데이트
         Myhighlight myhighlight = Myhighlight.builder()
