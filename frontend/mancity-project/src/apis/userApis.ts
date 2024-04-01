@@ -3,7 +3,6 @@
 export const fetchUserApi = async (userId: number) => {
   try {
     const response = await publicRequest.get(`user/${userId}`);
-    console.log(response.data);
     return response.data; // 데이터 반환
   } catch (error) {
     console.log(error);

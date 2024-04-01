@@ -3,6 +3,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 // 사용할 아이콘 import
 import {
   faArrowLeft,
+  faArrowRightFromBracket,
   faBell,
   faBookmark,
   faCalendarDays,
@@ -63,5 +64,6 @@ library.add(
   faPeopleGroup,
   faVuejs,
   faBrave,
-  faChevronRight
+  faChevronRight,
+  faArrowRightFromBracket
 );

@@ -191,8 +191,8 @@ const MainBody = () => {
         </div>
       )}
       {isLoading && (
-        <div id="glassui" className="m-4 p-4 h-16 text-lg">
-          로딩중입니다...
+        <div id="glassui" className="h-16 p-4 m-4 text-lg">
+          정보를 불러오는 중입니다⚽
         </div>
       )}
     </div>
