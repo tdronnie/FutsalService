@@ -1,3 +1,5 @@
+import { publicRequest } from "@/hooks/requestMethods";
+
 // GET 요청 API
 // 유저 정보
 export const fetchUserApi = async (userId: number) => {
@@ -69,7 +71,6 @@ export const fetchAlertApi = async (userId: number) => {
 
 // POST 요청 API
 // 이메일 중복 확인
-import { publicRequest } from "@/hooks/requestMethods";
 export const checkEmailApi = async (emailValue: string | number) => {
   return publicRequest
     .post(`/user/check/email`, { email: emailValue })
