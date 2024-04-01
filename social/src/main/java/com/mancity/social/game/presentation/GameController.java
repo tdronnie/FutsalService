@@ -1,5 +1,6 @@
 package com.mancity.social.game.presentation;
 
+import com.mancity.social.flask.application.FlaskService;
 import com.mancity.social.game.application.GameService;
 import com.mancity.social.game.application.dto.request.*;
 import com.mancity.social.game.application.dto.response.GameMainResponseDto;
@@ -26,6 +27,8 @@ public class GameController {
 
     private final GameService gameService;
 
+    private final FlaskService flaskService;
+
     @PostMapping("/create")
     @Operation(summary = "매치 생성", description = "매치를 생성합니다.")
     public ResponseEntity<Long> create(@RequestBody GameCreateRequestDto dto) {
@@ -41,9 +44,9 @@ public class GameController {
     }
 
     @PostMapping("/calculate/{id}")
-    @Operation(summary = "분석 요청", description = "업로된 동영상을 통해 분석을 요청하는 API")
+    @Operation(summary = "임시 분석 요청", description = "업로된 동영상을 통해 분석을 요청하는 API")
     public ResponseEntity<?> calculate(@PathVariable("id") long id){
-        gameService.calculate(id);
+        flaskService.callTrackingAsync(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
