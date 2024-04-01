@@ -21,12 +21,14 @@ import com.mancity.social.user.presentation.UserFeignClient;
 import com.mancity.social.user.application.dto.request.UserPlusRequestDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 @Service
@@ -61,8 +63,6 @@ public class GameService {
         List<String> url = uploader.uploadVideo("match", files);
         Game game = findById(dto.getId());
         game.uploadVideo(url.get(0));
-
-        // 업로드 완료 시, flask에 업로드 완료에 대해 call
         return GameResponseDto.from(game);
     }
 
@@ -89,10 +89,23 @@ public class GameService {
                 .toList();
     }
 
+    public void allocateDataAsync(GameDataAllocateDto dto) {
+        log.info("ALLOCATING DATA ASYNC...");
+        CompletableFuture.runAsync(() -> allocateData(dto));
+    }
+
+    @Async
     public void allocateData(GameDataAllocateDto dto) {
+        log.info("ALLOCATING DATA...");
+//        try {
+//            Thread.sleep(5000);
+//        } catch (Exception e){
+//            e.printStackTrace();
+//        }
         Player player = playerRepository.findById(dto.getGamePlayerId()).orElseThrow(NoSuchPlayerException::new);
         player.allocateData(findByIdFromUserService(dto.getUserId()).getNickName());
         userFeignClient.plus(UserPlusRequestDto.of(player, dto.getUserId()));
+        log.info("DATA ALLOCATE COMPLETE !!!");
     }
 
     public List<GameResponseDto> findGamesByParticipantUserId(Long userId) {
@@ -272,5 +285,19 @@ public class GameService {
                 .orElseThrow(NoSuchGameException::new);
         String managerName = findByIdFromUserService(game.getManager()).getNickName();
         return GameDetailResponseDto.from(game, managerName);
+    }
+
+    public void calculate(long id) {
+        // flask call
+        // FE -> social -> flask -> calc -> social -> FE
+        // flaskClient.requestTracking(S3Url, gameId);
+        log.info("SOCIAL - FLASK CALL");
+        // TODO : flask client 생성 후 트래킹 요청하는 API 생성 필요
+        try {
+            Thread.sleep(10000);
+            log.info("SOCIAL THREAD COMPLETE");
+        } catch (Exception e){
+            log.info("THREAD ERROR : {}", e.getMessage());
+        }
     }
 }

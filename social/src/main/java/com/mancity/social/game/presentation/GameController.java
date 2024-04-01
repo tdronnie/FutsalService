@@ -40,6 +40,13 @@ public class GameController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @PostMapping("/calculate/{id}")
+    @Operation(summary = "분석 요청", description = "업로된 동영상을 통해 분석을 요청하는 API")
+    public ResponseEntity<?> calculate(@PathVariable("id") long id){
+        gameService.calculate(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     @Operation(summary = "게임 전체 상세 조회", description = "id 를 통해서 매치 정보 가져오는 API, 해당 게임 관련 정보랑 데이터는 다 가져온다.")
     public ResponseEntity<GameResponseDto> findMatchById(@PathVariable Long id) {
@@ -87,7 +94,11 @@ public class GameController {
     @PostMapping("/allocate")
     @Operation(summary = "경기 데이터 유저 할당 API", description = "할당해줄 유저의 ID 와, 할당해줄 플레이어 데이터의 ID로 할당합니다.")
     public ResponseEntity<?> allocateData(@RequestBody GameDataAllocateDto dto) {
+        log.info("데이터 할당 CALL, OPEN");
         gameService.allocateData(dto);
+//        gameService.allocateDataAsync(dto);
+        log.info("데이터 할당 CLOSE");
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
