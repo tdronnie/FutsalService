@@ -40,7 +40,7 @@ interface MyTypographyType {
   textSize?: string;
   fontWeight?: string;
   textColor?: string;
-  label?: string;
+  label?: string | number;
   id?: string;
 }
 
@@ -61,7 +61,7 @@ interface WideCardPropsType {
   file?: string;
   subtext: string;
   maintext: string;
-  minitext?: string;
+  minitext?: string | number;
   buttonlabel: string;
 }
 

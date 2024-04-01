@@ -13,7 +13,8 @@ const App = () => {
   const requestPermission = () => {
     Notification.requestPermission().then((permission) => {
       if (permission === "granted") {
-        console.log("알림 권한이 허용됨");
+        // 테스트 콘솔
+        // console.log("알림 권한이 허용됨");
       } else {
         console.log("알림 권한 허용 안됨");
       }
