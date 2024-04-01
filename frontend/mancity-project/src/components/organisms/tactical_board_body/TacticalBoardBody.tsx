@@ -2,17 +2,19 @@ import ContentBox from "@/components/atoms/content_box/ContentBox";
 import TacticalBoardStore from "@/stores/tacticalBoardStore";
 import { createRef, useEffect, useRef, useState } from "react";
 import Draggable from "react-draggable";
+import { useLocation } from "react-router-dom";
 
 const TacticalBoardBody = () => {
-  const { horizonPlayers, setHorizonPosition } = TacticalBoardStore();
+  const { players, setPosition } = TacticalBoardStore();
+  const location = useLocation();
 
   // findDOMNode 에러가 발생해 추가한 nodeRef, 공식문서에서 추천하는 방법
   // 각 플레이어에 대한 ref 배열을 생성
   const nodeRefs = useRef<Array<React.RefObject<HTMLDivElement>>>([]);
 
-  if (nodeRefs.current.length !== horizonPlayers.length) {
+  if (nodeRefs.current.length !== players.length) {
     // players 배열의 길이만큼 ref를 초기화
-    nodeRefs.current = horizonPlayers.map(
+    nodeRefs.current = players.map(
       (_, i) => nodeRefs.current[i] || createRef()
     );
   }
@@ -45,19 +47,22 @@ const TacticalBoardBody = () => {
 
   return (
     <div className={`h-full bg-[#45930B] -mb-20 min-h-[100vh]`}>
-      <div className="flex justify-end pt-1 pb-5 mr-2">
-        <div className="border-[0.6vw] border-white text-white font-extralight rounded-lg p-[0.1rem]">
-          하이라이트 선택하기
+      {/* 전술판 페이지에서만 보이기 */}
+      {location.pathname === "/tactical_board" && (
+        <div className="flex justify-end pt-1 pb-5 mr-2">
+          <div className="border-[3.1px] border-white text-white font-extralight rounded-lg p-[0.1rem]">
+            경기 다시보기
+          </div>
         </div>
-      </div>
+      )}
       <div>
-        {horizonPlayers.map((player, index) => (
+        {players.map((player, index) => (
           <Draggable
             nodeRef={nodeRefs.current[index]} // 고유한 ref 사용
             key={index}
             position={{ x: player.x, y: player.y }}
             onStop={(e, data) => {
-              setHorizonPosition(index, data.x, data.y);
+              setPosition(index, data.x, data.y);
             }}
             bounds={bounds}
           >

@@ -2,13 +2,12 @@ import ContentBox from "@/components/atoms/content_box/ContentBox";
 import MyTypography from "@/components/atoms/my_typography/MyTypography";
 
 const HalfCard = (props: HalfCardPropsType) => {
-  const {
-    file = "/src/assets/imgs/mancity_logo.png",
-    maintext,
-    rounded = "rounded-full",
-  } = props;
+  const { file = "/src/assets/imgs/mancity_logo.png", maintext } = props;
   return (
-    <div id="glassui" className="flex items-center w-full h-[4.5rem] p-2 rounded-md cursor-pointer shadow-nav">
+    <div
+      id="glassui"
+      className="flex items-center w-full h-[4.5rem] p-2 rounded-md cursor-pointer shadow-nav"
+    >
       <div>
         <ContentBox
           height="h-8"
@@ -22,7 +21,7 @@ const HalfCard = (props: HalfCardPropsType) => {
       </div>
       <div className="flex flex-col items-center justify-center flex-grow ml-1 text-center">
         <MyTypography
-        id="responsive-p"
+          id="responsive-p"
           fontWeight="font-medium"
           label={maintext}
           textColor="text-darkcity"

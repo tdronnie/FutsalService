@@ -1,18 +1,21 @@
-import TacticalBoardVertical from "@/components/organisms/tactical_board_vertical/TacticalBoardVertical";
+import HalfCard from "@/components/molecules/half_card/HalfCard";
+import Navbar from "@/components/molecules/navbar/Navbar";
+import TacticalBoardBody from "@/components/organisms/tactical_board_body/TacticalBoardBody";
+import { Modal, ModalClose, ModalDialog, ModalDialogProps } from "@mui/joy";
 import { useEffect, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ReplayBody = () => {
-  // 가로화면인지 여부 설정
-  const [garo, setGaro] = useState<boolean>(false);
-
-  // 가로모드 버튼 클릭 시 가로모드로 변경
-  const changeGaro = () => {
-    setGaro(!garo);
+  const { match_id } = useParams<{ match_id: string }>();
+  const navigate = useNavigate();
+  const handleNavigate = ({ path }: NavigateType) => {
+    navigate(path);
   };
 
   // 비디오 멈추면 멈춘 시간 저장
   const videoRef = useRef<HTMLVideoElement>(null);
   const [stopTime, setStopTime] = useState<number>(0);
+
   useEffect(() => {
     const video = videoRef.current;
     if (video) {
@@ -29,39 +32,102 @@ const ReplayBody = () => {
     }
   }, []);
 
-  const garoStyle = garo ? "rotate-90 translate-y-14 mt-[0.1rem] " : "";
+  // 모달 생성
+  const [layout, setLayout] = useState<ModalDialogProps["layout"] | undefined>(
+    undefined
+  );
+
+  const modalStyle = {
+    maxWidth: "576px",
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: "auto",
+  };
+
   return (
     <div>
-      {/* 세로모드일 때 */}
-      <div className={`${garoStyle} w-full h-full`}>
-        <div className="flex ">
-          <button
-            onClick={changeGaro}
-            className="border-2  border-darkcity rounded-xl px-1"
-          >
-            가로모드
-          </button>
-          <div>{garo ? `on` : `off`} </div>
-          <div> / {stopTime}초에 멈췄습니다</div>
+      {/* 다시보기 영상 */}
+      <div id="glassui" className="m-4 p-4">
+        <video
+          id="myVideo"
+          controls
+          muted
+          loop
+          playsInline
+          ref={videoRef}
+          className="rounded-xl"
+        >
+          <source
+            src="https://iandwe.s3.ap-northeast-2.amazonaws.com/match/g3iO5Rrb"
+            type="video/mp4"
+          />
+        </video>
+      </div>
+      {/* 전술보드보기, 경기분석보기 */}
+      <div className="flex justify-around mb-2">
+        <div
+          className="w-full ml-4 mr-1 cursor-pointer"
+          // 풀버전 모달이 열리도록 수정할겁니다
+          onClick={() => {
+            setLayout("fullscreen");
+          }}
+        >
+          <HalfCard
+            maintext="전술보드보기"
+            file="/src/assets/imgs/tactical_board.png"
+          />
         </div>
-        <div>
-          모바일이 아닐 때 화면을 생각해야해서, 우선 가로 세로를 따로
-          진행중입니다. <br />
-          가로일 때는 아래에 전술판을 같이 띄우기로, 세로모드는 따로 만들자..
-        </div>
-        <div className="w-full h-full">
-          <video id="myVideo" controls muted loop playsInline ref={videoRef}>
-            <source
-              src="https://iandwe.s3.ap-northeast-2.amazonaws.com/match/g3iO5Rrb"
-              type="video/mp4"
-            />
-          </video>
-        </div>
-        <div>
-          <TacticalBoardVertical />
+        <div
+          className="w-full ml-1 mr-4 cursor-pointer"
+          onClick={() => handleNavigate({ path: `/feedback/${match_id}` })}
+        >
+          <HalfCard maintext="경기분석보기" file="/src/assets/imgs/goal.png" />
         </div>
       </div>
-      {/* 가로모드일 때 */}
+      <div id="glassui" className="m-4">
+        <div className=" py-4 text-sm">
+          <div>
+            영상을 <b>일시정지</b> 하고 전술보드를 <b>클릭</b>하면
+            <br />
+            선수들의 <b>위치</b>를 전술보드로 <b>확인</b>하실 수 있습니다.
+          </div>
+        </div>
+      </div>
+      <div> {stopTime}초에 멈췄습니다 (확인용)</div>
+      {/* 모달 로직 */}
+      <div>
+        <Modal
+          open={!!layout}
+          onClose={() => setLayout(undefined)}
+          sx={modalStyle}
+        >
+          <ModalDialog layout={layout} sx={{ padding: "0px" }}>
+            {/* 모달 닫기 버튼 */}
+            <ModalClose
+              size="lg"
+              color="primary"
+              sx={{
+                border: "3px solid white",
+                color: "white",
+                ":hover": {
+                  color: "#45930B",
+                },
+                padding: "1px",
+              }}
+            />
+
+            <div className=" bg-[#45930B] pt-12">
+              <div></div>
+
+              <TacticalBoardBody />
+            </div>
+            <Navbar />
+          </ModalDialog>
+        </Modal>
+      </div>
     </div>
   );
 };
