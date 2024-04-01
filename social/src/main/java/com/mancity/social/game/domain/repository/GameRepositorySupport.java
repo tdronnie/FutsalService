@@ -8,6 +8,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static com.mancity.social.participant.domain.QParticipant.participant;
@@ -29,7 +30,7 @@ public class GameRepositorySupport {
                 .fetch();
     }
 
-    public List<Game> findAllByFilters(Integer gender, Integer region, Integer playerNumber, String level) {
+    public List<Game> findAllByFilters(Integer gender, LocalDate startDate, Integer playerNumber, String level) {
         BooleanBuilder builder = new BooleanBuilder();
 
         if (gender != null) {
@@ -37,9 +38,9 @@ public class GameRepositorySupport {
             builder.and(qGame.gender.eq(gender));
         }
 
-//        if (region != null) {
-//            builder.and(qGame.region.eq(region));
-//        }
+        if (startDate != null) {
+            builder.and(qGame.startDate.eq(startDate));
+        }
 
         if (playerNumber != null) {
             builder.and(qGame.playerNumber.eq(playerNumber));
