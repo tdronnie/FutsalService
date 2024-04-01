@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,6 +49,11 @@ public class GameService {
 
     public Long create(GameCreateRequestDto dto) {
         Game game = gameRepository.save(dto.toEntity());
+        Participant participant = Participant.builder()
+                .game(game)
+                .userId(dto.getManager())
+                .image(userService.findByIdFromUser(dto.getManager()).getImage()).build();
+        game.participate(participant);
         return game.getId();
     }
 
@@ -105,8 +111,8 @@ public class GameService {
         return userFeignClient.findById(id);
     }
 
-    public List<GameResponseDto> findAllByFilters(Integer gender, Integer region, Integer playerNumber, String level) {
-        return gameRepositorySupport.findAllByFilters(gender, region, playerNumber, level)
+    public List<GameResponseDto> findAllByFilters(Integer gender, LocalDate startDate, Integer playerNumber, String level) {
+        return gameRepositorySupport.findAllByFilters(gender, startDate, playerNumber, level)
                 .stream()
                 .map(GameResponseDto::from)
                 .toList();
