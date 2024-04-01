@@ -77,10 +77,10 @@ const ProfileUserInfo = ({ profileData }: ProfilePropsType) => {
   return (
     <div>
       {profileData && (
-        <div id="glassui" className="flex mt-4 mx-4 py-4">
+        <div id="glassui" className="flex py-4 mx-4 mt-4">
           {/* 프로필 사진 */}
           <div className="w-full">
-            <div className="flex justify-end mr-4 mb-2">
+            <div className="flex justify-end mb-2 mr-4">
               <ContentBox
                 file={
                   profileData.image
@@ -94,7 +94,7 @@ const ProfileUserInfo = ({ profileData }: ProfilePropsType) => {
             </div>
           </div>
           {/* 오른쪽 클럽명, 이름, 버튼, 팔로우 */}
-          <div className="flex-grow-1 w-full -ml-1 mb-1">
+          <div className="w-full mb-1 -ml-1 flex-grow-1">
             <div className="ml-1 ">
               {profileData.club ? (
                 <ClubButton
@@ -157,7 +157,7 @@ const ProfileUserInfo = ({ profileData }: ProfilePropsType) => {
               onClick={goFollowList}
             >
               <FontawsomeIcon icon="user-group" color="#5D7A93" />
-              <div className=" flex text-xs mt-1 ml-1">
+              <div className="flex mt-1 ml-1 text-xs ">
                 <div className="pr-2">{profileData.follower} 팔로워 </div>
                 <div>|</div>
                 <div className="pl-2"> {profileData.following} 팔로잉</div>

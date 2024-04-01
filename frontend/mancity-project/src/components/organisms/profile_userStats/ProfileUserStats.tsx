@@ -28,7 +28,7 @@ const ProfileUserStats = ({ profileData }: ProfilePropsType) => {
                 <RadarChart profileData={profileData} />
               </div>
             </div>
-            <div className="flex justify-end -my-2 underline decoration-white	 mr-3 pb-2 cursor-pointer">
+            <div className="flex justify-end pb-2 mr-3 -my-2 underline cursor-pointer decoration-white">
               <MuiModal userId={profileData.id} />
             </div>
           </div>
