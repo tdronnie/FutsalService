@@ -14,14 +14,12 @@ const App = () => {
     Notification.requestPermission().then((permission) => {
       if (permission === "granted") {
         console.log("알림 권한이 허용됨");
-        // FCM 메세지 처리 등의 추가 로직을 여기에 작성합니다.
       } else {
         console.log("알림 권한 허용 안됨");
       }
     });
   };
 
-  // FCM 알람 파이어베이스 설정
   useEffect(() => {
     requestPermission();
   }, []);
@@ -35,7 +33,6 @@ const App = () => {
     if (
       location.pathname === "/entry" ||
       location.pathname === "/login" ||
-      // 소문자로 하면 네비바 안지워짐.. 왜지?
       location.pathname === "/signUp" ||
       location.pathname === "/alert" ||
       location.pathname === "/map" ||

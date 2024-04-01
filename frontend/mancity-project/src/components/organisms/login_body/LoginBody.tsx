@@ -81,7 +81,7 @@ const LoginBody = () => {
           vapidKey:
             "BLuopbozIqH5NnVASrPlVZXTae_NcsaY9bju7WrChj77PpcHfg79r7t3YehYTf3riIFbDfvuz79xhRTshmnxmnE",
         });
-        console.log("FCM Token:", token);
+        // console.log("FCM Token:", token);
         // 토큰 세팅
         setFcmToken(token);
       } catch (error) {
@@ -95,9 +95,9 @@ const LoginBody = () => {
   // FCM 토큰을 서버로 보내는 Mutation
   const { mutate: sendFcmTokenMutation } = useMutation({
     mutationFn: sendFcmTokenApi,
-    onSuccess: () => {
-      console.log("FCM 토큰이 성공적으로 서버로 전송됨.");
-    },
+    // onSuccess: () => {
+    //   console.log("FCM 토큰이 성공적으로 서버로 전송됨.");
+    // },
     onError: (error) => {
       console.error("FCM 토큰 전송 에러:", error);
     },
@@ -114,8 +114,6 @@ const LoginBody = () => {
           setUser(userData);
           // 로그인 성공 후 FCM 토큰 요청
           requestFCMToken();
-          sendFcmTokenMutation({ id: userData.id, fcmToken });
-          navigate("/");
         }
       } catch (error) {
         console.error("사용자 정보를 가져오는 데 실패했습니다.", error);
@@ -129,6 +127,17 @@ const LoginBody = () => {
       );
     },
   });
+
+  // useUserStore에서 id만 선택해서 가져오기
+  const userId = useUserStore((state) => state.id);
+  
+  useEffect(() => {
+    if (fcmToken) {
+      // 토큰을 서버로 전송
+      sendFcmTokenMutation({ id: userId, fcmToken });
+      navigate("/");
+    }
+  }, [fcmToken]);
 
   const onSubmitLogin = () => {
     loginMutate(loginData);
