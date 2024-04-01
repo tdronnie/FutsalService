@@ -66,9 +66,12 @@ const MainBody = () => {
   const handleNavigate = ({ path }: NavigateType) => {
     navigate(path);
   };
-  if (data) {
-    console.log(data.players[0]);
-  }
+
+  // 테스트 콘솔
+  // if (data) {
+  //   console.log(data.players[0]);
+  // }
+
   return (
     <div>
       {/* 매치등록하기랑 매치둘러보기 버튼 */}
