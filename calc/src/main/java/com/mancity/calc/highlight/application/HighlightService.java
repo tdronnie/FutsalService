@@ -3,22 +3,22 @@ package com.mancity.calc.highlight.application;
 import com.mancity.calc.highlight.application.dto.request.CreateHighlightRequestDto;
 import com.mancity.calc.highlight.presentation.HighlightFeignClient;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-@Component
+@Service
+@Transactional
 @RequiredArgsConstructor
 public class HighlightService {
 
     private final HighlightFeignClient highlightFeignClient;
 
     public void createHighlights(Long gameId, String time) {
-
-        highlightFeignClient.createHighlights(CreateHighlightRequestDto.builder()
+        CreateHighlightRequestDto dto = CreateHighlightRequestDto.builder()
                 .gameId(gameId)
                 .time(time)
-                .build());
-
+                .build();
+        highlightFeignClient.createHighlights(dto);
     }
-
 
 }
