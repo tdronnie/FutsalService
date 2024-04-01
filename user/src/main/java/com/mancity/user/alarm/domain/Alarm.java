@@ -9,6 +9,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -31,6 +33,8 @@ public class Alarm {
     private String title;
 
     private String content;
+
+    private LocalDate createDate;
 
     public void updateTitle(String nickname){
         this.title = nickname + this.title;

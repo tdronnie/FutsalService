@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -29,6 +31,7 @@ public class AlarmCreateDto {
                 .domain(AlarmDomain.valueOf(domain))
                 .title(AlarmDomain.valueOf(domain).generateTitle())
                 .content(AlarmDomain.valueOf(domain).generateContent())
+                .createDate(LocalDate.now())
                 .build();
     }
 
