@@ -33,3 +33,15 @@ export const MainPageApi = async (userId: number) => {
       throw new Error("main page api 호출 에러");
     });
 };
+
+// PUT 요청 API
+// 분석할 영상 업로드
+export const videoUploadApi = async (videoUploadData: FormData) => {
+  return publicRequest
+    .put(`social/game/upload`, videoUploadData)
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+      throw new Error("분석할 영상 업로드 api 에러");
+    });
+};
