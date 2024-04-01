@@ -4,6 +4,7 @@ import com.mancity.social.highlight.application.HighlightService;
 import com.mancity.social.highlight.application.dto.request.CreateHighlightRequestDto;
 import com.mancity.social.highlight.application.dto.request.StoreHighlightRequestDto;
 import com.mancity.social.highlight.application.dto.response.HighlightReponseDto;
+import com.mancity.social.highlight.application.dto.response.MyhighlightResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -40,6 +41,11 @@ public class HighlightController {
     public ResponseEntity<?> storeMyHighlight(@RequestBody StoreHighlightRequestDto dto) {
         highlightService.storeMyHighlight(dto);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/{user}")
+    public ResponseEntity<List<MyhighlightResponseDto>> getMyHighlights(@PathVariable("user") Long id) {
+        return new ResponseEntity<>(highlightService.getMyHighlights(id), HttpStatus.OK);
     }
 
 
