@@ -5,8 +5,55 @@ import ClubList from "@/components/molecules/club_list/ClubList";
 import { useNavigate } from "react-router-dom";
 import HalfCard from "@/components/molecules/half_card/HalfCard";
 import HomeCard from "@/components/molecules/home_card/HomeCard";
+import { useState } from "react";
+import ReplayModal from "@/components/organisms/replay_modal/ReplayModal";
+import { useQuery } from "@tanstack/react-query";
+import { MainPageApi } from "@/apis/matchApis";
+import futsalCourtData from "@/data/futsalCourts.json";
 
 const MainBody = () => {
+  // 임시로 유저 id는 1
+  const user_id = 1;
+
+  // 다시보기, 용병 랭킹 데이터 api
+  const { data, isLoading } = useQuery({
+    queryKey: ["mainPage", user_id],
+    queryFn: async () => {
+      const response = await MainPageApi(user_id);
+      return response;
+    },
+  });
+
+  // 모달 열고 닫고
+  const [openModal, setOpenModal] = useState<boolean>(false);
+
+  // 지난 경기 다시보기 생성되면 (경기에 본인 추가 기능 넣으면 수정)
+  const dummyData = {
+    games: [
+      {
+        id: 1,
+        courtId: 1,
+        startDate: "2024-04-01",
+        time: 30,
+        replayUrl: "qwer",
+      },
+      {
+        id: 2,
+        courtId: 1,
+        startDate: "2024-04-01",
+        time: 30,
+        replayUrl: "qwer",
+      },
+      {
+        id: 3,
+        courtId: 1,
+        startDate: "2024-04-01",
+        time: 30,
+        replayUrl: "qwer",
+      },
+    ],
+  };
+
   const settings = {
     dots: true,
     infinite: true,
@@ -14,25 +61,35 @@ const MainBody = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+
   const navigate = useNavigate();
   const handleNavigate = ({ path }: NavigateType) => {
     navigate(path);
   };
+  if (data) {
+    console.log(data.players[0]);
+  }
   return (
-    <>
+    <div>
       {/* 매치등록하기랑 매치둘러보기 버튼 */}
       <div className="flex justify-around mb-2">
         <div
           className="w-full ml-4 mr-1 cursor-pointer"
           onClick={() => handleNavigate({ path: "/match/register" })}
         >
-          <HalfCard maintext="매치등록하기" file="/src/assets/imgs/match_register.png" />
+          <HalfCard
+            maintext="매치등록하기"
+            file="/src/assets/imgs/match_register.png"
+          />
         </div>
         <div
           className="w-full ml-1 mr-4 cursor-pointer"
           onClick={() => handleNavigate({ path: "/match" })}
         >
-          <HalfCard maintext="매치둘러보기" file="/src/assets/imgs/match_lookaround.png" />
+          <HalfCard
+            maintext="매치둘러보기"
+            file="/src/assets/imgs/match_lookaround.png"
+          />
         </div>
       </div>
 
@@ -52,83 +109,93 @@ const MainBody = () => {
         <img src="/src/assets/imgs/comeon.png" alt="man" />
       </div>
 
-      <div id="glassui" className="mx-4 mb-4">
-        <div className="flex items-end justify-between p-3">
-          <MyTypography
-            fontWeight="font-medium"
-            label="지난 경기 다시보기"
-            textColor="text-black"
-            textSize="text-2xl"
-          />
-          {/* 경기에서 사용하는 지난 경기 모달 띄울 예정 */}
-          <span onClick={() => handleNavigate({ path: "#" })}>더보기</span>
-        </div>
-        <hr className="border border-sofcity" />
-        <div className="flex items-center w-full p-2 overflow-y-hidden">
-          <GlobalCard
-            file="/src/assets/imgs/mancity_logo.png"
-            mainTitle="2024/03/11"
-            subTitle="광주 신화 풋살장"
-          />
-          <GlobalCard
-            file="/src/assets/imgs/mancity_logo.png"
-            mainTitle="2024/03/11"
-            subTitle="광주 신화 풋살장"
-          />
-          <GlobalCard
-            file="/src/assets/imgs/mancity_logo.png"
-            mainTitle="2024/03/11"
-            subTitle="광주 신화 풋살장"
-          />
-          <GlobalCard
-            file="/src/assets/imgs/mancity_logo.png"
-            mainTitle="2024/03/11"
-            subTitle="광주 신화 풋살장"
-          />
-        </div>
-      </div>
+      {!isLoading && data && (
+        <div>
+          <div id="glassui" className="mx-4 mb-4">
+            <div className="flex items-end justify-between p-3">
+              <MyTypography
+                fontWeight="font-medium"
+                label="지난 경기 다시보기"
+                textColor="text-black"
+                textSize="text-2xl"
+              />
+              {/* 경기에서 사용하는 지난 경기 모달 띄울 예정 */}
+              <span
+                onClick={() => {
+                  setOpenModal(true);
+                }}
+                className="cursor-pointer"
+              >
+                더보기
+              </span>
+            </div>
+            <hr className="border border-sofcity" />
+            <div className="flex items-center w-full p-2 overflow-y-hidden">
+              {data.games.map((game: ReplayGame) => {
+                // id값으로 받은 경기장 값을 경기장 json에서 찾기
+                const courtData = futsalCourtData.find(
+                  (court) => court.id === game.courtId
+                );
+                return (
+                  <div key={game.id}>
+                    <GlobalCard
+                      file={game.replayUrl}
+                      mainTitle={game.startDate}
+                      subTitle={
+                        courtData ? courtData.title : "광주 신화 풋살장"
+                      }
+                    />
+                  </div>
+                );
+              })}
+            </div>
+            {/* 다시보기 modal  */}
+            <div>
+              <ReplayModal
+                games={dummyData.games}
+                openModal={openModal}
+                setOpenModal={setOpenModal}
+              />
+            </div>
+          </div>
 
-      <div id="glassui" className="m-5">
-        <div className="p-3">
-          <MyTypography
-            fontWeight="font-medium"
-            label="용병 랭킹 TOP5"
-            textColor="text-black"
-            textSize="text-2xl"
-          />
-        </div>
-        <hr className="border border-sofcity" />
+          <div id="glassui" className="m-5">
+            <div className="p-3">
+              <MyTypography
+                fontWeight="font-medium"
+                label="용병 랭킹 TOP5"
+                textColor="text-black"
+                textSize="text-2xl"
+              />
+            </div>
+            <hr className="border border-sofcity" />
+            {data.players.map((player: MainPlayer) => (
+              <div key={player.id}>
+                <ClubList
+                  clubTitile={player.nickName}
+                  clubInfo={`${player.playedTimes}경기 ${player.goal}골 ${player.pass}도움`}
+                  file={player.image}
+                />
+              </div>
+            ))}
 
-        <ClubList
-          clubTitile="맨시티파워"
-          clubInfo="3경기 10골 8도움"
-          file="/src/assets/imgs/mancity_logo.png"
-        />
-        <ClubList
-          clubTitile="디오니소스"
-          clubInfo="3경기 10골 8도움"
-          file="/src/assets/imgs/mancity_logo.png"
-        />
-        <ClubList
-          clubTitile="김치파워"
-          clubInfo="3경기 10골 8도움"
-          file="/src/assets/imgs/mancity_logo.png"
-        />
-        <ClubList
-          clubTitile="우린맨시티"
-          clubInfo="3경기 10골 8도움"
-          file="/src/assets/imgs/mancity_logo.png"
-        />
-        <ClubList
-          clubTitile="즐축생활"
-          clubInfo="3경기 10골 8도움"
-          file="/src/assets/imgs/mancity_logo.png"
-        />
-        <div className="flex justify-center p-3">
-        <span className="cursor-pointer" onClick={() => handleNavigate({ path: "/club" })}>더보기</span>
+            <div className="flex justify-center p-3">
+              <span
+                className="cursor-pointer"
+                onClick={() => handleNavigate({ path: "/club" })}
+              >
+                더보기
+              </span>
+            </div>
+          </div>
         </div>
-      </div>
-    </>
+      )}
+      {isLoading && (
+        <div id="glassui" className="m-4 p-4 h-16 text-lg">
+          로딩중입니다...
+        </div>
+      )}
+    </div>
   );
 };
 
