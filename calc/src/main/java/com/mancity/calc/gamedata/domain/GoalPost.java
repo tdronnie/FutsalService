@@ -20,7 +20,11 @@ public class GoalPost {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int x;
+    private int x1;
 
-    private int y;
+    private int y1;
+
+    private int x2;
+
+    private int y2;
 }

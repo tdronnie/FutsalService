@@ -14,16 +14,19 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Player {
+public class Field {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int playerId;
+    private int x1;
 
-    private int x;
+    private int y1;
 
-    private int y;
+    private int x2;
+
+    private int y2;
+
 
 }

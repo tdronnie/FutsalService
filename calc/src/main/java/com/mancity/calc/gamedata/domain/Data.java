@@ -35,4 +35,7 @@ public class Data {
     @OneToOne
     private TeamB teamB;
 
+    @OneToOne
+    private Field field;
+
 }
