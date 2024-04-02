@@ -45,7 +45,7 @@ public class AlarmService {
     }
 
     public List<AlarmResponseDto> findAllByUserId(long id) {
-        return alarmRepository.findAllByReceiverId(id)
+        return alarmRepository.findAllByReceiverIdOrderByIdDesc(id)
                 .stream()
                 .map(AlarmResponseDto::from)
                 .toList();
