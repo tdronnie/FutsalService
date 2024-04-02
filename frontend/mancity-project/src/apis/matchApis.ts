@@ -15,10 +15,23 @@ export const fetchMatchDetail = async (
 
 // 경기 목록 페이지 정보 조회
 export const fetchMatchList = async (
-  date: string | null
+  matchFilterData: matchFilterDataType
 ): Promise<matchDetailPropsDataType[]> => {
+  //기본 url
+  let filterUrl = `social/game/filter?startDate=${matchFilterData.date}`;
+  // gender 추가
+  if (matchFilterData.gender) {
+    filterUrl += `&gender=${matchFilterData.gender}`;
+  } // playernumber 추가
+  if (matchFilterData.playerNumber) {
+    filterUrl += `&playernumber=${matchFilterData.playerNumber}`;
+  } // level 추가
+  if (matchFilterData.level) {
+    filterUrl += `&level=${matchFilterData.level}`;
+  }
+
   return publicRequest
-    .get(`social/game/filter?startDate=${date}`)
+    .get(filterUrl)
     .then((res) => res.data)
     .catch((error) => {
       console.log(error);

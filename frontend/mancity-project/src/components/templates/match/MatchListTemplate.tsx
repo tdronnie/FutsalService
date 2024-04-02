@@ -9,8 +9,16 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchMatchList } from "@/apis/matchApis";
 import dayjs from "dayjs";
 import futsalCourtData from "@/data/futsalCourts.json";
+import Dropdown from "@/components/molecules/dropdown/Dropdown";
 
 const MatchListTemplate = () => {
+  const [matchFilterData, setMatchFilterData] = useState<matchFilterDataType>({
+    date: "",
+    gender: 0,
+    playerNumber: 0,
+    level: "",
+  });
+
   // datepicker 관련 지정
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
 
@@ -28,10 +36,45 @@ const MatchListTemplate = () => {
     </button>
   ));
 
-  // 오늘 날짜 저장
-  const today = dayjs().format("YYYY-MM-DD");
-  // 날짜 형식 변경
-  const formatedDatedate = dayjs(selectedDate).format("YYYY-MM-DD");
+  // 성별
+  const GenderInfo = [
+    { value: 0, label: "All" },
+    { value: 1, label: "남성" },
+    { value: 2, label: "여성" },
+    { value: 3, label: "혼성" },
+  ];
+  const [genderLabel, setGenderLabel] = useState("성별");
+  const [genderValue, setGenderValue] = useState(0);
+
+  // 인원
+
+  const RuleInfo = [
+    { value: 0, label: "All" },
+    { value: 10, label: "5vs5" },
+    { value: 12, label: "6vs6" },
+  ];
+  const [ruleLabel, setRuleLabel] = useState("인원");
+  const [ruleValue, setRuleValue] = useState(0);
+
+  // 수준
+  const LevelInfo = [
+    { value: "", label: "All" },
+    { value: "L", label: "취미풋살" },
+    { value: "M", label: "선출포함" },
+    { value: "H", label: "프로풋살" },
+  ];
+  const [levelLabel, setLevelLabel] = useState("분류");
+  const [levelValue, setLevelValue] = useState("");
+
+  // 입력값을 data 형식에 할당
+  useEffect(() => {
+    setMatchFilterData({
+      date: dayjs(selectedDate).format("YYYY-MM-DD"),
+      gender: genderValue,
+      playerNumber: ruleValue,
+      level: levelValue,
+    });
+  }, [selectedDate, genderValue, ruleValue, levelValue]);
 
   // 라우팅 관련 함수
   const navigate = useNavigate();
@@ -42,21 +85,22 @@ const MatchListTemplate = () => {
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["fetchMatchList"],
     queryFn: async () => {
-      const response = await fetchMatchList(
-        dayjs(selectedDate).format("YYYY-MM-DD")
-      );
+      const response = await fetchMatchList(matchFilterData);
       return response;
     },
   });
 
   useEffect(() => {
     refetch();
-  }, [selectedDate]);
+  }, [matchFilterData]);
 
-  console.log(formatedDatedate);
-  console.log(data);
+  console.log(matchFilterData);
+  // 날짜 형식 변경
+  // const formatedDatedate = dayjs(selectedDate).format("YYYY-MM-DD");
+  // console.log(formatedDatedate);
+  // console.log(data);
   return (
-    <div>
+    <div className="flex-col">
       <Header
         label="매치 목록"
         headerButton={true}
@@ -64,6 +108,8 @@ const MatchListTemplate = () => {
         buttonLabel="매치등록"
         toWhere="/match/register"
       />
+
+      {/* 날짜 선택 */}
       <div id="glassui" className="flex items-center justify-between p-3 m-3">
         <div className="flex items-center ml-4">
           <p className="text-[1.2rem] text-sofcity font-medium">날짜 선택:</p>
@@ -78,7 +124,44 @@ const MatchListTemplate = () => {
           />
         </div>
       </div>
+      {/* 필터 */}
+      <div id="glassui" className="flex justify-center mx-3 ">
+        <div className="flex justify-center w-full ">
+          {/* 인원 */}
+          <div className="w-full -m-1 ">
+            <Dropdown
+              // MyTypographyLabel="인원"
+              items={RuleInfo}
+              position={ruleLabel}
+              setPosition={setRuleLabel}
+              setNumberValue={setRuleValue}
+            />
+          </div>
+          {/* 성별 */}
 
+          <div className="w-full -m-1">
+            <Dropdown
+              // MyTypographyLabel="성별"
+              items={GenderInfo}
+              position={genderLabel}
+              setPosition={setGenderLabel}
+              setNumberValue={setGenderValue}
+            />
+          </div>
+          {/* 수준 */}
+          <div className="w-full -m-1">
+            <Dropdown
+              // MyTypographyLabel="선출"
+              items={LevelInfo}
+              position={levelLabel}
+              setPosition={setLevelLabel}
+              setNumberValue={setLevelValue}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* 매치 카드 리스트 */}
       {data &&
         data.map((match: matchDetailPropsDataType) => {
           const courtData = futsalCourtData.find(

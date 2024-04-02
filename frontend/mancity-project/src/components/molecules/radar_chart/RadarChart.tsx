@@ -105,8 +105,19 @@ export const RadarChart = ({ profileData }: ProfilePropsType) => {
     },
   };
   return (
-    // @ts-ignore
-    <div>{profileData && <Radar data={data} options={chartOptions} />}</div>
+    <div
+      style={{
+        maxWidth: "425px",
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        margin: "0 auto",
+      }}
+    >
+      {/* @ts-ignore */}
+      {profileData && <Radar data={data} options={chartOptions} />}
+    </div>
   );
 };
 
