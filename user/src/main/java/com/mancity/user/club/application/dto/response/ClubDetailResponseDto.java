@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,9 +15,17 @@ public class ClubDetailResponseDto {
 
     private String name;
 
+    private Long masterId;
+
+    private String masterNickname;
+
+    private Long clubCourtId;
+
     private String emblem;
 
     private int memberCnt;
 
     private String region;
+
+    private List<ClubMemberListResponseDto> participant;
 }

@@ -19,7 +19,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("select u.nickName from User u where u.id = :id")
     String findNickNameById(long id);
 
-    @Query("select u.id, u.nickName, u.image, u.mainStat.goalDecision, u.mainStat.pass, u.mainStat.speed, u.mainStat.distanceCovered, u.mainStat.defense from User u where u.isPlayer = true")
+    @Query("select u.id, u.nickName, u.image, u.mainStat.goalDecision, u.mainStat.pass, u.mainStat.speed, u.mainStat.distanceCovered, u.mainStat.defense from User u where u.isPlayer = true order by u.id desc")
     List<Object[]> findAllPlayers();
 
     @Query("select u.id, u.nickName, u.image, u.mainStat.goalDecision, u.mainStat.pass, u.mainStat.speed, u.mainStat.distanceCovered, u.mainStat.defense from User u where u.isPlayer = true order by u.mainStat.goalDecision DESC")

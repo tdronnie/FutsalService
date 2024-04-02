@@ -11,6 +11,9 @@ public interface ClubRepository extends JpaRepository<Club, Long> {
     @Query("select c from Club c where c.region = :region")
     List<Club> findAllByRegion(String region);
 
+    @Query("select c from Club c order by c.id desc")
+    List<Club> findAllByIdDesc();
 
     Club findByName(String name);
+
 }
