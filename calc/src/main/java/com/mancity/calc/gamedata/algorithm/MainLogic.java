@@ -1,3 +1,20 @@
+/*
+플레이어 response 구조
+"playersA" : [
+        {
+            "nickname" : "guest",
+            "speed" : 35,
+            "distanceCovered" : 156,
+            "pass" : 33,
+            "shotsOnTarget" : 43,
+            "shot" : 12,
+            "goal" : 1,
+            "assist" : 2,
+            "turnOverInOffense" : 2, //턴오버
+            "turnOverInDefense" : 1 //수비
+        },
+ */
+
 package com.mancity.calc.gamedata.algorithm;
 
 import com.mancity.calc.gamedata.domain.Data;
@@ -26,6 +43,8 @@ public class MainLogic {
     private int 현재공소유팀 = 0; //0 -> x, 1 -> A, 2 -> B
     private int 이전공소유팀 = 0; //0 -> x, 1 -> A, 2 -> B
 
+    private int 이전패스자id = 0;
+
     private int 골감지최대프레임수 = 900; //30초 동안 골인지 확인
 
     private List<List<List<Integer>>> result = new ArrayList<>();
@@ -43,6 +62,12 @@ public class MainLogic {
 
 
         for (int frameN = 1; frameN < 프레임리스트.size(); frameN++) {
+
+            List<Player> teamA = 프레임리스트.get(frameN).getTeamA().getPlayers();
+            List<Player> teamB = 프레임리스트.get(frameN).getTeamB().getPlayers();
+            //프레임마다 모든 플레이어의 최대속도 갱신
+
+            //프레임마다 모든 플레이어의 활동량 업데이트
 
             //--------공 소유 여부 판별 시작 ------------
 
@@ -64,19 +89,22 @@ public class MainLogic {
 
             //3번째 프레임부터 공 소유 변경 가능
             if (frameN >= 3) {
-                //공 소유자 변경 경우!!!!
-                if (현재프레임공소유자id != 이전프레임공소유자id) {
+                if (현재프레임공소유자id != 이전프레임공소유자id) { //공 소유자 변경
 
-                    //같은 팀의 플레이어로 소유가 변경된 경우 패스
-                    if (이전공소유팀 == 현재공소유팀) {
+                    if (이전공소유팀 == 현재공소유팀) { //같은 팀의 플레이어로 소유가 변경
+                        //패스 받은 팀원이 골 넣을 경우 패스 준 사람 어시스트 업데이트 위한 이전패스자id 저장
+                        이전패스자id = 이전프레임공소유자id;
+                        
                         //현재 공 소유 플레이어 패스 +1
                         if (현재공소유팀 == 1) { //팀 A인 경우
                             plusStat(현재프레임공소유자id, 1, 3); //팀A, 패스
                         } else { //팀 B인 경우
                             plusStat(현재프레임공소유자id, 2, 3); //팀B, 패스
                         }
-                    } else if (현재공소유팀 != 0) {
-                        //다른 팀의 플레이어로 소유가 변경된 경우 이전공소유자id의 턴오버 = 현재 공 소유자id의 수비
+                        
+                    } else if (현재공소유팀 != 0) { //다른 팀의 플레이어로 소유가 변경
+                        이전패스자id = 0; //어시스트 패스 무효화
+                        //이전공소유자id의 턴오버 = 현재 공 소유자id의 수비
                         if (현재공소유팀 == 1) {
                             plusStat(현재프레임공소유자id, 1, 9);
                             minusStat(이전프레임공소유자id, 2, 8);
@@ -86,13 +114,13 @@ public class MainLogic {
                         }
                     } else { //무소유, 이전프렝림공소유자의 스탯 업데이트!!
                         if (!슛범위안에있니(이전공소유팀, currData)) continue;
-                        if (!골대에들어갔니(이전공소유팀, currData)) {
-                            //유효슛 업데이트
-                            plusStat(이전프레임공소유자id, 이전공소유팀, 4);
-                            continue;
+                        if (!골대에들어갔니(이전공소유팀, currData)) { //슛 범위에 들어갔지만 골은 아님
+                            plusStat(이전프레임공소유자id, 이전공소유팀, 4); //유효슛 업데이트
+                            plusStat(이전프레임공소유자id, 이전공소유팀, 5); //슛 업데이트
+                            continue; // 다음 프레임으로 넘어가기
                         }
 
-
+                        //골 판정
                         int 슛한것으로의심되는사람id = 이전프레임공소유자id;
                         int 슛한것으로의심되는사람의팀 = 이전공소유팀;
 
@@ -104,7 +132,8 @@ public class MainLogic {
                             plusStat(슛한것으로의심되는사람id, 슛한것으로의심되는사람의팀, 4); //유효슛
                             plusStat(슛한것으로의심되는사람id, 슛한것으로의심되는사람의팀, 5); //슛
                             plusStat(슛한것으로의심되는사람id, 슛한것으로의심되는사람의팀, 6); //골
-
+                            plusStat(이전패스자id, 슛한것으로의심되는사람의팀, 7); //이전 패스자 어시스트 업데이트
+                            이전패스자id = 0; //이전 패스자 초기화
                             // 프레임 양쪽 팀 갈라진 프레임으로 이동
                             frameN = val[1];
 
@@ -121,9 +150,13 @@ public class MainLogic {
 
     private int[] 골인지아닌지900프레임만큼계산(int frameN, Data frameData) {
 
-        int[] rslt = new int[3]; //
+        int[] rslt = new int[3];
+        
+        //골 장면 계산 시 900프레임 후가 프레임리스트를 벗어나는 경우 프레임리스트 끝까지만 탐색
+        int len = Math.min(frameN + 골감지최대프레임수, 프레임리스트.size());
 
-        for (int i = frameN; i <= frameN + 골감지최대프레임수; i++) {
+        for (int i = frameN; i < len; i++) {
+
             //경기 재개 프레임 찾기
             int minY = frameData.getField().getY1();
             int maxY = frameData.getField().getY2();
