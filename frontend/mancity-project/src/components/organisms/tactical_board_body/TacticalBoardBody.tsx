@@ -20,7 +20,7 @@ const TacticalBoardBody = () => {
       return response;
     },
   });
-  console.log(data);
+
   const { players, setPosition } = TacticalBoardStore();
   const location = useLocation();
 

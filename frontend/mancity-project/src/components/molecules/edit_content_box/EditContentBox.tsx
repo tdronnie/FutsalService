@@ -6,7 +6,7 @@ const EditContentBox = (props: TailwindPropsType) => {
   const isFile = file ? "" : "opacity-100";
   return (
     <div className="flex">
-      <div className=" relative group  cursor-pointer">
+      <div className=" relative group cursor-pointer">
         <div className="group-hover:opacity-60 object-cover">
           <ContentBox
             width={width}

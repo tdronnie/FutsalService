@@ -110,7 +110,7 @@ interface ShadcnDropdownPropsType {
 }
 
 interface DropdownPropsType extends ShadcnDropdownPropsType {
-  MyTypographyLabel: string;
+  MyTypographyLabel?: string;
 }
 
 interface HeaderPropsType {
