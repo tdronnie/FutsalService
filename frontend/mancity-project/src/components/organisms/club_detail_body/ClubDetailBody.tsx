@@ -70,7 +70,8 @@ const ClubDetailBody = () => {
         />
       </div>
       <div className="mt-7">
-        <MemberList label="멤버 라인업" />
+        {/* 클럽 내 참여자 입력 */}
+      <MemberList participants={matchDetailPropsData.participants} />
       </div>
       <div className="mt-7">
       <TypographyLine label="홈그라운드 풋살장" lineWidth="w-56" />
