@@ -139,6 +139,11 @@ public class UserService {
                     .speed((double) player[5])
                     .distanceCovered((double) player[6])
                     .defense((double) player[7])
+                    .overall((double) player[3] +
+                            (double) player[4] +
+                            (double) player[5] +
+                            (double) player[6] +
+                            (double) player[7])
                     .build());
         }
         return dtoList;
@@ -160,6 +165,11 @@ public class UserService {
                     .speed((double) player[5])
                     .distanceCovered((double) player[6])
                     .defense((double) player[7])
+                    .overall((double) player[3] +
+                            (double) player[4] +
+                            (double) player[5] +
+                            (double) player[6] +
+                            (double) player[7])
                     .build());
         }
         return dtoList;
