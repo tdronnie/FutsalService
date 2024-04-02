@@ -124,10 +124,10 @@ public class GameService {
         return userFeignClient.findById(id);
     }
 
-    public List<GameResponseDto> findAllByFilters(Integer gender, LocalDate startDate, Integer playerNumber, String level) {
+    public List<GameDetailResponseDto> findAllByFilters(Integer gender, LocalDate startDate, Integer playerNumber, String level) {
         return gameRepositorySupport.findAllByFilters(gender, startDate, playerNumber, level)
                 .stream()
-                .map(GameResponseDto::from)
+                .map(g-> GameDetailResponseDto.from(g, findByIdFromUserService(g.getManager()).getNickName()))
                 .toList();
     }
 
