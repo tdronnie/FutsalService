@@ -29,8 +29,14 @@ const MatchDetailBody = ({
   const { match_id } = useParams<{ match_id: string }>();
 
   // 경기 분석 제출했는지 코드 받기
-  const { isUpload, changeIsUpload, isStartUpload, changeIsStartUpload } =
-    useIsUploadStore();
+  const {
+    isUpload,
+    changeIsUpload,
+    isStartUpload,
+    changeIsStartUpload,
+    isCalc,
+    changeIsCalc,
+  } = useIsUploadStore();
 
   //// modal 관련 로직/////
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -92,6 +98,8 @@ const MatchDetailBody = ({
     mutationFn: videoUploadApi,
     onSuccess(result) {
       console.log(result);
+      changeIsUpload();
+      setIsReplay(true);
     },
     onError(error) {
       console.log(error);
@@ -103,6 +111,7 @@ const MatchDetailBody = ({
     mutationFn: calcRequestApi,
     onSuccess(result) {
       console.log(result);
+      changeIsCalc();
     },
     onError(error) {
       console.log(error);
@@ -122,28 +131,32 @@ const MatchDetailBody = ({
       })
     );
     videoUploadMutate(formData);
-    changeIsUpload();
+    changeIsStartUpload();
     setLayout(undefined);
     setOpenModal(false);
   };
-  // 업로드 된 영상이 있으면 다시복navigate 입력
-  const isReplay = matchDetailPropsData.replayUrl
-    ? { navigate: "navigate(`/replay/${match_id}`)" }
-    : { style: "opacity-50" };
 
+  // 업로드 된 영상이 있으면 다시보기 navigate 입력
+  const [isReplay, setIsReplay] = useState(false);
+
+  useEffect(() => {
+    setIsReplay(!!matchDetailPropsData.replayUrl);
+  }, [matchDetailPropsData]);
+
+  const handleReplayClick = () => {
+    if (isReplay) {
+      navigate(`/replay/${match_id}`);
+    }
+  };
+
+  //테스트 콘솔로그
+  // console.log("isStartUpload:", isStartUpload);
+  // console.log("isUpload:", isUpload);
+  // console.log("isCalc:", isCalc);
+  // console.log(matchDetailPropsData.replayUrl);
+  // console.log(isReplay);
   return (
     <div>
-
-
-
-
-
-
-
-
-
-
-      
       {!isOver && (
         <div className="flex justify-around mb-2">
           {matchDetailPropsData.calcOver ? (
@@ -162,28 +175,34 @@ const MatchDetailBody = ({
           ) : (
             // 모달을 띄워 이미지 업로드!
             <div className="w-full ml-3 mr-1">
-              {isStartUpload ? (
-                isUpload ? (
-                  // 업로드 완료, 분석 미완료
-                  <div
-                    onClick={() => {
-                      calcRequestMutate(Number(match_id));
-                      changeIsStartUpload();
-                    }}
-                  >
-                    <HalfCard
-                      maintext="경기분석하기"
-                      file="/src/assets/imgs/stick_chart.svg"
-                      rounded="rounded-none"
-                    />
-                  </div>
+              {isStartUpload || matchDetailPropsData.replayUrl ? (
+                isUpload || matchDetailPropsData.replayUrl ? (
+                  isCalc ? (
+                    <div className="cursor-none">
+                      <HalfCard
+                        maintext="영상 분석중..."
+                        file="/src/assets/imgs/stick_chart.svg"
+                      />
+                    </div>
+                  ) : (
+                    // 업로드 완료, 분석 미완료
+                    <div
+                      onClick={() => {
+                        calcRequestMutate(Number(match_id));
+                      }}
+                    >
+                      <HalfCard
+                        maintext="경기분석하기"
+                        file="/src/assets/imgs/stick_chart.svg"
+                      />
+                    </div>
+                  )
                 ) : (
                   // 업로드 진행중, 분석 미완료
-                  <div className="">
+                  <div className="cursor-none">
                     <HalfCard
                       maintext="영상 업로드중..."
                       file="/src/assets/imgs/stick_chart.svg"
-                      rounded="rounded-none"
                     />
                   </div>
                 )
@@ -256,29 +275,18 @@ const MatchDetailBody = ({
           </div>
 
           {/* replayUrl 의 유무에 따른 다시보기 버튼 활성화 */}
-          <div className={`w-full ml-1 mr-3 `}>
-            <div
-              onClick={() => {
-                isReplay.navigate;
-              }}
-              className={isReplay.style}
-            >
-              <HalfCard
-                maintext="경기다시보기"
-                file="/src/assets/imgs/replay.svg"
-                rounded="rounded-none"
-              />
-            </div>
+          <div
+            onClick={handleReplayClick}
+            className={`w-full ml-1 mr-3 ${isReplay ? "" : "opacity-50"}`}
+          >
+            <HalfCard
+              maintext="경기다시보기"
+              file="/src/assets/imgs/replay.svg"
+              rounded="rounded-none"
+            />
           </div>
         </div>
       )}
-
-
-
-
-
-
-
 
       {/* 멤버 라인업 */}
       <div>
