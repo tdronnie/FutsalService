@@ -1,11 +1,21 @@
+import { fetchClubDetailApi } from "@/apis/clubApis";
 import ContentBox from "@/components/atoms/content_box/ContentBox";
 import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import TypographyLine from "@/components/atoms/typography_line/TypographyLine";
 import MemberList from "@/components/molecules/member_list/MemberList";
 import MiniMap from "@/components/molecules/mini_map/MiniMap";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 const ClubDetailBody = () => {
+  const { club_id } = useParams<{ club_id: string }>();
   const address = "광주시 광산구 장덕동 82-3"
+
+  useEffect(() => {
+    if (club_id !== undefined) {
+      fetchClubDetailApi(club_id)
+    }
+  },[club_id])
 
   const onClickCopy = async (text: string) => {
     try {
@@ -71,7 +81,7 @@ const ClubDetailBody = () => {
       </div>
       <div className="mt-7">
         {/* 클럽 내 참여자 입력 */}
-      <MemberList participants={matchDetailPropsData.participants} />
+      {/* <MemberList participants={matchDetailPropsData.participants} /> */}
       </div>
       <div className="mt-7">
       <TypographyLine label="홈그라운드 풋살장" lineWidth="w-56" />
