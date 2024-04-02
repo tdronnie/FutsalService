@@ -115,6 +115,14 @@ public class GameService {
                 .collect(Collectors.toList());
     }
 
+    public List<GameManagerMatchResponseDto> findGamesByIdMatchManager(Long userId) {
+        return gameRepositorySupport.findGamesByParticipantUserId(userId)
+                .stream()
+                .filter(g -> g.getManager().equals(userId))
+                .map(GameManagerMatchResponseDto::from)
+                .collect(Collectors.toList());
+    }
+
     private Game findById(long id) {
         return gameRepository.findById(id)
                 .orElseThrow(NoSuchGameException::new);
