@@ -4,13 +4,14 @@ import ContentBox from "@/components/atoms/content_box/ContentBox";
 import FontawsomeIcon from "@/components/atoms/fontawsome_icon/FontawsomeIcon";
 import GlobalButton from "@/components/atoms/global_button/GlobalButton";
 import MyTypography from "@/components/atoms/my_typography/MyTypography";
+import useUserStore from "@/stores/userStore";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const ProfileUserInfo = ({ profileData }: ProfilePropsType) => {
   //로그인 된 유저 번호 임시로 입력
-  const userNo = 1;
+  const userId = useUserStore((state) => state.id);
 
   const navigate = useNavigate();
   const [followData, setFollowData] = useState<followDataType>({
@@ -24,11 +25,11 @@ const ProfileUserInfo = ({ profileData }: ProfilePropsType) => {
   useEffect(() => {
     setFollowData((prevData) => ({
       ...prevData,
-      senderId: userNo,
+      senderId: userId,
       receiverId: profileData.id,
     }));
     setStartQuery(true);
-  }, [userNo, profileData]);
+  }, [userId, profileData]);
 
   // 로그인 유저와 해당 프로필 유저가 팔로우중인지 여부 체크
   const { data } = useQuery({
@@ -122,10 +123,10 @@ const ProfileUserInfo = ({ profileData }: ProfilePropsType) => {
 
             <div className="ml-1">
               {/* 로그인 한 유저 id와 프로필의 유저 id가 같다면 */}
-              {userNo === profileData.id ? (
+              {userId === profileData.id ? (
                 <div
                   onClick={() => {
-                    navigate(`/profile/edit/${userNo}`);
+                    navigate(`/profile/edit/${userId}`);
                   }}
                 >
                   <GlobalButton

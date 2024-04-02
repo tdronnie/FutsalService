@@ -10,7 +10,6 @@ const ProfilePage = () => {
     queryKey: ["profile"],
     queryFn: () => fetchProfileApi(Number(user_id)),
   });
-
   return (
     !isLoading &&
     data && (
