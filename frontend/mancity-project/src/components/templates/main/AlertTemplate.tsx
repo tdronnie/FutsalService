@@ -58,9 +58,8 @@ const AlertTemplate = () => {
       <>
         <Header label="주요 알림" backArrow={true} headerButton={false} />
         {data.map((item: AlertItem, index: number) => (
-          <div>
+          <div key={index}>
             <AlertCard
-              key={index} // 고유한 key 제공
               maintext={item.title}
               subtext={item.content}
               minitext="2024년 03월 11일"
