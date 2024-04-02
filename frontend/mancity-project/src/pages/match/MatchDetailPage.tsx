@@ -12,7 +12,7 @@ const MatchDetailPage = () => {
       const response = await fetchMatchDetail(Number(match_id));
       return response;
     },
-    refetchInterval: 5000,
+    // refetchInterval: 5000,
   });
   return (
     <div>
