@@ -57,7 +57,7 @@ const ReplayBody = () => {
   return (
     <div>
       {/* 다시보기 영상 */}
-      <div id="glassui" className="m-4 p-4">
+      <div id="glassui" className="p-4 m-4">
         <video
           id="myVideo"
           controls
@@ -65,7 +65,7 @@ const ReplayBody = () => {
           loop
           playsInline
           ref={videoRef}
-          className="rounded-xl w-full h-full"
+          className="w-full h-full rounded-xl"
         >
           <source src={data?.replayUrl} type="video/mp4" />
         </video>
@@ -86,13 +86,13 @@ const ReplayBody = () => {
         </div>
         <div
           className="w-full ml-1 mr-4 cursor-pointer"
-          onClick={() => handleNavigate({ path: `/feedback/${match_id}` })}
+          onClick={() => handleNavigate({ path: `/score/${match_id}` })}
         >
           <HalfCard maintext="경기분석보기" file="/src/assets/imgs/goal.png" />
         </div>
       </div>
       <div id="glassui" className="m-4">
-        <div className=" py-4 text-sm">
+        <div className="py-4 text-sm ">
           <div>
             영상을 <b>일시정지</b> 하고 전술보드를 <b>클릭</b>하면
             <br />

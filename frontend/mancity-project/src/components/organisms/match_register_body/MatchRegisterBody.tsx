@@ -48,7 +48,7 @@ const MatchRegisterBody = () => {
     <button onClick={onClick} ref={ref}>
       <div className="flex justify-end">
         <div className="w-[85vw] max-w-[510px]">
-          <div className=" mb-1">
+          <div className="mb-1 ">
             <span>{value}</span>
           </div>
         </div>
@@ -86,7 +86,7 @@ const MatchRegisterBody = () => {
     { value: "M", label: "선출포함" },
     { value: "H", label: "프로풋살" },
   ];
-  const [levelLabel, setLevelLabel] = useState("선출");
+  const [levelLabel, setLevelLabel] = useState("분류");
   const [levelValue, setLevelValue] = useState("");
 
   // 경기장
@@ -203,14 +203,14 @@ const MatchRegisterBody = () => {
 {/* 수준 */}
       <div>
         <Dropdown
-          MyTypographyLabel="선출"
+          MyTypographyLabel="분류"
           items={LevelInfo}
           position={levelLabel}
           setPosition={setLevelLabel}
           setNumberValue={setLevelValue}
         />
       </div>
-      <div className="flex justify-end mt-10 mx-4" onClick={onSubmitMatchMake}>
+      <div className="flex justify-end mx-4 mt-10" onClick={onSubmitMatchMake}>
         <ReverseButton
           width="w-1/2"
           label="매치 등록하기"

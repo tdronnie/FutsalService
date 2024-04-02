@@ -92,9 +92,7 @@ const ClubBody = () => {
         {selectedTab && (
           <div>
             <div className="flex items-center">
-              <div
-                className="mx-2"
-              >
+              <div className="mx-2">
                 <SortButton label="검색" width="w-16" hover={false} />
               </div>
               {/* 써치바 들어가는 자리 */}
@@ -112,14 +110,19 @@ const ClubBody = () => {
             {clubs &&
               filteredClubs.length > 0 &&
               filteredClubs.map((club) => (
-                <WideCard
+                <div
                   key={club.id}
-                  file={club.emblem}
-                  subtext={club.region}
-                  maintext={club.name}
-                  minitext={`총 인원 수: ${club.memberCnt}`}
-                  buttonlabel="가입신청"
-                />
+                  className="cursor-pointer"
+                  onClick={() => navigate(`/club/${club.id}`)}
+                >
+                  <WideCard
+                    file={club.emblem}
+                    subtext={`${club.region}지역`}
+                    maintext={club.name}
+                    minitext={`클럽원 수: ${club.memberCnt}`}
+                    buttonlabel="자세히보기"
+                  />
+                </div>
               ))}
           </div>
         )}

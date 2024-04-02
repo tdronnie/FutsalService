@@ -4,18 +4,38 @@ import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import TypographyLine from "@/components/atoms/typography_line/TypographyLine";
 import MemberList from "@/components/molecules/member_list/MemberList";
 import MiniMap from "@/components/molecules/mini_map/MiniMap";
-import { useEffect } from "react";
+import futsalCourtData from "@/data/futsalCourts.json";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const ClubDetailBody = () => {
   const { club_id } = useParams<{ club_id: string }>();
-  const address = "광주시 광산구 장덕동 82-3"
+
+  // 호출 값 관리 상태
+  const [clubDetails, setClubDetails] = useState({
+    name: "",
+    masterId: 0,
+    masterNickname: "",
+    clubCourtId: 0,
+    emblem: "",
+    memberCnt: 0,
+    region: "",
+    participant: [],
+  });
+
+  // id값으로 받은 경기장 값을 경기장 json에서 찾기
+  const courtData = futsalCourtData.find((court) => court.id === clubDetails.clubCourtId);
+  const address = courtData?.address || "주소 정보가 없습니다";
 
   useEffect(() => {
     if (club_id !== undefined) {
       fetchClubDetailApi(club_id)
+        .then((data) => {
+          setClubDetails(data);
+        })
+        .catch((error) => console.error(error));
     }
-  },[club_id])
+  }, [club_id]);
 
   const onClickCopy = async (text: string) => {
     try {
@@ -27,25 +47,25 @@ const ClubDetailBody = () => {
   };
   return (
     <>
-      <div className="flex justify-between m-2">
+      <div id="glassui" className="flex justify-between p-3 m-2">
         <div>
           <div>
             <MyTypography
-              label="경기도 지역"
+              label={`${clubDetails.region}지역`}
               fontWeight="font-medium"
               textSize="text-base"
             />
           </div>
           <div>
             <MyTypography
-              label="아르마딜로FC"
+              label={clubDetails.name}
               fontWeight="font-semibold"
               textSize="text-[1.6rem]"
             />
           </div>
           <div>
             <MyTypography
-              label="클럽 인원 36명/40명"
+              label={`총 클럽원 인원: ${clubDetails.memberCnt}명`}
               fontWeight="font-medium"
               textSize="text-base"
               textColor="text-gray-500"
@@ -63,7 +83,7 @@ const ClubDetailBody = () => {
           </div>
           <div className="text-end">
             <MyTypography
-              label="축구짱준성"
+              label={clubDetails.masterNickname}
               fontWeight="font-medium"
               textSize="text-sm"
               textColor="text-gray-500"
@@ -81,10 +101,12 @@ const ClubDetailBody = () => {
       </div>
       <div className="mt-7">
         {/* 클럽 내 참여자 입력 */}
-      {/* <MemberList participants={matchDetailPropsData.participants} /> */}
+        <MemberList participants={clubDetails.participant} />
       </div>
-      <div className="mt-7">
-      <TypographyLine label="홈그라운드 풋살장" lineWidth="w-56" />
+
+      <div id="glassui" className="pt-4 pb-1 m-3 ">
+      <div>
+        <TypographyLine label="홈그라운드 풋살장" lineWidth="w-56" />
       </div>
       <div>
         <MiniMap
@@ -94,6 +116,7 @@ const ClubDetailBody = () => {
           tel="062-951-9876"
           onClick={() => onClickCopy(address)}
         />
+      </div>
       </div>
     </>
   );
