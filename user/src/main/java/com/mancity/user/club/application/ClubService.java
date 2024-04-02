@@ -1,5 +1,6 @@
 package com.mancity.user.club.application;
 
+import com.mancity.user.club.application.dto.request.DuplicateNameCheckRequestDto;
 import com.mancity.user.clubmember.domain.ClubMember;
 import com.mancity.user.club.application.dto.request.ClubEmblemUploadDto;
 import com.mancity.user.club.application.dto.request.CreateRequestDto;
@@ -32,21 +33,29 @@ public class ClubService {
     private final S3Uploader s3Uploader;
 
     public void create(MultipartFile file, CreateRequestDto dto) {
-        Club club = dto.toEntity();
+//        Club club = dto.toEntity();
         //클럽장 클럽멤버에 포함
         User user = userRepository.findById(dto.getId()).orElseThrow(UserNotExistException::new);
-        ClubMember masterMember = ClubMember.builder()
+        Club Dupclub = clubRepository.findByName(dto.getName());
+        if (Dupclub != null) {
+            throw new DuplicateNameCheckRequestDto();
+        }
+        else{
+            Club club = dto.toEntity();
+            ClubMember masterMember = ClubMember.builder()
                 .club(club)
                 .user(user)
                 .build();
 
-        club.addMasterInClubMember(masterMember);
+            club.addMasterInClubMember(masterMember);
 
-        if (file != null) {
-            String url = s3Uploader.uploadEmblem("emblem", file);
-            club.uploadEmblem(url);
+            if (file != null) {
+                String url = s3Uploader.uploadEmblem("emblem", file);
+                club.uploadEmblem(url);
+            }
+            clubRepository.save(club);
+
         }
-        clubRepository.save(club);
     }
 
     public void uploadEmblem(MultipartFile file, ClubEmblemUploadDto dto) {

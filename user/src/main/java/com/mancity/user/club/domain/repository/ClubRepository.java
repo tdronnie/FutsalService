@@ -10,4 +10,7 @@ public interface ClubRepository extends JpaRepository<Club, Long> {
 
     @Query("select c from Club c where c.region = :region")
     List<Club> findAllByRegion(String region);
+
+
+    Club findByName(String name);
 }

@@ -14,6 +14,8 @@ public class ClubResponseDto {
 
     private Long id;
 
+    private Long clubCourtId;
+
     private String name;
 
     private String emblem;
@@ -27,6 +29,7 @@ public class ClubResponseDto {
     public static ClubResponseDto from(Club club) {
         return ClubResponseDto.builder()
                 .name(club.getName())
+                .clubCourtId(club.getClubCourtId())
                 .emblem(club.getEmblem())
                 .memberCnt(club.getMemberCnt())
                 .region(club.getRegion())
