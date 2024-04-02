@@ -88,8 +88,8 @@ public class GameController {
         return new ResponseEntity<>(gameService.findGamesByParticipantUserId(id), HttpStatus.OK);
     }
 
-    @GetMapping("/participated/{id}") // 회원별 참여 상태인 매치 목록
-    @Operation(summary = "회원별 참여 상태인 매치 목록", description = "유저 ID로 참가한 매치 목록")
+    @GetMapping("/manager/{id}") // 회원별 참여 상태인 매치 목록
+    @Operation(summary = "해당 매니저의 게임 목록 조회", description = "유저 ID가 manager인 매치 목록 조회")
     ResponseEntity<List<GameManagerMatchResponseDto>> findGamesByIdMatchManager(@PathVariable long id) {
         return new ResponseEntity<>(gameService.findGamesByIdMatchManager(id), HttpStatus.OK);
     }
