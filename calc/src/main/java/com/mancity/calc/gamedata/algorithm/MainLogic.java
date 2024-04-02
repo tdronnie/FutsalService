@@ -12,11 +12,13 @@ public class MainLogic {
 
     List<Data> 프레임리스트;
 
-    private double 이전프레임공x좌표 = 0;
-    private double 이전프레임공y좌표 = 0;
+    private int 이전프레임공x좌표 = 0;
+    private int 이전프레임공y좌표 = 0;
 
+    private int 현재프레임공x좌표 = 0;
+    private int 현재프레임공y좌표 = 0;
     private double 공소유유효한최대공속도 = 0;
-    private double 공소유유효한최대거리 = 0;
+    private int 공소유유효한최대거리 = 0;
 
     private int 현재프레임공소유자id = 0;
     private int 이전프레임공소유자id = 0;
@@ -45,8 +47,8 @@ public class MainLogic {
             //--------공 소유 여부 판별 시작 ------------
 
             Data currData = 프레임리스트.get(frameN);
-            double 현재프레임공x좌표 = currData.getBall().getX();
-            double 현재프레임공y좌표 = currData.getBall().getY();
+            현재프레임공x좌표 = currData.getBall().getX();
+            현재프레임공y좌표 = currData.getBall().getY();
 
             double 현재공속도 = 거리구하기(이전프레임공x좌표, 이전프레임공y좌표, 현재프레임공x좌표, 현재프레임공y좌표) / (1 / 30);
 
@@ -83,8 +85,12 @@ public class MainLogic {
                             minusStat(이전프레임공소유자id, 1, 8);
                         }
                     } else { //무소유, 이전프렝림공소유자의 스탯 업데이트!!
-                        if (!슛범위안에있니()) continue;
-                        if (!골대에들어갔니()) continue;
+                        if (!슛범위안에있니(이전공소유팀, currData)) continue;
+                        if (!골대에들어갔니(이전공소유팀, currData)) {
+                            //유효슛 업데이트
+                            plusStat(이전프레임공소유자id, 이전공소유팀, 4);
+                            continue;
+                        }
 
 
                         int 슛한것으로의심되는사람id = 이전프레임공소유자id;
@@ -92,7 +98,7 @@ public class MainLogic {
 
                         //900프레임 동안 팀A의 플레이어 모두 왼쪽 팀B의 플레이어 모두 오른쪽에 위치하고, 공이 가운데 바운더리에 위치하는 경우 골로 산정
                         //900프레임 돌면서 경기가 재개되는 프레임 먼저 찾아놓은 후 이후에 만약에 골임이 판정되면  그 다음 프레임부터 스탯 업데이트, 만약 900프레임까지 골이 아니라고 하면 이전에 찾아놓았던 재개 프레임부터 스탯 업데이트 진행
-                        int[] val = 골인지아닌지900프레임만큼계산(frameN); //val[0] -> 공 여부(0, 1), val[1] -> 골 이후 경기 재개 프레임, val[2] -> 공이 다시 필드로 들어오는 프레임
+                        int[] val = 골인지아닌지900프레임만큼계산(frameN, currData); //val[0] -> 공 여부(0, 1), val[1] -> 공이 다시 필드로 들어오는 프레임, val[2] -> 골 이후 중앙부터 경기 재개 프레임
                         if (val[1] == 1) { //골인 경우
                             //개인 득점 업데이트
                             plusStat(슛한것으로의심되는사람id, 슛한것으로의심되는사람의팀, 4); //유효슛
@@ -109,32 +115,121 @@ public class MainLogic {
                     }
 
                 }
-
-
             }
         }
     }
 
-    private int[] 골인지아닌지900프레임만큼계산(int frameN) {
+    private int[] 골인지아닌지900프레임만큼계산(int frameN, Data frameData) {
+
+        int[] rslt = new int[3]; //
 
         for (int i = frameN; i <= frameN + 골감지최대프레임수; i++) {
             //경기 재개 프레임 찾기
-
+            int minY = frameData.getField().getY1();
+            int maxY = frameData.getField().getY2();
+            int minX = frameData.getField().getX1();
+            int maxX = frameData.getField().getX2();
+            int ballX = frameData.getBall().getX();
+            int ballY = frameData.getBall().getY();
+            //공이 필드 내로 들어온 경우
+            if (minY <= ballY && ballY <= maxY && minX >= ballX && ballX <= maxX) {
+                rslt[1] = i;
+            }
             //양쪽 팀 위치하고 공 가운데에 있는 경우 골로 판정, 그 때 프레임 저장.. 골 이후 경기재개 및 스탯 업데이트 시작 위해서
+            else if (경기재시작여부체크(frameData)) {
+                rslt[2] = i; //경기재개 프레임 저장
+                return rslt; //골 이후부터 재개하도록 리턴
+            }
+        }
+        return rslt;
+
+    }
+
+    private boolean 경기재시작여부체크(Data frameData) {
+
+        int minY = frameData.getField().getY1();
+        int maxY = frameData.getField().getY2();
+        int minX = frameData.getField().getX1();
+        int maxX = frameData.getField().getX2();
+        int midX = (minX + maxX) / 2;
+        int midY = (minY + maxY) / 2;
+        int ballX = frameData.getBall().getX();
+        int ballY = frameData.getBall().getY();
+
+        List<Player> teamA = frameData.getTeamA().getPlayers();
+
+        //팀 A가 모두 필드 중앙 기준 왼쪽에 위치하지 않는 플레이어 한명이라도 있다면 false
+        for (Player p : teamA) {
+            if (minX > p.getX() || p.getX() > midX + 100 || minY > p.getY() || p.getY() > maxY) return false;
 
         }
-
-        return new int[]{1, 2, 3};
-
+        //팀 A가 모두 필드 중앙 기준 왼쪽에 위치하지 않는 플레이어 한명이라도 있다면 false
+        List<Player> teamB = frameData.getTeamB().getPlayers();
+        for (Player p : teamB) {
+            if (midX - 100 > p.getX() || p.getX() > maxX || minY > p.getY() || p.getY() > maxY) return false;
+        }
+        //공이 중앙에 있는지
+        if (midX - 50 > ballX || midX + 50 < ballX || midY - 50 > ballY || midY + 50 < ballY) return false;
+        return true;
     }
 
-    private boolean 슛범위안에있니() {
+    private boolean 슛범위안에있니(int 팀, Data frameData) {
+        //팀 A인 경우 오른쪽 골대의 슛범위인지
+        int r = (frameData.getField().getY2() - frameData.getField().getY1()) / 2;
+        if (팀 == 1) {
+            //오른쪽 슛범위 판별
+            //goalpost 중앙 좌표
+            int postRX = frameData.getField().getX2();
+            int postRY = frameData.getField().getY2() - frameData.getField().getY1();
 
-        return false;
+            //반원만 고려, 현재 공의 x좌표가 골대 중심의 x좌표보다 작은 경우만
+            if (현재프레임공x좌표 > postRX) return false;
+
+            double 골대R중앙부터거리 = 거리구하기(현재프레임공x좌표, 현재프레임공y좌표, postRX, postRY);
+
+            if (!isInCircle(골대R중앙부터거리, r)) return false;
+
+        }
+        //팀 B인 경우 왼쪽 골대의 슛범위인지
+        else if (팀 == 2) {
+            //왼쪽 슛범위 판별
+            int postLX = frameData.getField().getX1();
+            int postLY = frameData.getField().getY2() - frameData.getField().getY1();
+
+            //반원만 고려, 현재 공의 x좌표가 골대 중심의 x좌표보다 큰 경우만
+            if (현재프레임공x좌표 < postLX) return false;
+
+            double 골대L중앙부터거리 = 거리구하기(현재프레임공x좌표, 현재프레임공y좌표, postLX, postLY);
+
+            if (!isInCircle(골대L중앙부터거리, r)) return false;
+        }
+        return true;
     }
 
-    private boolean 골대에들어갔니() {
-        return false;
+    private boolean 골대에들어갔니(int 팀, Data frameData) {
+
+        int ballX = frameData.getBall().getX();
+        int ballY = frameData.getBall().getY();
+        int GoalPostBMinX = frameData.getTeamB_goalPost().getX1();
+        int GoalPostBMaxX = frameData.getTeamB_goalPost().getX2();
+        int GoalPostBMinY = frameData.getTeamB_goalPost().getY1();
+        int GoalPostBMaxY = frameData.getTeamB_goalPost().getY2();
+        if (팀 == 1) {
+            if (GoalPostBMinX > ballX || ballX > GoalPostBMaxX || GoalPostBMinY > ballY || ballY > GoalPostBMaxY)
+                return false;
+            return true;
+        }
+
+        int GoalPostAMinX = frameData.getTeamA_goalPost().getX1();
+        int GoalPostAMaxX = frameData.getTeamA_goalPost().getX2();
+        int GoalPostAMinY = frameData.getTeamA_goalPost().getY1();
+        int GoalPostAMaxY = frameData.getTeamA_goalPost().getY2();
+
+        if (팀 == 2) {
+            if(GoalPostAMinX > ballX || ballX > GoalPostAMaxX || GoalPostAMinY > ballY || ballY > GoalPostAMaxY)
+                return false;
+        }
+        return true;
     }
 
     private boolean 반경에플레이어가있는지체크및가장가까운플레이어를소유자로지정(double 현재프레임공x좌표, double 현재프레임공y좌표, TeamA teamA, TeamB teamB) {
@@ -164,7 +259,7 @@ public class MainLogic {
     private boolean 원반경안에있으면서공과가장가까운선수(double minDis, double dis, Player player, int team) {
         //원 반경 안에 있으면서 minDis보다 작은 경우
         //원의 공식
-        if (isInCircle(dis) && minDis > dis) {
+        if (isInCircle(dis, 공소유유효한최대거리) && minDis > dis) {
             minDis = dis;
             이전프레임공소유자id = 현재프레임공소유자id; //이전공소유자 업데이트
             현재프레임공소유자id = player.getPlayerId(); //현재 공소유자 업데이트
@@ -176,13 +271,12 @@ public class MainLogic {
         return false;
     }
 
-    private boolean isInCircle(double dis) {
-        return dis - 공소유유효한최대거리 <= 0;
+    private boolean isInCircle(double dis, int r) {
+        return dis - r <= 0;
     }
 
-    public double 거리구하기(double 이전프레임공x좌표, double 이전프레임공y좌표, double 현재프레임공x좌표, double 현재프레임공y좌표) {
-        //거리/시간
-        return Math.sqrt(Math.pow(현재프레임공x좌표 - 이전프레임공x좌표, 2) + Math.pow(현재프레임공y좌표 - 이전프레임공y좌표, 2));
+    public double 거리구하기(double x1, double y1, double x2, double y2) {
+        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
     }
 
 
