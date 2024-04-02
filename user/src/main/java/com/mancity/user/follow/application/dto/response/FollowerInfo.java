@@ -25,8 +25,7 @@ public class FollowerInfo {
         return FollowerInfo.builder()
                 .userId(user.getId())
                 .nickname(user.getNickName())
-//                .profileImage(user.profileImage())
-                .profileImage("이세은님이 추가하실겁니다.")
+                .profileImage(user.getImage())                
                 .overall(user.getMainStat().getOverall())
                 .build();
     }
