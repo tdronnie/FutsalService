@@ -1,6 +1,7 @@
 package com.mancity.user.club.application;
 
 import com.mancity.user.club.application.dto.request.DuplicateNameCheckRequestDto;
+import com.mancity.user.club.application.dto.response.ClubMemberListResponseDto;
 import com.mancity.user.club.application.dto.response.CreateResponseDto;
 import com.mancity.user.clubmember.domain.ClubMember;
 import com.mancity.user.club.application.dto.request.ClubEmblemUploadDto;
@@ -70,11 +71,27 @@ public class ClubService {
 
     public ClubDetailResponseDto clubDetail(Long id) {
         Club club = clubRepository.findById(id).orElseThrow(NoSuchClubException::new);
+        User master = userRepository.findById(club.getMasterId()).orElseThrow(UserNotExistException::new);
+
+        List<ClubMemberListResponseDto> cms = new ArrayList<>();
+        for (ClubMember cm : club.getClubMembers()) {
+
+            cms.add(ClubMemberListResponseDto.builder()
+                    .id(cm.getId())
+                    .userId(cm.getUser().getId())
+                    .image(cm.getUser().getImage())
+                    .build());
+        }
+
+
         return ClubDetailResponseDto.builder()
                 .name(club.getName())
+                .masterId(master.getId())
+                .masterNickname(master.getNickName())
                 .emblem(club.getEmblem())
                 .memberCnt(club.getMemberCnt())
                 .region(club.getRegion())
+                .participant(cms)
                 .build();
     }
 
