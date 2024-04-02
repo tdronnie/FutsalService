@@ -144,6 +144,8 @@ public class UserService {
                             (double) player[5] +
                             (double) player[6] +
                             (double) player[7])
+                    .height((int) player[8])
+                    .weight((int) player[9])
                     .build());
         }
         return dtoList;
@@ -170,6 +172,8 @@ public class UserService {
                             (double) player[5] +
                             (double) player[6] +
                             (double) player[7])
+                    .height((int) player[8])
+                    .weight((int) player[9])
                     .build());
         }
         return dtoList;
