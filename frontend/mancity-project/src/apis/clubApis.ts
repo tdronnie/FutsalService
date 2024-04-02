@@ -14,6 +14,19 @@ export const fetchClubsApi = async () => {
   }
 };
 
+// 클럽상세
+export const fetchClubDetailApi = async (clubId: string) => {
+  try {
+    const response = await publicRequest.get(`user/club/${clubId}`);
+    // 테스트콘솔
+    console.log('클럽 상세:',response.data)
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw new Error("클럽 상세 정보 api 에러");
+  }
+};
+
 // 용병리스트
 export const fetchplayersApi = async () => {
   try {
