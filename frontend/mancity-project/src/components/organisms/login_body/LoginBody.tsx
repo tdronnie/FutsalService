@@ -33,16 +33,21 @@ import { getToken } from "firebase/messaging";
 // `messaging` 인스턴스 생성 코드 추가
 import { getMessaging } from "firebase/messaging";
 
-function registerServiceWorker() {
+const registerServiceWorker = () => {
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-      navigator.serviceWorker.register('/firebase-messaging-sw.js').then(registration => {
-      }, err => {
-        console.log('Service Worker 등록 실패:', err);
-      });
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/firebase-messaging-sw.js')
+        .then(registration => {
+          // 테스트콘솔
+          console.log(registration);
+        })
+        .catch(err => {
+          console.log('Service Worker 등록 실패:', err);
+        });
     });
   }
-}
+};
+
 
 const LoginBody = () => {
   // useUserStore의 setUser 함수 사용
