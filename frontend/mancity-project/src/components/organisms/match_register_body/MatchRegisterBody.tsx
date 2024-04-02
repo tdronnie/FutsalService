@@ -200,7 +200,7 @@ const MatchRegisterBody = () => {
           setNumberValue={setGenderValue}
         />
       </div>
-
+{/* 수준 */}
       <div>
         <Dropdown
           MyTypographyLabel="선출"
