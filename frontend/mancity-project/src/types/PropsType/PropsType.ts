@@ -26,6 +26,7 @@ interface TailwindPropsType {
   file?: string;
   hover?: boolean;
 
+  hidden?: string;
   reverse?: boolean;
 }
 
