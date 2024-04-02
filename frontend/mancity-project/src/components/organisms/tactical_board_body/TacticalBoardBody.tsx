@@ -86,16 +86,16 @@ const TacticalBoardBody = () => {
       {location.pathname === "/tactical_board" && (
         <div className="flex justify-center ">
           <div className="flex  max-w-[360px] justify-around pt-2 pb-2 ">
-            <div className="-ml-2 border-[3.1px]  border-white text-white font-extralight rounded-lg p-[0.1rem]">
-              전술보드로 전략을 기획 해보세요!
+            <div className="-ml-2 border-[3.1px]  border-white text-white font-extralight rounded-lg px-[0.5rem] py-[0.1rem]">
+              멋진 전략으로 승리를 쟁취하세요!
             </div>
             <div
-              className="-mr-2 ml-3 border-[3.1px] border-white text-white font-extralight rounded-lg p-[0.1rem] cursor-pointer"
+              className="-mr-2 ml-3 border-[3.1px] border-white text-white font-extralight rounded-lg px-[0.5rem] py-[0.1rem] cursor-pointer"
               onClick={() => {
                 setOpenModal(true);
               }}
             >
-              경기 다시보기
+              지난 경기
             </div>
           </div>
         </div>

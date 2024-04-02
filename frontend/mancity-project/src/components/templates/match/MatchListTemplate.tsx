@@ -151,7 +151,7 @@ const MatchListTemplate = () => {
           {/* 수준 */}
           <div className="w-full -m-1">
             <Dropdown
-              // MyTypographyLabel="선출"
+              // MyTypographyLabel="분류"
               items={LevelInfo}
               position={levelLabel}
               setPosition={setLevelLabel}
