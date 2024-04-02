@@ -41,7 +41,7 @@ const ReplayModal = ({
       >
         <ModalDialog layout={layout} sx={modalStyle}>
           <ModalClose />
-          <DialogTitle>지난 경기 다시보기</DialogTitle>
+          <DialogTitle>지난 경기</DialogTitle>
           <List
             sx={{
               overflow: "scroll",
