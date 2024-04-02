@@ -7,14 +7,14 @@ const MemberList = (props: MemberListPropsType) => {
   const navigate = useNavigate();
   const { participants } = props;
   return (
-    <div id="glassui" className="m-3 p-4">
+    <div id="glassui" className="p-4 m-3">
       <div className="mx-2">
-        <div className="mb">
+        <div>
           <MyTypography label="멤버 라인업" textSize="text-lg" />
         </div>
         <hr className="border-sofcity border-[0.05rem] my-1 mb-3" />
       </div>
-      <div className="flex  m-2">
+      <div className="flex m-2">
         <div className="mr-2">
           {participants.map((participant) => (
             <div

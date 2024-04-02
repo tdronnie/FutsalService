@@ -9,6 +9,16 @@ interface signupApiType {
   weight: number;
 }
 
+// interface createClubApiType {
+//   emblem: string | File;
+//   dto: {
+//     id: number;
+//     name: string;
+//     region: string;
+//     clubCourtId: number;
+//   };
+// }
+
 interface loginApiType {
   email: string;
   password: string;
