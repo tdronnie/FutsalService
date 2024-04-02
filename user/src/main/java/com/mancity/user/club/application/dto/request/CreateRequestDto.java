@@ -15,6 +15,8 @@ public class CreateRequestDto {
     //클럽 생성 사용자 id
     private Long id;
 
+    private Long clubCourtId;
+
     private String name;
 
     private String region;
@@ -22,6 +24,7 @@ public class CreateRequestDto {
     public Club toEntity() {
         return Club.builder()
                 .name(name)
+                .clubCourtId(clubCourtId)
                 .masterId(id)
                 .memberCnt(1)
                 .score(0)

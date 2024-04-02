@@ -33,6 +33,9 @@ public class Club {
     //클럽장 아이디
     private Long masterId;
 
+    //클럽 홈그라운드 구장 아이디
+    private Long clubCourtId;
+
     //엠블럼
     private String emblem;
 
