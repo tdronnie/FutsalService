@@ -108,10 +108,10 @@ const LoginBody = () => {
     mutationFn: loginApi,
     onSuccess: async (userId) => {
       try {
-        sendFcmTokenMutation({ id: userId, fcmToken: fcmToken });
         const userData = await fetchUserApi(userId);
         if (userData) {
           setUser(userData);
+          sendFcmTokenMutation({ id: userId, fcmToken: fcmToken });
           navigate("/");
         }
       } catch (error) {
