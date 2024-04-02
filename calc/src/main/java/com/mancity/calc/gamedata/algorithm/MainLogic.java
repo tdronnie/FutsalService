@@ -17,8 +17,11 @@
 
 package com.mancity.calc.gamedata.algorithm;
 
+import com.mancity.calc.gamedata.application.dto.request.GamedataRequestDto;
+import com.mancity.calc.gamedata.application.dto.response.GamedataResponseDto;
 import com.mancity.calc.gamedata.domain.Data;
 import com.mancity.calc.gamedata.domain.Player;
+import com.mancity.calc.gamedata.domain.PlayerStat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,11 +48,18 @@ public class MainLogic {
 
     private int 골감지최대프레임수 = 900; //30초 동안 골인지 확인
 
-    private List<List<List<Integer>>> result = new ArrayList<>();
+    //    private List<List<List<Integer>>> result = new ArrayList<>();
+    private GamedataResponseDto result;
 
-
-    public void getData(List<Data> frames) {
-        this.프레임리스트 = frames;
+    public void getDto(GamedataRequestDto dto) {
+        this.프레임리스트 = dto.getData();
+        result = GamedataResponseDto.builder()
+                .gameId(dto.getGame_id())
+                .teamA(new ArrayList<>())
+                .teamB(new ArrayList<>())
+                .teamA_players(new ArrayList<>())
+                .teamB_players(new ArrayList<>())
+                .build();
         start(); //분석 시작
     }
 
@@ -92,14 +102,14 @@ public class MainLogic {
                     if (이전공소유팀 == 현재공소유팀) { //같은 팀의 플레이어로 소유가 변경
                         //패스 받은 팀원이 골 넣을 경우 패스 준 사람 어시스트 업데이트 위한 이전패스자id 저장
                         이전패스자id = 이전프레임공소유자id;
-                        
+
                         //현재 공 소유 플레이어 패스 +1
                         if (현재공소유팀 == 1) { //팀 A인 경우
                             plusStat(현재프레임공소유자id, 1, 3); //팀A, 패스
                         } else { //팀 B인 경우
                             plusStat(현재프레임공소유자id, 2, 3); //팀B, 패스
                         }
-                        
+
                     } else if (현재공소유팀 != 0) { //다른 팀의 플레이어로 소유가 변경
                         이전패스자id = 0; //어시스트 패스 무효화
                         //이전공소유자id의 턴오버 = 현재 공 소유자id의 수비
@@ -149,7 +159,7 @@ public class MainLogic {
     private int[] 골인지아닌지900프레임만큼계산(int frameN, Data frameData) {
 
         int[] rslt = new int[3];
-        
+
         //골 장면 계산 시 900프레임 후가 프레임리스트를 벗어나는 경우 프레임리스트 끝까지만 탐색
         int len = Math.min(frameN + 골감지최대프레임수, 프레임리스트.size());
 
@@ -257,7 +267,7 @@ public class MainLogic {
         int GoalPostAMaxY = frameData.getTeam_A_goal_post().getY2();
 
         if (팀 == 2) {
-            if(GoalPostAMinX > ballX || ballX > GoalPostAMaxX || GoalPostAMinY > ballY || ballY > GoalPostAMaxY)
+            if (GoalPostAMinX > ballX || ballX > GoalPostAMaxX || GoalPostAMinY > ballY || ballY > GoalPostAMaxY)
                 return false;
         }
         return true;
@@ -313,9 +323,14 @@ public class MainLogic {
 
     private void minusStat(int playerId, int team, int statIdx) {
         if (team == 1) {
-            List<Integer> playerStat = result.get(3).get(playerId - 1);
-            int stat = playerStat.get(statIdx);
-            playerStat.set(statIdx, stat - 1);
+//            List<Integer> playerStat = result.get(3).get(playerId - 1);
+            PlayerStat playerStat = result.getTeamA_players().get(playerId - 1);
+            switch (statIdx) {
+                case 3 :
+                    int stat = playerStat.getPass();
+                    playerStat. stat - 1);
+                    break;
+            }
         } else {
             List<Integer> playerStat = result.get(4).get(playerId - 1);
             int stat = playerStat.get(statIdx);

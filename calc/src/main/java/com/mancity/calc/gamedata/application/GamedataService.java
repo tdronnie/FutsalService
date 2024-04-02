@@ -23,7 +23,7 @@ public class GamedataService {
     //알고리즘
     public void putDataIntoAlgorithm(GamedataRequestDto dto) {
         MainLogic ml = new MainLogic();
-        ml.getData(dto.getData());
+        ml.getDto(dto);
 
 
 
