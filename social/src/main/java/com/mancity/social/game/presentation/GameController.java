@@ -116,11 +116,11 @@ public class GameController {
 
     @GetMapping("/filter")
     @Operation(summary = "필터를 통한 매치 리스트 조회 API", description = "성별, 인원수, 레벨, 지역 매치 리스트 조회 API인데, 모두 nullable 이어서 필요한 값만 쿼리스트링에 담아서 보내면 됩니다.")
-    public ResponseEntity<List<GameResponseDto>> findAllGamesByFilters(@RequestParam(required = false) Integer gender,
+    public ResponseEntity<List<GameDetailResponseDto>> findAllGamesByFilters(@RequestParam(required = false) Integer gender,
                                                                        @RequestParam(required = false) String startDate,
                                                                        @RequestParam(required = false) Integer playernumber,
                                                                        @RequestParam(required = false) String level) {
-        List<GameResponseDto> dtos = gameService.findAllByFilters(gender, LocalDate.parse(startDate), playernumber, level);
+        List<GameDetailResponseDto> dtos = gameService.findAllByFilters(gender, LocalDate.parse(startDate), playernumber, level);
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
 
