@@ -1,8 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
 import FontawsomeIcon from "@/components/atoms/fontawsome_icon/FontawsomeIcon";
+import useUserStore from "@/stores/userStore";
 
 const Navbar = () => {
   const location = useLocation();
+  const userId = useUserStore((state) => state.id);
   // 현재 URL 경로에 따른 아이콘 색상 결정
   const getIconColor = (pathPattern: string) => {
     const regex = new RegExp(`^${pathPattern.replace(/:[^\s/]+/, "([^/]+)")}$`);
@@ -56,13 +58,12 @@ const Navbar = () => {
             <p className="p-0 font-sans text-sm text-darkcity">용병/클럽</p>
           </div>
         </Link>
-        {/* 임시로 1번 유저로 연결 */}
-        <Link to="/profile/1">
+        <Link to={`/profile/${userId}`}>
           <div className="flex flex-col items-center justify-center w-20 cursor-pointer">
             <FontawsomeIcon
               icon="user"
               size="2x"
-              color={getIconColor("/profile/:user_id")}
+              color={getIconColor(`/profile/:${userId}`)}
             ></FontawsomeIcon>
             <p className="p-0 font-sans text-sm text-darkcity">내정보</p>
           </div>
