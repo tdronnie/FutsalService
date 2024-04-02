@@ -4,6 +4,7 @@ import com.mancity.user.club.application.ClubService;
 import com.mancity.user.club.application.dto.request.*;
 import com.mancity.user.club.application.dto.response.ClubDetailResponseDto;
 import com.mancity.user.club.application.dto.response.ClubResponseDto;
+import com.mancity.user.club.application.dto.response.CreateResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,9 +21,8 @@ public class ClubController {
     private final ClubService clubService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestPart(required = false) MultipartFile emblem, @RequestPart CreateRequestDto dto) {
-        clubService.create(emblem, dto);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<CreateResponseDto> create(@RequestPart(required = false) MultipartFile emblem, @RequestPart CreateRequestDto dto) {
+        return new ResponseEntity<>(clubService.create(emblem, dto), HttpStatus.CREATED);
     }
 
     @PutMapping("/upload")

@@ -1,6 +1,7 @@
 package com.mancity.user.club.application;
 
 import com.mancity.user.club.application.dto.request.DuplicateNameCheckRequestDto;
+import com.mancity.user.club.application.dto.response.CreateResponseDto;
 import com.mancity.user.clubmember.domain.ClubMember;
 import com.mancity.user.club.application.dto.request.ClubEmblemUploadDto;
 import com.mancity.user.club.application.dto.request.CreateRequestDto;
@@ -32,7 +33,7 @@ public class ClubService {
 
     private final S3Uploader s3Uploader;
 
-    public void create(MultipartFile file, CreateRequestDto dto) {
+    public CreateResponseDto create(MultipartFile file, CreateRequestDto dto) {
 //        Club club = dto.toEntity();
         //클럽장 클럽멤버에 포함
         User user = userRepository.findById(dto.getId()).orElseThrow(UserNotExistException::new);
@@ -55,6 +56,9 @@ public class ClubService {
             }
             clubRepository.save(club);
 
+            return CreateResponseDto.builder()
+                    .clubId(club.getId())
+                    .build();
         }
     }
 
