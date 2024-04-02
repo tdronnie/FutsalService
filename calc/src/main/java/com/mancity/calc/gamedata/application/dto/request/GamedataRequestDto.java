@@ -15,7 +15,7 @@ import java.util.List;
 @Builder
 public class GamedataRequestDto {
 
-    private Long gameId;
+    private Long game_id;
 
     private List<Data> data;
 }

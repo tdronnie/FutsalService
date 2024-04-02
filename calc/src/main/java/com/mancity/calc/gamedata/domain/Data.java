@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Getter
 @AllArgsConstructor
@@ -18,24 +20,30 @@ public class Data {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int frameNumber;
+    private int frame_num;
 
     @OneToOne
     private Ball ball;
 
     @OneToOne
-    private GoalPost teamA_goalPost;
+    private GoalPost team_A_goal_post;
 
     @OneToOne
-    private GoalPost teamB_goalPost;
+    private GoalPost team_B_goal_post;
 
-    @OneToOne
-    private TeamA teamA;
+    @OneToMany
+    private List<Player> team_A_players;
 
-    @OneToOne
-    private TeamB teamB;
+    @OneToMany
+    private List<Player> team_B_players;
 
     @OneToOne
     private Field field;
 
+//    @JsonGetter("TeamA")
+//    private TeamA getTeamAType() {
+//        if (team_A_players != null) {
+//            return team_A_players.
+//        }
+//    }
 }

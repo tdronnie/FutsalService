@@ -19,8 +19,6 @@ package com.mancity.calc.gamedata.algorithm;
 
 import com.mancity.calc.gamedata.domain.Data;
 import com.mancity.calc.gamedata.domain.Player;
-import com.mancity.calc.gamedata.domain.TeamA;
-import com.mancity.calc.gamedata.domain.TeamB;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,8 +61,8 @@ public class MainLogic {
 
         for (int frameN = 1; frameN < 프레임리스트.size(); frameN++) {
 
-            List<Player> teamA = 프레임리스트.get(frameN).getTeamA().getPlayers();
-            List<Player> teamB = 프레임리스트.get(frameN).getTeamB().getPlayers();
+            List<Player> teamA = 프레임리스트.get(frameN).getTeam_A_players();
+            List<Player> teamB = 프레임리스트.get(frameN).getTeam_B_players();
             //프레임마다 모든 플레이어의 최대속도 갱신
 
             //프레임마다 모든 플레이어의 활동량 업데이트
@@ -82,7 +80,7 @@ public class MainLogic {
 
             //공 소유 여부 판별, 거리
             // 반경 안에 플레이어 있으면 가장 공과 가까운 플레이어를 공 소유자로 지정, 공소유팀 지정
-            if (!반경에플레이어가있는지체크및가장가까운플레이어를소유자로지정(현재프레임공x좌표, 현재프레임공y좌표, currData.getTeamA(), currData.getTeamB()))
+            if (!반경에플레이어가있는지체크및가장가까운플레이어를소유자로지정(현재프레임공x좌표, 현재프레임공y좌표, currData.getTeam_A_players(), currData.getTeam_B_players()))
                 continue;
 
             //------ 공 소유 여부 판별 끝 --------
@@ -189,7 +187,7 @@ public class MainLogic {
         int ballX = frameData.getBall().getX();
         int ballY = frameData.getBall().getY();
 
-        List<Player> teamA = frameData.getTeamA().getPlayers();
+        List<Player> teamA = frameData.getTeam_A_players();
 
         //팀 A가 모두 필드 중앙 기준 왼쪽에 위치하지 않는 플레이어 한명이라도 있다면 false
         for (Player p : teamA) {
@@ -197,7 +195,7 @@ public class MainLogic {
 
         }
         //팀 A가 모두 필드 중앙 기준 왼쪽에 위치하지 않는 플레이어 한명이라도 있다면 false
-        List<Player> teamB = frameData.getTeamB().getPlayers();
+        List<Player> teamB = frameData.getTeam_B_players();
         for (Player p : teamB) {
             if (midX - 100 > p.getX() || p.getX() > maxX || minY > p.getY() || p.getY() > maxY) return false;
         }
@@ -243,20 +241,20 @@ public class MainLogic {
 
         int ballX = frameData.getBall().getX();
         int ballY = frameData.getBall().getY();
-        int GoalPostBMinX = frameData.getTeamB_goalPost().getX1();
-        int GoalPostBMaxX = frameData.getTeamB_goalPost().getX2();
-        int GoalPostBMinY = frameData.getTeamB_goalPost().getY1();
-        int GoalPostBMaxY = frameData.getTeamB_goalPost().getY2();
+        int GoalPostBMinX = frameData.getTeam_B_goal_post().getX1();
+        int GoalPostBMaxX = frameData.getTeam_B_goal_post().getX2();
+        int GoalPostBMinY = frameData.getTeam_B_goal_post().getY1();
+        int GoalPostBMaxY = frameData.getTeam_B_goal_post().getY2();
         if (팀 == 1) {
             if (GoalPostBMinX > ballX || ballX > GoalPostBMaxX || GoalPostBMinY > ballY || ballY > GoalPostBMaxY)
                 return false;
             return true;
         }
 
-        int GoalPostAMinX = frameData.getTeamA_goalPost().getX1();
-        int GoalPostAMaxX = frameData.getTeamA_goalPost().getX2();
-        int GoalPostAMinY = frameData.getTeamA_goalPost().getY1();
-        int GoalPostAMaxY = frameData.getTeamA_goalPost().getY2();
+        int GoalPostAMinX = frameData.getTeam_A_goal_post().getX1();
+        int GoalPostAMaxX = frameData.getTeam_A_goal_post().getX2();
+        int GoalPostAMinY = frameData.getTeam_A_goal_post().getY1();
+        int GoalPostAMaxY = frameData.getTeam_A_goal_post().getY2();
 
         if (팀 == 2) {
             if(GoalPostAMinX > ballX || ballX > GoalPostAMaxX || GoalPostAMinY > ballY || ballY > GoalPostAMaxY)
@@ -265,7 +263,7 @@ public class MainLogic {
         return true;
     }
 
-    private boolean 반경에플레이어가있는지체크및가장가까운플레이어를소유자로지정(double 현재프레임공x좌표, double 현재프레임공y좌표, TeamA teamA, TeamB teamB) {
+    private boolean 반경에플레이어가있는지체크및가장가까운플레이어를소유자로지정(double 현재프레임공x좌표, double 현재프레임공y좌표, List<Player> teamA, List<Player> teamB) {
 
         //반경 안의 플레이어 발견 경우 공과 가까운 플레이어 찾기 위한 minDis저장
         //(x−h)
@@ -276,13 +274,13 @@ public class MainLogic {
         //2
         boolean flag = false;
         double minDis = 공소유유효한최대거리;
-        for (Player player : teamA.getPlayers()) {
+        for (Player player : teamA) {
             double dis = 거리구하기(player.getX(), player.getY(), 현재프레임공x좌표, 현재프레임공y좌표);
             if (원반경안에있으면서공과가장가까운선수(minDis, dis, player, 1)) flag = true;
 
         }
 
-        for (Player player : teamB.getPlayers()) {
+        for (Player player : teamB) {
             double dis = 거리구하기(player.getX(), player.getY(), 현재프레임공x좌표, 현재프레임공y좌표);
             if (원반경안에있으면서공과가장가까운선수(minDis, dis, player, 2)) flag = true;
         }
@@ -295,7 +293,7 @@ public class MainLogic {
         if (isInCircle(dis, 공소유유효한최대거리) && minDis > dis) {
             minDis = dis;
             이전프레임공소유자id = 현재프레임공소유자id; //이전공소유자 업데이트
-            현재프레임공소유자id = player.getPlayerId(); //현재 공소유자 업데이트
+            현재프레임공소유자id = player.getPlayer_id(); //현재 공소유자 업데이트
             //공소유자가 어느팀인지
             이전공소유팀 = 현재공소유팀;
             현재공소유팀 = team;

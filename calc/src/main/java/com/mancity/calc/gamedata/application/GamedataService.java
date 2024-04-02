@@ -15,8 +15,6 @@ public class GamedataService {
 
     private final HighlightService highlightService;
 
-    private MainLogic mainLogic;
-
 
     public void createHighlights(CreateHighlightRequestDto dto) {
         highlightService.createHighlights(dto.getGameId(), dto.getTime());
@@ -24,7 +22,8 @@ public class GamedataService {
 
     //알고리즘
     public void putDataIntoAlgorithm(GamedataRequestDto dto) {
-        mainLogic.getData(dto.getData());
+        MainLogic ml = new MainLogic();
+        ml.getData(dto.getData());
 
 
 
