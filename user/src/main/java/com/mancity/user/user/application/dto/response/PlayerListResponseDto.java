@@ -27,4 +27,6 @@ public class PlayerListResponseDto {
 
     private double defense;
 
+    private double overall;
+
 }
