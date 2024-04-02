@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class DuplicateNameCheckRequestDto {
+public class DuplicateNameCheckRequestDto extends RuntimeException{
 
     private String name;
 }
