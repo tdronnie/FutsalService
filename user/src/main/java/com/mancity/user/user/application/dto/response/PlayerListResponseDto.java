@@ -29,4 +29,8 @@ public class PlayerListResponseDto {
 
     private double overall;
 
+    private int height;
+
+    private int weight;
+
 }
