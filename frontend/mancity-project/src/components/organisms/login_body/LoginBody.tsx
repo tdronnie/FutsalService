@@ -33,25 +33,30 @@ import { getToken } from "firebase/messaging";
 // `messaging` 인스턴스 생성 코드 추가
 import { getMessaging } from "firebase/messaging";
 
-const registerServiceWorker = () => {
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-      navigator.serviceWorker
-        .register("/firebase-messaging-sw.js")
-        .then((registration) => {
-          // 테스트콘솔
-          console.log(registration);
-        })
-        .catch((err) => {
-          console.log("Service Worker 등록 실패:", err);
-        });
-    });
-  }
-};
-
 const LoginBody = () => {
+  const registerServiceWorker = () => {
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker
+          .register("/firebase-messaging-sw.js")
+          .then((registration) => {
+            // 테스트콘솔
+            console.log(registration);
+          })
+          .catch((err) => {
+            console.log("Service Worker 등록 실패:", err);
+          });
+      });
+    }
+  };
+
+  const navigate = useNavigate();
   // useUserStore의 setUser 함수 사용
   const setUser = useUserStore((state) => state.setUser);
+  // useUserStore에서 id만 선택해서 가져오기
+  const userId = useUserStore((state) => state.id);
+
+  const [fcmToken, setFcmToken] = useState("");
 
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
@@ -61,8 +66,6 @@ const LoginBody = () => {
     email: "",
     password: "",
   });
-  const [fcmToken, setFcmToken] = useState("");
-  const navigate = useNavigate();
 
   const goSignup = () => {
     navigate("/signup");
@@ -88,21 +91,30 @@ const LoginBody = () => {
     });
   }, [emailValue, passwordValue]);
 
-  useEffect(() => {
-    registerServiceWorker();
-  }, []);
+  // FCM 토큰을 서버로 보내는 Mutation
+  const { mutate: sendFcmTokenMutation } = useMutation({
+    mutationFn: sendFcmTokenApi,
+    onSuccess: () => {
+      console.log("FCM 토큰이 성공적으로 서버로 전송됨.");
+      console.log(fcmToken);
+      navigate("/");
+    },
+    onError: (error) => {
+      console.error("FCM 토큰 전송 에러:", error);
+    },
+  });
 
   // FCM 토큰 요청 함수
   const requestFCMToken = async () => {
+    const messaging = getMessaging(app);
+
     if (Notification.permission === "granted") {
-      const messaging = getMessaging(app);
       try {
         const token = await getToken(messaging, {
           vapidKey:
             "BLuopbozIqH5NnVASrPlVZXTae_NcsaY9bju7WrChj77PpcHfg79r7t3YehYTf3riIFbDfvuz79xhRTshmnxmnE",
         });
-        // 토큰 세팅
-        setFcmToken(token);
+        setFcmToken(token); // 토큰 세팅
       } catch (error) {
         console.error("FCM 토큰 요청 실패:", error);
       }
@@ -111,26 +123,21 @@ const LoginBody = () => {
     }
   };
 
-  // FCM 토큰을 서버로 보내는 Mutation
-  const { mutate: sendFcmTokenMutation } = useMutation({
-    mutationFn: sendFcmTokenApi,
-    // onSuccess: () => {
-    //   console.log("FCM 토큰이 성공적으로 서버로 전송됨.");
-    // },
-    onError: (error) => {
-      console.error("FCM 토큰 전송 에러:", error);
-    },
-  });
+  // fcm서비스 워커 등록 및 토큰 요청
+  useEffect(() => {
+    registerServiceWorker();
+  }, []);
 
-  // 로그인 후 사용자 정보 전역 상태 저장
   const { mutate: loginMutate } = useMutation({
     mutationFn: loginApi,
     onSuccess: async (userId) => {
+      sendFcmTokenMutation({ id: userId, fcmToken: fcmToken });
       try {
-        // 사용자 정보를 패치하고 전역 상태에 저장
         const userData = await fetchUserApi(userId);
         if (userData) {
           setUser(userData);
+          // 사용자 정보 저장 후 FCM 토큰 요청 및 전송
+          requestFCMToken();
         }
       } catch (error) {
         console.error("사용자 정보를 가져오는 데 실패했습니다.", error);
@@ -145,30 +152,11 @@ const LoginBody = () => {
     },
   });
 
-  // useUserStore에서 id만 선택해서 가져오기
-  const userId = useUserStore((state) => state.id);
-
-  useEffect(() => {
-    const fetchTokenAndNavigate = async () => {
-      await requestFCMToken();
-      // 토큰을 성공적으로 받아왔다면 페이지 이동
-      navigate("/");
-    };
-
-    if (fcmToken) {
-      // 토큰을 서버로 전송
-      sendFcmTokenMutation({ id: userId, fcmToken });
-      // 테스트콘솔
-      console.log(fcmToken);
-      fetchTokenAndNavigate();
-    }
-  }, [fcmToken, navigate]);
-
   const onSubmitLogin = () => {
+    // 로그인
     loginMutate(loginData);
     // 테스트콘솔
     // console.log(loginData);
-    setLoginError("이메일 또는 비밀번호가 맞지 않습니다. 다시 확인해 주세요.");
   };
 
   return (
