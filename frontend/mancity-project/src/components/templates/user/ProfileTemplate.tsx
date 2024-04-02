@@ -4,9 +4,10 @@ import ProfileUserInfo from "@/components/organisms/profile_userInfo/ProfileUser
 import ProfileUserStats from "@/components/organisms/profile_userStats/ProfileUserStats";
 import FontawsomeIcon from "@/components/atoms/fontawsome_icon/FontawsomeIcon";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ProfileTemplate = ({ profileData }: ProfilePropsType) => {
+  const { user_id } = useParams<{ user_id: string }>();
   const navigate = useNavigate();
 
   // 로그아웃 함수
@@ -22,7 +23,7 @@ const ProfileTemplate = ({ profileData }: ProfilePropsType) => {
     }).then((result) => {
       if (result.isConfirmed) {
         localStorage.clear(); // 로컬 스토리지 데이터를 모두 삭제
-        navigate('/entry');
+        navigate("/entry");
       }
     });
   };
@@ -36,7 +37,7 @@ const ProfileTemplate = ({ profileData }: ProfilePropsType) => {
             backArrow={true}
             headerButton={false}
             buttonLabel="정보 수정"
-            toWhere="/profile/edit/1"
+            toWhere={`/profile/edit/${user_id}`}
           />
           <ProfileUserInfo profileData={profileData} />
           <ProfileUserStats profileData={profileData} />
@@ -44,7 +45,10 @@ const ProfileTemplate = ({ profileData }: ProfilePropsType) => {
         </div>
       )}
       {/* 로그아웃 */}
-      <div className="flex justify-end mr-8 cursor-pointer" onClick={handleLogout}>
+      <div
+        className="flex justify-end mr-8 cursor-pointer"
+        onClick={handleLogout}
+      >
         <FontawsomeIcon icon="arrow-right-from-bracket" size="1x" color="red" />
         <button className="text-red-500">로그아웃</button>
       </div>

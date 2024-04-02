@@ -61,7 +61,7 @@ interface GlobalInputType {
 interface WideCardPropsType {
   file?: string;
   subtext: string;
-  maintext: string;
+  maintext?: string;
   minitext?: string | number;
   buttonlabel: string;
 }
@@ -70,6 +70,7 @@ interface HalfCardPropsType {
   file?: string;
   maintext: string;
   rounded?: string;
+  disabled?: boolean;
 }
 
 interface HomeCardPropsType {
@@ -110,7 +111,7 @@ interface ShadcnDropdownPropsType {
 }
 
 interface DropdownPropsType extends ShadcnDropdownPropsType {
-  MyTypographyLabel: string;
+  MyTypographyLabel?: string;
 }
 
 interface HeaderPropsType {

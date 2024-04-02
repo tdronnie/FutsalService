@@ -28,12 +28,12 @@ const FollowBody = ({ followListData }: followListDataType) => {
             <div>
               {followers.map((follower) => (
                 <div
+                  key={follower.userId}
                   onClick={() => {
                     navigate(`/profile/${follower.userId}`);
                   }}
                 >
                   <FollowCard
-                    key={follower.userId}
                     file={follower.profileImage}
                     nickName={follower.nickname}
                     overall={follower.overall}
@@ -49,12 +49,12 @@ const FollowBody = ({ followListData }: followListDataType) => {
             <div>
               {followings.map((following) => (
                 <div
+                  key={following.userId}
                   onClick={() => {
                     navigate(`/profile/${following.userId}`);
                   }}
                 >
                   <FollowCard
-                    key={following.userId}
                     file={following.profileImage}
                     nickName={following.nickname}
                     overall={following.overall}

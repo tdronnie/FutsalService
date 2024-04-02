@@ -9,17 +9,44 @@ export const fetchMatchDetail = async (
     .then((res) => res.data)
     .catch((error) => {
       console.log(error);
-      throw new Error("경기 호출 에러");
+      throw new Error("경기 상세 호출 에러");
     });
 };
 
+// 경기 목록 페이지 정보 조회
+export const fetchMatchList = async (
+  matchFilterData: matchFilterDataType
+): Promise<matchDetailPropsDataType[]> => {
+  //기본 url
+  let filterUrl = `social/game/filter?startDate=${matchFilterData.date}`;
+  // gender 추가
+  if (matchFilterData.gender) {
+    filterUrl += `&gender=${matchFilterData.gender}`;
+  } // playernumber 추가
+  if (matchFilterData.playerNumber) {
+    filterUrl += `&playernumber=${matchFilterData.playerNumber}`;
+  } // level 추가
+  if (matchFilterData.level) {
+    filterUrl += `&level=${matchFilterData.level}`;
+  }
+
+  return publicRequest
+    .get(filterUrl)
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+      throw new Error("경기 목록 호출 에러");
+    });
+};
+
+// 경기 생성 API
 export const fetchMatchCreate = async (matchData: matchCreateType) => {
   return publicRequest
     .post(`social/game/create`, matchData)
     .then((res) => res.data)
     .catch((error) => {
       console.log(error);
-      throw new Error("경기 호출 에러");
+      throw new Error("경기 생성 호출 에러");
     });
 };
 

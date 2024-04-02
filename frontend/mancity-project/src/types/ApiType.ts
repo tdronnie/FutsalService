@@ -142,3 +142,10 @@ interface matchDetailAllDataPropsType extends matchCreateType {
     turnOverInDefense: number;
   }[];
 }
+
+interface matchFilterDataType {
+  date: string;
+  gender: number;
+  playerNumber: number;
+  level: string;
+}

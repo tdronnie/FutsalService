@@ -2,14 +2,14 @@ import { MainPageApi } from "@/apis/matchApis";
 import ContentBox from "@/components/atoms/content_box/ContentBox";
 import ReplayModal from "@/components/organisms/replay_modal/ReplayModal";
 import TacticalBoardStore from "@/stores/tacticalBoardStore";
+import useUserStore from "@/stores/userStore";
 import { useQuery } from "@tanstack/react-query";
 import { createRef, useEffect, useRef, useState } from "react";
 import Draggable from "react-draggable";
 import { useLocation } from "react-router-dom";
 
 const TacticalBoardBody = () => {
-  // 임시로 유저 id는 1
-  const user_id = 1;
+  const user_id = useUserStore((state) => state.id);
   // 모달 열고 닫고
   const [openModal, setOpenModal] = useState<boolean>(false);
   // 다시보기 버튼 누르면 띄울 리스트
@@ -86,8 +86,8 @@ const TacticalBoardBody = () => {
       {location.pathname === "/tactical_board" && (
         <div className="flex justify-center ">
           <div className="flex  max-w-[360px] justify-around pt-2 pb-2 ">
-            <div className="-ml-2 border-[3.1px]  border-white text-white font-extralight rounded-lg p-[0.1rem] cursor-pointer">
-              전술보드로 전략을 기획 해보세요
+            <div className="-ml-2 border-[3.1px]  border-white text-white font-extralight rounded-lg p-[0.1rem]">
+              전술보드로 전략을 기획 해보세요!
             </div>
             <div
               className="-mr-2 ml-3 border-[3.1px] border-white text-white font-extralight rounded-lg p-[0.1rem] cursor-pointer"
@@ -141,6 +141,7 @@ const TacticalBoardBody = () => {
       <div>
         {!isLoading && data && (
           <ReplayModal
+            // 더미데이터
             games={dummyData.games}
             openModal={openModal}
             setOpenModal={setOpenModal}

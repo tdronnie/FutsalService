@@ -11,11 +11,11 @@ import { useMutation } from "@tanstack/react-query";
 import { fetchMatchCreate } from "@/apis/matchApis";
 import { useNavigate } from "react-router-dom";
 import futsalCourtData from "@/data/futsalCourts.json";
+import useUserStore from "@/stores/userStore";
 
 const MatchRegisterBody = () => {
   const navigate = useNavigate();
-  // 임시로 로그인 한 유저의 id값 1로 두기
-  const userId = 1;
+  const userId = useUserStore((state) => state.id);
   const [matchRegisterData, setMatchRegisterData] = useState<matchCreateType>({
     gender: 0,
     manager: 0,
@@ -200,7 +200,7 @@ const MatchRegisterBody = () => {
           setNumberValue={setGenderValue}
         />
       </div>
-
+{/* 수준 */}
       <div>
         <Dropdown
           MyTypographyLabel="선출"

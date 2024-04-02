@@ -10,16 +10,15 @@ import ReplayModal from "@/components/organisms/replay_modal/ReplayModal";
 import { useQuery } from "@tanstack/react-query";
 import { MainPageApi } from "@/apis/matchApis";
 import futsalCourtData from "@/data/futsalCourts.json";
+import useUserStore from "@/stores/userStore";
 
 const MainBody = () => {
-  // 임시로 유저 id는 1
-  const user_id = 1;
-
+  const userId = useUserStore((state) => state.id);
   // 다시보기, 용병 랭킹 데이터 api
   const { data, isLoading } = useQuery({
-    queryKey: ["mainPage", user_id],
+    queryKey: ["mainPage", userId],
     queryFn: async () => {
-      const response = await MainPageApi(user_id);
+      const response = await MainPageApi(userId);
       return response;
     },
   });
