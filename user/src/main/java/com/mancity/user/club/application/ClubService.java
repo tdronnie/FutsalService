@@ -78,6 +78,26 @@ public class ClubService {
                 .build();
     }
 
+    public List<ClubResponseDto> getClubListDesc() {
+        List<Club> clubs = clubRepository.findAllByIdDesc();
+
+        List<ClubResponseDto> list = new ArrayList<>();
+
+        for (Club c : clubs) {
+            ClubResponseDto dto = ClubResponseDto.builder()
+                    .id(c.getId())
+                    .name(c.getName())
+                    .emblem(c.getEmblem())
+                    .memberCnt(c.getMemberCnt())
+                    .region(c.getRegion())
+                    .build();
+
+            list.add(dto);
+        }
+        return list;
+
+    }
+
     public List<ClubResponseDto> getClubsFilterByRegion(String region) {
 
         List<Club> clubs;

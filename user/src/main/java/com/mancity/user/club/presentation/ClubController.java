@@ -36,11 +36,15 @@ public class ClubController {
         return new ResponseEntity<>(clubService.clubDetail(id), HttpStatus.OK);
     }
 
-    @GetMapping("/clubs")
-    public ResponseEntity<List<ClubResponseDto>> getClubsWithFilter(@RequestParam(required = false) String region) {
-        return new ResponseEntity<>(clubService.getClubsFilterByRegion(region), HttpStatus.OK);
-    }
+//    @GetMapping("/clubs")
+//    public ResponseEntity<List<ClubResponseDto>> getClubsWithFilter(@RequestParam(required = false) String region) {
+//        return new ResponseEntity<>(clubService.getClubsFilterByRegion(region), HttpStatus.OK);
+//    }
 
+    @GetMapping("/clubs")
+    public ResponseEntity<List<ClubResponseDto>> getClubListDesc() {
+        return new ResponseEntity<>(clubService.getClubListDesc(), HttpStatus.OK);
+    }
 
 
 }
