@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name = "eureka-client-social", url = "http://j10c201.p.ssafy.io:8082")
+@FeignClient(name = "eureka-client-social-localhost", url = "http://j10c201.p.ssafy.io:8082")
 public interface GameFeignClient {
 
     @GetMapping("/api/social/game/main/{id}")
