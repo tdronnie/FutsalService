@@ -88,6 +88,12 @@ public class GameController {
         return new ResponseEntity<>(gameService.findGamesByParticipantUserId(id), HttpStatus.OK);
     }
 
+    @GetMapping("/participated/{id}") // 회원별 참여 상태인 매치 목록
+    @Operation(summary = "회원별 참여 상태인 매치 목록", description = "유저 ID로 참가한 매치 목록")
+    ResponseEntity<List<GameManagerMatchResponseDto>> findGamesByIdMatchManager(@PathVariable long id) {
+        return new ResponseEntity<>(gameService.findGamesByIdMatchManager(id), HttpStatus.OK);
+    }
+
     @PostMapping("/input")
     @Operation(summary = "Calc 서버에서 데이터 기록 산출 완료 후 호출하는 API", description = "형은 넘어가시면 됩니다 ㅎ_ㅎ")
     public ResponseEntity<?> inputDataFromCalc(@RequestBody GameDataInputDto dto) {
