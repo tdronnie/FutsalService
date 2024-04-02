@@ -1,4 +1,6 @@
 import MyTypography from "@/components/atoms/my_typography/MyTypography";
+import FontawsomeIcon from "@/components/atoms/fontawsome_icon/FontawsomeIcon";
+import { useNavigate } from "react-router";
 
 // 한국 날짜 설정
 import dayjs from "dayjs";
@@ -9,6 +11,11 @@ const MatchDetailHeader = ({
   matchDetailPropsData,
   courtData,
 }: MatchDetailPropsType) => {
+  const navigate = useNavigate();
+  const handleNavigate = ({ path }: NavigateType) => {
+    navigate(path);
+  };
+
   // 날짜 형식 변경
   const date = dayjs(matchDetailPropsData.startDate).format("M월 D일 (ddd)");
 
@@ -40,9 +47,26 @@ const MatchDetailHeader = ({
             textSize="text-base"
           />
         </div>
+
+        <div
+          className="flex cursor-pointer"
+          onClick={() => handleNavigate({ path: "/club" })}
+        >
+          <div className="mr-1">
+            <FontawsomeIcon icon="tower-cell" />
+          </div>
+          <div>
+            <MyTypography
+              label="용병호출하러가기"
+              fontWeight="font-medium"
+              textSize="text-sm"
+              textColor="text-gray-500"
+            />
+          </div>
+        </div>
       </div>
 
-      <div className="text-right px-2">
+      <div className="px-2 text-right">
         <div>
           <MyTypography
             label="매치장"
