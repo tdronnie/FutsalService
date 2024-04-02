@@ -34,20 +34,20 @@ import { getToken } from "firebase/messaging";
 import { getMessaging } from "firebase/messaging";
 
 const registerServiceWorker = () => {
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/firebase-messaging-sw.js')
-        .then(registration => {
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register("/firebase-messaging-sw.js")
+        .then((registration) => {
           // 테스트콘솔
           console.log(registration);
         })
-        .catch(err => {
-          console.log('Service Worker 등록 실패:', err);
+        .catch((err) => {
+          console.log("Service Worker 등록 실패:", err);
         });
     });
   }
 };
-
 
 const LoginBody = () => {
   // useUserStore의 setUser 함수 사용
@@ -90,7 +90,7 @@ const LoginBody = () => {
 
   useEffect(() => {
     registerServiceWorker();
-  },[])
+  }, []);
 
   // FCM 토큰 요청 함수
   const requestFCMToken = async () => {
@@ -131,8 +131,6 @@ const LoginBody = () => {
         const userData = await fetchUserApi(userId);
         if (userData) {
           setUser(userData);
-          // 로그인 성공 후 FCM 토큰 요청
-          requestFCMToken();
         }
       } catch (error) {
         console.error("사용자 정보를 가져오는 데 실패했습니다.", error);
@@ -149,16 +147,22 @@ const LoginBody = () => {
 
   // useUserStore에서 id만 선택해서 가져오기
   const userId = useUserStore((state) => state.id);
-  
+
   useEffect(() => {
+    const fetchTokenAndNavigate = async () => {
+      await requestFCMToken();
+      // 토큰을 성공적으로 받아왔다면 페이지 이동
+      navigate("/");
+    };
+
     if (fcmToken) {
       // 토큰을 서버로 전송
       sendFcmTokenMutation({ id: userId, fcmToken });
       // 테스트콘솔
       console.log(fcmToken);
-      navigate("/");
+      fetchTokenAndNavigate();
     }
-  }, [fcmToken]);
+  }, [fcmToken, navigate]);
 
   const onSubmitLogin = () => {
     loginMutate(loginData);
