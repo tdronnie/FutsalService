@@ -35,6 +35,9 @@ dependencies {
 
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 
+	// Swagger
+	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.2.0'
+
 	runtimeOnly("com.mysql:mysql-connector-j")
 
 	compileOnly 'org.projectlombok:lombok'
