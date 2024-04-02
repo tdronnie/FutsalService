@@ -33,6 +33,17 @@ import { getToken } from "firebase/messaging";
 // `messaging` 인스턴스 생성 코드 추가
 import { getMessaging } from "firebase/messaging";
 
+function registerServiceWorker() {
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/firebase-messaging-sw.js').then(registration => {
+      }, err => {
+        console.log('Service Worker 등록 실패:', err);
+      });
+    });
+  }
+}
+
 const LoginBody = () => {
   // useUserStore의 setUser 함수 사용
   const setUser = useUserStore((state) => state.setUser);
@@ -71,6 +82,10 @@ const LoginBody = () => {
       password: passwordValue,
     });
   }, [emailValue, passwordValue]);
+
+  useEffect(() => {
+    registerServiceWorker();
+  },[])
 
   // FCM 토큰 요청 함수
   const requestFCMToken = async () => {
@@ -135,7 +150,7 @@ const LoginBody = () => {
       // 토큰을 서버로 전송
       sendFcmTokenMutation({ id: userId, fcmToken });
       // 테스트콘솔
-      // console.log(fcmToken);
+      console.log(fcmToken);
       navigate("/");
     }
   }, [fcmToken]);
