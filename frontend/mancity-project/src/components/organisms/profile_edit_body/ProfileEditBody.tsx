@@ -140,14 +140,14 @@ const ProfileEditBody = ({ userInfoData, isLoading }: UserInfoPropsType) => {
       {!isLoading && (
         <div className="">
           {/* 프로필 이미지 */}
-          <div className=" flex m-3 justify-center " onClick={triggerFileInput}>
+          <div className="flex justify-center m-3 " onClick={triggerFileInput}>
             <EditContentBox
               width="w-36"
               height="h-36"
               rounded="rounded-full"
               file={imageViewValue[0]}
             />
-            <div className="absolute opacity-0  w-36 h-36 text-[1px]">
+            <div className="cursor-pointer absolute opacity-0  w-36 h-36 text-[1px]">
               <input
                 className=""
                 id="image"
@@ -167,7 +167,7 @@ const ProfileEditBody = ({ userInfoData, isLoading }: UserInfoPropsType) => {
               setTextValue={setNickNameValue}
               setIsCheck={setIsNicknameCheck}
             />
-            <div className="text-mancity mx-4 -my-3 ">
+            <div className="mx-4 -my-3 text-mancity ">
               {nickNameValue && (
                 <>
                   {isNicknameCheck !== null && (
@@ -216,7 +216,7 @@ const ProfileEditBody = ({ userInfoData, isLoading }: UserInfoPropsType) => {
                   setNumberValue={setMainFootValue}
                 />
               </div>
-              <div className="w-1/2 flex -mt-10">
+              <div className="flex w-1/2 -mt-10">
                 {/* checked에는 해당 회원이 등록허용 해 뒀는지 값을 넣기 */}
                 <GlobalSwitch
                   label="용병등록"
@@ -226,23 +226,23 @@ const ProfileEditBody = ({ userInfoData, isLoading }: UserInfoPropsType) => {
                 />
               </div>
             </div>
-            {/* <div className=" flex justify-end">
-          <div className="text-red-500 text-right mr-4 cursor-pointer">
+            {/* <div className="flex justify-end ">
+          <div className="mr-4 text-right text-red-500 cursor-pointer">
             회원탈퇴
           </div>
         </div> */}
           </div>
 
-          <div className="flex  w-full">
-            <div onClick={goProfile} className="w-full px-2">
+          <div className="flex w-full">
+            {/* <div onClick={goProfile} className="w-full px-2">
               <ReverseButton
                 width="w-full"
                 label="뒤로 가기"
                 isdisabled={isFormValid}
               />
-            </div>
+            </div> */}
 
-            <div onClick={onEditProfile} className=" w-full px-2">
+            <div onClick={onEditProfile} className="w-full px-2 ">
               <ReverseButton
                 width="w-full"
                 label="수정 완료"

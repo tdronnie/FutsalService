@@ -9,7 +9,7 @@ const ProfileEditTemplate = ({
     <div>
       {!isLoading && (
         <div>
-          <Header label="프로필 수정" backArrow={false} headerButton={false} />
+          <Header label="프로필 수정" backArrow={true} headerButton={false} />
           <ProfileEditBody userInfoData={userInfoData} isLoading={isLoading} />
         </div>
       )}

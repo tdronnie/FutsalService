@@ -91,7 +91,7 @@ const ClubBody = () => {
 
         {selectedTab && (
           <div>
-            <div className="flex">
+            <div className="flex items-center">
               <div
                 className="mx-2"
               >
@@ -116,7 +116,7 @@ const ClubBody = () => {
                   key={club.id}
                   file={club.emblem}
                   subtext={club.region}
-                  maintext={club.region}
+                  maintext={club.name}
                   minitext={`총 인원 수: ${club.memberCnt}`}
                   buttonlabel="가입신청"
                 />
