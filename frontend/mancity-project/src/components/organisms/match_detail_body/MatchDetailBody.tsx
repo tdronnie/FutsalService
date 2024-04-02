@@ -3,19 +3,53 @@ import MiniMap from "@/components/molecules/mini_map/MiniMap";
 import HalfCard from "@/components/molecules/half_card/HalfCard";
 import { useNavigate, useParams } from "react-router-dom";
 import MyTypography from "@/components/atoms/my_typography/MyTypography";
-
+import { useEffect, useRef, useState } from "react";
+import {
+  DialogTitle,
+  Modal,
+  ModalClose,
+  ModalDialog,
+  ModalDialogProps,
+} from "@mui/joy";
 // 한국 날짜 설정
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
+import { useMutation } from "@tanstack/react-query";
+import { calcRequestApi, videoUploadApi } from "@/apis/matchApis";
+import EditContentBox from "@/components/molecules/edit_content_box/EditContentBox";
+import GlobalButton from "@/components/atoms/global_button/GlobalButton";
+import useIsUploadStore from "@/stores/matchStore";
 dayjs.locale("ko");
+
 const MatchDetailBody = ({
   matchDetailPropsData,
   courtData,
 }: MatchDetailPropsType) => {
   const navigate = useNavigate();
   const { match_id } = useParams<{ match_id: string }>();
-  const address = "광주시 광산구 장덕동 82-3";
 
+  // 경기 분석 제출했는지 코드 받기
+  const { isUpload, changeIsUpload, isStartUpload, changeIsStartUpload } =
+    useIsUploadStore();
+
+  //// modal 관련 로직/////
+  const [openModal, setOpenModal] = useState<boolean>(false);
+  useEffect(() => {
+    if (openModal) {
+      setLayout("center");
+    }
+  }, [openModal]);
+
+  const [layout, setLayout] = useState<ModalDialogProps["layout"] | undefined>(
+    undefined
+  );
+
+  const modalStyle = {
+    width: "300px",
+  };
+  ///////////////////////
+
+  // 클립보드 저장
   const onClickCopy = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
@@ -30,12 +64,86 @@ const MatchDetailBody = ({
   // 경기가 현재 날짜와 비교해서 지났는지 여부
   const isOver = dayjs(today).isBefore(matchDetailPropsData.startDate);
 
+  // 프로필 이미지 저장
+  const [imageFilesValue, setImageFiles] = useState<File[]>([]);
+  const [imageViewValue, setImageView] = useState<string[]>([]);
+
+  const inputFileRef = useRef<HTMLInputElement>(null);
+
+  const triggerFileInput = () => {
+    // inputFileRef.current가 존재하면 해당 요소의 클릭 이벤트를 실행
+    inputFileRef.current?.click();
+  };
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.target;
+    const imageUrlLists: string[] = [];
+    if (files) {
+      const fileArray = Array.from(files, (f) => f as File);
+      setImageFiles(fileArray);
+      const currentImageUrl = URL.createObjectURL(files[0]);
+      imageUrlLists.push(currentImageUrl);
+    }
+    setImageView(imageUrlLists);
+  };
+
+  // put api 로직
+  const { mutate: videoUploadMutate } = useMutation({
+    mutationFn: videoUploadApi,
+    onSuccess(result) {
+      console.log(result);
+    },
+    onError(error) {
+      console.log(error);
+    },
+  });
+
+  // put api 로직
+  const { mutate: calcRequestMutate } = useMutation({
+    mutationFn: calcRequestApi,
+    onSuccess(result) {
+      console.log(result);
+    },
+    onError(error) {
+      console.log(error);
+    },
+  });
+
+  // 파일 formData로 인코딩 후 제출
+  const uploadFile = () => {
+    const formData: FormData = new FormData();
+    if (imageFilesValue.length > 0) {
+      formData.append("files", imageFilesValue[0]);
+    }
+    formData.append(
+      "dto",
+      new Blob([JSON.stringify({ id: match_id })], {
+        type: "application/json",
+      })
+    );
+    videoUploadMutate(formData);
+    changeIsUpload();
+    setLayout(undefined);
+    setOpenModal(false);
+  };
+  // 업로드 된 영상이 있으면 다시복navigate 입력
+  const isReplay = matchDetailPropsData.replayUrl
+    ? { navigate: "navigate(`/replay/${match_id}`)" }
+    : { style: "opacity-50" };
+
   return (
     <div>
-      {/* 경기 분석하기 경기다시보기 버튼 */}
-      {/* 분석하기는 input file 형식으로 */}
-      {/* 분석완료되면 버튼 형식으로 라우팅 설정 */}
 
+
+
+
+
+
+
+
+
+
+      
       {!isOver && (
         <div className="flex justify-around mb-2">
           {matchDetailPropsData.calcOver ? (
@@ -52,34 +160,126 @@ const MatchDetailBody = ({
               />
             </div>
           ) : (
-            <div
-              className="w-full ml-3 mr-1 cursor-pointer"
-              onClick={() => {
-                navigate(`/feedback/${match_id}`);
-              }}
-            >
-              <HalfCard
-                maintext="경기분석하기"
-                file="/src/assets/imgs/stick_chart.svg"
-                rounded="rounded-none"
-              />
+            // 모달을 띄워 이미지 업로드!
+            <div className="w-full ml-3 mr-1">
+              {isStartUpload ? (
+                isUpload ? (
+                  // 업로드 완료, 분석 미완료
+                  <div
+                    onClick={() => {
+                      calcRequestMutate(Number(match_id));
+                      changeIsStartUpload();
+                    }}
+                  >
+                    <HalfCard
+                      maintext="경기분석하기"
+                      file="/src/assets/imgs/stick_chart.svg"
+                      rounded="rounded-none"
+                    />
+                  </div>
+                ) : (
+                  // 업로드 진행중, 분석 미완료
+                  <div className="">
+                    <HalfCard
+                      maintext="영상 업로드중..."
+                      file="/src/assets/imgs/stick_chart.svg"
+                      rounded="rounded-none"
+                    />
+                  </div>
+                )
+              ) : (
+                // 업로드 미완료, 분석 미완료
+                <div
+                  onClick={() => {
+                    setOpenModal(true);
+                  }}
+                >
+                  <HalfCard
+                    maintext="경기영상 업로드"
+                    file="/src/assets/imgs/stick_chart.svg"
+                    rounded="rounded-none"
+                  />
+                </div>
+              )}
             </div>
           )}
 
-          <div
-            className="w-full ml-1 mr-3 cursor-pointer"
-            onClick={() => {
-              navigate(`/replay/${match_id}`);
-            }}
-          >
-            <HalfCard
-              maintext="경기다시보기"
-              file="/src/assets/imgs/replay.svg"
-              rounded="rounded-none"
-            />
+          {/* 모달 내용 */}
+          <div>
+            <Modal
+              open={!!layout}
+              onClose={() => {
+                setLayout(undefined);
+                setOpenModal(false);
+              }}
+            >
+              <ModalDialog layout={layout} sx={modalStyle}>
+                <ModalClose />
+                <DialogTitle>경기 영상 업로드</DialogTitle>
+                <div>
+                  <div
+                    className=" flex m-4 justify-center  "
+                    onClick={triggerFileInput}
+                  >
+                    <EditContentBox
+                      width="w-36"
+                      height="h-36"
+                      rounded="rounded-md"
+                    />
+                    <div className="absolute opacity-0  w-36 h-36 text-[1px]">
+                      <input
+                        id="video"
+                        type="file"
+                        accept="video/*"
+                        onChange={handleFileUpload}
+                        ref={inputFileRef}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-center  w-full">
+                      <div
+                        className="w-7/12 p-1 cursor-pointer"
+                        onClick={uploadFile}
+                      >
+                        <GlobalButton
+                          width="w-full"
+                          label="영상 업로드"
+                          isdisabled={imageFilesValue[0] ? true : false}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ModalDialog>
+            </Modal>
+          </div>
+
+          {/* replayUrl 의 유무에 따른 다시보기 버튼 활성화 */}
+          <div className={`w-full ml-1 mr-3 `}>
+            <div
+              onClick={() => {
+                isReplay.navigate;
+              }}
+              className={isReplay.style}
+            >
+              <HalfCard
+                maintext="경기다시보기"
+                file="/src/assets/imgs/replay.svg"
+                rounded="rounded-none"
+              />
+            </div>
           </div>
         </div>
       )}
+
+
+
+
+
+
+
+
       {/* 멤버 라인업 */}
       <div>
         <MemberList participants={matchDetailPropsData.participants} />
@@ -96,7 +296,7 @@ const MatchDetailBody = ({
           lng={courtData.lng}
           address={courtData.address}
           tel={courtData.tel}
-          onClick={() => onClickCopy(address)}
+          onClick={() => onClickCopy(courtData.address)}
         />
       </div>
     </div>
