@@ -88,6 +88,7 @@ public class ClubService {
                 .name(club.getName())
                 .masterId(master.getId())
                 .masterNickname(master.getNickName())
+                .clubCourtId(club.getClubCourtId())
                 .emblem(club.getEmblem())
                 .memberCnt(club.getMemberCnt())
                 .region(club.getRegion())
