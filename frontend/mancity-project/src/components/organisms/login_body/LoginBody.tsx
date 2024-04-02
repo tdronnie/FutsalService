@@ -95,49 +95,24 @@ const LoginBody = () => {
   const { mutate: sendFcmTokenMutation } = useMutation({
     mutationFn: sendFcmTokenApi,
     onSuccess: () => {
-      console.log("FCM 토큰이 성공적으로 서버로 전송됨.");
-      console.log(fcmToken);
-      navigate("/");
+      console.log("FCM전송:", fcmToken);
     },
     onError: (error) => {
+      console.log(userId);
+      console.log(fcmToken);
       console.error("FCM 토큰 전송 에러:", error);
     },
   });
 
-  // FCM 토큰 요청 함수
-  const requestFCMToken = async () => {
-    const messaging = getMessaging(app);
-
-    if (Notification.permission === "granted") {
-      try {
-        const token = await getToken(messaging, {
-          vapidKey:
-            "BLuopbozIqH5NnVASrPlVZXTae_NcsaY9bju7WrChj77PpcHfg79r7t3YehYTf3riIFbDfvuz79xhRTshmnxmnE",
-        });
-        setFcmToken(token); // 토큰 세팅
-      } catch (error) {
-        console.error("FCM 토큰 요청 실패:", error);
-      }
-    } else {
-      console.log("알림 권한이 없어 토큰을 받아올 수 없습니다.");
-    }
-  };
-
-  // fcm서비스 워커 등록 및 토큰 요청
-  useEffect(() => {
-    registerServiceWorker();
-  }, []);
-
   const { mutate: loginMutate } = useMutation({
     mutationFn: loginApi,
     onSuccess: async (userId) => {
-      sendFcmTokenMutation({ id: userId, fcmToken: fcmToken });
       try {
+        sendFcmTokenMutation({ id: userId, fcmToken: fcmToken });
         const userData = await fetchUserApi(userId);
         if (userData) {
           setUser(userData);
-          // 사용자 정보 저장 후 FCM 토큰 요청 및 전송
-          requestFCMToken();
+          navigate("/");
         }
       } catch (error) {
         console.error("사용자 정보를 가져오는 데 실패했습니다.", error);
@@ -152,11 +127,34 @@ const LoginBody = () => {
     },
   });
 
+  // FCM 토큰 요청 후 로그인
+  const requestFCMToken = async () => {
+    const messaging = getMessaging(app);
+
+    if (Notification.permission === "granted") {
+      try {
+        const token = await getToken(messaging, {
+          vapidKey:
+            "BLuopbozIqH5NnVASrPlVZXTae_NcsaY9bju7WrChj77PpcHfg79r7t3YehYTf3riIFbDfvuz79xhRTshmnxmnE",
+        });
+        setFcmToken(token); // 토큰 세팅
+        // 로그인
+        loginMutate(loginData);
+      } catch (error) {
+        console.error("FCM 토큰 요청 실패:", error);
+      }
+    } else {
+      console.log("알림 권한이 없어 토큰을 받아올 수 없습니다.");
+    }
+  };
+
+  // fcm서비스 워커 등록
+  useEffect(() => {
+    registerServiceWorker();
+  }, []);
+
   const onSubmitLogin = () => {
-    // 로그인
-    loginMutate(loginData);
-    // 테스트콘솔
-    // console.log(loginData);
+    requestFCMToken();
   };
 
   return (
