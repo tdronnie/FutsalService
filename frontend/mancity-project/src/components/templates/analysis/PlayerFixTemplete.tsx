@@ -1,8 +1,22 @@
 import Header from "@/components/organisms/header/Header";
 import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import PlayerInfo from "../../molecules/player_info/PlayerInfo";
+import { useQuery } from "@tanstack/react-query";
+import { fetchPlayersDataApi } from "@/apis/matchApis";
+import { useParams } from "react-router-dom";
+import { dividerClasses } from "@mui/joy";
 
 const PlayerFixTemplete = () => {
+  const { match_id } = useParams<{ match_id: string }>();
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["fetchPlayer", match_id],
+    queryFn: async () => {
+      const response = await fetchPlayersDataApi(Number(match_id));
+      return response;
+    },
+  });
+
   return (
     <div className="pb-4">
       <Header label="선수 지정" backArrow={true} headerButton={false} />
@@ -27,18 +41,89 @@ const PlayerFixTemplete = () => {
           />
         </div>
         <hr className="border border-sofcity" />
-        <PlayerInfo player="선수#1(HOME)" color="text-red-500" />
-        <PlayerInfo player="선수#2(HOME)" color="text-red-500" />
-        <PlayerInfo player="선수#3(HOME)" color="text-red-500" />
-        <PlayerInfo player="선수#4(HOME)" color="text-red-500" />
-        <PlayerInfo player="선수#5(HOME)" color="text-red-500" />
-        <PlayerInfo player="선수#6(HOME)" color="text-red-500" />
-        <PlayerInfo player="선수#1(AWAY)" color="text-blue-600" />
-        <PlayerInfo player="선수#2(AWAY)" color="text-blue-600" />
-        <PlayerInfo player="선수#3(AWAY)" color="text-blue-600" />
-        <PlayerInfo player="선수#4(AWAY)" color="text-blue-600" />
-        <PlayerInfo player="선수#5(AWAY)" color="text-blue-600" />
-        <PlayerInfo player="선수#6(AWAY)" color="text-blue-600" />
+
+        {!isLoading &&
+          data &&
+          (data.playersA.length ? (
+            <div>
+              <PlayerInfo
+                player="선수 #1 (HOME)"
+                color="text-red-500"
+                playerData={data.playerA[0]}
+              />
+              <PlayerInfo
+                player="선수 #2 (HOME)"
+                color="text-red-500"
+                playerData={data.playerA[1]}
+              />
+              <PlayerInfo
+                player="선수 #3 (HOME)"
+                color="text-red-500"
+                playerData={data.playerA[2]}
+              />
+              <PlayerInfo
+                player="선수 #4 (HOME)"
+                color="text-red-500"
+                playerData={data.playerA[3]}
+              />
+              <PlayerInfo
+                player="선수 #5 (HOME)"
+                color="text-red-500"
+                playerData={data.playerA[4]}
+              />
+              <PlayerInfo
+                player="선수 #6 (HOME)"
+                color="text-red-500"
+                playerData={data.playerA[5]}
+              />
+              <PlayerInfo
+                player="선수 #1 (AWAY)"
+                color="text-blue-600"
+                playerData={data.playerB[0]}
+              />
+              <PlayerInfo
+                player="선수 #2 (AWAY)"
+                color="text-blue-600"
+                playerData={data.playerB[1]}
+              />
+              <PlayerInfo
+                player="선수 #3 (AWAY)"
+                color="text-blue-600"
+                playerData={data.playerB[2]}
+              />
+              <PlayerInfo
+                player="선수 #4 (AWAY)"
+                color="text-blue-600"
+                playerData={data.playerB[3]}
+              />
+              <PlayerInfo
+                player="선수 #5 (AWAY)"
+                color="text-blue-600"
+                playerData={data.playerB[4]}
+              />
+              <PlayerInfo
+                player="선수 #6 (AWAY)"
+                color="text-blue-600"
+                playerData={data.playerB[5]}
+              />
+            </div>
+          ) : (
+            //  data.playersA에 값이 존재하지 않을 때 뜨는 더미 데이터
+            <div>
+              <PlayerInfo player="선수 #1 (HOME)" color="text-red-500" />
+              <PlayerInfo player="선수 #2 (HOME)" color="text-red-500" />
+              <PlayerInfo player="선수 #3 (HOME)" color="text-red-500" />
+              <PlayerInfo player="선수 #4 (HOME)" color="text-red-500" />
+              <PlayerInfo player="선수 #5 (HOME)" color="text-red-500" />
+              <PlayerInfo player="선수 #6 (HOME)" color="text-red-500" />
+              <PlayerInfo player="선수 #1 (AWAY)" color="text-blue-600" />
+              <PlayerInfo player="선수 #2 (AWAY)" color="text-blue-600" />
+              <PlayerInfo player="선수 #3 (AWAY)" color="text-blue-600" />
+              <PlayerInfo player="선수 #4 (AWAY)" color="text-blue-600" />
+              <PlayerInfo player="선수 #5 (AWAY)" color="text-blue-600" />
+              <PlayerInfo player="선수 #6 (AWAY)" color="text-blue-600" />
+            </div>
+          ))}
       </div>
     </div>
   );
