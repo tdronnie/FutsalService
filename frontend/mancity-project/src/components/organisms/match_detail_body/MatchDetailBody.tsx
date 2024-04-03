@@ -163,7 +163,7 @@ const MatchDetailBody = ({
             <div
               className="w-full ml-3 mr-1 cursor-pointer"
               onClick={() => {
-                navigate(`/feedback/${match_id}`);
+                navigate(`/score/${match_id}`);
               }}
             >
               <HalfCard
