@@ -13,7 +13,7 @@ public class HighlightService {
 
     private final HighlightFeignClient highlightFeignClient;
 
-    public void createHighlights(Long gameId, String time) {
+    public void createHighlights(Long gameId, double time) {
         CreateHighlightRequestDto dto = CreateHighlightRequestDto.builder()
                 .gameId(gameId)
                 .time(time)

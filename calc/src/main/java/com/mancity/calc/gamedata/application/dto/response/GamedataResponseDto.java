@@ -2,6 +2,7 @@ package com.mancity.calc.gamedata.application.dto.response;
 
 import com.mancity.calc.gamedata.domain.Player;
 import com.mancity.calc.gamedata.domain.PlayerStat;
+import com.mancity.calc.gamedata.domain.TeamStat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,9 +18,9 @@ public class GamedataResponseDto {
 
     private Long gameId;
 
-    private List<Player> teamA;
+    private TeamStat teamA;
 
-    private List<Player> teamB;
+    private TeamStat teamB;
 
     private List<PlayerStat> teamA_players;
 

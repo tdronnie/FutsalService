@@ -2,6 +2,7 @@ package com.mancity.calc.gamedata.presentation;
 
 import com.mancity.calc.gamedata.application.GamedataService;
 import com.mancity.calc.gamedata.application.dto.request.GamedataRequestDto;
+import com.mancity.calc.gamedata.application.dto.response.GamedataResponseDto;
 import com.mancity.calc.highlight.application.dto.request.CreateHighlightRequestDto;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/api/calc")
@@ -21,9 +24,8 @@ public class GamedataController {
 
     @PostMapping("/gamedata")
     @Operation(summary = "영상 처리 결과 데이터 받기", description = "분석을 위한 영상 처리 데이터를 제공받습니다")
-    public ResponseEntity<?> getTrackData(@RequestBody GamedataRequestDto dto) {
-        gamedataService.putDataIntoAlgorithm(dto);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<List<GamedataResponseDto>> getTrackData(@RequestBody GamedataRequestDto dto) {
+        return new ResponseEntity<>(gamedataService.putDataIntoAlgorithm(dto), HttpStatus.OK);
 
 
 
