@@ -263,6 +263,7 @@ interface MainPlayer {
   goal: string;
   pass: number;
   playedTimes: number;
+  assist: number;
 }
 
 interface ReplayGame {
