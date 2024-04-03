@@ -157,9 +157,9 @@ const MatchDetailBody = ({
   // console.log(isReplay);
   return (
     <div>
-      {/* ////////////////////////////////////////////// */}
+      {/* ///////////////////임시 추가/////////////////// */}
       <div
-        className="w-full ml-3 mr-1 cursor-pointer"
+        className="w-10/12 ml-3 mr-1 cursor-pointer"
         onClick={() => {
           navigate(`/score/${match_id}`);
         }}
@@ -229,7 +229,7 @@ const MatchDetailBody = ({
                   }}
                 >
                   <HalfCard
-                    maintext="경기영상 업로드"
+                    maintext="영상 업로드"
                     file="/src/assets/imgs/stick_chart.svg"
                     rounded="rounded-none"
                   />

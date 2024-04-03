@@ -136,6 +136,33 @@ export const sendFcmTokenApi = async (fcmData: fcmDataType) => {
     });
 };
 
+// 좋아요 누른 highlight 호출
+export const likedHighlightsApi = async (
+  userId: number
+  // ): Promise<highlightPromiseType> => {
+): Promise<[]> => {
+  return publicRequest
+    .post(`social/highlight/${userId}`)
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+      throw new Error("저장된 하이라이트 api 에러");
+    });
+};
+
+// 북마크 highlight 호출
+export const saveHighlightApi = async (
+  saveHighlightData: saveHighlightDataType
+) => {
+  return publicRequest
+    .post(`social/highlight/store`, saveHighlightData)
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+      throw new Error("저장된 하이라이트 api 에러");
+    });
+};
+
 // PUT 요청 API
 // 프로필 수정
 export const profileEditApi = async (profileEditData: FormData) => {

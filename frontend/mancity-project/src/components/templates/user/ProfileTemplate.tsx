@@ -5,10 +5,21 @@ import ProfileUserStats from "@/components/organisms/profile_userStats/ProfileUs
 import FontawsomeIcon from "@/components/atoms/fontawsome_icon/FontawsomeIcon";
 import Swal from "sweetalert2";
 import { useNavigate, useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { likedHighlightsApi } from "@/apis/userApis";
 
 const ProfileTemplate = ({ profileData }: ProfilePropsType) => {
   const { user_id } = useParams<{ user_id: string }>();
   const navigate = useNavigate();
+
+  // 저장된 하이라이트
+  const { data, isLoading } = useQuery({
+    queryKey: ["myHighlight"],
+    queryFn: async () => {
+      const response = likedHighlightsApi(Number(user_id));
+      return response;
+    },
+  });
 
   // 로그아웃 함수
   const handleLogout = () => {
@@ -28,6 +39,9 @@ const ProfileTemplate = ({ profileData }: ProfilePropsType) => {
     });
   };
 
+  // 임시 콘솔
+  // console.log(data);
+
   return (
     <div>
       {profileData && (
@@ -41,7 +55,12 @@ const ProfileTemplate = ({ profileData }: ProfilePropsType) => {
           />
           <ProfileUserInfo profileData={profileData} />
           <ProfileUserStats profileData={profileData} />
-          <GroupHighlightCard />
+
+          {!isLoading && data && (
+            <div>
+              <GroupHighlightCard highlights={data} />
+            </div>
+          )}
         </div>
       )}
       {/* 로그아웃 */}
