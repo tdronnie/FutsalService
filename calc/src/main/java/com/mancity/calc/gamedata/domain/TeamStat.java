@@ -11,21 +11,12 @@ import lombok.NoArgsConstructor;
 @Builder
 public class TeamStat {
 
-    private int speed;
-
-    private int distanceCovered;
+    private int goal;
 
     private int pass;
 
-    private int shotsOnTarget;
-
     private int shot;
 
-    private int goal;
+    private int shotOnTarget;
 
-    private int assist;
-
-    private int turnOverInOffense;
-
-    private int turnOverInDefense;
 }

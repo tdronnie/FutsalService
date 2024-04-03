@@ -3,8 +3,10 @@ package com.mancity.calc.gamedata.application;
 import com.mancity.calc.gamedata.algorithm.MainLogic;
 import com.mancity.calc.gamedata.application.dto.request.GamedataRequestDto;
 import com.mancity.calc.gamedata.application.dto.response.GamedataResponseDto;
+import com.mancity.calc.gamedata.domain.Data;
 import com.mancity.calc.gamedata.domain.PlayerStat;
 import com.mancity.calc.gamedata.domain.TeamStat;
+import com.mancity.calc.gamedata.domain.respository.GamedataRepository;
 import com.mancity.calc.highlight.application.HighlightService;
 import com.mancity.calc.highlight.application.dto.request.CreateHighlightRequestDto;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,8 @@ public class GamedataService {
 
     private final HighlightService highlightService;
 
+    private final GamedataRepository gamedataRepository;
+
 
     public void createHighlights(CreateHighlightRequestDto dto) {
         highlightService.createHighlights(dto.getGameId(), dto.getTime());
@@ -32,6 +36,7 @@ public class GamedataService {
     public List<GamedataResponseDto> putDataIntoAlgorithm(GamedataRequestDto dto) {
         MainLogic ml = new MainLogic();
         List<List<PlayerStat>> rslt = ml.getDtoToResponseRslt(dto);
+        gamedataRepository.saveAll(dto.getData());
 
         log.info("결과 값 ={}", rslt.get(0));
         log.info("결과 값 ={}", rslt.get(1));
