@@ -9,4 +9,4 @@ VOLUME /tmp
 COPY build/libs/*.jar calc.jar
 
 # 실행할 명령어
-ENTRYPOINT ["java", "-jar", "calc.jar"]
+ENTRYPOINT ["java", "-jar", "calc.jar", "--spring.profiles.active=prod"]
