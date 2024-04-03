@@ -69,6 +69,17 @@ export const fetchAlertApi = async (userId: number) => {
     });
 };
 
+// 전체 유저 정보 불러오기
+export const fetchAllPlayersApi = async () => {
+  return publicRequest
+    .get(`user/players`)
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+      throw new Error("전체 유저 정보 불러오기 api 에러");
+    });
+};
+
 // POST 요청 API
 // 이메일 중복 확인
 export const checkEmailApi = async (emailValue: string | number) => {

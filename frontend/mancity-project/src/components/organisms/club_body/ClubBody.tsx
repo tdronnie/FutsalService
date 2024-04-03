@@ -69,26 +69,28 @@ const ClubBody = () => {
 
   // 용병 호출하기
   const callThisMan = (gameId: number) => {
-    callPlayerApi(userId, receiverId, gameId).then((club) => {
-      Swal.fire({
-        title: "호출 완료",
-        text: "용병의 수락을 기다려주세요!",
-        icon: "success",
-        confirmButtonColor: "#3085d6",
-        confirmButtonText: "확인",
+    callPlayerApi(userId, receiverId, gameId)
+      .then((club) => {
+        Swal.fire({
+          title: "호출 완료",
+          text: "용병의 수락을 기다려주세요!",
+          icon: "success",
+          confirmButtonColor: "#3085d6",
+          confirmButtonText: "확인",
+        });
+      })
+      .then((result) => {
+        setOpen(false);
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "신청 에러",
+          html: "이미 신청하셨습니다. 조금만 기다려주시기 바랍니다.",
+          icon: "error",
+          confirmButtonColor: "#d42c348b",
+          confirmButtonText: "확인",
+        });
       });
-    })
-    .then((result) =>{
-    setOpen(false);
-    }).catch((error) => {
-      Swal.fire({
-        title: "신청 에러",
-        html: "이미 신청하셨습니다. 조금만 기다려주시기 바랍니다.",
-        icon: "error",
-        confirmButtonColor: "#d42c348b",
-        confirmButtonText: "확인",
-      });
-    })
     // 음 이거 용병 신청은 또 해도 또 되네...? 중복 신청이 가능하군
   };
   // 용병 호출하기 위해 눌렀을때 이벤트
@@ -137,10 +139,22 @@ const ClubBody = () => {
                   onClick={() => handleClick(player.id)}
                 >
                   <WideCard
-                    file={player.image}
-                    subtext="골결정력 특화"
+                    file={
+                      player.image
+                        ? player.image
+                        : "/src/assets/imgs/mancity_logo.png"
+                    }
+                    subtext={"총 능력치: " + String(Math.round(player.overall))}
                     maintext={player.nickName}
-                    minitext="총능력치 58"
+                    minitext={
+                      "피지컬: " +
+                      String(
+                        Math.round(
+                          ((player.height + player.weight) / 350) * 100
+                        )
+                      ) +
+                      "점"
+                    }
                     buttonlabel="호출하기"
                   />
                 </div>
@@ -194,19 +208,22 @@ const ClubBody = () => {
               return (
                 <div
                   key={index}
-                  className="p-3 m-1 bg-gray-200 rounded-md cursor-pointer"
+                  className="flex items-center justify-between p-3 m-1 bg-gray-200 rounded-md cursor-pointer"
                   onClick={() => callThisMan(match.gameId)}
                 >
-                  <Typography textColor="primary" fontWeight="md">
-                    {/* 매치 정보 표시 */}
-                    <span>
-                      일시: {match.startDate}, {match.time}시
-                    </span>
-                  </Typography>
-                  <Typography textColor="text.secondary">
-                    {/* 찾은 경기장의 이름 표시 */}
-                    {courtInfo ? courtInfo.title : "경기장 정보 없음"}
-                  </Typography>
+                  <div>
+                    <Typography textColor="primary" fontWeight="md">
+                      {/* 매치 정보 표시 */}
+                      <span>
+                        일시: {match.startDate}, {match.time}시
+                      </span>
+                    </Typography>
+                    <Typography textColor="text.secondary">
+                      {/* 찾은 경기장의 이름 표시 */}
+                      {courtInfo ? courtInfo.title : "경기장 정보 없음"}
+                    </Typography>
+                  </div>
+                  <div className="text-blue-500">선택</div>
                 </div>
               );
             })}

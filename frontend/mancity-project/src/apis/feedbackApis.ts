@@ -26,3 +26,15 @@ export const fetchPersonalFeedbacksApi = async (matchId: number, playerId: numbe
       throw new Error("개인피드백 호출 api 에러");
     }
   };
+
+//유저 할당
+export const allocateApi = async (gamePlayerId:number, userId: number) => {
+  return publicRequest
+    .post(`social/game/allocate`, {gamePlayerId, userId}, {
+    })
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+      throw new Error("유저 할당 api 에러");
+    });
+};

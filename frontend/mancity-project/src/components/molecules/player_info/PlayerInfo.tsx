@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import SearchBar from "@/components/molecules/search_bar/SearchBar";
 import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import Modal from "@mui/joy/Modal";
 import ModalClose from "@mui/joy/ModalClose";
@@ -9,14 +8,30 @@ import Sheet from "@mui/joy/Sheet";
 import { ModalDialog, ModalDialogProps } from "@mui/joy";
 import Header from "@/components/organisms/header/Header";
 import { useParams } from "react-router-dom";
-import { fetchPersonalFeedbacksApi } from "@/apis/feedbackApis";
+import { allocateApi, fetchPersonalFeedbacksApi } from "@/apis/feedbackApis";
 import useUserStore from "@/stores/userStore";
+import { useQuery } from "@tanstack/react-query";
+import { fetchAllPlayersApi } from "@/apis/userApis";
+import React from "react";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
+import Swal from "sweetalert2";
 
 const PlayerInfo = (props: PlayerInfoPropsType) => {
+  // 자동완성을 위한 상태 설정
+  const [value, setValue] = React.useState<AllUsers | null>(null);
+
   const { player, color, playerData } = props;
+  const myId = playerData?.id;
 
   const { match_id } = useParams<{ match_id: string }>();
   const userId = useUserStore((state) => state.id);
+
+  // 누적 기록 api 요청
+  const { isLoading, data } = useQuery({
+    queryKey: ["AllPlayers"],
+    queryFn: () => fetchAllPlayersApi(),
+  });
 
   // 개인 피드백 설정
   const [feedbackResult, setFeedbackResult] = useState<PersonalFeedbackResult>({
@@ -498,7 +513,39 @@ const PlayerInfo = (props: PlayerInfoPropsType) => {
                 선수 검색
               </Typography>
               {/* 선수 검색창 */}
-              <SearchBar contents={[]} setPlaceValue={setPlaceValue} />
+
+              <Autocomplete
+                value={value}
+                onChange={(event, newValue) => {
+                  if (newValue) {
+                    // newValue가 null이 아닐 때만 실행
+                    setValue(newValue);
+                    console.log(newValue); // 여기서 선택된 항목의 id를 사용할 수 있습니다.
+                    allocateApi(Number(myId), newValue.id)
+                      .then((club) => {
+                        Swal.fire({
+                          title: "선수 지정 완료",
+                          text: "선수가 지정 되었습니다!",
+                          icon: "success",
+                          confirmButtonColor: "#3085d6",
+                          confirmButtonText: "확인",
+                        });
+                      })
+                      .then(() => {
+                        setOpen(false);
+                      });
+                  } else {
+                    setValue(null); // newValue가 null일 때는 value 상태도 null로 설정
+                  }
+                }}
+                id="search-player"
+                options={data || []} // data가 없을 경우 빈 배열을 대신 사용하여 에러 방지
+                getOptionLabel={(option) => option.nickName || ""} // option이 정의되지 않은 경우를 대비하여 빈 문자열 반환
+                renderInput={(params) => (
+                  <TextField {...params} label="선수 검색" />
+                )}
+                style={{ width: 300 }}
+              />
             </Sheet>
           </Modal>
         </div>

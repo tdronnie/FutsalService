@@ -10,12 +10,12 @@ const HalfCard = (props: HalfCardPropsType) => {
   return (
     <div
       id="glassui"
-      className="flex items-center w-full h-[4.5rem] p-2 rounded-md cursor-pointer shadow-nav"
+      className="flex items-center w-full h-[4.5rem] py-2 px-1 rounded-md cursor-pointer shadow-nav"
     >
       <div>
         <ContentBox
-          height="h-10"
-          width="w-10"
+          height="h-8"
+          width="w-8"
           // rounded지만 배경색 스타일 설정으로 사용ㅎ...급하니깐
           rounded="bg-transparent"
           file={file}
