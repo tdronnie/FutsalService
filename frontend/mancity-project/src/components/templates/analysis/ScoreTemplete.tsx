@@ -36,7 +36,7 @@ const ScoreTemplete = () => {
             <div id="glassui" className="p-1">
               {/* 영상 나오는 자리 */}
               <div className="flex justify-center mx-5 mt-5">
-                <video id="myVideo">
+                <video>
                   <source src={data.replayUrl} type="video/mp4" />
                 </video>
               </div>
@@ -83,11 +83,17 @@ const ScoreTemplete = () => {
 
               <div className="flex justify-around p-2">
                 <span>
-                  {data.teamA.pass / (data.teamA.pass + data.teamB.pass)}
+                  {Math.round(
+                    (data.teamA.pass / (data.teamA.pass + data.teamB.pass)) *
+                      100
+                  )}
                 </span>
                 <span>점유율</span>
                 <span>
-                  {data.teamB.pass / (data.teamA.pass + data.teamB.pass)}
+                  {Math.round(
+                    (data.teamB.pass / (data.teamA.pass + data.teamB.pass)) *
+                      100
+                  )}
                 </span>
               </div>
               <hr className="border border-sofcity" />
