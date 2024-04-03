@@ -43,9 +43,9 @@ public class GamedataService {
         gamedataRepository.saveAll(dto.getData());
 
         //하이라이트 저장
-        List<Double> highlightTimes = rslt.get("highlightTimes");
+        List<Integer> highlightTimes = rslt.get("highlightTimes");
 
-        for (double time : highlightTimes) {
+        for (int time : highlightTimes) {
             highlightService.createHighlights(dto.getGame_id(), time);
         }
 

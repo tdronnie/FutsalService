@@ -73,7 +73,7 @@ public class MainLogic {
     private List<PlayerStat> playersA = new ArrayList<>();
     private List<PlayerStat> playersB = new ArrayList<>();
 
-    private List<Double> highlightTimes = new ArrayList<>();
+    private List<Integer> highlightTimes = new ArrayList<>();
 
     public Map<String , List> getDtoToResponseRslt(GamedataRequestDto dto) {
         this.프레임리스트 = dto.getData();
@@ -198,7 +198,7 @@ public class MainLogic {
                                 이전패스자id = 0; //이전 패스자 초기화
 
                                 //골장면 하이라이트 위한 골 장면 시간 보내기
-                                double time = currData.getFrame_num() / 30.0;
+                                int time = currData.getFrame_num() / 30;
                                 highlightTimes.add(time);
 
                                 // 프레임 양쪽 팀 갈라진 프레임으로 이동
