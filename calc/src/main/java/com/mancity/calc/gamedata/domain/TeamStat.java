@@ -1,15 +1,15 @@
 package com.mancity.calc.gamedata.domain;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class PlayerStat {
-
-    private String nickname;
+public class TeamStat {
 
     private int speed;
 
@@ -28,5 +28,4 @@ public class PlayerStat {
     private int turnOverInOffense;
 
     private int turnOverInDefense;
-
 }
