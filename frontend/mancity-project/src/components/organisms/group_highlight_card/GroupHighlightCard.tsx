@@ -6,8 +6,9 @@ import useUserStore from "@/stores/userStore";
 import { Modal, ModalClose, Sheet, Typography } from "@mui/joy";
 import { useMutation } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 const GroupHighlightCard = (props: GroupHighlightProps) => {
-  const { highlights } = props;
+  const { highlights, my = false } = props;
 
   // 로그인한 사용자 id값
   const userId = useUserStore((state) => state.id);
@@ -27,14 +28,27 @@ const GroupHighlightCard = (props: GroupHighlightProps) => {
       highlightId: highlightId, // 클릭한 하이라이트의 id로 업데이트
     }));
   };
+  console.log(highlights);
 
   const { mutate } = useMutation({
     mutationFn: saveHighlightApi,
-    onSuccess: (res) => {
-      console.log(res);
+    onSuccess: () => {
+      Swal.fire({
+        title: "하이라이트 저장 완료",
+        text: "하이라이트가 저장 완료되었습니다!",
+        icon: "success",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "확인",
+      });
     },
-    onError: (error) => {
-      console.log(error);
+    onError: () => {
+      Swal.fire({
+        title: "하이라이트 저장 에러",
+        html: "이미 저장하셨습니다.",
+        icon: "error",
+        confirmButtonColor: "#d42c348b",
+        confirmButtonText: "확인",
+      });
     },
   });
 
@@ -47,11 +61,10 @@ const GroupHighlightCard = (props: GroupHighlightProps) => {
 
   // 하이라이트 시간으로 video 실행
   const playVideo = (time: string) => {
-    const video = document.getElementById("myVideo") as HTMLVideoElement | null;
-    const startTime = Number(time) - 30;
-    const endTime = Number(time) + 30;
+    const video = document.getElementById("myVideo") as HTMLVideoElement;
+    const startTime = Number(time) - 1;
+    const endTime = Number(time) + 5;
     if (video) {
-      console.log(time);
       video.currentTime = startTime > 0 ? startTime : 0;
       video.play(); // 동영상 재생
 
@@ -63,7 +76,7 @@ const GroupHighlightCard = (props: GroupHighlightProps) => {
         }
       };
 
-      video.addEventListener("timeupdate", onTimeUpdate, false);
+      video.addEventListener("timeupdate", onTimeUpdate, true);
     } else {
       console.error("Video element not found");
     }
@@ -74,14 +87,14 @@ const GroupHighlightCard = (props: GroupHighlightProps) => {
     setModalOpen(true);
     setTimeout(() => {
       playVideo(time);
-    }, 1000);
+    }, 200);
   };
 
   return (
     <div id="glassui" className="justify-center py-2 m-4 ">
       <div className="mx-4 my-2">
         <MyTypography
-          label="하이라이트"
+          label={my ? "MY 하이라이트" : `하이라이트`}
           textColor="black"
           textSize="text-2xl"
           fontWeight="font-medium"
@@ -160,12 +173,11 @@ const GroupHighlightCard = (props: GroupHighlightProps) => {
                         className="rounded-xl"
                         id="myVideo"
                         width="100%"
-                        height="auto"
                         muted
                         loop
                         playsInline
                         // autoPlay
-                        // controls
+                        controls
                       >
                         <source
                           src={
