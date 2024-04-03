@@ -1,7 +1,7 @@
-package com.mancity.calc.highlight.application;
+package com.mancity.calc.social.application;
 
-import com.mancity.calc.highlight.application.dto.request.CreateHighlightRequestDto;
-import com.mancity.calc.highlight.presentation.HighlightFeignClient;
+import com.mancity.calc.social.application.dto.request.CreateHighlightRequestDto;
+import com.mancity.calc.social.presentation.SocialFeignClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,16 +9,16 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class HighlightService {
+public class SocialService {
 
-    private final HighlightFeignClient highlightFeignClient;
+    private final SocialFeignClient socialFeignClient;
 
     public void createHighlights(Long gameId, double time) {
         CreateHighlightRequestDto dto = CreateHighlightRequestDto.builder()
                 .gameId(gameId)
                 .time(time)
                 .build();
-        highlightFeignClient.createHighlights(dto);
+        socialFeignClient.createHighlights(dto);
     }
 
 }
