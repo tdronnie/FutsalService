@@ -18,12 +18,12 @@ const MemberList = (props: MemberListPropsType) => {
         <hr className="border-sofcity border-[0.05rem] my-1 mb-3" />
       </div>
       <div className="flex m-2">
-        <div className="mr-2">
-          {participants.map((participant) => (
+        {participants.map((participant) => (
+          <div className="mr-2">
             <div
               key={participant.userId}
               onClick={() => navigate(`/profile/${participant.userId}`)}
-              className="border rounded-full border-sofcity"
+              className="flex border rounded-full border-sofcity"
             >
               <ContentBox
                 width="w-14"
@@ -32,8 +32,8 @@ const MemberList = (props: MemberListPropsType) => {
                 file={participant.image ? participant.image : file}
               />
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </div>
   );
