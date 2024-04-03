@@ -139,9 +139,14 @@ const MainBody = () => {
                   (court) => court.id === game.courtId
                 );
                 return (
-                  <div key={game.id}>
+                  <div
+                    key={game.id}
+                    className="cursor-pointer"
+                    onClick={() => {
+                      navigate(`/replay/${game.id}`);
+                    }}
+                  >
                     <GlobalCard
-                      file={game.replayUrl}
                       mainTitle={game.startDate}
                       subTitle={
                         courtData ? courtData.title : "광주 신화 풋살장"
