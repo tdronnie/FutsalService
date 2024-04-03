@@ -36,7 +36,7 @@ const ScoreTemplete = () => {
             <div id="glassui" className="p-1">
               {/* 영상 나오는 자리 */}
               <div className="flex justify-center mx-5 mt-5">
-                <video id="myVideo" controls>
+                <video id="myVideo">
                   <source src={data.replayUrl} type="video/mp4" />
                 </video>
               </div>
