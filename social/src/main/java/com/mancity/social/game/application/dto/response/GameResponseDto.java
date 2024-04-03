@@ -2,6 +2,7 @@ package com.mancity.social.game.application.dto.response;
 
 import com.mancity.social.game.domain.Game;
 import com.mancity.social.game.domain.GameLevel;
+import com.mancity.social.highlight.application.dto.response.HighlightResponseDto;
 import com.mancity.social.participant.application.dto.respose.ParticipantResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,7 +24,7 @@ public class GameResponseDto {
 
     private String boxImageUrl;
 
-    private List<String> highlights; // 회원 id,
+    private List<HighlightResponseDto> highlights;
 
     private int gender;
 
@@ -51,14 +52,17 @@ public class GameResponseDto {
 
     private String level;
 
-    private long courtId;
+    private Long courtId;
 
     public static GameResponseDto from(Game game) {
         return GameResponseDto.builder()
                 .gameId(game.getId())
                 .replayUrl(game.getReplayUrl())
                 .boxImageUrl(game.getBoxImageUrl())
-                .highlights(game.getHighlights())
+                .highlights(game.getHighlights()
+                        .stream()
+                        .map(h-> HighlightResponseDto.from(h, game.getCourtId()))
+                        .toList())
                 .gender(game.getGender())
                 .manager(game.getManager())
                 .startDate(game.getStartDate())
