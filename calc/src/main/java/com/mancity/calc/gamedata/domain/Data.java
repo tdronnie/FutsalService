@@ -40,10 +40,5 @@ public class Data {
     @OneToOne
     private Field field;
 
-//    @JsonGetter("TeamA")
-//    private TeamA getTeamAType() {
-//        if (team_A_players != null) {
-//            return team_A_players.
-//        }
-//    }
+
 }
