@@ -4,7 +4,6 @@ import PlayerInfo from "../../molecules/player_info/PlayerInfo";
 import { useQuery } from "@tanstack/react-query";
 import { fetchPlayersDataApi } from "@/apis/matchApis";
 import { useParams } from "react-router-dom";
-import { dividerClasses } from "@mui/joy";
 
 const PlayerFixTemplete = () => {
   const { match_id } = useParams<{ match_id: string }>();

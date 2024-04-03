@@ -275,7 +275,7 @@
 
 #modalbackground {
   max-width: 576px;
-  min-height: 100vh;
+  min-height: auto;
   background-image: linear-gradient(
     to bottom,
     #ebf6ff 0vh,
