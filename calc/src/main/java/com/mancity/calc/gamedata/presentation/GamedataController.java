@@ -25,7 +25,7 @@ public class GamedataController {
     @PostMapping("/gamedata")
     @Operation(summary = "영상 처리 결과 데이터 받기", description = "분석을 위한 영상 처리 데이터를 제공받습니다")
     public ResponseEntity<?> getTrackData(@RequestBody GamedataRequestDto dto) {
-        gamedataService.putDataIntoAlgorithm(dto);
+//        gamedataService.putDataIntoAlgorithm(dto);
         return new ResponseEntity<>(HttpStatus.OK);
 
 
