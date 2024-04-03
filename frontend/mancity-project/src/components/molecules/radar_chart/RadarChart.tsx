@@ -25,10 +25,10 @@ export const RadarChart = ({ profileData }: ProfilePropsType) => {
       {
         label: "- 최근 한 경기",
         data: [
-          profileData?.lastStat?.goalDecision ?? 0,
+          profileData?.lastStat?.goalDecision * 20 ?? 0,
           profileData?.lastStat?.speed ?? 0,
-          profileData?.lastStat?.distanceCovered ?? 0,
-          profileData?.lastStat?.pass ?? 0,
+          profileData?.lastStat?.distanceCovered / 10 ?? 0,
+          profileData?.lastStat?.pass / 4 ?? 0,
           profileData?.lastStat?.defense ?? 0,
         ],
         backgroundColor: "rgba(137, 234, 255, 0.25)",
@@ -38,10 +38,10 @@ export const RadarChart = ({ profileData }: ProfilePropsType) => {
       {
         label: "- 전체 평균",
         data: [
-          profileData?.mainStat?.goalDecision ?? 0,
+          profileData?.mainStat?.goalDecision * 20 ?? 0,
           profileData?.mainStat?.speed ?? 0,
-          profileData?.mainStat?.distanceCovered ?? 0,
-          profileData?.mainStat?.pass ?? 0,
+          profileData?.mainStat?.distanceCovered / 10 ?? 0,
+          profileData?.mainStat?.pass / 4 ?? 0,
           profileData?.mainStat?.defense ?? 0,
         ],
         backgroundColor: "rgba(164, 164, 164, 0.25)",
