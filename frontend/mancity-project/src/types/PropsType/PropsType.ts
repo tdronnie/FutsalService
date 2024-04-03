@@ -302,4 +302,5 @@ interface GroupHighlightProps {
     time: string;
     courtId?: number;
   }[];
+  my?: boolean;
 }
