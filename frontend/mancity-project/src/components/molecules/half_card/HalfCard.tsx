@@ -2,7 +2,11 @@ import ContentBox from "@/components/atoms/content_box/ContentBox";
 import MyTypography from "@/components/atoms/my_typography/MyTypography";
 
 const HalfCard = (props: HalfCardPropsType) => {
-  const { file = "/src/assets/imgs/mancity_logo.png", maintext } = props;
+  const {
+    file = "/src/assets/imgs/mancity_logo.png",
+    maintext,
+    vertical,
+  } = props;
   return (
     <div
       id="glassui"
@@ -10,12 +14,13 @@ const HalfCard = (props: HalfCardPropsType) => {
     >
       <div>
         <ContentBox
-          height="h-8"
-          width="w-8"
+          height="h-10"
+          width="w-10"
           // rounded지만 배경색 스타일 설정으로 사용ㅎ...급하니깐
           rounded="bg-transparent"
-          // rounded={rounded}
           file={file}
+          // 이미지가 가로로 길면 자꾸 잘려서 vertical true / false 보내서 object-cover 적용 여부 파악했습니다.
+          vertical={vertical}
           id="responsive-img"
         />
       </div>

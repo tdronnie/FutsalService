@@ -107,6 +107,19 @@ export const fetchPlayersDataApi = async (matchId: number) => {
     });
 };
 
+// 게임 하이라이트 API
+export const gameHighlightsApi = async (
+  matchId: number
+): Promise<highlightPromiseType> => {
+  return publicRequest
+    .get(`social/highlight/${matchId}`)
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+      throw new Error("경기 하이라이트 api 에러");
+    });
+};
+
 // PUT 요청 API
 // 분석할 영상 업로드
 export const videoUploadApi = async (videoUploadData: FormData) => {

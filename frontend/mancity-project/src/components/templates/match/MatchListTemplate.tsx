@@ -94,7 +94,6 @@ const MatchListTemplate = () => {
     refetch();
   }, [matchFilterData]);
 
-  console.log(matchFilterData);
   // 날짜 형식 변경
   // const formatedDatedate = dayjs(selectedDate).format("YYYY-MM-DD");
   // console.log(formatedDatedate);
