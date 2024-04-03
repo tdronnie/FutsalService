@@ -30,6 +30,8 @@ const MatchDetailHeader = ({
     return isAM ? `오전 ${formattedHour}시` : `오후 ${formattedHour}시`;
   };
 
+  const screenWidth = window.innerWidth;
+
   return (
     <div id="glassui" className="flex flex-col justify-between p-3 m-3 ">
       <div className="flex justify-between px-2">
@@ -38,7 +40,7 @@ const MatchDetailHeader = ({
             <MyTypography
               label={courtData?.title}
               fontWeight="font-semibold"
-              textSize="text-[1.6rem]"
+              textSize={`text-[1.6rem]`}
             />
           </div>
           <MyTypography
@@ -57,7 +59,7 @@ const MatchDetailHeader = ({
           </div>
           <div>
             <MyTypography
-              label="용병호출하러가기"
+              label={screenWidth > 440 ? `용병호출하러가기` : `용병호출`}
               fontWeight="font-medium"
               textSize="text-sm"
               textColor="text-gray-500"
