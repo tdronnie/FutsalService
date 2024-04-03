@@ -64,3 +64,15 @@ export const joinClubApi = async (userId: number, clubId:number) => {
       throw new Error("클럽 참가 api 에러");
     });
 };
+
+// 용병 호출하기
+export const callPlayerApi = async (senderId: number, receiverId:number, gameId:number) => {
+  return publicRequest
+    .post(`social/participant/suggest`, {senderId, receiverId, gameId}, {
+    })
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+      throw new Error("용병 호출 api 에러");
+    });
+};
