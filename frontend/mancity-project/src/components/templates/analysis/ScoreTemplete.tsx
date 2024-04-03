@@ -112,21 +112,29 @@ const ScoreTemplete = () => {
           {/* 피드백 경로 버튼 */}
           <div className="flex justify-around mb-2">
             <div
-              className="w-full ml-3 mr-1 cursor-pointer"
+              className="w-full ml-4 mr-2 cursor-pointer"
               onClick={() => handleNavigate({ path: `/feedback/${match_id}` })}
             >
-              <HalfCard maintext="경기 피드백" />
+              <HalfCard
+                maintext="경기 피드백"
+                file="/src/assets/imgs/game_feedback.png"
+                vertical={true}
+              />
             </div>
             <div
-              className="w-full ml-1 mr-3 cursor-pointer"
+              className="w-full ml-1 mr-4 cursor-pointer"
               onClick={() => handleNavigate({ path: `/playerfix/${match_id}` })}
             >
-              <HalfCard maintext="개인 기록" />
+              <HalfCard
+                maintext="개인 기록"
+                file="/src/assets/imgs/personal_feedback.png"
+                vertical={true}
+              />
             </div>
           </div>
 
           {/* 하이라이트 */}
-          <GroupHighlightCard />
+          <GroupHighlightCard highlights={data.highlights} />
         </div>
       )}
     </div>
