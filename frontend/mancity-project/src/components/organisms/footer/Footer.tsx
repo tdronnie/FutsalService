@@ -16,7 +16,7 @@ const Footer = (props: FooterPropsType) => {
     >
       <div className="flex items-center justify-around h-16 border-t-2 rounded-t-xl">
         <div
-          className="mx-4 cursor-pointer"
+          className="ml-4 cursor-pointer"
           onClick={() => handleNavigate({ path: "/" })}
         >
           <FontawsomeIcon icon="home" size="1x" color="#4b6a84" />

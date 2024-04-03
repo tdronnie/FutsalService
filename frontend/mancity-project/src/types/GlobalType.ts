@@ -36,11 +36,14 @@ interface PlayerData {
   id: number;
   nickName: string;
   image: string;
-  goalDecision: string;
-  pass: string;
-  speed: string;
-  distanceCovered: string;
-  defense: string;
+  goalDecision: number;
+  pass: number;
+  speed: number;
+  distanceCovered: number;
+  defense: number;
+  overall: number;
+  height: number;
+  weight: number;
 }
 
 interface FeedbackResult {

@@ -138,9 +138,9 @@ const ClubBody = () => {
                 >
                   <WideCard
                     file={player.image}
-                    subtext="골결정력 특화"
+                    subtext={"총 능력치: "+String(Math.round(player.overall))}
                     maintext={player.nickName}
-                    minitext="총능력치 58"
+                    minitext={"피지컬: "+ String(Math.round((player.height + player.weight) / 350 * 100))+"점"}
                     buttonlabel="호출하기"
                   />
                 </div>
