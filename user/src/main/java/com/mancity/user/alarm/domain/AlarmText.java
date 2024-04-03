@@ -30,7 +30,7 @@ public class AlarmText {
     public static final String GAME_SUGGEST_CONTENT = "저희와 함께 즐거운 한 게임 어떠세요 ?";
 
     /* 용병 및 매치 참여 제안 응답 */
-    public static final String GAME_SUGGEST_REPLY_TITLE = "님이 용병 제안을 수락하셨어요 !";
+    public static final String GAME_SUGGEST_REPLY_TITLE = "용병 제안을 수락하셨어요 !";
     public static final String GAME_SUGGEST_REPLY_CONTENT = "덕분에 우리 팀의 약점이 줄어들었어요 !";
 
     /* 팔로잉 */
