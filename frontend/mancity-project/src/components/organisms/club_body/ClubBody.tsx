@@ -194,9 +194,10 @@ const ClubBody = () => {
               return (
                 <div
                   key={index}
-                  className="p-3 m-1 bg-gray-200 rounded-md cursor-pointer"
+                  className="flex items-center justify-between p-3 m-1 bg-gray-200 rounded-md cursor-pointer"
                   onClick={() => callThisMan(match.gameId)}
                 >
+                  <div>
                   <Typography textColor="primary" fontWeight="md">
                     {/* 매치 정보 표시 */}
                     <span>
@@ -207,6 +208,10 @@ const ClubBody = () => {
                     {/* 찾은 경기장의 이름 표시 */}
                     {courtInfo ? courtInfo.title : "경기장 정보 없음"}
                   </Typography>
+                  </div>
+                  <div className="text-blue-500">
+                    선택
+                  </div>
                 </div>
               );
             })}
