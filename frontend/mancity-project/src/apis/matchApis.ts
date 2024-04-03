@@ -142,3 +142,17 @@ export const calcRequestApi = async (match_id: number) => {
       throw new Error("경기 분석 요청 에러");
     });
 };
+
+// 경기 참여 요청 API
+export const matchRequestApi = async (matchRequestData: {
+  gameId: number;
+  userId: number;
+}) => {
+  return publicRequest
+    .post(`social/participant/request`, matchRequestData)
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+      throw new Error("경기 참여 요청 에러");
+    });
+};
