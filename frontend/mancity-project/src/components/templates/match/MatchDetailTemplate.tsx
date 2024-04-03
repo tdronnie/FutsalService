@@ -2,18 +2,47 @@ import Footer from "@/components/organisms/footer/Footer";
 import Header from "@/components/organisms/header/Header";
 import MatchDetailBody from "@/components/organisms/match_detail_body/MatchDetailBody";
 import MatchDetailHeader from "@/components/organisms/match_detail_header/MatchDetailHeader";
-import { useNavigate } from "react-router-dom";
 import futsalCourtData from "@/data/futsalCourts.json";
+import useUserStore from "@/stores/userStore";
+import Swal from "sweetalert2";
+import { useMutation } from "@tanstack/react-query";
+import { matchRequestApi } from "@/apis/matchApis";
 
 const MatchDetailTemplate = ({
   matchDetailPropsData,
 }: {
   matchDetailPropsData: matchDetailPropsDataType;
 }) => {
-  const navigate = useNavigate();
+  const userId = useUserStore((state) => state.id);
+  const participantData = {
+    gameId: matchDetailPropsData.gameId,
+    userId: userId,
+  };
+
+  const { mutate } = useMutation({
+    mutationFn: matchRequestApi,
+    onSuccess: () => {
+      Swal.fire({
+        title: "참여 신청 완료",
+        text: "매치장의 수락을 기다려주세요!",
+        icon: "success",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "확인",
+      });
+    },
+    onError: () => {
+      Swal.fire({
+        title: "참여 신청 에러",
+        html: "참여 신청이 불가능합니다. 죄송합니다.",
+        icon: "error",
+        confirmButtonColor: "#d42c348b",
+        confirmButtonText: "확인",
+      });
+    },
+  });
 
   const onButtonClick = () => {
-    navigate("/");
+    mutate(participantData);
   };
 
   const courtData = futsalCourtData.find(
