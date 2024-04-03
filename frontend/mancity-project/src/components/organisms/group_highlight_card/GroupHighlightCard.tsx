@@ -6,8 +6,9 @@ import useUserStore from "@/stores/userStore";
 import { Modal, ModalClose, Sheet, Typography } from "@mui/joy";
 import { useMutation } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 const GroupHighlightCard = (props: GroupHighlightProps) => {
-  const { highlights } = props;
+  const { highlights, my = false } = props;
 
   // 로그인한 사용자 id값
   const userId = useUserStore((state) => state.id);
@@ -30,11 +31,23 @@ const GroupHighlightCard = (props: GroupHighlightProps) => {
 
   const { mutate } = useMutation({
     mutationFn: saveHighlightApi,
-    onSuccess: (res) => {
-      console.log(res);
+    onSuccess: () => {
+      Swal.fire({
+        title: "하이라이트 저장 완료",
+        text: "하이라이트가 저장 완료되었습니다!",
+        icon: "success",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "확인",
+      });
     },
-    onError: (error) => {
-      console.log(error);
+    onError: () => {
+      Swal.fire({
+        title: "하이라이트 저장 에러",
+        html: "이미 저장하셨습니다.",
+        icon: "error",
+        confirmButtonColor: "#d42c348b",
+        confirmButtonText: "확인",
+      });
     },
   });
 
@@ -46,14 +59,13 @@ const GroupHighlightCard = (props: GroupHighlightProps) => {
   }, [saveHighlightData]);
 
   // 하이라이트 시간으로 video 실행
-  const playVideo = (time: string) => {
-    const video = document.getElementById("myVideo") as HTMLVideoElement | null;
+  const playVideo = (id: string, time: string) => {
+    const video = document.getElementById(id) as HTMLVideoElement | null;
     const startTime = Number(time) - 30;
     const endTime = Number(time) + 30;
     if (video) {
-      console.log(time);
       video.currentTime = startTime > 0 ? startTime : 0;
-      video.play(); // 동영상 재생
+      video.play();
 
       const onTimeUpdate = () => {
         // time보다 30초 이후 stop
@@ -70,18 +82,18 @@ const GroupHighlightCard = (props: GroupHighlightProps) => {
   };
 
   // 하이라이트 카드 클릭 시 모달 open, video 해당 time을 받아 -30초부터 시작
-  const onClickCard = (time: string) => {
+  const onClickCard = (id: string, time: string) => {
     setModalOpen(true);
     setTimeout(() => {
-      playVideo(time);
-    }, 1000);
+      playVideo(id, time);
+    }, 3000);
   };
 
   return (
     <div id="glassui" className="justify-center py-2 m-4 ">
       <div className="mx-4 my-2">
         <MyTypography
-          label="하이라이트"
+          label={my ? "MY 하이라이트" : `하이라이트`}
           textColor="black"
           textSize="text-2xl"
           fontWeight="font-medium"
@@ -102,7 +114,11 @@ const GroupHighlightCard = (props: GroupHighlightProps) => {
                 {/* 하이라이트 카드 */}
 
                 <div className="relative m-2">
-                  <div onClick={() => onClickCard(highlight.time)}>
+                  <div
+                    onClick={() =>
+                      onClickCard(String(highlight.id), highlight.time)
+                    }
+                  >
                     <HighlightCard
                       mainTitle={
                         courtData ? courtData.title : `광주 신화 풋살장`
@@ -114,7 +130,11 @@ const GroupHighlightCard = (props: GroupHighlightProps) => {
                   {/* 저장하기 버튼 */}
                   <div
                     className="absolute cursor-pointer px-3 rounded-full right-2 bottom-3"
-                    onClick={() => handleSaveClick(highlight.id)}
+                    onClick={
+                      my == false
+                        ? () => handleSaveClick(highlight.id)
+                        : () => {}
+                    }
                   >
                     <br />
                   </div>
@@ -158,33 +178,30 @@ const GroupHighlightCard = (props: GroupHighlightProps) => {
                     <div>
                       <video
                         className="rounded-xl"
-                        id="myVideo"
+                        id={String(highlight.id)}
                         width="100%"
-                        height="auto"
                         muted
-                        loop
                         playsInline
                         // autoPlay
                         // controls
                       >
-                        <source
-                          src={
-                            highlight.url
-                              ? highlight.url
-                              : `https://iandwe.s3.ap-northeast-2.amazonaws.com/match/Zhwf0anx`
-                          }
-                          type="video/mp4"
-                        />
+                        <source src={highlight.url} type="video/mp4" />
                       </video>
                       <div className="flex justify-around mt-2">
                         <div
-                          onClick={() => playVideo(highlight.time)}
-                          className="border-2 border-sofcity w-32 text-center rounded-xl mt-2 py-1 cursor-pointer"
+                          onClick={() => {
+                            setTimeout(() => {
+                              playVideo(String(highlight.id), highlight.time);
+                            }, 3000);
+                          }}
+                          className="border-2 border-sofcity w-24 text-center rounded-xl mt-2 py-1 cursor-pointer"
                         >
-                          다시 재생하기
+                          재생하기
                         </div>
                         <div
-                          onClick={() => handleSaveClick(highlight.id)}
+                          onClick={
+                            !my ? () => handleSaveClick(highlight.id) : () => {}
+                          }
                           className="border-2 border-sofcity  w-24 text-center rounded-xl mt-2 py-1 cursor-pointer"
                         >
                           저장하기

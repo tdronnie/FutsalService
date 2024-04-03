@@ -37,7 +37,7 @@ const ReplayBody = () => {
         video.removeEventListener("pause", handlePause);
       };
     }
-  }, []);
+  }, [videoRef]);
 
   // 모달 생성
   const [layout, setLayout] = useState<ModalDialogProps["layout"] | undefined>(
@@ -57,19 +57,21 @@ const ReplayBody = () => {
   return (
     <div>
       {/* 다시보기 영상 */}
-      <div id="glassui" className="p-4 m-4">
-        <video
-          id="myVideo"
-          controls
-          muted
-          loop
-          playsInline
-          ref={videoRef}
-          className="w-full h-full rounded-xl"
-        >
-          <source src={data?.replayUrl} type="video/mp4" />
-        </video>
-      </div>
+      {data && (
+        <div id="glassui" className="p-4 m-4">
+          <video
+            id="myVideo"
+            controls
+            muted
+            loop
+            playsInline
+            ref={videoRef}
+            className="w-full h-full rounded-xl"
+          >
+            <source src={data.replayUrl} type="video/mp4" />
+          </video>
+        </div>
+      )}
       {/* 전술보드보기, 경기분석보기 */}
       <div className="flex justify-around mb-2">
         <div
@@ -100,7 +102,7 @@ const ReplayBody = () => {
           </div>
         </div>
       </div>
-      <div> {stopTime}초에 멈췄습니다 (확인용)</div>
+      {/* <div> {stopTime}초에 멈췄습니다 (확인용)</div> */}
       {/* 모달 로직 */}
       <div>
         <Modal
