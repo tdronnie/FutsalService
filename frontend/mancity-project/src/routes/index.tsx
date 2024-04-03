@@ -29,9 +29,12 @@ import PersonalFeedbackPage from "@/pages/analysis/PersonalFeedbackPage";
 import ScorePage from "@/pages/analysis/ScorePage";
 import PersonalScorePage from "@/pages/analysis/PersonalScorePage";
 import TacticalBoardPage from "@/pages/analysis/TacticalBoardPage";
+import useUserStore from "@/stores/userStore";
 
 const RedirectToEntryIfInvalidId = () => {
   const location = useLocation(); // 현재 경로 정보를 가져옴
+  const userId = useUserStore((state) => state.id);
+
   const userStore = localStorage.getItem('userStore');
   // let userIdValid = false;
 
@@ -48,7 +51,7 @@ const RedirectToEntryIfInvalidId = () => {
   }
 
   // userId가 유효하지 않으면, /entry로 리다이렉트
-  if (!userStore) {
+  if (userId===0) {
     return <Navigate to="/entry" replace />;
   }
 
