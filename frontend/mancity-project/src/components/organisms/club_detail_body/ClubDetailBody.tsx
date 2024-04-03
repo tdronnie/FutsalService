@@ -24,7 +24,9 @@ const ClubDetailBody = () => {
   });
 
   // id값으로 받은 경기장 값을 경기장 json에서 찾기
-  const courtData = futsalCourtData.find((court) => court.id === clubDetails.clubCourtId);
+  const courtData = futsalCourtData.find(
+    (court) => court.id === clubDetails.clubCourtId
+  );
   const address = courtData?.address || "주소 정보가 없습니다";
 
   useEffect(() => {
@@ -65,7 +67,7 @@ const ClubDetailBody = () => {
           </div>
           <div>
             <MyTypography
-              label={`총 클럽원 인원: ${clubDetails.memberCnt}명`}
+              label={`클럽원 수 : ${clubDetails.memberCnt}명`}
               fontWeight="font-medium"
               textSize="text-base"
               textColor="text-gray-500"
@@ -93,7 +95,11 @@ const ClubDetailBody = () => {
       </div>
       <div className="flex justify-center mt-7">
         <ContentBox
-          file="/src/assets/imgs/mancity_logo.png"
+          file={
+            clubDetails
+              ? clubDetails.emblem
+              : `/src/assets/imgs/mancity_logo.png`
+          }
           height="h-44"
           rounded="rounded-full"
           width="w-44"
@@ -105,18 +111,18 @@ const ClubDetailBody = () => {
       </div>
 
       <div id="glassui" className="pt-4 pb-1 m-3 ">
-      <div>
-        <TypographyLine label="홈그라운드 풋살장" lineWidth="w-56" />
-      </div>
-      <div>
-        <MiniMap
-          lat={35.2037466}
-          lng={126.8143846}
-          address={address}
-          tel="062-951-9876"
-          onClick={() => onClickCopy(address)}
-        />
-      </div>
+        <div>
+          <TypographyLine label="홈그라운드 풋살장" lineWidth="w-56" />
+        </div>
+        <div>
+          <MiniMap
+            lat={35.2037466}
+            lng={126.8143846}
+            address={address}
+            tel="062-951-9876"
+            onClick={() => onClickCopy(address)}
+          />
+        </div>
       </div>
     </>
   );
