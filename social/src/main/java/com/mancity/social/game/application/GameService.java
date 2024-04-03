@@ -295,4 +295,9 @@ public class GameService {
         return GameDetailResponseDto.from(game, managerName);
     }
 
+    public void uploadBoxImage(List<MultipartFile> files, GameVideoUploadDto dto) {
+        List<String> url = uploader.uploadVideo("boximage", files);
+        Game game = findById(dto.getId());
+        game.updateBoxImageUrl(url.get(0));
+    }
 }

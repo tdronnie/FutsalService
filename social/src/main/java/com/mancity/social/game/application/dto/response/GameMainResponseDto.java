@@ -24,6 +24,8 @@ public class GameMainResponseDto {
 
     private String replayUrl;
 
+    private String boxImageUrl;
+
     public static GameMainResponseDto from(Game game) {
         return GameMainResponseDto.builder()
                 .id(game.getId())
@@ -31,6 +33,7 @@ public class GameMainResponseDto {
                 .startDate(game.getStartDate())
                 .time(game.getTime())
                 .replayUrl(game.getReplayUrl())
+                .boxImageUrl(game.getBoxImageUrl())
                 .build();
     }
 
