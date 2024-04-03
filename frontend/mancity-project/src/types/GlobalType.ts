@@ -24,6 +24,14 @@ interface ClubData {
   region: string;
 }
 
+interface MyMatchesData {
+  gameId: number;
+  courtId: number;
+  startDate: string;
+  time: number;
+  playerNumber: number;
+}
+
 interface PlayerData {
   id: number;
   nickName: string;
