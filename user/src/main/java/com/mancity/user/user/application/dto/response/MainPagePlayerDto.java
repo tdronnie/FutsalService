@@ -21,6 +21,8 @@ public class MainPagePlayerDto {
 
     private int pass;
 
+    private int assist;
+
     private int playedTimes;
 
 }

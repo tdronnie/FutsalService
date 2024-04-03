@@ -39,7 +39,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<Object[]> getListOrderByDefense();
 
 //    @Query("SELECT NEW com.mancity.user.user.application.dto.response.MainPagePlayerDto(u.id, u.nickName, u.image, u.stat.goal, u.stat.pass, u.stat.playedTimes) FROM User u WHERE u.isPlayer = true ORDER BY u.stat.goal DESC, u.stat.assist DESC limit 5")
-    @Query("SELECT NEW com.mancity.user.user.application.dto.response.MainPagePlayerDto(u.id, u.nickName, u.image, u.stat.goal, u.stat.pass, u.stat.playedTimes) FROM User u WHERE u.isPlayer = true ORDER BY u.stat.goal DESC, u.stat.assist DESC")
+    @Query("SELECT NEW com.mancity.user.user.application.dto.response.MainPagePlayerDto(u.id, u.nickName, u.image, u.stat.goal, u.stat.pass, u.stat.assist, u.stat.playedTimes) FROM User u WHERE u.isPlayer = true ORDER BY u.stat.goal DESC, u.stat.assist DESC")
     List<MainPagePlayerDto> getListOrderByGoalAndAssist(Pageable pageable);
 
     @Query("select u from User u where u.nickName like %:word% or u.email like %:word%")
