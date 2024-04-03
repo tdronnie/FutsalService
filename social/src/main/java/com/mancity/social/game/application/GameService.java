@@ -24,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
@@ -167,6 +168,9 @@ public class GameService {
 
     public TeamFeedbackResponseDto getTeamsFeedback(Long id) {
         Game game = findById(id);
+        if(game.getTeamA() == null || ObjectUtils.isEmpty(game.getTeamA())) {
+            return TeamFeedbackResponseDto.whenNull();
+        }
         return TeamFeedbackResponseDto.builder()
                 .possession(game.getTeamA().getPass() > game.getTeamB().getPass() ? 1 : 2)
                 .shot(game.getTeamA().getShot() > game.getTeamB().getShot() ? 1 : 2)
@@ -192,7 +196,9 @@ public class GameService {
     public PlayerFeedBackResponseDto getPersonalFeedBack(Long gameId, Long playerId) {
         Game game = gameRepository.findById(gameId).orElseThrow(NoSuchGameException::new);
         Player player = playerRepository.findById(playerId).orElseThrow(NoSuchPlayerException::new);
-
+        if(game.getTeamA() == null || ObjectUtils.isEmpty(game.getTeamA())) {
+            return PlayerFeedBackResponseDto.whenNull();
+        }
         //플레이어가 진행한 경기 가져오기
         List<Game> games = gameRepository.findAllByNickname(player.getNickname());
         //진행한 경기 중 gameId와 맞는 경기 찾기

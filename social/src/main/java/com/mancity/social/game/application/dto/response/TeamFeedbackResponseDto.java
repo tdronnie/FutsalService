@@ -21,4 +21,13 @@ public class TeamFeedbackResponseDto {
 
     private int activityLevel; //활동량
 
+    public static TeamFeedbackResponseDto whenNull(){
+        return TeamFeedbackResponseDto.builder()
+                .possession(1)
+                .shot(1)
+                .pass(1)
+                .goal(1)
+                .activityLevel(1)
+                .build();
+    }
 }
