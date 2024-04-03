@@ -195,10 +195,10 @@ public class GameService {
 
     public PlayerFeedBackResponseDto getPersonalFeedBack(Long gameId, Long playerId) {
         Game game = gameRepository.findById(gameId).orElseThrow(NoSuchGameException::new);
-        Player player = playerRepository.findById(playerId).orElseThrow(NoSuchPlayerException::new);
         if(game.getTeamA() == null || ObjectUtils.isEmpty(game.getTeamA())) {
             return PlayerFeedBackResponseDto.whenNull();
         }
+        Player player = playerRepository.findById(playerId).orElseThrow(NoSuchPlayerException::new);
         //플레이어가 진행한 경기 가져오기
         List<Game> games = gameRepository.findAllByNickname(player.getNickname());
         //진행한 경기 중 gameId와 맞는 경기 찾기
