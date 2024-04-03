@@ -36,29 +36,29 @@ public class GamedataService {
 
     //알고리즘
     public void putDataIntoAlgorithm(GamedataRequestDto dto) {
-        MainLogic ml = new MainLogic();
-        Map<String, List> rslt = ml.getDtoToResponseRslt(dto);
-
-        List<PlayerStat> playersA = rslt.get("playersA");
-        List<PlayerStat> playersB = rslt.get("playersB");
-        List<Integer> highlightTimes = rslt.get("highlightTimes"); //하이라이트 저장
-
-        TeamStat teamStatA = calcTeamRslt(playersA);
-        TeamStat teamStatB = calcTeamRslt(playersB);
-        //전술보드 위한 디비 저장
-        gamedataRepository.saveAll(dto.getData());
-
-        for (int time : highlightTimes) {
-            socialService.createHighlights(dto.getGame_id(), time);
-        }
-
-        GamedataResponseDto gameDto = GamedataResponseDto.builder()
-                .gameId(dto.getGame_id())
-                .teamA(teamStatA)
-                .teamB(teamStatB)
-                .teamA_players(playersA)
-                .teamB_players(playersB)
-                .build();
+//        MainLogic ml = new MainLogic();
+//        Map<String, List> rslt = ml.getDtoToResponseRslt(dto);
+//
+//        List<PlayerStat> playersA = rslt.get("playersA");
+//        List<PlayerStat> playersB = rslt.get("playersB");
+//        List<Integer> highlightTimes = rslt.get("highlightTimes"); //하이라이트 저장
+//
+//        TeamStat teamStatA = calcTeamRslt(playersA);
+//        TeamStat teamStatB = calcTeamRslt(playersB);
+//        //전술보드 위한 디비 저장
+//        gamedataRepository.saveAll(dto.getData());
+//
+//        for (int time : highlightTimes) {
+//            socialService.createHighlights(dto.getGame_id(), time);
+//        }
+//
+//        GamedataResponseDto gameDto = GamedataResponseDto.builder()
+//                .gameId(dto.getGame_id())
+//                .teamA(teamStatA)
+//                .teamB(teamStatB)
+//                .teamA_players(playersA)
+//                .teamB_players(playersB)
+//                .build();
 
 //        socialFeignClient.inputDataFromCalc(gameDto); //social로 분석 완료 데이터 전달
     }
