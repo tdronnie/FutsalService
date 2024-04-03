@@ -179,7 +179,7 @@ const MainBody = () => {
               >
                 <ClubList
                   clubTitile={player.nickName}
-                  clubInfo={`${player.playedTimes}경기 ${player.goal}골 ${player.pass}도움`}
+                  clubInfo={`${player.playedTimes}경기 ${player.goal}골 ${player.assist}도움`}
                   file={player.image}
                 />
               </div>
