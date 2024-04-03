@@ -82,6 +82,19 @@ interface HomeCardPropsType {
 interface PlayerInfoPropsType {
   player: string;
   color: string;
+  playerData?: {
+    id: number;
+    nickname: string;
+    speed: number;
+    distanceCovered: number;
+    pass: number;
+    shotsOnTarget: number;
+    shot: number;
+    goal: number;
+    assist: number;
+    turnOverInOffense: number;
+    turnOverInDefense: number;
+  };
 }
 
 interface CommunityCardPropsType {

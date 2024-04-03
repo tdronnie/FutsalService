@@ -97,6 +97,7 @@ interface matchDetailPropsDataType {
 
 interface matchDetailAllDataPropsType extends matchCreateType {
   gameId: number;
+  replayUrl: string;
 
   highlights: string[];
   participants: {
