@@ -25,7 +25,6 @@ const ScoreTemplete = () => {
   });
   // 테스트 콘솔
   // console.log(data);
-
   return (
     <div>
       {!isLoading && data && (
