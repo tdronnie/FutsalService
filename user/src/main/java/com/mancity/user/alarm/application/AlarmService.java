@@ -32,16 +32,18 @@ public class AlarmService {
     public void createAlarm(AlarmCreateDto dto) {
         Alarm alarm = dto.toEntity();
         log.info("createAlarm : INPUT DOMAIN -> {}", dto.getDomain());
-        if(AlarmDomain.valueOf(dto.getDomain()).isNeedNickName()){
+        if (AlarmDomain.valueOf(dto.getDomain()).isNeedNickName()) {
             log.info("createAlarm : nickname 필요 -> {}", AlarmDomain.valueOf(dto.getDomain()));
             String nickname = userRepository.findNickNameById(dto.getSenderId());
             alarm.updateTitle(nickname);
         }
         User user = userRepository.findById(dto.getReceiverId()).orElseThrow(UserNotExistException::new);
         alarmRepository.save(alarm);
-        // alarm FCM 호출
-        FCMDto fcmDto = FCMDto.of(user,alarm);
-        fcmSender.sendFCM(fcmDto);
+        // alarm FCM 호출, FCM 토큰이 있을 때 호출
+        if (user.getFcmToken() != null && !user.getFcmToken().isEmpty()) {
+            FCMDto fcmDto = FCMDto.of(user, alarm);
+            fcmSender.sendFCM(fcmDto);
+        }
     }
 
     public List<AlarmResponseDto> findAllByUserId(long id) {
