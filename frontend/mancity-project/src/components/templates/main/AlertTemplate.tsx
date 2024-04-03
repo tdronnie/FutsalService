@@ -7,9 +7,14 @@ import { useNavigate } from "react-router-dom";
 import LoadingMolecule from "@/components/molecules/loading_molecule/LoadingMolecule";
 
 interface AlertItem {
+  id: number;
+  senderId: number;
+  receiverId: number;
+  domainId: number;
+  domain: string;
   title: string;
   content: string;
-  domain: string;
+  createDate: string;
 }
 
 const AlertTemplate = () => {
@@ -62,7 +67,7 @@ const AlertTemplate = () => {
             <AlertCard
               maintext={item.title}
               subtext={item.content}
-              minitext="2024년 03월 11일"
+              minitext={item.createDate}
               buttonlabel="바로가기"
             />
           </div>
