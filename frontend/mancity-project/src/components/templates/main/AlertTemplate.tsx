@@ -74,7 +74,7 @@ const AlertTemplate = () => {
         });
       });
     } else if (item.domain === "GAME_SUGGEST") {
-      gameSuggestResponseApi(item.receiverId).then((response) => {
+      gameSuggestResponseApi(item.domainId).then((response) => {
         Swal.fire({
           title: "수락하기",
           text: "용병 호출을 수락하시겠습니까?",
