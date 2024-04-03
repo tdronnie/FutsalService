@@ -107,7 +107,6 @@ public enum AlarmDomain {
     public boolean isNeedNickName(){
         return domain.equals(CLUB_REQUEST.toString()) || domain.equals(CLUB_REQUEST_REPLY.toString())
                 || domain.equals(GAME_REQUEST.toString()) || domain.equals(GAME_REQUEST_REPLY.toString())
-                || domain.equals(GAME_SUGGEST.toString()) || domain.equals(FOLLOW.toString())
-                || domain.equals(GAME_SUGGEST_REPLY_TITLE.toString());
+                || domain.equals(GAME_SUGGEST.toString()) || domain.equals(FOLLOW.toString());
     }
 }
