@@ -258,6 +258,25 @@ interface SearchBarPropsType {
   setPlaceValue: React.Dispatch<React.SetStateAction<number>>;
 }
 
+interface AllUsers {
+  id: number;
+  nickName: string;
+  image: string;
+  goalDecision: number;
+  pass: number;
+  speed: number;
+  distanceCovered: number;
+  defense: number;
+  overall: number;
+  height: number;
+  weight: number;
+}
+
+interface NewSearchBarPropsType {
+  contents: AllUsers[];
+  setPlaceValue: React.Dispatch<React.SetStateAction<number>>;
+}
+
 interface MatchDetailPropsType {
   matchDetailPropsData: matchDetailPropsDataType;
   courtData: futsalCourts;
