@@ -33,7 +33,7 @@ const MatchDetailTemplate = ({
     onError: () => {
       Swal.fire({
         title: "참여 신청 에러",
-        html: "참여 신청이 불가능합니다. 죄송합니다.",
+        html: "이미 참여신청 하셨습니다. 조금만 기다려주세요.",
         icon: "error",
         confirmButtonColor: "#d42c348b",
         confirmButtonText: "확인",
