@@ -15,15 +15,14 @@ import { fetchAllPlayersApi } from "@/apis/userApis";
 import React from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
+import Swal from "sweetalert2";
 
 const PlayerInfo = (props: PlayerInfoPropsType) => {
   // 자동완성을 위한 상태 설정
   const [value, setValue] = React.useState<AllUsers | null>(null);
 
   const { player, color, playerData } = props;
-  const myId = playerData?.id
-
-  // console.log(playerData)
+  const myId = playerData?.id;
 
   const { match_id } = useParams<{ match_id: string }>();
   const userId = useUserStore((state) => state.id);
@@ -522,7 +521,19 @@ const PlayerInfo = (props: PlayerInfoPropsType) => {
                     // newValue가 null이 아닐 때만 실행
                     setValue(newValue);
                     console.log(newValue); // 여기서 선택된 항목의 id를 사용할 수 있습니다.
-                    allocateApi(Number(myId), newValue.id);
+                    allocateApi(Number(myId), newValue.id)
+                      .then((club) => {
+                        Swal.fire({
+                          title: "선수 지정 완료",
+                          text: "선수가 지정 되었습니다!",
+                          icon: "success",
+                          confirmButtonColor: "#3085d6",
+                          confirmButtonText: "확인",
+                        });
+                      })
+                      .then(() => {
+                        setOpen(false);
+                      });
                   } else {
                     setValue(null); // newValue가 null일 때는 value 상태도 null로 설정
                   }
