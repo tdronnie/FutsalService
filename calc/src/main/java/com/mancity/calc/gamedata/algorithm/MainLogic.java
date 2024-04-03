@@ -75,7 +75,7 @@ public class MainLogic {
 
     private List<Integer> highlightTimes = new ArrayList<>();
 
-    public Map<String , List> getDtoToResponseRslt(GamedataRequestDto dto) {
+    public Map<String, List> getDtoToResponseRslt(GamedataRequestDto dto) {
         this.프레임리스트 = dto.getData();
         teamA1.setNickname("guest");
         playersA.add(teamA1);
@@ -111,7 +111,7 @@ public class MainLogic {
         이전프레임공y좌표 = data.getBall().getY();
 
 
-        for (int frameN = 1; frameN < 프레임리스트.size(); frameN++) {
+        for (int frameN = 1; frameN < 30; frameN++) {
 
             log.info("---------------------------------------------------------------");
             log.info("frameNum = {}", frameN);
@@ -214,35 +214,42 @@ public class MainLogic {
                 }
             }
             //전체 플레이어 최대속도 갱신
+            //전체 플레이어 활동거리 갱신
             for (int i = 0; i < teamA.size(); i++) {
-
+                log.info("플레이어 아이디 ={}", teamA.get(i).getPlayer_id());
                 int 현재x좌표 = 프레임리스트.get(frameN).getTeam_A_players().get(i).getX();
                 int 현재y좌표 = 프레임리스트.get(frameN).getTeam_A_players().get(i).getY();
 
                 //frameNum이 1인경우 속도 예외처리
                 double speed = 0;
+                double move = 0;
                 if (frameN != 1) {
                     //조회되지 않는 플레이어 아이디는 스킵
                     int 이전x좌표 = 프레임리스트.get(frameN - 1).getTeam_A_players().get(i).getX();
                     int 이전y좌표 = 프레임리스트.get(frameN - 1).getTeam_A_players().get(i).getY();
                     speed = 거리구하기(필드x1, 필드x2, 이전x좌표, 이전y좌표, 현재x좌표, 현재y좌표) * 30;
+                    move = 거리구하기(필드x1, 필드x2, 이전x좌표, 이전y좌표, 현재x좌표, 현재y좌표);
                 }
-                log.info("플레이어 아이디 ={}", teamA.get(i).getPlayer_id());
                 playersA.get(i).setSpeed((int) Math.max(playersA.get(i).getSpeed(), speed));
+                playersA.get(i).setDistanceCovered((int) (playersA.get(i).getDistanceCovered() + move));
             }
 
             for (int i = 0; i < teamB.size(); i++) {
+                log.info("플레이어 아이디 ={}", teamA.get(i).getPlayer_id());
                 int 현재x좌표 = 프레임리스트.get(frameN).getTeam_B_players().get(i).getY();
                 int 현재y좌표 = 프레임리스트.get(frameN).getTeam_B_players().get(i).getY();
 
                 //frameNum이 1인경우 속도 예외처리
                 double speed = 0;
+                double move = 0;
                 if (frameN != 1) {
                     int 이전x좌표 = 프레임리스트.get(frameN - 1).getTeam_B_players().get(i).getX();
                     int 이전y좌표 = 프레임리스트.get(frameN - 1).getTeam_B_players().get(i).getY();
                     speed = 거리구하기(필드x1, 필드x2, 이전x좌표, 이전y좌표, 현재x좌표, 현재y좌표) * 30;
+                    move = 거리구하기(필드x1, 필드x2, 이전x좌표, 이전y좌표, 현재x좌표, 현재y좌표);
                 }
                 playersB.get(i).setSpeed((int) Math.max(playersB.get(i).getSpeed(), speed));
+                playersB.get(i).setDistanceCovered((int) (playersB.get(i).getDistanceCovered() + move));
             }
 
         }
@@ -398,7 +405,7 @@ public class MainLogic {
             이전공소유팀 = 현재공소유팀;
             현재공소유팀 = rsltVal[1];
             if (이전공소유자id != 현재프레임공소유자id)
-            return true;
+                return true;
         }
         return false;
 
