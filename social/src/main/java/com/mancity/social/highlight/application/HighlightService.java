@@ -5,7 +5,7 @@ import com.mancity.social.game.domain.repository.GameRepository;
 import com.mancity.social.game.exception.NoSuchGameException;
 import com.mancity.social.highlight.application.dto.request.CreateHighlightRequestDto;
 import com.mancity.social.highlight.application.dto.request.StoreHighlightRequestDto;
-import com.mancity.social.highlight.application.dto.response.HighlightReponseDto;
+import com.mancity.social.highlight.application.dto.response.HighlightResponseDto;
 import com.mancity.social.highlight.application.dto.response.MyhighlightResponseDto;
 import com.mancity.social.highlight.domain.Highlight;
 import com.mancity.social.highlight.domain.Myhighlight;
@@ -31,29 +31,29 @@ public class HighlightService {
 
     private final UserFeignClient userFeignClient;
 
-
     public void createHighlights(CreateHighlightRequestDto dto) {
         Game game = gameRepository.findById(dto.getGameId()).orElseThrow(NoSuchGameException::new);
-        highlightRepository.save(Highlight.builder()
-                .gameId(game.getId())
-                .myhighlights(new ArrayList<>())
-                .time(dto.getTime())
-                .build());
+//        highlightRepository.save(Highlight.builder()
+//                .gameId(game.getId())
+//                .myhighlights(new ArrayList<>())
+//                .time(dto.getTime())
+//                .build());
+        game.updateHighlights(dto.toEntity(game.getReplayUrl())); // game 에 저장 완료
     }
 
-
-    public List<HighlightReponseDto> getGameHighlights(Long id) {
+    public List<HighlightResponseDto> getGameHighlights(Long id) {
         Game game = gameRepository.findById(id).orElseThrow(NoSuchGameException::new);
 
         //gameId로 하이라이트 추출
         List<Highlight> highlights = highlightRepository.findByGameId(id);
 
-        List<HighlightReponseDto> lists = new ArrayList<>();
+        List<HighlightResponseDto> lists = new ArrayList<>();
         for (Highlight h : highlights) {
-            lists.add(HighlightReponseDto.builder()
+            lists.add(HighlightResponseDto.builder()
                     .id(h.getId())
                     .url(game.getReplayUrl())
                     .time(h.getTime())
+                    .courtId(game.getCourtId())
                     .build());
 
         }
@@ -61,13 +61,13 @@ public class HighlightService {
     }
 
     public void storeMyHighlight(StoreHighlightRequestDto dto) {
-        Long user = userFeignClient.findById(dto.getUserId()).getId();
+//        Long user = userFeignClient.findById(dto.getUserId()).getId();
         Highlight highlight = highlightRepository.findById(dto.getHighlightId()).orElseThrow(NoSuchHighlightException::new);
 
         //마이 하이라이트 생성 후 하이라이트와 유저에 업데이트
         Myhighlight myhighlight = Myhighlight.builder()
                 .highlight(highlight)
-                .userId(user)
+                .userId(dto.getUserId())
                 .build();
 
         //하이라이트의 마이하이라이트 리스트에 업데이트
@@ -78,19 +78,21 @@ public class HighlightService {
 
 
     public List<MyhighlightResponseDto> getMyHighlights(Long id) {
-        UserResponseDto userDto = userFeignClient.findById(id);
+//        UserResponseDto userDto = userFeignClient.findById(id);
 
 
-        List<Myhighlight> myhighlights = highlightRepository.findAllByUserId(userDto.getId());
+        List<Myhighlight> myhighlights = highlightRepository.findAllByUserId(id);
 
         List<MyhighlightResponseDto> list = new ArrayList<>();
         for (Myhighlight h : myhighlights) {
 
-            Game game = gameRepository.findById(h.getHighlight().getGameId()).orElseThrow(NoSuchGameException::new);
+//            Game game = gameRepository.findById(h.getHighlight().getGameId()).orElseThrow(NoSuchGameException::new);
+            Game game = h.getHighlight().getGame();
             list.add(MyhighlightResponseDto.builder()
                     .id(h.getId())
                     .url(game.getReplayUrl())
                     .time(h.getHighlight().getTime())
+                    .courtId(game.getCourtId())
                     .build());
         }
 
