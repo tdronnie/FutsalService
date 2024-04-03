@@ -92,7 +92,7 @@ public class MainLogic {
         playersB.add(teamB6);
 
         log.info("초기 설정 된 playersA 리스트 ={}, playersB 리스트 ={}", playersA.size(), playersB.size());
-        start(); //분석 시작
+//        start(); //분석 시작
         log.info("teamA4의 pass ={}", teamA4.getPass());
         Map<String, List> map = new HashMap<>();
         map.put("playersA", playersA);

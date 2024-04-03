@@ -60,7 +60,7 @@ public class GamedataService {
                 .teamB_players(playersB)
                 .build();
 
-        socialFeignClient.inputDataFromCalc(gameDto); //social로 분석 완료 데이터 전달
+//        socialFeignClient.inputDataFromCalc(gameDto); //social로 분석 완료 데이터 전달
     }
 
     public TeamStat calcTeamRslt(List<PlayerStat> playerStats) {
