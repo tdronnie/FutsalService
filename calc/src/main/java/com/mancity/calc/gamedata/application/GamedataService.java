@@ -1,14 +1,14 @@
 package com.mancity.calc.gamedata.application;
 
-import com.mancity.calc.game.presentation.GameFeignClient;
 import com.mancity.calc.gamedata.algorithm.MainLogic;
 import com.mancity.calc.gamedata.application.dto.request.GamedataRequestDto;
 import com.mancity.calc.gamedata.application.dto.response.GamedataResponseDto;
 import com.mancity.calc.gamedata.domain.PlayerStat;
 import com.mancity.calc.gamedata.domain.TeamStat;
 import com.mancity.calc.gamedata.domain.respository.GamedataRepository;
-import com.mancity.calc.highlight.application.HighlightService;
-import com.mancity.calc.highlight.application.dto.request.CreateHighlightRequestDto;
+import com.mancity.calc.social.application.SocialService;
+import com.mancity.calc.social.application.dto.request.CreateHighlightRequestDto;
+import com.mancity.calc.social.presentation.SocialFeignClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -23,15 +23,15 @@ import java.util.Map;
 @Slf4j
 public class GamedataService {
 
-    private final HighlightService highlightService;
+    private final SocialService socialService;
 
-    private final GameFeignClient gameFeignClient;
+    private final SocialFeignClient socialFeignClient;
 
     private final GamedataRepository gamedataRepository;
 
 
     public void createHighlights(CreateHighlightRequestDto dto) {
-        highlightService.createHighlights(dto.getGameId(), dto.getTime());
+        socialService.createHighlights(dto.getGameId(), dto.getTime());
     }
 
     //알고리즘
@@ -49,7 +49,7 @@ public class GamedataService {
         gamedataRepository.saveAll(dto.getData());
 
         for (int time : highlightTimes) {
-            highlightService.createHighlights(dto.getGame_id(), time);
+            socialService.createHighlights(dto.getGame_id(), time);
         }
 
         GamedataResponseDto gameDto = GamedataResponseDto.builder()
@@ -60,7 +60,7 @@ public class GamedataService {
                 .teamB_players(playersB)
                 .build();
 
-        gameFeignClient.inputDataFromCalc(gameDto); //social로 분석 완료 데이터 전달
+        socialFeignClient.inputDataFromCalc(gameDto); //social로 분석 완료 데이터 전달
     }
 
     public TeamStat calcTeamRslt(List<PlayerStat> playerStats) {

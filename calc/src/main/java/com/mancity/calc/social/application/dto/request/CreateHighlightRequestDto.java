@@ -1,4 +1,4 @@
-package com.mancity.calc.highlight.application.dto.request;
+package com.mancity.calc.social.application.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
