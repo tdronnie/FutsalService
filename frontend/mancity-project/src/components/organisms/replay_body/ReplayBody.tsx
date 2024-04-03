@@ -100,7 +100,7 @@ const ReplayBody = () => {
           </div>
         </div>
       </div>
-      <div> {stopTime}초에 멈췄습니다 (확인용)</div>
+      {/* <div> {stopTime}초에 멈췄습니다 (확인용)</div> */}
       {/* 모달 로직 */}
       <div>
         <Modal

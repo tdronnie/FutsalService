@@ -16,6 +16,7 @@ const PlayerFixTemplete = () => {
     },
   });
 
+  // console.log(data);
   return (
     <div className="pb-4">
       <Header label="선수 지정" backArrow={true} headerButton={false} />
@@ -48,62 +49,62 @@ const PlayerFixTemplete = () => {
               <PlayerInfo
                 player="선수 #1 (HOME)"
                 color="text-red-500"
-                playerData={data.playerA[0]}
+                playerData={data.playersA[0]}
               />
               <PlayerInfo
                 player="선수 #2 (HOME)"
                 color="text-red-500"
-                playerData={data.playerA[1]}
+                playerData={data.playersA[1]}
               />
               <PlayerInfo
                 player="선수 #3 (HOME)"
                 color="text-red-500"
-                playerData={data.playerA[2]}
+                playerData={data.playersA[2]}
               />
               <PlayerInfo
                 player="선수 #4 (HOME)"
                 color="text-red-500"
-                playerData={data.playerA[3]}
+                playerData={data.playersA[3]}
               />
               <PlayerInfo
                 player="선수 #5 (HOME)"
                 color="text-red-500"
-                playerData={data.playerA[4]}
+                playerData={data.playersA[4]}
               />
               <PlayerInfo
                 player="선수 #6 (HOME)"
                 color="text-red-500"
-                playerData={data.playerA[5]}
+                playerData={data.playersA[5]}
               />
               <PlayerInfo
                 player="선수 #1 (AWAY)"
                 color="text-blue-600"
-                playerData={data.playerB[0]}
+                playerData={data.playersB[0]}
               />
               <PlayerInfo
                 player="선수 #2 (AWAY)"
                 color="text-blue-600"
-                playerData={data.playerB[1]}
+                playerData={data.playersB[1]}
               />
               <PlayerInfo
                 player="선수 #3 (AWAY)"
                 color="text-blue-600"
-                playerData={data.playerB[2]}
+                playerData={data.playersB[2]}
               />
               <PlayerInfo
                 player="선수 #4 (AWAY)"
                 color="text-blue-600"
-                playerData={data.playerB[3]}
+                playerData={data.playersB[3]}
               />
               <PlayerInfo
                 player="선수 #5 (AWAY)"
                 color="text-blue-600"
-                playerData={data.playerB[4]}
+                playerData={data.playersB[4]}
               />
               <PlayerInfo
                 player="선수 #6 (AWAY)"
                 color="text-blue-600"
-                playerData={data.playerB[5]}
+                playerData={data.playersB[5]}
               />
             </div>
           ) : (

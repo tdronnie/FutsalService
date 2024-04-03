@@ -58,7 +58,7 @@ const ProfileTemplate = ({ profileData }: ProfilePropsType) => {
 
           {!isLoading && data && (
             <div>
-              <GroupHighlightCard highlights={data} />
+              <GroupHighlightCard highlights={data} my={true} />
             </div>
           )}
         </div>
