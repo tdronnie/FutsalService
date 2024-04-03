@@ -1,4 +1,4 @@
-import FeedbackTemplet from "@/components/templates/analysis/FeedbackTemplet"
+import FeedbackTemplet from "@/components/templates/analysis/FeedbackTemplate"
 
 const FeedbackPage = () => {
   return (
