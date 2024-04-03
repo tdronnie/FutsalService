@@ -33,14 +33,14 @@ import TacticalBoardPage from "@/pages/analysis/TacticalBoardPage";
 const RedirectToEntryIfInvalidId = () => {
   const location = useLocation(); // 현재 경로 정보를 가져옴
   const userStore = localStorage.getItem('userStore');
-  let userIdValid = false;
+  // let userIdValid = false;
 
-  if (userStore) {
-    const userStoreParsed = JSON.parse(userStore);
-    if (userStoreParsed.state && userStoreParsed.state.id > 1) {
-      userIdValid = true;
-    }
-  }
+  // if (userStore) {
+  //   const userStoreParsed = JSON.parse(userStore);
+  //   if (userStoreParsed.state && userStoreParsed.state.id > 1) {
+  //     userIdValid = true;
+  //   }
+  // }
 
   // 로그인 및 회원가입 페이지는 리다이렉트 예외 처리
   if (location.pathname === '/login' || location.pathname === '/signup') {
@@ -48,7 +48,7 @@ const RedirectToEntryIfInvalidId = () => {
   }
 
   // userId가 유효하지 않으면, /entry로 리다이렉트
-  if (!userIdValid) {
+  if (!userStore) {
     return <Navigate to="/entry" replace />;
   }
 
