@@ -131,7 +131,9 @@ const GroupHighlightCard = (props: GroupHighlightProps) => {
                   <div
                     className="absolute cursor-pointer px-3 rounded-full right-2 bottom-3"
                     onClick={
-                      my ? () => handleSaveClick(highlight.id) : () => {}
+                      my == false
+                        ? () => handleSaveClick(highlight.id)
+                        : () => {}
                     }
                   >
                     <br />
@@ -198,7 +200,7 @@ const GroupHighlightCard = (props: GroupHighlightProps) => {
                         </div>
                         <div
                           onClick={
-                            my ? () => handleSaveClick(highlight.id) : () => {}
+                            !my ? () => handleSaveClick(highlight.id) : () => {}
                           }
                           className="border-2 border-sofcity  w-24 text-center rounded-xl mt-2 py-1 cursor-pointer"
                         >
