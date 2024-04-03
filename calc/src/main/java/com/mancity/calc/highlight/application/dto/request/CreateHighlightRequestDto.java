@@ -13,5 +13,5 @@ public class CreateHighlightRequestDto {
 
     private Long gameId;
 
-    private String time;
+    private double time;
 }

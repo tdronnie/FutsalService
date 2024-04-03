@@ -24,7 +24,9 @@ import com.mancity.calc.gamedata.domain.PlayerStat;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 public class MainLogic {
@@ -68,13 +70,14 @@ public class MainLogic {
     private static PlayerStat teamB5 = new PlayerStat();
     private static PlayerStat teamB6 = new PlayerStat();
 
-    private static List<PlayerStat> playersA = new ArrayList<>();
-    private static List<PlayerStat> playersB = new ArrayList<>();
+    private List<PlayerStat> playersA = new ArrayList<>();
+    private List<PlayerStat> playersB = new ArrayList<>();
 
-    public List<List<PlayerStat>> getDtoToResponseRslt(GamedataRequestDto dto) {
+    private List<Double> highlightTimes = new ArrayList<>();
+
+    public Map<String , List> getDtoToResponseRslt(GamedataRequestDto dto) {
         this.프레임리스트 = dto.getData();
-        start(); //분석 시작
-        log.info("teamA4의 pass ={}", teamA4.getPass());
+        teamA1.setNickname("guest");
         playersA.add(teamA1);
         playersA.add(teamA2);
         playersA.add(teamA3);
@@ -87,10 +90,19 @@ public class MainLogic {
         playersB.add(teamB4);
         playersB.add(teamB5);
         playersB.add(teamB6);
-        List<List<PlayerStat>> rslt = new ArrayList<>();
-        rslt.add(playersA);
-        rslt.add(playersB);
-        return rslt;
+
+        log.info("초기 설정 된 playersA 리스트 ={}, playersB 리스트 ={}", playersA.size(), playersB.size());
+        start(); //분석 시작
+        log.info("teamA4의 pass ={}", teamA4.getPass());
+        Map<String, List> map = new HashMap<>();
+        map.put("playersA", playersA);
+        map.put("playersB", playersB);
+        map.put("highlightTimes", highlightTimes);
+
+//        List<List<PlayerStat>> rslt = new ArrayList<>();
+//        rslt.add(playersA);
+//        rslt.add(playersB);
+        return map;
     }
 
     private void start() {
@@ -104,16 +116,9 @@ public class MainLogic {
             log.info("---------------------------------------------------------------");
             log.info("frameNum = {}", frameN);
 
-
             List<Player> teamA = 프레임리스트.get(frameN).getTeam_A_players();
             List<Player> teamB = 프레임리스트.get(frameN).getTeam_B_players();
 
-            //프레임마다 모든 플레이어의 최대속도 갱신
-            updateAllPlayersMaxSpeed(teamA);
-            updateAllPlayersMaxSpeed(teamB);
-            //프레임마다 모든 플레이어의 활동량 업데이트
-            updateAllPlayersDistanceCovered(teamA);
-            updateAllPlayersDistanceCovered(teamB);
             //--------공 소유 여부 판별 시작 ------------
 
             Data currData = 프레임리스트.get(frameN);
@@ -131,7 +136,7 @@ public class MainLogic {
 
             //공 소유 여부 판별, 속도
             if (현재공속도 < 공소유유효한최대공속도) { //일정 속도 이상이면 누군가 공을 소유하고 있지 않다고 봄, 다음 프레임으로 넘어가기
-                
+
                 log.info("공 속도는 일정 미만으로 만족");
                 //공 소유 여부 판별, 거리
                 // 반경 안에 플레이어 있으면 가장 공과 가까운 플레이어를 공 소유자로 지정, 공소유팀 지정
@@ -168,7 +173,7 @@ public class MainLogic {
                                     plusStat(이전공소유자id, 1, "turnOverInDefense");
                                 }
                             }
-                        } else if(현재프레임공소유자id == 0) { //무소유, 이전프렝림공소유자의 스탯 업데이트!!
+                        } else if (현재프레임공소유자id == 0) { //무소유, 이전프렝림공소유자의 스탯 업데이트!!
                             if (!슛범위안에있니(이전공소유팀, currData)) continue;
                             if (!골대에들어갔니(이전공소유팀, currData)) { //슛 범위에 들어갔지만 골은 아님
                                 plusStat(이전공소유자id, 이전공소유팀, "shotOnTarget"); //유효슛 업데이트
@@ -182,6 +187,7 @@ public class MainLogic {
 
                             //900프레임 동안 팀A의 플레이어 모두 왼쪽 팀B의 플레이어 모두 오른쪽에 위치하고, 공이 가운데 바운더리에 위치하는 경우 골로 산정
                             //900프레임 돌면서 경기가 재개되는 프레임 먼저 찾아놓은 후 이후에 만약에 골임이 판정되면  그 다음 프레임부터 스탯 업데이트, 만약 900프레임까지 골이 아니라고 하면 이전에 찾아놓았던 재개 프레임부터 스탯 업데이트 진행
+                            int goalFrame = frameN;
                             int[] val = 골인지아닌지900프레임만큼계산(frameN, currData); //val[0] -> 공 여부(0, 1), val[1] -> 공이 다시 필드로 들어오는 프레임, val[2] -> 골 이후 중앙부터 경기 재개 프레임
                             if (val[1] == 1) { //골인 경우
                                 //개인 득점 업데이트
@@ -190,6 +196,11 @@ public class MainLogic {
                                 plusStat(슛한것으로의심되는사람id, 슛한것으로의심되는사람의팀, "goal"); //골
                                 plusStat(이전패스자id, 슛한것으로의심되는사람의팀, "assist"); //이전 패스자 어시스트 업데이트
                                 이전패스자id = 0; //이전 패스자 초기화
+
+                                //골장면 하이라이트 위한 골 장면 시간 보내기
+                                double time = currData.getFrame_num() / 30.0;
+                                highlightTimes.add(time);
+
                                 // 프레임 양쪽 팀 갈라진 프레임으로 이동
                                 frameN = val[1];
 
@@ -202,13 +213,39 @@ public class MainLogic {
 
                 }
             }
+            //전체 플레이어 최대속도 갱신
+            for (int i = 0; i < teamA.size(); i++) {
+
+                int 현재x좌표 = 프레임리스트.get(frameN).getTeam_A_players().get(i).getX();
+                int 현재y좌표 = 프레임리스트.get(frameN).getTeam_A_players().get(i).getY();
+
+                //frameNum이 1인경우 속도 예외처리
+                double speed = 0;
+                if (frameN != 1) {
+                    //조회되지 않는 플레이어 아이디는 스킵
+                    int 이전x좌표 = 프레임리스트.get(frameN - 1).getTeam_A_players().get(i).getX();
+                    int 이전y좌표 = 프레임리스트.get(frameN - 1).getTeam_A_players().get(i).getY();
+                    speed = 거리구하기(필드x1, 필드x2, 이전x좌표, 이전y좌표, 현재x좌표, 현재y좌표) * 30;
+                }
+                log.info("플레이어 아이디 ={}", teamA.get(i).getPlayer_id());
+                playersA.get(i).setSpeed((int) Math.max(playersA.get(i).getSpeed(), speed));
+            }
+
+            for (int i = 0; i < teamB.size(); i++) {
+                int 현재x좌표 = 프레임리스트.get(frameN).getTeam_B_players().get(i).getY();
+                int 현재y좌표 = 프레임리스트.get(frameN).getTeam_B_players().get(i).getY();
+
+                //frameNum이 1인경우 속도 예외처리
+                double speed = 0;
+                if (frameN != 1) {
+                    int 이전x좌표 = 프레임리스트.get(frameN - 1).getTeam_B_players().get(i).getX();
+                    int 이전y좌표 = 프레임리스트.get(frameN - 1).getTeam_B_players().get(i).getY();
+                    speed = 거리구하기(필드x1, 필드x2, 이전x좌표, 이전y좌표, 현재x좌표, 현재y좌표) * 30;
+                }
+                playersB.get(i).setSpeed((int) Math.max(playersB.get(i).getSpeed(), speed));
+            }
+
         }
-    }
-
-    private void updateAllPlayersDistanceCovered(List<Player> team) {
-    }
-
-    private void updateAllPlayersMaxSpeed(List<Player> team) {
     }
 
     private int[] 골인지아닌지900프레임만큼계산(int frameN, Data frameData) {
@@ -329,14 +366,14 @@ public class MainLogic {
     }
 
     private boolean 반경에플레이어가있는지체크및가장가까운플레이어를소유자로지정(List<Player> teamA, List<Player> teamB) {
-        log.info("반경 탐색");
+//        log.info("반경 탐색");
         minDis = 공소유유효한최대거리;
         int[] rsltVal = new int[2];
         int[] val = new int[2];
 
         for (Player player : teamA) {
             double dis = 거리구하기(필드x1, 필드x2, player.getX(), player.getY(), 현재프레임공x좌표, 현재프레임공y좌표);
-            log.info("거리 ={}", dis);
+//            log.info("거리 ={}", dis);
             val = 원반경안에있으면서공과가장가까운선수(dis, player, 1);
             if (val[0] != 0) {
                 rsltVal[0] = val[0];
@@ -347,25 +384,24 @@ public class MainLogic {
 
         for (Player player : teamB) {
             double dis = 거리구하기(필드x1, 필드x2, player.getX(), player.getY(), 현재프레임공x좌표, 현재프레임공y좌표);
-            log.info("거리 ={}", dis);
+//            log.info("거리 ={}", dis);
             val = 원반경안에있으면서공과가장가까운선수(dis, player, 2);
             if (val[0] != 0) {
                 rsltVal[0] = val[0];
                 rsltVal[1] = 2;
             }
         }
-        if (rsltVal[0] ==  0) return false;
-        else{
+        if (rsltVal[0] == 0) return false;
+        else {
             이전공소유자id = 현재프레임공소유자id;
             현재프레임공소유자id = rsltVal[0];
             이전공소유팀 = 현재공소유팀;
             현재공소유팀 = rsltVal[1];
-            if(이전공소유자id != 현재프레임공소유자id)
-                log.info("공 소유 변경!!!");
-            log.info("이전프레임공소유자id ={}", 이전공소유자id);
-            log.info(("현재프레임공소유자id ={} "), 현재프레임공소유자id);
+            if (이전공소유자id != 현재프레임공소유자id)
             return true;
         }
+        return false;
+
     }
 
     private int[] 원반경안에있으면서공과가장가까운선수(double dis, Player player, int team) {
@@ -459,7 +495,7 @@ public class MainLogic {
         if (stat.equals("speed")) player.setSpeed(player.getSpeed() + 1);
         if (stat.equals("distanceCovered")) player.setDistanceCovered(player.getDistanceCovered() + 1);
         if (stat.equals("pass")) player.setPass(player.getPass() + 1);
-        if (stat.equals("shotsOnTarget")) player.setShotsOnTarget(player.getShotsOnTarget() + 1);
+        if (stat.equals("shotOnTarget")) player.setShotOnTarget(player.getShotOnTarget() + 1);
         if (stat.equals("shot")) player.setShot(player.getShot() + 1);
         if (stat.equals("goal")) player.setGoal(player.getGoal() + 1);
         if (stat.equals("assist")) player.setAssist(player.getAssist() + 1);

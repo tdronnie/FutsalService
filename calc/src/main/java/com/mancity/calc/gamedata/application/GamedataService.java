@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -35,22 +36,30 @@ public class GamedataService {
     //알고리즘
     public List<GamedataResponseDto> putDataIntoAlgorithm(GamedataRequestDto dto) {
         MainLogic ml = new MainLogic();
-        List<List<PlayerStat>> rslt = ml.getDtoToResponseRslt(dto);
+//        List<List<PlayerStat>> rslt = ml.getDtoToResponseRslt(dto);
+        Map<String, List> rslt = ml.getDtoToResponseRslt(dto);
+
+        //전술보드 위한 디비 저장
         gamedataRepository.saveAll(dto.getData());
 
-        log.info("결과 값 ={}", rslt.get(0));
-        log.info("결과 값 ={}", rslt.get(1));
+        //하이라이트 저장
+        List<Double> highlightTimes = rslt.get("highlightTimes");
 
-        TeamStat teamStatA = calcTeamRslt(rslt.get(0));
-        TeamStat teamStatB = calcTeamRslt(rslt.get(1));
+        for (double time : highlightTimes) {
+            highlightService.createHighlights(dto.getGame_id(), time);
+        }
+
+
+        TeamStat teamStatA = calcTeamRslt(rslt.get("playersA"));
+        TeamStat teamStatB = calcTeamRslt(rslt.get("playersB"));
 
         List<GamedataResponseDto> list = new ArrayList<>();
         GamedataResponseDto gameDto = GamedataResponseDto.builder()
                 .gameId(dto.getGame_id())
                 .teamA(teamStatA)
                 .teamB(teamStatB)
-                .teamA_players(rslt.get(0))
-                .teamB_players(rslt.get(1))
+                .teamA_players(rslt.get("playersA"))
+                .teamB_players(rslt.get("playersB"))
                 .build();
         list.add(gameDto);
 

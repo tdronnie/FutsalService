@@ -9,6 +9,8 @@ import lombok.*;
 @Builder
 public class PlayerStat {
 
+    private Long player_id;
+
     private String nickname;
 
     private int speed; // 최고속도
