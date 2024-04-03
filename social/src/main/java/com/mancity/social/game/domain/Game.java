@@ -1,6 +1,7 @@
 package com.mancity.social.game.domain;
 
 import com.mancity.social.game.application.dto.request.GameDataInputDto;
+import com.mancity.social.highlight.domain.Highlight;
 import com.mancity.social.participant.domain.Participant;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -27,8 +28,9 @@ public class Game {
 
     private String boxImageUrl;
 
-    @ElementCollection(fetch = FetchType.LAZY)
-    private List<String> highlights; // 회원 id,
+    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List<Highlight> highlights  = new ArrayList<>();
 
     private int gender;  // 1남자 2여자 3혼성
 
@@ -71,8 +73,8 @@ public class Game {
 
     private long courtId;
 
-    public void updateHighlights(List<String> highlights) {
-        this.highlights.addAll(highlights);
+    public void updateHighlights(Highlight highlight) {
+        this.highlights.add(highlight);
     }
 
     public void uploadVideo(String url) {
