@@ -1,4 +1,4 @@
-import MuiModal from "@/components/atoms/mui_modal/MuiModal";
+import MuiModal from "@/components/atoms/totalstat_modal/TotalStatModal";
 import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import RadarChart from "@/components/molecules/radar_chart/RadarChart";
 import { useQuery } from "@tanstack/react-query";

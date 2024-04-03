@@ -6,7 +6,8 @@ const MemberList = (props: MemberListPropsType) => {
   const file = "/src/assets/imgs/mancity_logo.png";
   const navigate = useNavigate();
   const { participants } = props;
-  // 테스트콘솔
+
+  // 테스트 콘솔
   // console.log(participants);
   return (
     <div id="glassui" className="p-4 m-3">
