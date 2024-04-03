@@ -114,7 +114,10 @@ const PlayerInfo = (props: PlayerInfoPropsType) => {
             onClose={() => setLayout(undefined)}
             sx={modalStyle}
           >
-            <ModalDialog layout={layout} sx={{ padding: "0px", overflow:"scroll"}}>
+            <ModalDialog
+              layout={layout}
+              sx={{ padding: "0px", overflow: "scroll" }}
+            >
               {/* 모달 닫기 버튼 */}
 
               <ModalClose
