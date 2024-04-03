@@ -34,3 +34,23 @@ interface PlayerData {
   distanceCovered: string;
   defense: string;
 }
+
+interface FeedbackResult {
+  possession: number;
+  shot: number;
+  pass: number;
+  goal: number;
+  activityLevel: number;
+}
+
+interface PersonalFeedbackResult {
+  distanceCovered: number;
+  speed: number;
+  goal: number;
+  assist: number;
+  shot: number;
+  shotOnTarget: number;
+  pass: number;
+  turnOverInOffense: number;
+  turnOverInDefense: number;
+}
