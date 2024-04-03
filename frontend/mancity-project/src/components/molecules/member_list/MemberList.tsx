@@ -3,7 +3,7 @@ import MyTypography from "@/components/atoms/my_typography/MyTypography";
 import { useNavigate } from "react-router-dom";
 
 const MemberList = (props: MemberListPropsType) => {
-  const file = "/src/assets/imgs/mancity_logo.jpg";
+  const file = "/src/assets/imgs/mancity_logo.png";
   const navigate = useNavigate();
   const { participants } = props;
 
