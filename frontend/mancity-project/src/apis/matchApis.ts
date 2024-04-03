@@ -74,6 +74,17 @@ export const MainPageApi = async (userId: number) => {
     });
 };
 
+// 내가 등록한 매치 조회
+export const MyMatchApi = async (userId: number) => {
+  return publicRequest
+    .get(`social/game/manager/${userId}`)
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+      throw new Error("내가 등록한 매치 호출 에러");
+    });
+};
+
 // 게임 팀 데이터 조회
 export const teamFeedbackApi = async (matchId: number) => {
   return publicRequest
