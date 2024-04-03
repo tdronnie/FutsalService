@@ -28,7 +28,6 @@ const GroupHighlightCard = (props: GroupHighlightProps) => {
       highlightId: highlightId, // 클릭한 하이라이트의 id로 업데이트
     }));
   };
-  console.log(highlights);
 
   const { mutate } = useMutation({
     mutationFn: saveHighlightApi,
@@ -60,13 +59,13 @@ const GroupHighlightCard = (props: GroupHighlightProps) => {
   }, [saveHighlightData]);
 
   // 하이라이트 시간으로 video 실행
-  const playVideo = (time: string) => {
-    const video = document.getElementById("myVideo") as HTMLVideoElement;
-    const startTime = Number(time) - 1;
-    const endTime = Number(time) + 5;
+  const playVideo = (id: string, time: string) => {
+    const video = document.getElementById(id) as HTMLVideoElement | null;
+    const startTime = Number(time) - 30;
+    const endTime = Number(time) + 30;
     if (video) {
       video.currentTime = startTime > 0 ? startTime : 0;
-      video.play(); // 동영상 재생
+      video.play();
 
       const onTimeUpdate = () => {
         // time보다 30초 이후 stop
@@ -76,18 +75,18 @@ const GroupHighlightCard = (props: GroupHighlightProps) => {
         }
       };
 
-      video.addEventListener("timeupdate", onTimeUpdate, true);
+      video.addEventListener("timeupdate", onTimeUpdate, false);
     } else {
       console.error("Video element not found");
     }
   };
 
   // 하이라이트 카드 클릭 시 모달 open, video 해당 time을 받아 -30초부터 시작
-  const onClickCard = (time: string) => {
+  const onClickCard = (id: string, time: string) => {
     setModalOpen(true);
     setTimeout(() => {
-      playVideo(time);
-    }, 200);
+      playVideo(id, time);
+    }, 3000);
   };
 
   return (
@@ -115,7 +114,11 @@ const GroupHighlightCard = (props: GroupHighlightProps) => {
                 {/* 하이라이트 카드 */}
 
                 <div className="relative m-2">
-                  <div onClick={() => onClickCard(highlight.time)}>
+                  <div
+                    onClick={() =>
+                      onClickCard(String(highlight.id), highlight.time)
+                    }
+                  >
                     <HighlightCard
                       mainTitle={
                         courtData ? courtData.title : `광주 신화 풋살장`
@@ -127,7 +130,9 @@ const GroupHighlightCard = (props: GroupHighlightProps) => {
                   {/* 저장하기 버튼 */}
                   <div
                     className="absolute cursor-pointer px-3 rounded-full right-2 bottom-3"
-                    onClick={() => handleSaveClick(highlight.id)}
+                    onClick={
+                      my ? () => handleSaveClick(highlight.id) : () => {}
+                    }
                   >
                     <br />
                   </div>
@@ -171,32 +176,30 @@ const GroupHighlightCard = (props: GroupHighlightProps) => {
                     <div>
                       <video
                         className="rounded-xl"
-                        id="myVideo"
+                        id={String(highlight.id)}
                         width="100%"
                         muted
-                        loop
                         playsInline
                         // autoPlay
-                        controls
+                        // controls
                       >
-                        <source
-                          src={
-                            highlight.url
-                              ? highlight.url
-                              : `https://iandwe.s3.ap-northeast-2.amazonaws.com/match/Zhwf0anx`
-                          }
-                          type="video/mp4"
-                        />
+                        <source src={highlight.url} type="video/mp4" />
                       </video>
                       <div className="flex justify-around mt-2">
                         <div
-                          onClick={() => playVideo(highlight.time)}
-                          className="border-2 border-sofcity w-32 text-center rounded-xl mt-2 py-1 cursor-pointer"
+                          onClick={() => {
+                            setTimeout(() => {
+                              playVideo(String(highlight.id), highlight.time);
+                            }, 3000);
+                          }}
+                          className="border-2 border-sofcity w-24 text-center rounded-xl mt-2 py-1 cursor-pointer"
                         >
-                          다시 재생하기
+                          재생하기
                         </div>
                         <div
-                          onClick={() => handleSaveClick(highlight.id)}
+                          onClick={
+                            my ? () => handleSaveClick(highlight.id) : () => {}
+                          }
                           className="border-2 border-sofcity  w-24 text-center rounded-xl mt-2 py-1 cursor-pointer"
                         >
                           저장하기
