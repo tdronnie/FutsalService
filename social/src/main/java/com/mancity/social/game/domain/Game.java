@@ -25,6 +25,8 @@ public class Game {
 
     private String replayUrl;
 
+    private String boxImageUrl;
+
     @ElementCollection(fetch = FetchType.LAZY)
     private List<String> highlights; // 회원 id,
 
@@ -99,5 +101,9 @@ public class Game {
 
     public void updateCalcOver(){
         this.isCalcOver = true;
+    }
+
+    public void updateBoxImageUrl(String url){
+        this.boxImageUrl = url;
     }
 }

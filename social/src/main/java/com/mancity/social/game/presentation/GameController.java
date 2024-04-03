@@ -163,4 +163,11 @@ public class GameController {
     public ResponseEntity<GameDetailResponseDto> findGameDetails(@PathVariable("id") long id) {
         return new ResponseEntity<>(gameService.findGameDetails(id), HttpStatus.OK);
     }
+
+    @PostMapping("/boximage")
+    @Operation(summary = "Flask 에서 지현이형이 쓸 API ㅎㅎ", description = "여기다가 박스이미지 보내주시면 됩니다 ㅎㅎ")
+    public void uploadBoxImage(@RequestPart(value = "files", required = false) List<MultipartFile> files,
+                                                  @RequestPart(value = "dto") GameVideoUploadDto dto) {
+        gameService.uploadBoxImage(files, dto);
+    }
 }
