@@ -38,7 +38,7 @@ public class HighlightService {
 //                .myhighlights(new ArrayList<>())
 //                .time(dto.getTime())
 //                .build());
-        game.updateHighlights(dto.toEntity(game.getReplayUrl())); // game 에 저장 완료
+        game.updateHighlights(dto.toEntity(game.getReplayUrl(), game)); // game 에 저장 완료
     }
 
     public List<HighlightResponseDto> getGameHighlights(Long id) {
