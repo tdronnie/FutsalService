@@ -1,4 +1,4 @@
-package com.mancity.calc.highlight.application.dto.request;
+package com.mancity.calc.gamedata.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CreateHighlightRequestDto {
+public class TeamStat {
 
-    private Long gameId;
+    private int goal;
 
-    private double time;
+    private int pass;
+
+    private int shot;
+
+    private int shotOnTarget;
+
 }

@@ -22,28 +22,23 @@ public class Data {
 
     private int frame_num;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Ball ball;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private GoalPost team_A_goal_post;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private GoalPost team_B_goal_post;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Player> team_A_players;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Player> team_B_players;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Field field;
 
-//    @JsonGetter("TeamA")
-//    private TeamA getTeamAType() {
-//        if (team_A_players != null) {
-//            return team_A_players.
-//        }
-//    }
+
 }
