@@ -48,8 +48,8 @@ const GroupHighlightCard = (props: GroupHighlightProps) => {
   // 하이라이트 시간으로 video 실행
   const playVideo = (time: string) => {
     const video = document.getElementById("myVideo") as HTMLVideoElement | null;
-    const startTime = Number(time);
-    const endTime = Number(time) + 2;
+    const startTime = Number(time) - 30;
+    const endTime = Number(time) + 30;
     if (video) {
       console.log(time);
       video.currentTime = startTime > 0 ? startTime : 0;

@@ -16,23 +16,25 @@ const ClubDetailTemplete = () => {
   const navigate = useNavigate();
 
   const onButtonClick = () => {
-    joinClubApi(userId, clubId).then((club) => {
-      Swal.fire({
-        title: "참여 신청 완료",
-        text: "클럽원의 수락을 기다려주세요!",
-        icon: "success",
-        confirmButtonColor: "#3085d6",
-        confirmButtonText: "확인",
+    joinClubApi(userId, clubId)
+      .then((club) => {
+        Swal.fire({
+          title: "참여 신청 완료",
+          text: "클럽원의 수락을 기다려주세요!",
+          icon: "success",
+          confirmButtonColor: "#3085d6",
+          confirmButtonText: "확인",
+        });
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "클럽 신청 에러",
+          html: "이미 참여신청 하셨습니다. 조금만 기다려주세요.",
+          icon: "error",
+          confirmButtonColor: "#d42c348b",
+          confirmButtonText: "확인",
+        });
       });
-    }).catch((error) => {
-      Swal.fire({
-        title: "신청 에러",
-        html: "참여 신청이 불가능합니다. 죄송합니다.",
-        icon: "error",
-        confirmButtonColor: "#d42c348b",
-        confirmButtonText: "확인",
-      });
-    })
   };
   return (
     <>
