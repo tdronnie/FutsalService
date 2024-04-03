@@ -5,20 +5,27 @@ import { fetchAlertApi } from "@/apis/userApis";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LoadingMolecule from "@/components/molecules/loading_molecule/LoadingMolecule";
+import useUserStore from "@/stores/userStore";
 
 interface AlertItem {
+  id: number;
+  senderId: number;
+  receiverId: number;
+  domainId: number;
+  domain: string;
   title: string;
   content: string;
-  domain: string;
+  createDate: string;
 }
+
 
 const AlertTemplate = () => {
   const navigate = useNavigate();
   const handleNavigate = ({ path }: NavigateType) => {
     navigate(path);
   };
-
-  const [userId, setUserId] = useState(1); // 초기 상태 설정
+  
+  const userId = useUserStore((state) => state.id);
   const today = new Date();
   const formattedDate = new Intl.DateTimeFormat("ko-KR", {
     year: "numeric",
@@ -30,20 +37,16 @@ const AlertTemplate = () => {
     .replace(". ", "월 ")
     .replace(".", "일");
 
-  useEffect(() => {
-    // localStorage에서 userStore 문자열을 읽어오기
-    const userData = localStorage.getItem("userStore");
-    if (userData) {
-      const userStoreObject = JSON.parse(userData);
-      setUserId(userStoreObject.state.id); // 여기서 상태를 업데이트
-    }
-  }, []); // 의존성 배열을 빈 배열로 설정하여 컴포넌트 마운트 시 1회만 실행
-
   const { isLoading, data } = useQuery({
     queryKey: ["alerts"],
     queryFn: () => fetchAlertApi(Number(userId)),
-    enabled: !!userId, // userId가 유효한 경우에만 API 호출을 활성화
   });
+
+  const handleClick = (item: AlertItem) => {
+    if (item.domain === "FOLLOW") {
+      handleNavigate({ path: `/profile/${item.senderId}` });
+    }
+  };
 
   if (isLoading)
     return (
@@ -58,11 +61,11 @@ const AlertTemplate = () => {
       <>
         <Header label="주요 알림" backArrow={true} headerButton={false} />
         {data.map((item: AlertItem, index: number) => (
-          <div key={index}>
+          <div key={index} onClick={() => handleClick(item)}>
             <AlertCard
               maintext={item.title}
               subtext={item.content}
-              minitext="2024년 03월 11일"
+              minitext={item.createDate}
               buttonlabel="바로가기"
             />
           </div>
