@@ -19,9 +19,9 @@ const Footer = (props: FooterPropsType) => {
           className="mx-4 cursor-pointer"
           onClick={() => handleNavigate({ path: "/" })}
         >
-          <FontawsomeIcon icon="home" size="2x" color="#4b6a84" />
+          <FontawsomeIcon icon="home" size="1x" color="#4b6a84" />
         </div>
-        <div className="w-1/2 text-center">
+        <div className="w-1/2 mr-1 text-center">
           <MyTypography
             label={label}
             textSize="text-md"
