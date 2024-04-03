@@ -31,4 +31,17 @@ public class PlayerFeedBackResponseDto {
 
     private int turnOverInDefense; // 수비 시 턴오버 성공한 총 횟수
 
+    public static PlayerFeedBackResponseDto whenNull(){
+        return PlayerFeedBackResponseDto.builder()
+                .distanceCovered(1)
+                .speed(1)
+                .goal(1)
+                .assist(1)
+                .shot(1)
+                .shotOnTarget(1)
+                .pass(1)
+                .turnOverInDefense(1)
+                .turnOverInOffense(1)
+                .build();
+    }
 }
