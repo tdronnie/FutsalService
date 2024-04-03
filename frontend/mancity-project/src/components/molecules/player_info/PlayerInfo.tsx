@@ -188,8 +188,8 @@ const PlayerInfo = (props: PlayerInfoPropsType) => {
                         fontWeight="font-medium"
                         label={
                           playerData
-                            ? `: ${playerData.distanceCovered}km`
-                            : ": 1.2km"
+                            ? `: ${playerData.distanceCovered}m`
+                            : ": 1200m"
                         }
                         textColor="text-darkcity"
                         textSize="text-xl"
