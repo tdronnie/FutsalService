@@ -157,6 +157,21 @@ const MatchDetailBody = ({
   // console.log(isReplay);
   return (
     <div>
+      {/* ////////////////////////////////////////////// */}
+      <div
+        className="w-full ml-3 mr-1 cursor-pointer"
+        onClick={() => {
+          navigate(`/score/${match_id}`);
+        }}
+      >
+        <HalfCard
+          maintext="경기결과보기"
+          file="/src/assets/imgs/game_result.svg"
+          rounded="rounded-none"
+        />
+      </div>
+      {/* ////////////////////////////////////////////// */}
+
       {!isOver && (
         <div className="flex justify-around mb-2">
           {matchDetailPropsData.calcOver ? (
