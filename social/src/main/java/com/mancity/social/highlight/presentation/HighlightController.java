@@ -3,7 +3,7 @@ package com.mancity.social.highlight.presentation;
 import com.mancity.social.highlight.application.HighlightService;
 import com.mancity.social.highlight.application.dto.request.CreateHighlightRequestDto;
 import com.mancity.social.highlight.application.dto.request.StoreHighlightRequestDto;
-import com.mancity.social.highlight.application.dto.response.HighlightReponseDto;
+import com.mancity.social.highlight.application.dto.response.HighlightResponseDto;
 import com.mancity.social.highlight.application.dto.response.MyhighlightResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +31,7 @@ public class HighlightController {
 
     @GetMapping("/{game}")
     @Operation(summary = "하이라이트 조회 API", description = "경기 분석 후 생성된 하이라이트 조회 API")
-    public ResponseEntity<List<HighlightReponseDto>> getGameHighlights(@PathVariable("game") Long id) {
+    public ResponseEntity<List<HighlightResponseDto>> getGameHighlights(@PathVariable("game") Long id) {
         return new ResponseEntity<>(highlightService.getGameHighlights(id), HttpStatus.OK);
     }
 

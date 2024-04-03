@@ -16,4 +16,6 @@ public class MyhighlightResponseDto {
     private String url;
 
     private String time;
+
+    private Long courtId;
 }
