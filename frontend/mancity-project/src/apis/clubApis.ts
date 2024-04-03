@@ -19,7 +19,7 @@ export const fetchClubDetailApi = async (clubId: string) => {
   try {
     const response = await publicRequest.get(`user/club/${clubId}`);
     // 테스트콘솔
-    console.log('클럽 상세:',response.data)
+    // console.log('클럽 상세:',response.data)
     return response.data;
   } catch (error) {
     console.log(error);
@@ -50,5 +50,17 @@ export const createClubApi = async (clubData: FormData) => {
     .catch((error) => {
       console.log(error);
       throw new Error("클럽 생성 api 에러");
+    });
+};
+
+// 클럽 참가 신청
+export const joinClubApi = async (userId: number, clubId:number) => {
+  return publicRequest
+    .post(`user/clubMember/joinReq`, {userId, clubId}, {
+    })
+    .then((res) => res.data)
+    .catch((error) => {
+      console.log(error);
+      throw new Error("클럽 참가 api 에러");
     });
 };
