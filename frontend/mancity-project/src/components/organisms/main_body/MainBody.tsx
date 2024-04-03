@@ -172,7 +172,11 @@ const MainBody = () => {
             </div>
             <hr className="border border-sofcity" />
             {data.players.map((player: MainPlayer) => (
-              <div key={player.id}>
+              <div
+                key={player.id}
+                onClick={() => navigate(`/profile/${player.id}`)}
+                className="cursor-pointer "
+              >
                 <ClubList
                   clubTitile={player.nickName}
                   clubInfo={`${player.playedTimes}경기 ${player.goal}골 ${player.pass}도움`}

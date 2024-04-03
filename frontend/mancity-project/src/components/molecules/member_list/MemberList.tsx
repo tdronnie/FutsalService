@@ -6,6 +6,7 @@ const MemberList = (props: MemberListPropsType) => {
   const file = "/src/assets/imgs/mancity_logo.jpg";
   const navigate = useNavigate();
   const { participants } = props;
+  console.log(participants);
   return (
     <div id="glassui" className="p-4 m-3">
       <div className="mx-2">
@@ -18,8 +19,8 @@ const MemberList = (props: MemberListPropsType) => {
         <div className="mr-2">
           {participants.map((participant) => (
             <div
-              key={participant.id}
-              onClick={() => navigate(`/profile/${participant.id}`)}
+              key={participant.userId}
+              onClick={() => navigate(`/profile/${participant.userId}`)}
               className="border rounded-full border-sofcity"
             >
               <ContentBox
