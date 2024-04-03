@@ -99,7 +99,11 @@ interface matchDetailAllDataPropsType extends matchCreateType {
   gameId: number;
   replayUrl: string;
 
-  highlights: string[];
+  highlights: {
+    id: number;
+    url: string;
+    time: string;
+  }[];
   participants: {
     id: number;
     userId: number;

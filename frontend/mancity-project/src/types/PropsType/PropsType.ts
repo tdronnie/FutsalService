@@ -28,6 +28,7 @@ interface TailwindPropsType {
 
   hidden?: string;
   reverse?: boolean;
+  vertical?: boolean;
 }
 
 interface GlobalButton {
@@ -71,6 +72,7 @@ interface HalfCardPropsType {
   maintext: string;
   rounded?: string;
   disabled?: boolean;
+  vertical?: boolean;
 }
 
 interface HomeCardPropsType {
@@ -161,6 +163,12 @@ interface GlobalCardProps {
 interface HighlightCardProps {
   mainTitle: string;
   file?: string;
+}
+
+// 하이라이트 저장 요청 타입
+interface saveHighlightDataType {
+  highlightId: number;
+  userId: number;
 }
 
 interface ExampleCustomInputProps extends React.HTMLProps<HTMLButtonElement> {
@@ -277,4 +285,20 @@ interface ReplayModalPropsType {
   games: ReplayGame[];
   openModal: boolean;
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+}
+interface highlightPromiseType {
+  id: number;
+  url: string;
+  time: string;
+  courtId?: number;
+}
+[];
+
+interface GroupHighlightProps {
+  highlights: {
+    id: number;
+    url: string;
+    time: string;
+    courtId?: number;
+  }[];
 }
