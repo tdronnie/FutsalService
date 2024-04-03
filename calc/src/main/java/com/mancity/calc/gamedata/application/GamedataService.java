@@ -59,37 +59,22 @@ public class GamedataService {
 
     public TeamStat calcTeamRslt(List<PlayerStat> playerStats) {
 
-        int sumSpeed = 0;
-        int sumDistanceCovered = 0;
         int sumPass = 0;
-        int sumShotsOnTarget = 0;
+        int sumShotOnTarget = 0;
         int sumShot = 0;
         int sumGoal = 0;
-        int sumAssist = 0;
-        int sumTOOff = 0;
-        int sumTODF = 0;
 
         for (PlayerStat stat : playerStats) {
-            sumSpeed += stat.getSpeed();
-            sumDistanceCovered += stat.getDistanceCovered();
             sumPass += stat.getPass();
-            sumShotsOnTarget += stat.getShotsOnTarget();
             sumShot += stat.getShot();
             sumGoal += stat.getGoal();
-            sumAssist += stat.getAssist();
-            sumTOOff += stat.getTurnOverInOffense();
-            sumTODF += stat.getTurnOverInDefense();
+            sumShotOnTarget += stat.getShotOnTarget();
         }
         return TeamStat.builder()
-                .speed(sumSpeed)
-                .distanceCovered(sumDistanceCovered)
                 .pass(sumPass)
-                .shotsOnTarget(sumShotsOnTarget)
+                .shotOnTarget(sumShotOnTarget)
                 .shot(sumShot)
                 .goal(sumGoal)
-                .assist(sumAssist)
-                .turnOverInOffense(sumTOOff)
-                .turnOverInDefense(sumTODF)
                 .build();
 
     }
