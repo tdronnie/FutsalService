@@ -2,6 +2,7 @@ package com.mancity.user.user.domain.repository;
 
 import com.mancity.user.user.application.dto.response.MainPagePlayerDto;
 import com.mancity.user.user.domain.User;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -37,8 +38,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("select u.id, u.nickName, u.image, u.mainStat.goalDecision, u.mainStat.pass, u.mainStat.speed, u.mainStat.distanceCovered, u.mainStat.defense, u.height, u.weight from User u where u.isPlayer = true order by u.mainStat.defense DESC")
     List<Object[]> getListOrderByDefense();
 
-   @Query("SELECT NEW com.mancity.user.user.application.dto.response.MainPagePlayerDto(u.id, u.nickName, u.image, u.stat.goal, u.stat.pass, u.stat.playedTimes) FROM User u WHERE u.isPlayer = true ORDER BY u.stat.goal DESC, u.stat.assist DESC limit 5")
-    List<MainPagePlayerDto> getListOrderByGoalAndAssist();
+//    @Query("SELECT NEW com.mancity.user.user.application.dto.response.MainPagePlayerDto(u.id, u.nickName, u.image, u.stat.goal, u.stat.pass, u.stat.playedTimes) FROM User u WHERE u.isPlayer = true ORDER BY u.stat.goal DESC, u.stat.assist DESC limit 5")
+    @Query("SELECT NEW com.mancity.user.user.application.dto.response.MainPagePlayerDto(u.id, u.nickName, u.image, u.stat.goal, u.stat.pass, u.stat.playedTimes) FROM User u WHERE u.isPlayer = true ORDER BY u.stat.goal DESC, u.stat.assist DESC")
+    List<MainPagePlayerDto> getListOrderByGoalAndAssist(Pageable pageable);
 
     @Query("select u from User u where u.nickName like %:word% or u.email like %:word%")
     List<User> findByNickNameOrEmail(String word);
