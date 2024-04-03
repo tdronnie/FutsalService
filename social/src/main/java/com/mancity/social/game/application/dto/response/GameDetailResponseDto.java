@@ -21,6 +21,8 @@ public class GameDetailResponseDto {
 
     private String replayUrl;
 
+    private String boxImageUrl;
+
     private int gender;
 
     private Long managerId;
@@ -47,6 +49,7 @@ public class GameDetailResponseDto {
         return GameDetailResponseDto.builder()
                 .gameId(game.getId())
                 .replayUrl(game.getReplayUrl())
+                .boxImageUrl(game.getBoxImageUrl())
                 .gender(game.getGender())
                 .managerId(game.getManager())
                 .managerName(managerName)

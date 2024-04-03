@@ -21,6 +21,8 @@ public class GameResponseDto {
 
     private String replayUrl;
 
+    private String boxImageUrl;
+
     private List<String> highlights; // 회원 id,
 
     private int gender;
@@ -55,6 +57,7 @@ public class GameResponseDto {
         return GameResponseDto.builder()
                 .gameId(game.getId())
                 .replayUrl(game.getReplayUrl())
+                .boxImageUrl(game.getBoxImageUrl())
                 .highlights(game.getHighlights())
                 .gender(game.getGender())
                 .manager(game.getManager())
