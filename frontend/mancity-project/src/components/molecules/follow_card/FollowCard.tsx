@@ -27,7 +27,7 @@ const FollowCard = (props: FollowCardPropsType) => {
         </div>
         <div className="flex">
           <SubmitButton
-            label={`총스탯 ${overall}`}
+            label={`총스탯 ${Math.floor(overall)}`}
             reverse={false}
             hover={false}
           />
