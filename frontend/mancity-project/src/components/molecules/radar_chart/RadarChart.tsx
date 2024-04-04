@@ -20,7 +20,7 @@ ChartJS.register(
 
 export const RadarChart = ({ profileData }: ProfilePropsType) => {
   const data = {
-    labels: ["골 결정력", "스피드", "활동량", "패스 성공률", "수비력"],
+    labels: ["골 결정력", "최고속도", "활동량", "패스 성공률", "수비력"],
     datasets: [
       {
         label: "- 최근 한 경기",
