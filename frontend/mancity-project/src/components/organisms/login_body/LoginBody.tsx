@@ -144,6 +144,8 @@ const LoginBody = () => {
         console.error("FCM 토큰 요청 실패:", error);
       }
     } else {
+      // 로그인
+      loginMutate(loginData);
       console.log("알림 권한이 없어 토큰을 받아올 수 없습니다.");
     }
   };
