@@ -44,8 +44,7 @@ export const fetchplayersApi = async () => {
 // 클럽 생성
 export const createClubApi = async (clubData: FormData) => {
   return publicRequest
-    .post(`user/club/create`, clubData, {
-    })
+    .post(`user/club/create`, clubData, {})
     .then((res) => res.data)
     .catch((error) => {
       console.log(error);
@@ -54,10 +53,9 @@ export const createClubApi = async (clubData: FormData) => {
 };
 
 // 클럽 참가 신청
-export const joinClubApi = async (userId: number, clubId:number) => {
+export const joinClubApi = async (userId: number, clubId: number) => {
   return publicRequest
-    .post(`user/clubMember/joinReq`, {userId, clubId}, {
-    })
+    .post(`user/clubMember/joinReq`, { userId, clubId }, {})
     .then((res) => res.data)
     .catch((error) => {
       console.log(error);
@@ -66,10 +64,13 @@ export const joinClubApi = async (userId: number, clubId:number) => {
 };
 
 // 용병 호출하기
-export const callPlayerApi = async (senderId: number, receiverId:number, gameId:number) => {
+export const callPlayerApi = async (
+  senderId: number,
+  receiverId: number,
+  gameId: number
+) => {
   return publicRequest
-    .post(`social/participant/suggest`, {senderId, receiverId, gameId}, {
-    })
+    .post(`social/participant/suggest`, { senderId, receiverId, gameId }, {})
     .then((res) => res.data)
     .catch((error) => {
       console.log(error);
