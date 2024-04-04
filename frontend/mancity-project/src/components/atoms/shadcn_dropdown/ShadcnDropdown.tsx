@@ -18,6 +18,7 @@ const ShadcnDropdown = ({
     const selectedItem = items.find((item) => item.label === selectedLabel);
     if (selectedItem) {
       setPosition?.(selectedLabel);
+      /* @ts-ignore */
       setNumberValue?.(selectedItem.value);
     }
   };

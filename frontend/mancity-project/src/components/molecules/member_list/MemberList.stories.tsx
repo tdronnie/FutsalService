@@ -17,7 +17,5 @@ export default meta;
 type Story = StoryObj<typeof MemberList>;
 
 export const Email: Story = {
-  args: {
-    label: "멤버 라인업",
-  },
+  args: {},
 };
