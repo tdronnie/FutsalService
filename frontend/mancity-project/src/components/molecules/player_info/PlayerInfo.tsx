@@ -252,7 +252,9 @@ const PlayerInfo = (props: PlayerInfoPropsType) => {
                     <div className="mx-1 my-2">
                       <MyTypography
                         fontWeight="font-medium"
-                        label={playerData ? `: ${playerData.assist}` : ": 2회"}
+                        label={
+                          playerData ? `: ${playerData.assist}회` : ": 2회"
+                        }
                         textColor="text-darkcity"
                         textSize="text-xl"
                       />
