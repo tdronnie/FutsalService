@@ -10,12 +10,12 @@ COPY package*.json ./
 # 현재 디렉토리의 모든 파일을 도커 컨테이너의 워킹 디렉토리에 복사한다.
 COPY . .
 
-# RUN npm run build
+RUN npm run build
 
 # 명령어 실행 (의존성 설치)
 RUN npm install
 
-RUN chmod 755 node_modules/.bin
+#RUN chmod 755 node_modules/.bin
 
 # 3000번 포트 노출
 EXPOSE 3000
