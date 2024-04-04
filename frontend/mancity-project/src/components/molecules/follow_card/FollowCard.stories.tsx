@@ -27,13 +27,6 @@ const meta: Meta<typeof FollowCard> = {
         type: { summary: "string" },
       },
     },
-    isFollow: {
-      description: "팔로우 여부를 입력받습니다.",
-      control: "boolean",
-      table: {
-        type: { summary: "boolean" },
-      },
-    },
   },
 };
 
@@ -45,6 +38,5 @@ export const Profile: Story = {
   args: {
     file: "",
     nickName: "하남최성호",
-    isFollow: true,
   },
 };
