@@ -2,7 +2,8 @@ from ultralytics import YOLO
 
 
 class model:
-    def __init__(self, ball_detector='20240401_v8x_1024_1000_last_best',tracking_detector='20240328_dataset2_yolov9e_b6000+n1000_best', tracker='bytetrack', max_det=800):
+    def __init__(self, ball_detector='20240401_v8x_1024_1000_last_best',
+                 tracking_detector='20240328_dataset2_yolov9e_b6000+n1000_best', tracker='bytetrack', max_det=800):
         self.ball_detector = YOLO('./service/tracking/models/detector/' + ball_detector + '.pt')
         self.tracking_detector = YOLO('./service/tracking/models/detector/' + tracking_detector + '.pt')
         self.tracker = './service/tracking/models/tracker/' + tracker + '.yaml'

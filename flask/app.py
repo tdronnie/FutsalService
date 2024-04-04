@@ -1,9 +1,7 @@
 from flask import Flask, jsonify, request, make_response
 from service.track_service import track_service
 from service import util
-from io import BytesIO
 import json
-import base64
 import requests
 import time
 

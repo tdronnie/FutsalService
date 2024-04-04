@@ -1,7 +1,6 @@
 from service.tracking.model import model
 from service import util
 import requests
-import os
 import cv2
 import time
 

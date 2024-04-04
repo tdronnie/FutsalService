@@ -1,6 +1,5 @@
 import os
 import cv2
-import matplotlib.pyplot as plt
 
 
 def get_position(box):
@@ -347,5 +346,3 @@ def write_defined_image(orig_img, filename, result_info):
 
     cv2.imwrite('./service/image/' + filename + '.png', img)
     return None
-
-
