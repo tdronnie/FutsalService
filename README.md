@@ -1,61 +1,119 @@
-## [✨team BABOO notion✨](https://leeseny.notion.site/2024-1f665d712e7a4cef98bbc8be9050c0b7?pvs=4)
+<div align=center>
 
-## Git Commit Convention
+# Welcome To **MANCITY**
+#### 맨발로 시작하는 티키타카, 맨시티 !
 
-### Commit Message 구조
-type : 어떤 의도로 커밋했는지를 type 에 명시(ex. Feat, Fix, Docs)
+![mancityIcon](https://github.com/gnoesnooj/iandwe/assets/91658692/b92989df-2af1-4e4e-ab34-c6d27926b668)
 
-Subject : 제목. 코드 변경사항에 대한 짧은 요약
+</div>
 
-body : 긴 설명이 필요한 경우, 어떻게 작성했는지가 아닌 무엇을 왜 했는지 를 작성(부연설명 혹은 커밋이유)
+## :homes: 서비스 소개
+풋살을 즐기는 사람들을 위한 소셜 기능, 매치 메이킹 및 드론 영상 기반 경기 분석 앱 서비스
 
-footer : issue tracker ID 를 명시하고 싶은 경우에 작성
+## :stadium: 프로젝트 배경
 
-### 타입(Commit Type)
+- 풋살을 더 제대로 즐기고 싶으나 단순히 촬영한 영상으로는 전체 움직임이 담기지 않음
+- 아마추어가 사용하기에 너무나 비싼 기존 분석 프로그램, 개인 코치 섭외의 현실적 어려움
+- 풋살이 대중적인 운동임에 비해 관련 앱 서비스가 많지 않음
 
-- 태그(tag) + 제목(subject) 형식
-- 첫 문자만 대문자
-- "태그: 제목" 의 형태이며, ":" 뒤에 space 가 있음에 유의[ex) Feat: 회원가입 api (Feat 가 태그이고, 회원가입 api 가 제목)]
 
-### 태그 종류
+## :nut_and_bolt: 기능 소개
 
-- Feat:	기능 추가, 삭제, 변경
-- Fix:	버그, 오류 수정
-- Docs:	README.md, json 파일 등 수정, 라이브러리 설치 (문서 관련, 코드 수정 없음)
-- Style:	CSS 등 사용자 UI 디자인 변경 (제품 코드 수정 발생, 코드 형식, 정렬 등의 변경)
-- Refactor:	코드 리팩토링
-- Test:	테스트 코드 추가, 삭제, 변경 등 (코드 수정 없음, 테스트 코드에 관련된 모든 변경에 해당)
-- Config:	npm 모듈 설치 등
-- Chore:	패키지 매니저 설정할 경우, etc 등 (ex. gitignore)
-- Comment:	필요한 주석 추가 및 변경
-- Rename:	파일 또는 폴더 명을 수정하거나 옮기는 작업만인 경우
-- Remove:	파일을 삭제하는 작업만 수행한 경우
 
-### 제목
 
-- 제목은 최대 50글자가 넘지 않고, 마침표 및 특수기호는 사용 금지
-- 동사(원형)를 가장 앞에 두고 첫 글자는 대문자로 표기
-- 제목은 개조식 구문으로 작성 --> 완전한 서술형 문장이 아니라, 간결하고 요점적인 서술을 의미.
+### 1. 경기 영상 분석 및 피드백
 
-* Fixed --> Fix
-* Added --> Add
-* Modified --> Modify
+드론 영상 기반 경기의 통계를 시각화하고, 개선할만한 피드백을 제공합니다.
 
-### 본문(Body)
+<div align=center>
+<img src="https://github.com/gnoesnooj/iandwe/assets/91658692/9462db86-962a-432f-9a7d-51d72da12267" width="40%" height="40%" /> <img src="https://github.com/gnoesnooj/iandwe/assets/91658692/673f8ecc-be27-4f06-b2a5-99363117a21e" width="40%" height="40%" />
+</div>
 
-- 본문은 한 줄 당 72자 내로 작성
-- 본문 내용은 양에 구애받지 않고 최대한 상세히 작성
-- 어떻게 변경했는지 보다 무엇을 변경했는지 또는 왜 변경했는지를 설명
+### 2. 경기 다시보기 및 전술 보드
+지난 경기 영상을 다시 보고, 원하는 시간대에 해당 선수들의 위치에 맞춰 전술 보드를 생성해줍니다.
 
-### 꼬릿말(Footer)
+<div align=center>
+<img src="https://github.com/gnoesnooj/iandwe/assets/91658692/8d95383e-7b38-4c26-b8df-ddd291687bd9" width="23%" height="23%" />  <img src="https://github.com/gnoesnooj/iandwe/assets/91658692/458cbe47-1c21-4b43-82e1-844ceeec2980" width="23%" height="23%" /> <img src="https://github.com/gnoesnooj/iandwe/assets/91658692/44f1841e-526c-48c8-a29b-95aa6776e0dd" width="23%" height="23%" />
+</div>
 
-- 꼬리말은 선택사항, 이슈 트래커 ID 작성
-- "유형: #이슈 번호" 형식으로 사용
-- 여러 개의 이슈 번호를 적을 때는 쉼표(,)로 구분
-- 이슈 트래커 유형은 다음 중 하나를 사용
+### 3. 경기 하이라이트
+드론 영상 기반 경기의 하이라이트 클립을 생성하고, 북마크 기능을 통해 하이라이트를 다시 볼 수 있습니다.
 
-1. Fixes: 이슈 수정중 (아직 해결되지 않은 경우)
-2. Resolves: 이슈를 해결했을 때 사용
-3. Ref: 참고할 이슈가 있을 때 사용
-4. Related to: 해당 커밋에 관련된 이슈번호 (아직 해결되지 않은 경우)
-   ex) Fixes: #45 Related to: #34, #23
+<div align=center>
+<img src="https://github.com/gnoesnooj/iandwe/assets/91658692/32bd35ad-f448-4848-864f-b88e650690af" width="23%" height="23%" />  <img src="https://github.com/gnoesnooj/iandwe/assets/91658692/98b9e915-4fd4-4dfb-bc80-71c26ee93f7a" width="23%" height="23%" /> <img src="https://github.com/gnoesnooj/iandwe/assets/91658692/c7302ce6-49e6-49b0-a8e9-da296376fb4b" width="23%" height="23%" />
+</div>
+
+### 4. 매치메이킹
+매치를 생성하여 사람들과 풋살을 즐길 수 있는 기회를 제공합니다.
+
+<div align=center>
+<img src="https://github.com/gnoesnooj/iandwe/assets/91658692/875e9878-96e4-491b-b0f3-3eb04fd9f7f2" width="20%" height="20%" /> <img src="https://github.com/gnoesnooj/iandwe/assets/91658692/4c2a63ce-2af4-46cf-b64b-b47493d1f1ca" width="20%" height="20%" /> <img src="
+https://github.com/gnoesnooj/iandwe/assets/91658692/5a075ee5-602f-41bc-8c4e-45a446e65bbb" width="20%" height="20%" /> <img src="
+https://github.com/gnoesnooj/iandwe/assets/91658692/c4e2d96e-1c2b-4835-8cbf-c283c49e6fb4" width="20%" height="20%" />
+</div>
+
+### 5. 용병 제도
+용병을 등록하여, 매치에 인원이 부족할 때 용병을 호출하거나, 매치에 초대할 수 있습니다.
+
+<div align=center>
+<img src="https://github.com/gnoesnooj/iandwe/assets/91658692/955915f6-b8d9-40dd-acdf-957fed69b01c" width="20%" height="20%" /> <img src="https://github.com/gnoesnooj/iandwe/assets/91658692/ec5d7bbe-0bed-4686-b8ba-24c81170695e" width="20%" height="20%" /> <img src="
+https://github.com/gnoesnooj/iandwe/assets/91658692/5b4ff815-cb09-4737-b2e1-10a165811b67" width="20%" height="20%" />
+</div>
+
+### 6. 클럽
+클럽 활동을 통해서 원하는 지역에서 클럽원들과 풋살을 즐길 수 있습니다.
+
+<div align=center>
+<img src="https://github.com/gnoesnooj/iandwe/assets/91658692/955915f6-b8d9-40dd-acdf-957fed69b01c" width="20%" height="20%" /> <img src="https://github.com/gnoesnooj/iandwe/assets/91658692/7b2514da-513d-467e-851c-285f905d49e2" width="20%" height="20%" /> <img src="
+https://github.com/gnoesnooj/iandwe/assets/91658692/008130b7-e9b7-423b-a19b-cfb6aa816606" width="20%" height="20%" /> <img src="
+https://github.com/gnoesnooj/iandwe/assets/91658692/f39bd75b-fa56-4bf4-8cf0-08ff17323d35" width="20%" height="20%" />
+</div>
+
+## :park: 개발 환경
+
+<div align=center>
+
+### FRONTEND
+
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black">
+<img src="https://img.shields.io/badge/ZUSTAND-764ABC?style=for-the-badge&logo=redux&logoColor=white">
+<img src="https://img.shields.io/badge/StyledComponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white"> <img src="https://img.shields.io/badge/pwa-FF6F00?style=for-the-badge&logo=pwa&logoColor=white"> <img src="https://img.shields.io/badge/node-6db33f?style=for-the-badge&logo=javascript&logoColor=white"/> <img src="https://img.shields.io/badge/Vite-db55ef?style=for-the-badge&logo=vite&logoColor=white"/> <img src="https://img.shields.io/badge/tailwind-000096?style=for-the-badge&logo=bootstrap&logoColor=white"/> <img src="https://img.shields.io/badge/vscode-0000ef?style=for-the-badge&logo=visualstudio&logoColor=white"/> <img src="https://img.shields.io/badge/storybook-f03ff3?style=for-the-badge&logo=storybook&logoColor=white"/> 
+
+### BACKEND
+
+<img src="https://img.shields.io/badge/IntellijIdea-554477?style=for-the-badge&logo=intellijidea&logoColor=white"> <img src="https://img.shields.io/badge/Springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"> <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white"> <img src="https://img.shields.io/badge/AWS S3-DC382D?style=for-the-badge&logo=amazons3&logoColor=white"> <img src="https://img.shields.io/badge/AmazonEC2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white"> <img src="https://img.shields.io/badge/Java-BA5922?style=for-the-badge&logo=Jameson&logoColor=white"/> <img src="https://img.shields.io/badge/Swagger-7BB27F?style=for-the-badge&logo=Swagger&logoColor=white"/> <img src="https://img.shields.io/badge/Gradle-010101?style=for-the-badge&logo=gradle&logoColor=white"/> <img src="https://img.shields.io/badge/Netflix Eureka-BA5922?style=for-the-badge&logo=netflix&logoColor=white"/> 
+    
+### AI
+<img src="https://img.shields.io/badge/CITRIX-FF9900?style=for-the-badge&logo=Citrix&logoColor=white"/> <img src="https://img.shields.io/badge/FLASK-000000?style=for-the-badge&logo=Flask&logoColor=white"/> <img src="https://img.shields.io/badge/python-446611?style=for-the-badge&logo=python&logoColor=white"/> <img src="https://img.shields.io/badge/yolo v8-eee555?style=for-the-badge&logo=flask&logoColor=white"/> <img src="https://img.shields.io/badge/Botsort-555eee?style=for-the-badge&logo=sololearn&logoColor=white"/> <img src="https://img.shields.io/badge/Bytetrack-5e5e5e?style=for-the-badge&logo=&logoColor=white"/> <img src="https://img.shields.io/badge/jupyter-bb3311?style=for-the-badge&logo=jupyter&logoColor=white"/> <img src="https://img.shields.io/badge/opencv-000000?style=for-the-badge&logo=opencv&logoColor=white"/> <img src="https://img.shields.io/badge/pytorch-3355ef?style=for-the-badge&logo=pytorch&logoColor=white"/> 
+    
+### DevOps
+
+<img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"> <img src="https://img.shields.io/badge/Jenkins-D24939?style=for-the-badge&logo=jenkins&logoColor=white"/> <img src="https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white"/>
+
+### Communication Tools
+    
+<img src="https://img.shields.io/badge/GitLab-FC6D26?style=for-the-badge&logo=gitlab&logoColor=white"> <img src="https://img.shields.io/badge/Jira-0052CC?style=for-the-badge&logo=jirasoftware&logoColor=white"> <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white"> <img src="https://img.shields.io/badge/mattermost-224477?style=for-the-badge&logo=mattermost&logoColor=white">
+
+
+</div>
+
+## :tools: 아키텍처
+![아키텍처](/uploads/76710d135cab9ea33af88b156f57ed51/아키텍처.PNG)
+
+
+## :desktop: 화면 정의서
+> [MANCITY FIGMA - 화면 정의서](https://www.figma.com/file/JwSL8sh6llTJinGxoLvuPu/MANCITY?type=design&node-id=0-1&mode=design&t=eAtAYkD2Ky5DAAkR-0)
+
+## :handshake: API 명세서
+| Domain | Swagger URL |
+|---|---|
+| User | http://j10c201.p.ssafy.io:8081/swagger-ui/index.html |
+| Social | http://j10c201.p.ssafy.io:8082/swagger-ui/index.html |
+| Calc | http://j10c201.p.ssafy.io:8083/swagger-ui/index.html |
+
+## :department_store: ER 다이어그램
+
+> [MANCITY LUCID CHART - ERD](https://lucid.app/lucidchart/3908db42-d6c1-496f-81e3-764e79c50846/edit?viewport_loc=-238%2C-255%2C2446%2C1079%2C0_0&invitationId=inv_3dd803fe-8963-417c-8241-5cbbd93900b3)
+
+## :family_mmgb: 팀원 소개
+![팀원소개](https://github.com/gnoesnooj/iandwe/assets/91658692/c5e66e85-d8a9-4621-a89c-e0e01756e225)
