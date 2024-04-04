@@ -15,6 +15,8 @@ COPY . .
 # 명령어 실행 (의존성 설치)
 RUN npm install
 
+RUN chmod 755 node_modules/.bin
+
 # 3000번 포트 노출
 EXPOSE 3000
 
