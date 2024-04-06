@@ -33,7 +33,7 @@
 지난 경기 영상을 다시 보고, 원하는 시간대에 해당 선수들의 위치에 맞춰 전술 보드를 생성해줍니다.
 
 <div align=center>
-<img src="https://github.com/gnoesnooj/iandwe/assets/91658692/8d95383e-7b38-4c26-b8df-ddd291687bd9" width="23%" height="23%" />  <img src="https://github.com/gnoesnooj/iandwe/assets/91658692/458cbe47-1c21-4b43-82e1-844ceeec2980" width="23%" height="23%" /> <img src="https://github.com/gnoesnooj/iandwe/assets/91658692/44f1841e-526c-48c8-a29b-95aa6776e0dd" width="23%" height="23%" />
+<img src="exec/imgs/replay.jpg" width="23%" height="23%" />  <img src="exec/imgs/jeonsul.jpg" width="23%" height="23%" /> <img src="exec/imgs/jeonsul_list.jpg" width="23%" height="23%" />
 </div>
 
 ### 3. 경기 하이라이트
@@ -49,7 +49,7 @@
 매치를 생성하여 사람들과 풋살을 즐길 수 있는 기회를 제공합니다.
 
 <div align=center>
-<img src="https://github.com/gnoesnooj/iandwe/assets/91658692/875e9878-96e4-491b-b0f3-3eb04fd9f7f2" width="20%" height="20%" /> <img src="https://github.com/gnoesnooj/iandwe/assets/91658692/4c2a63ce-2af4-46cf-b64b-b47493d1f1ca" width="20%" height="20%" /> <img src="
+<img src="https://github.com/gnoesnooj/iandwe/assets/91658692/875e9878-96e4-491b-b0f3-3eb04fd9f7f2" width="20%" height="20%" /> <img src="exec/imgs/match_detail.jpg" width="20.5%" height="20%" /> <img src="
 https://github.com/gnoesnooj/iandwe/assets/91658692/5a075ee5-602f-41bc-8c4e-45a446e65bbb" width="20%" height="20%" /> <img src="
 https://github.com/gnoesnooj/iandwe/assets/91658692/c4e2d96e-1c2b-4835-8cbf-c283c49e6fb4" width="20%" height="20%" />
 </div>
@@ -59,7 +59,7 @@ https://github.com/gnoesnooj/iandwe/assets/91658692/c4e2d96e-1c2b-4835-8cbf-c283
 용병을 등록하여, 매치에 인원이 부족할 때 용병을 호출하거나, 매치에 초대할 수 있습니다.
 
 <div align=center>
-<img src="https://github.com/gnoesnooj/iandwe/assets/91658692/955915f6-b8d9-40dd-acdf-957fed69b01c" width="20%" height="20%" /> <img src="https://github.com/gnoesnooj/iandwe/assets/91658692/ec5d7bbe-0bed-4686-b8ba-24c81170695e" width="20%" height="20%" /> <img src="
+<img src="exec/imgs/yong_list.jpg" width="20.5%" height="20%" /> <img src="exec/imgs/yong_click.jpg" width="20.5%" height="20%" /> <img src="
 https://github.com/gnoesnooj/iandwe/assets/91658692/5b4ff815-cb09-4737-b2e1-10a165811b67" width="20%" height="20%" />
 </div>
 
@@ -68,12 +68,23 @@ https://github.com/gnoesnooj/iandwe/assets/91658692/5b4ff815-cb09-4737-b2e1-10a1
 클럽 활동을 통해서 원하는 지역에서 클럽원들과 풋살을 즐길 수 있습니다.
 
 <div align=center>
-<img src="https://github.com/gnoesnooj/iandwe/assets/91658692/955915f6-b8d9-40dd-acdf-957fed69b01c" width="20%" height="20%" /> <img src="https://github.com/gnoesnooj/iandwe/assets/91658692/7b2514da-513d-467e-851c-285f905d49e2" width="20%" height="20%" /> <img src="
+<img src="exec/imgs/club_list.jpg" width="20.5%" height="20%" /> <img src="
 https://github.com/gnoesnooj/iandwe/assets/91658692/008130b7-e9b7-423b-a19b-cfb6aa816606" width="20%" height="20%" /> <img src="
-https://github.com/gnoesnooj/iandwe/assets/91658692/f39bd75b-fa56-4bf4-8cf0-08ff17323d35" width="20%" height="20%" />
+https://github.com/gnoesnooj/iandwe/assets/91658692/f39bd75b-fa56-4bf4-8cf0-08ff17323d35" width="20%" height="20%" /> <img src="exec/imgs/club_error.jpg" width="20.5%" height="20%" />
 </div>
 
-## 메인 화면
+### 7. 메인 화면
+
+메인 화면에서 지난 경기 및 용병 랭킹을 볼 수 있습니다.
+
+<div align=center>
+<img src="exec/imgs/home_1.jpg" width="23%" height="23%" /> <img src="exec/imgs/home_2.jpg" width="23%" height="23%" />
+</div>
+
+<br/>
+<br/>
+
+## 시연 영상
 
 | 메인 화면                    | 매치 등록                                  | 용병 호출                                |
 | ---------------------------- | ------------------------------------------ | ---------------------------------------- |
