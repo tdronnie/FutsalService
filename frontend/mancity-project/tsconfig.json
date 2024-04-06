@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    /* shadcn/ui */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    "moduleResolution": "node",
+    "allowImportingTsExtensions": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    // build시 불필요한 코드 무시처리
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    // 카카오 맵 추가
+    "types": ["kakao.maps.d.ts"]
+  },
+  "include": ["src/**/*", "public/firebase-messaging-sw.js"],
+  "exclude": ["node_modules", "**/*.spec.ts"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
