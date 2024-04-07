@@ -1,0 +1,315 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #64b5f6;
+  border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #1976d2;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer base {
+  html {
+    font-family:
+      "KCC",
+      "SCDream",
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      "Helvetica Neue",
+      Arial,
+      "Noto Sans",
+      sans-serif,
+      "Apple Color Emoji",
+      "Segoe UI Emoji",
+      "Segoe UI Symbol",
+      "Noto Color Emoji";
+  }
+}
+
+/* 새로운 폰트 입력 */
+@font-face {
+  font-family: "KCC";
+  font-weight: 500;
+  font-display: swap;
+  src: url("./fonts/KCC-Hanbit.woff2") format("woff2");
+}
+
+/* 에스코어드림 폰트 입력 */
+@font-face {
+  font-family: "SCDream";
+  font-weight: 100;
+  font-display: swap;
+  src: url("./fonts/SCDream1.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "SCDream";
+  font-weight: 200;
+  font-display: swap;
+  src: url("./fonts/SCDream2.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "SCDream";
+  font-weight: 300;
+  font-display: swap;
+  src: url("./fonts/SCDream3.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "SCDream";
+  font-weight: 400;
+  font-display: swap;
+  src: url("./fonts/SCDream4.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "SCDream";
+  font-weight: 500;
+  font-display: swap;
+  src: url("./fonts/SCDream5.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "SCDream";
+  font-weight: 600;
+  font-display: swap;
+  src: url("./fonts/SCDream6.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "SCDream";
+  font-weight: 700;
+  font-display: swap;
+  src: url("./fonts/SCDream7.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "SCDream";
+  font-weight: 800;
+  font-display: swap;
+  src: url("./fonts/SCDream8.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "SCDream";
+  font-weight: 900;
+  font-display: swap;
+  src: url("./fonts/SCDream9.woff2") format("woff2");
+}
+
+@media (min-width: 577px) {
+  #root {
+    background: white;
+  }
+}
+
+.AppSize {
+  max-width: 576px;
+  min-height: 100vh;
+  margin: auto;
+  background-image: linear-gradient(
+    to bottom,
+    #ebf6ff 0vh,
+    #e3f2fd 40vh,
+    #bbdefb 60vh,
+    #64b5f6 90vh,
+    #42a5f5 100vh
+  );
+}
+.TooSmall {
+  display: none;
+}
+
+/* 화면 너비가 360px 미만인 경우 */
+@media (max-width: 359px) {
+  .AppSize {
+    display: none;
+  }
+
+  #appWarning {
+    display: block;
+    text-align: center;
+    padding: 20px;
+    font-size: 2.8vh;
+    font-weight: bold;
+    color: #d4a11e;
+    background-color: #cdf5fd;
+    height: 100vh;
+  }
+}
+
+/* 글래스모피즘 구현 */
+#glassnav {
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow:
+    35px 35px 68px 0px rgba(188, 223, 255, 0.5),
+    inset -8px -8px 16px 0px rgba(188, 223, 255, 0.6),
+    inset 0px 11px 28px 0px rgb(255, 255, 255);
+}
+#glassheader {
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.8);
+  /* border-radius: 20px; */
+  box-shadow:
+    /* 35px 35px 68px 0px rgba(194, 221, 255, 0.5), */
+    inset -8px -8px 16px 0px rgba(100, 181, 246, 0.6),
+    inset 0px 11px 28px 0px rgb(255, 255, 255);
+}
+#glassui {
+  padding-right: 1rem;
+  padding-left: 1rem;
+  /* backdrop-filter: blur(5px); */
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  box-shadow:
+    /* 35px 35px 68px 0px rgba(100, 181, 246, 0.5), */
+    inset -8px -8px 16px 5px rgba(100, 181, 246, 0.6),
+    inset 0px 11px 28px 0px rgb(255, 255, 255);
+}
+#glassbtn {
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow:
+    /* 35px 35px 68px 0px rgba(255, 188, 41, 0.5), */
+    inset -8px -8px 16px 0px rgba(255, 188, 41, 0.6),
+    inset 0px 11px 28px 0px rgb(255, 255, 255);
+}
+
+#modalbackground {
+  max-width: 576px;
+  min-height: auto;
+  background-image: linear-gradient(
+    to bottom,
+    #ebf6ff 0vh,
+    #e3f2fd 40vh,
+    #bbdefb 60vh,
+    #64b5f6 90vh,
+    #42a5f5 100vh
+  );
+}
+
+input {
+  background-color: transparent;
+}
+#responsive-p {
+  font-size: 1rem;
+}
+@media (min-width: 400px) {
+  #responsive-p {
+    font-size: 1.25rem;
+  }
+}
+@media (min-width: 440px) {
+  #responsive-p {
+    font-size: 1.35rem;
+  }
+}
+@media (min-width: 500px) {
+  #responsive-p {
+    font-size: 1.45rem;
+  }
+}
+@media (min-width: 480px) {
+  #responsive-img {
+    width: 3.2rem;
+    height: 3.2rem;
+  }
+}
