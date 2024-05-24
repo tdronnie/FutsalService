@@ -136,7 +136,7 @@
 
 ## :tools: 아키텍처
 
-![아키텍처](exec/imgs/Architecture.PNG)
+![아키텍처](exec/imgs/Architecture.png)
 
 ## :desktop: 화면 정의서
 
